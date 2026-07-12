@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alma-fit-mind.vercel.app/sitemap.xml
