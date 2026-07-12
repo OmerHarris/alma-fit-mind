@@ -36,13 +36,45 @@ document.querySelectorAll(".faq-item").forEach((item) => {
   });
 });
 
-// Contact form (front-end only — no backend wired up yet)
+// Contact form
 const contactForm = document.getElementById("contactForm");
 const formNote = document.getElementById("formNote");
 
 if (contactForm) {
-  contactForm.addEventListener("submit", (e) => {
+  contactForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    formNote.textContent = "Thanks! This form isn't connected to an inbox yet — for now, please email or call directly.";
+
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending…";
+    formNote.textContent = "";
+
+    const payload = {
+      name: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+      goal: document.getElementById("goal").value,
+    };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await response.json().catch(() => ({}));
+
+      if (response.ok) {
+        formNote.textContent = "Thanks! Your message is on its way — Alma will be in touch soon.";
+        contactForm.reset();
+      } else {
+        formNote.textContent = data.error || "Something went wrong. Please try again shortly.";
+      }
+    } catch (err) {
+      formNote.textContent = "Something went wrong. Please try again shortly.";
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    }
   });
 }
