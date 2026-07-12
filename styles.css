@@ -530,6 +530,7 @@ a { color: inherit; text-decoration: none; }
   transition: max-height 0.25s ease;
 }
 .faq-a p { padding: 0 4px 22px; margin: 0; }
+.faq-a a { color: var(--gold-dark); text-decoration: underline; text-underline-offset: 2px; }
 
 /* ---------- Final CTA ---------- */
 .final-cta { background: var(--paper-alt); }
@@ -566,6 +567,24 @@ a { color: inherit; text-decoration: none; }
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+}
+
+/* ---------- Legal page ---------- */
+.legal { background: var(--paper); padding-top: 64px; }
+.legal-inner { max-width: 720px; }
+.legal .eyebrow { margin-bottom: 0.6em; }
+.legal-updated { color: var(--ink-soft); font-size: 0.85rem; margin-bottom: 2.5rem; }
+.legal h2 { margin-top: 2.2em; font-size: 1.35rem; }
+.legal h3 { margin-top: 1.4em; font-size: 1.05rem; color: var(--charcoal-dark); }
+.legal p { font-size: 0.98rem; }
+.legal a { color: var(--gold-dark); text-decoration: underline; text-underline-offset: 2px; }
+.legal-disclaimer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--ink-soft);
 }
 
 .final-cta-inner { max-width: 620px; }
@@ -628,6 +647,8 @@ a { color: inherit; text-decoration: none; }
   font-size: 0.82rem;
   color: #757b7c;
 }
+.footer-bottom a { color: #9aa0a1; text-decoration: underline; text-underline-offset: 2px; }
+.footer-bottom a:hover { color: var(--gold); }
 .footer-disclaimer { max-width: 520px; }
 
 /* ---------- Responsive ---------- */
