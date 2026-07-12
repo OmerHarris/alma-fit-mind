@@ -31,6 +31,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css" />
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 </head>
 <body>
 
@@ -422,26 +423,35 @@
 
   <!-- FINAL CTA -->
   <section class="section final-cta" id="contact">
-    <div class="wrap final-cta-inner">
+    <div class="wrap">
       <p class="eyebrow center">Get Started</p>
       <h2 class="center">Ready to train your body and rebuild your mindset?</h2>
-      <p class="section-lead center">Start with a free 20-minute discovery call — no pressure, just an honest conversation about where you are and whether this is the right fit.</p>
-      <form class="contact-form" id="contactForm">
-        <div class="form-row">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" required autocomplete="name" />
-        </div>
-        <div class="form-row">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required autocomplete="email" />
-        </div>
-        <div class="form-row">
-          <label for="goal">What are you hoping to change?</label>
-          <textarea id="goal" name="goal" rows="4" placeholder="Tell me a little about where you're starting from and what you're working toward."></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary btn-block">Request My Free Discovery Call</button>
-        <p class="form-note" id="formNote" role="status"></p>
-      </form>
+      <p class="section-lead center">Book your free 20-minute discovery call below — no pressure, just an honest conversation about where you are and whether this is the right fit.</p>
+
+      <div class="calendly-wrap">
+        <div class="calendly-inline-widget" data-url="https://calendly.com/almafitandmind/free-discovery-call?hide_gdpr_banner=1" style="min-width:320px;height:680px;"></div>
+      </div>
+
+      <div class="contact-divider"><span>or send a quick message instead</span></div>
+
+      <div class="final-cta-inner">
+        <form class="contact-form" id="contactForm">
+          <div class="form-row">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required autocomplete="name" />
+          </div>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email" />
+          </div>
+          <div class="form-row">
+            <label for="goal">What are you hoping to change?</label>
+            <textarea id="goal" name="goal" rows="4" placeholder="Tell me a little about where you're starting from and what you're working toward."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+          <p class="form-note" id="formNote" role="status"></p>
+        </form>
+      </div>
     </div>
   </section>
 
@@ -475,6 +485,7 @@
   </div>
 </footer>
 
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 <script src="script.js"></script>
 </body>
 </html>

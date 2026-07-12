@@ -524,6 +524,41 @@ a { color: inherit; text-decoration: none; }
 
 /* ---------- Final CTA ---------- */
 .final-cta { background: var(--paper-alt); }
+
+.calendly-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.contact-divider {
+  position: relative;
+  text-align: center;
+  max-width: 620px;
+  margin: 2.8rem auto;
+}
+.contact-divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--line);
+}
+.contact-divider span {
+  position: relative;
+  background: var(--paper-alt);
+  padding: 0 16px;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
 .final-cta-inner { max-width: 620px; }
 .contact-form {
   background: var(--card);
