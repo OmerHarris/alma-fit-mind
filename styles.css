@@ -1023,6 +1023,10 @@ a { color: inherit; text-decoration: none; }
   font-size: 0.92rem;
 }
 .footer-links a:hover { color: var(--gold); }
+.footer-social { display: flex; gap: 16px; margin-top: 4px; }
+.footer-social a { color: #9aa0a1; transition: color 0.2s ease; }
+.footer-social a:hover { color: var(--gold); }
+.footer-social svg { width: 22px; height: 22px; display: block; }
 .footer-bottom {
   display: flex;
   justify-content: space-between;
