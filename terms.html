@@ -87,7 +87,7 @@
       <h2>5. No Guarantee of Results</h2>
       <p>Fitness, nutrition, and mindset outcomes vary by individual and depend on factors outside our control, including your effort, consistency, and starting health status. We do not guarantee specific results.</p>
 
-      <h2>6. Privacy</h2>
+      <h2 id="privacy">6. Privacy</h2>
       <p>We collect the information you provide directly — such as your name, email, and any details you share through our contact form, booking scheduler, or intake process — to deliver and improve our coaching services. We do not sell your personal information.</p>
       <p>Our site uses a small number of third-party services to operate: Stripe (payments), Calendly (scheduling), and Resend (email delivery). Each of these providers processes limited data — like your name, email, or payment details — solely to complete the function you're using (checkout, booking, or contact). We don't share your information with anyone beyond what's needed to provide the service you requested.</p>
       <p>Questions about your data can be sent to <a href="mailto:hello@almafitandmind.com">hello@almafitandmind.com</a>.</p>
@@ -127,10 +127,18 @@
     </div>
   </div>
   <div class="wrap footer-bottom">
-    <p>&copy; 2026 Alma Fit &amp; Mind. All rights reserved. · <a href="/terms.html">Terms &amp; Policies</a></p>
+    <p>&copy; 2026 Alma Fit &amp; Mind. All rights reserved. · <a href="/terms.html">Terms &amp; Policies</a> · <a href="mailto:hello@almafitandmind.com?subject=Manage%20My%20Subscription">Manage Subscription</a></p>
     <p class="footer-disclaimer">Alma Fit &amp; Mind provides fitness, nutrition &amp; mindset coaching for educational and motivational purposes only. This is not medical advice, and is not a substitute for licensed medical, dietetic, or mental health treatment. Alma Fit &amp; Mind is not liable for injuries, or the aggravation of existing injuries, arising from participation in our programs — see our <a href="/terms.html">Terms &amp; Policies</a> for full details.</p>
   </div>
 </footer>
+
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-banner-inner">
+    <p>We use cookies from trusted services (Calendly, Stripe) to power booking and checkout on this site. By continuing to use it, you agree to our <a href="/terms.html#privacy">Privacy Policy</a>.</p>
+    <button type="button" class="btn btn-primary btn-sm" id="cookieBannerAccept">Got it</button>
+  </div>
+</div>
+<script>if (localStorage.getItem("cookieConsent")) { document.getElementById("cookieBanner").style.display = "none"; }</script>
 
 <script src="script.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>

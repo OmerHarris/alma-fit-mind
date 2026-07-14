@@ -7,11 +7,20 @@ if (promoBarClose) {
   });
 }
 
+// Cookie banner
+const cookieBannerAccept = document.getElementById("cookieBannerAccept");
+if (cookieBannerAccept) {
+  cookieBannerAccept.addEventListener("click", () => {
+    document.getElementById("cookieBanner").style.display = "none";
+    localStorage.setItem("cookieConsent", "1");
+  });
+}
+
 // Scroll-reveal animations (progressive enhancement — elements stay visible if JS fails)
 if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   let revealTargets = Array.from(document.querySelectorAll(
     ".problem-card, .method-card, .service-card, .persona-card, .price-card, " +
-    ".journey-list li, .value-item, .faq-item, .photo-banner .wrap > *, .testimonial-card, .result-card, " +
+    ".journey-list li, .value-item, .faq-item, .photo-banner .wrap > *, .testimonial-card, .result-card, .value-prop, " +
     ".section > .wrap > .eyebrow, .section > .wrap > h2, .section > .wrap > .section-lead"
   ));
 
