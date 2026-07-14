@@ -23,6 +23,31 @@ if (calendlyWidget) {
   }
 }
 
+// Plate chooser modal — pick between the article and the kitchen
+const plateModal = document.getElementById("plateModal");
+if (plateModal) {
+  const openModal = (e) => {
+    e.preventDefault();
+    plateModal.hidden = false;
+    document.body.style.overflow = "hidden";
+    plateModal.querySelector(".plate-option").focus();
+  };
+  const closeModal = () => {
+    plateModal.hidden = true;
+    document.body.style.overflow = "";
+  };
+
+  document.querySelectorAll(".pillar-plate").forEach((el) => {
+    el.addEventListener("click", openModal);
+  });
+  plateModal.querySelectorAll("[data-plate-close]").forEach((el) => {
+    el.addEventListener("click", closeModal);
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !plateModal.hidden) closeModal();
+  });
+}
+
 // Promo bar dismiss
 const promoBarClose = document.getElementById("promoBarClose");
 if (promoBarClose) {
@@ -45,7 +70,7 @@ if (cookieBannerAccept) {
 if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   let revealTargets = Array.from(document.querySelectorAll(
     ".problem-card, .method-card, .service-card, .persona-card, .price-card, " +
-    ".journey-list li, .value-item, .faq-item, .photo-banner .wrap > *, .testimonial-card, .result-card, .value-prop, " +
+    ".journey-list li, .value-item, .faq-item, .photo-banner .wrap > *, .testimonial-card, .result-card, .value-prop, .kitchen-teaser, " +
     ".section > .wrap > .eyebrow, .section > .wrap > h2, .section > .wrap > .section-lead"
   ));
 
