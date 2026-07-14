@@ -11,7 +11,7 @@ if (promoBarClose) {
 if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   let revealTargets = Array.from(document.querySelectorAll(
     ".problem-card, .method-card, .service-card, .persona-card, .price-card, " +
-    ".journey-list li, .value-item, .faq-item, .photo-banner .wrap > *, " +
+    ".journey-list li, .value-item, .faq-item, .photo-banner .wrap > *, .testimonial-card, " +
     ".section > .wrap > .eyebrow, .section > .wrap > h2, .section > .wrap > .section-lead"
   ));
 
