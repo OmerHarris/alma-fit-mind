@@ -125,6 +125,48 @@ a { color: inherit; text-decoration: none; }
 .btn-sm { padding: 10px 20px; font-size: 0.85rem; }
 .btn-block { width: 100%; }
 
+/* ---------- Promo bar ---------- */
+.promo-bar {
+  background: var(--gold);
+  color: var(--charcoal-dark);
+}
+.promo-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 10px 24px;
+  position: relative;
+}
+.promo-bar p {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
+  padding-right: 28px;
+}
+.promo-bar a {
+  color: var(--charcoal-dark);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 700;
+}
+#promoBarClose {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--charcoal-dark);
+  padding: 4px 8px;
+  opacity: 0.7;
+}
+#promoBarClose:hover { opacity: 1; }
+
 /* ---------- Header ---------- */
 .site-header {
   position: sticky;

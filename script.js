@@ -1,3 +1,12 @@
+// Promo bar dismiss
+const promoBarClose = document.getElementById("promoBarClose");
+if (promoBarClose) {
+  promoBarClose.addEventListener("click", () => {
+    document.getElementById("promoBar").style.display = "none";
+    localStorage.setItem("promoBarDismissed", "1");
+  });
+}
+
 // Scroll-reveal animations (progressive enhancement — elements stay visible if JS fails)
 if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   let revealTargets = Array.from(document.querySelectorAll(
