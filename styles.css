@@ -319,10 +319,47 @@ a { color: inherit; text-decoration: none; }
   box-shadow: var(--shadow);
   background: var(--card);
   color: var(--charcoal-dark);
+  pointer-events: auto;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.pillar:hover, .pillar:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -12px rgba(20, 24, 26, 0.5);
 }
 .pillar-body { top: 18%; left: 6%; background: var(--charcoal-dark); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
 .pillar-plate { bottom: 14%; left: 10%; background: var(--gold); color: #fff; }
 .pillar-mind { bottom: 22%; right: 7%; background: var(--clay); color: #fff; }
+
+/* ---------- Pillar deep-dive pages ---------- */
+.pillar-hero {
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  padding: 160px 0 80px;
+}
+.pillar-hero .eyebrow { color: var(--gold); }
+.pillar-hero .eyebrow a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
+.pillar-hero h1 { color: #fff; max-width: 700px; font-size: clamp(2rem, 4.2vw, 3.1rem); }
+.pillar-hero-lead { color: #d8dadb; font-size: 1.12rem; max-width: 620px; }
+
+.pillar-body-content h2 { display: flex; }
+.pillar-cta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+.pillar-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
+.pillar-nav-link { color: var(--gold-dark); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
 
 /* ---------- Value props ---------- */
 .value-props { background: var(--paper); padding: 56px 0; }
@@ -388,9 +425,18 @@ a { color: inherit; text-decoration: none; }
   color: #e7e5df;
 }
 .method-card h3 { color: #fff; }
-.method-card p { color: #c7c9c6; margin: 0; }
+.method-card p { color: #c7c9c6; margin: 0 0 14px; }
+.method-card-link {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 .method-card-accent { background: linear-gradient(160deg, var(--gold-dark), var(--gold)); border-color: transparent; }
 .method-card-accent h3, .method-card-accent p { color: #fff; }
+.method-card-accent .method-card-link { color: #fff; }
 .method-index {
   display: inline-block;
   font-family: var(--serif);
