@@ -339,6 +339,32 @@ a { color: inherit; text-decoration: none; }
 .pillar-plate { bottom: 14%; left: 10%; background: var(--gold); color: #fff; }
 .pillar-mind { bottom: 22%; right: 7%; background: var(--clay); color: #fff; }
 
+/* ---------- 404 ---------- */
+.not-found { padding: 140px 0; background: var(--paper); }
+.not-found-inner { max-width: 620px; }
+.not-found-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 28px 0 40px;
+}
+.not-found-links {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+.not-found-links a {
+  color: var(--gold-dark);
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 /* ---------- Pillar deep-dive pages ---------- */
 .pillar-hero {
   min-height: 560px;
