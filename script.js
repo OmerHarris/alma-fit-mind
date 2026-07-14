@@ -1,3 +1,47 @@
+// Scroll-reveal animations (progressive enhancement — elements stay visible if JS fails)
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  let revealTargets = Array.from(document.querySelectorAll(
+    ".problem-card, .method-card, .service-card, .persona-card, .price-card, " +
+    ".journey-list li, .value-item, .faq-item, .photo-banner .wrap > *, " +
+    ".section > .wrap > .eyebrow, .section > .wrap > h2, .section > .wrap > .section-lead"
+  ));
+
+  revealTargets.forEach((el, i) => {
+    el.classList.add("reveal");
+    el.style.transitionDelay = (i % 3) * 60 + "ms";
+  });
+
+  const revealInView = () => {
+    const viewportH = window.innerHeight;
+    revealTargets = revealTargets.filter((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < viewportH - 60) {
+        el.classList.add("revealed");
+        return false;
+      }
+      return true;
+    });
+    if (revealTargets.length === 0) {
+      window.removeEventListener("scroll", revealInView);
+      window.removeEventListener("resize", revealInView);
+    }
+  };
+
+  window.addEventListener("scroll", revealInView, { passive: true });
+  window.addEventListener("resize", revealInView, { passive: true });
+  revealInView();
+}
+
+// Sticky header shrink-on-scroll
+const headerEl = document.getElementById("siteHeader");
+if (headerEl) {
+  const onScroll = () => {
+    headerEl.classList.toggle("scrolled", window.scrollY > 40);
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+}
+
 // Mobile nav toggle
 const navToggle = document.getElementById("navToggle");
 const siteHeader = document.getElementById("siteHeader");
@@ -35,6 +79,42 @@ document.querySelectorAll(".faq-item").forEach((item) => {
     answer.style.maxHeight = expanded ? null : answer.scrollHeight + "px";
   });
 });
+
+// Lead magnet — free guide
+const leadForm = document.getElementById("leadForm");
+const leadNote = document.getElementById("leadNote");
+const guideContent = document.getElementById("guideContent");
+
+if (leadForm) {
+  leadForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const submitBtn = leadForm.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending…";
+    leadNote.textContent = "";
+
+    const email = document.getElementById("leadEmail").value;
+
+    try {
+      await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+    } catch (err) {
+      // Reveal the guide regardless — the lead notification is best-effort only.
+    }
+
+    leadNote.textContent = "Here's your guide — bookmark this page to come back to it anytime.";
+    guideContent.hidden = false;
+    guideContent.scrollIntoView({ behavior: "smooth", block: "start" });
+    leadForm.reset();
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalText;
+  });
+}
 
 // Contact form
 const contactForm = document.getElementById("contactForm");
