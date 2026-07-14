@@ -1,3 +1,28 @@
+// Calendly loading placeholder — hide it once the real widget iframe appears
+const calendlyWidget = document.querySelector(".calendly-inline-widget");
+if (calendlyWidget) {
+  const hideLoading = () => {
+    const loading = calendlyWidget.querySelector(".calendly-loading");
+    if (loading) loading.style.display = "none";
+  };
+
+  const iframe = calendlyWidget.querySelector("iframe");
+  if (iframe) {
+    hideLoading();
+  } else {
+    const observer = new MutationObserver(() => {
+      const foundIframe = calendlyWidget.querySelector("iframe");
+      if (foundIframe) {
+        foundIframe.addEventListener("load", hideLoading, { once: true });
+        // Fallback in case the load event doesn't fire as expected
+        setTimeout(hideLoading, 2500);
+        observer.disconnect();
+      }
+    });
+    observer.observe(calendlyWidget, { childList: true });
+  }
+}
+
 // Promo bar dismiss
 const promoBarClose = document.getElementById("promoBarClose");
 if (promoBarClose) {
