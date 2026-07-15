@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Cook with Alma — The Alma Fit &amp; Mind Kitchen | Alma Fit &amp; Mind</title>
-<meta name="description" content="Step into Alma's kitchen — where healthy eating gets cooked, not just planned. Real meals, made together, that actually fit your life." />
+<title>Cook with Alma — A 3D Kitchen Experience | Alma Fit &amp; Mind</title>
+<meta name="description" content="Step inside Alma's 3D kitchen, pick a healthy meal, and cook it on the stove while Alma guides you — what to use, how much, and how long." />
 <link rel="canonical" href="https://almafitandmind.com/kitchen.html" />
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
@@ -15,8 +15,8 @@
 
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Alma Fit &amp; Mind" />
-<meta property="og:title" content="Cook with Alma — The Alma Fit &amp; Mind Kitchen" />
-<meta property="og:description" content="Step into Alma's kitchen — where healthy eating gets cooked, not just planned." />
+<meta property="og:title" content="Cook with Alma — A 3D Kitchen Experience" />
+<meta property="og:description" content="Step inside Alma's 3D kitchen, pick a healthy meal, and cook it while Alma guides you." />
 <meta property="og:image" content="https://almafitandmind.com/images/kitchen-hero.jpg" />
 <meta property="og:url" content="https://almafitandmind.com/kitchen.html" />
 
@@ -25,154 +25,119 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="k3d-body">
 
-<a class="skip-link" href="#main">Skip to content</a>
+<canvas id="k3dCanvas"></canvas>
 
-<div class="promo-bar" id="promoBar">
-  <div class="wrap promo-bar-inner">
-    <p><strong>New:</strong> The Free 7-Day Mind-Body Reset Guide is here — <a href="/#free-guide">get instant access &rarr;</a></p>
-    <button type="button" id="promoBarClose" aria-label="Dismiss announcement">&times;</button>
+<a class="k3d-back" href="/">&larr; Alma Fit &amp; Mind</a>
+
+<!-- Start overlay -->
+<div class="k3d-overlay" id="k3dStart">
+  <div class="k3d-card">
+    <img src="images/alma-face-portrait.jpg" alt="Alma" class="k3d-alma" />
+    <p class="eyebrow center">The Alma Fit &amp; Mind Kitchen</p>
+    <h1>Welcome to my kitchen!</h1>
+    <p class="k3d-card-lead">Come on in — pick a meal, and I'll walk you through cooking it on the stove: what to use, exactly how much, and how long. No chef skills needed.</p>
+    <button class="btn btn-primary" id="k3dEnter">Step Inside</button>
+    <p class="k3d-controls-hint">
+      <span class="k3d-hint-desktop">Move: <strong>W A S D</strong> · Look: <strong>mouse</strong> · Cook: walk to the stove &amp; press <strong>E</strong> · Menu: <strong>Esc</strong></span>
+      <span class="k3d-hint-touch">Drag to look around · Use the arrows to walk · Tap the stove to cook</span>
+    </p>
+    <a class="k3d-skip" href="/plate.html">Prefer to just read about nutrition coaching? &rarr;</a>
   </div>
 </div>
-<script>if (localStorage.getItem("promoBarDismissed")) { document.getElementById("promoBar").style.display = "none"; }</script>
 
-<header class="site-header" id="siteHeader">
-  <div class="wrap header-inner">
-    <a class="logo" href="/">
-      <span class="logo-mark">A</span>
-      <span class="logo-text">Alma <em>Fit &amp; Mind</em></span>
-    </a>
-    <nav class="main-nav" id="mainNav" aria-label="Primary">
-      <a href="/#method">Method</a>
-      <a href="/#services">Services</a>
-      <a href="/#pricing">Pricing</a>
-      <a href="/#about">About Alma</a>
-      <a href="/#faq">FAQ</a>
-    </nav>
-    <div class="header-cta">
-      <a class="btn btn-primary btn-sm" href="/#contact">Book Free Discovery Call</a>
-    </div>
-    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</header>
-
-<main id="main">
-
-  <!-- KITCHEN HERO -->
-  <section class="pillar-hero photo-bg kitchen-hero" style="background-image:url('images/kitchen-hero.jpg')">
-    <div class="wrap">
-      <p class="eyebrow">The Alma Fit &amp; Mind Kitchen · <a href="/plate.html">Part of Plate</a></p>
-      <h1>Cook with Alma</h1>
-      <p class="pillar-hero-lead">Meal plans tell you what to eat. This is where you learn to actually make it — real food, cooked together, that fits your goals and your life.</p>
-    </div>
-  </section>
-
-  <!-- WELCOME -->
-  <section class="section kitchen-welcome">
-    <div class="wrap kitchen-welcome-inner">
-      <div class="kitchen-host">
-        <img src="images/alma-face-portrait.jpg" alt="Alma, your host in the kitchen" class="kitchen-host-photo" />
-        <span class="kitchen-host-badge" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M7 10c-1.7 0-3-1.3-3-3s1.3-3 3-3c.4-1.7 2-3 3.9-3 1.6 0 3 .9 3.6 2.3.4-.2.9-.3 1.5-.3 1.7 0 3 1.3 3 3s-1.3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M7 10v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M10 14v3M14 14v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-        </span>
-      </div>
-      <div class="kitchen-speech">
-        <h2>Welcome to my kitchen!</h2>
-        <p>I'm so glad you're here. This is my favorite room in the whole method — because this is where "eating better" stops being a plan on paper and becomes something you can actually taste.</p>
-        <p>No chef skills needed, no fancy equipment, no 40-ingredient recipes. We'll cook the way real life allows: simple, fast, delicious food that supports your training and doesn't feel like a diet.</p>
-        <p class="kitchen-speech-sign">— Alma</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHAT'S COOKING -->
-  <section class="section kitchen-menu">
-    <div class="wrap">
-      <p class="eyebrow center">What We'll Cook Together</p>
-      <h2 class="center">The menu is being written</h2>
-      <p class="section-lead center">Alma is putting together the first set of recipes — high-protein staples, 15-minute meals, and smarter versions of the food you already love. Check back soon, or grab the free guide below to be first in line.</p>
-      <div class="grid-3 kitchen-teaser-grid">
-        <div class="kitchen-teaser">
-          <div class="kitchen-teaser-icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48" fill="none"><path d="M14 42V26M14 26c-3.3 0-6-2.7-6-6V8M14 26c3.3 0 6-2.7 6-6V8M14 8v10" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M34 42V28c-3 0-6-3-6-8s3-12 6-12c3 0 6 7 6 12s-3 8-6 8Z" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <h3>High-Protein Staples</h3>
-          <p>The meals that quietly do the heavy lifting — hitting your protein target without eating the same chicken breast five days straight.</p>
-        </div>
-        <div class="kitchen-teaser">
-          <div class="kitchen-teaser-icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="17" stroke="currentColor" stroke-width="3"/><path d="M24 13v11l7 5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <h3>15-Minute Meals</h3>
-          <p>For the nights when cooking feels impossible — real food, faster than delivery, built for the week you're actually having.</p>
-        </div>
-        <div class="kitchen-teaser">
-          <div class="kitchen-teaser-icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48" fill="none"><path d="M24 40s-14-8.5-14-19a8 8 0 0 1 14-5.2A8 8 0 0 1 38 21c0 10.5-14 19-14 19Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg>
-          </div>
-          <h3>Comfort Food, Upgraded</h3>
-          <p>Smarter versions of the food you actually crave — because a way of eating you enjoy is the only one you'll keep.</p>
-        </div>
-      </div>
-      <div class="kitchen-cta">
-        <a class="btn btn-primary" href="/#free-guide">Get the Free 7-Day Guide</a>
-        <a class="btn btn-outline" href="/plate.html">Read: Why Nutrition Needs a Coach</a>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="site-footer">
-  <div class="wrap footer-inner">
-    <div class="footer-brand">
-      <span class="logo-mark">A</span>
-      <span class="logo-text">Alma <em>Fit &amp; Mind</em></span>
-      <p>Online fitness, nutrition &amp; mindset coaching. Serving clients anywhere with an internet connection.</p>
-    </div>
-    <div class="footer-links">
-      <h4>Explore</h4>
-      <a href="/#method">Method</a>
-      <a href="/#services">Services</a>
-      <a href="/#pricing">Pricing</a>
-      <a href="/#about">About Alma</a>
-      <a href="/#free-guide">Free Guide</a>
-      <a href="/#testimonials">Reviews</a>
-      <a href="/#faq">FAQ</a>
-      <a href="/blog.html">Blog</a>
-    </div>
-    <div class="footer-contact">
-      <h4>Contact</h4>
-      <p>alma@almafitandmind.com</p>
-      <p><a href="tel:+18045660040">(804) 566-0040</a></p>
-      <div class="footer-social">
-        <a href="https://instagram.com/almafitandmind" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg>
-        </a>
-        <a href="https://www.tiktok.com/@iamtheonlyalma" target="_blank" rel="noopener" aria-label="TikTok">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M14 3v10.5a3.5 3.5 0 1 1-3-3.46" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 3c.5 2.2 2.2 3.8 4.4 4.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="wrap footer-bottom">
-    <p>&copy; 2026 Alma Fit &amp; Mind. All rights reserved. · <a href="/terms.html">Terms &amp; Policies</a> · <a href="mailto:alma@almafitandmind.com?subject=Manage%20My%20Subscription">Manage Subscription</a></p>
-    <p class="footer-disclaimer">Alma Fit &amp; Mind provides fitness, nutrition &amp; mindset coaching for educational and motivational purposes only. This is not medical advice, and is not a substitute for licensed medical, dietetic, or mental health treatment. Alma Fit &amp; Mind is not liable for injuries, or the aggravation of existing injuries, arising from participation in our programs — see our <a href="/terms.html">Terms &amp; Policies</a> for full details.</p>
-  </div>
-</footer>
-
-<div class="cookie-banner" id="cookieBanner">
-  <div class="cookie-banner-inner">
-    <p>We use cookies from trusted services (Calendly, Stripe) to power booking and checkout on this site. By continuing to use it, you agree to our <a href="/terms.html#privacy">Privacy Policy</a>.</p>
-    <button type="button" class="btn btn-primary btn-sm" id="cookieBannerAccept">Got it</button>
+<!-- Pause overlay -->
+<div class="k3d-overlay" id="k3dPause" hidden>
+  <div class="k3d-card">
+    <p class="eyebrow center">Paused</p>
+    <h1>Take a breath.</h1>
+    <button class="btn btn-primary" id="k3dResume">Back to the Kitchen</button>
+    <a class="k3d-skip" href="/">Leave the kitchen &rarr;</a>
   </div>
 </div>
-<script>if (localStorage.getItem("cookieConsent")) { document.getElementById("cookieBanner").style.display = "none"; }</script>
 
-<script src="script.js"></script>
+<!-- Crosshair + prompt + HUD -->
+<div class="k3d-crosshair" id="k3dCrosshair" hidden></div>
+<div class="k3d-prompt" id="k3dPrompt" hidden><strong>E</strong> — Cook with Alma</div>
+<div class="k3d-hud" id="k3dHud" hidden>W A S D to move · E at the stove to cook · Esc for menu</div>
+
+<!-- Mobile move buttons -->
+<div class="k3d-mobile" id="k3dMobile" hidden>
+  <button id="k3dFwd" aria-label="Walk forward">&#9650;</button>
+  <button id="k3dBack" aria-label="Walk backward">&#9660;</button>
+</div>
+
+<!-- Recipe selection -->
+<div class="k3d-panel" id="k3dRecipes" hidden>
+  <div class="k3d-panel-card">
+    <button class="k3d-x" data-k3d-close aria-label="Close">&times;</button>
+    <div class="k3d-alma-row">
+      <img src="images/alma-face-portrait.jpg" alt="Alma" class="k3d-alma-sm" />
+      <div>
+        <p class="k3d-alma-name">Alma</p>
+        <p class="k3d-alma-say">"What are we making today? Every one of these is a meal I actually cook — healthy, simple, and genuinely good."</p>
+      </div>
+    </div>
+    <div class="k3d-recipe-list" id="k3dRecipeList"></div>
+  </div>
+</div>
+
+<!-- Cooking panel -->
+<div class="k3d-panel" id="k3dCook" hidden>
+  <div class="k3d-panel-card">
+    <button class="k3d-x" data-k3d-close aria-label="Stop cooking">&times;</button>
+    <p class="k3d-cook-title" id="k3dCookTitle"></p>
+    <div class="k3d-progress-track"><div class="k3d-progress" id="k3dProgress"></div></div>
+    <div class="k3d-alma-row">
+      <img src="images/alma-face-portrait.jpg" alt="Alma" class="k3d-alma-sm" />
+      <div>
+        <p class="k3d-alma-name">Alma <span id="k3dStepMeta"></span></p>
+        <p class="k3d-alma-say" id="k3dSpeech"></p>
+      </div>
+    </div>
+    <div class="k3d-cook-status">
+      <span class="k3d-heat" id="k3dHeat" data-level="0">Heat: Off</span>
+      <span class="k3d-timer" id="k3dTimer" hidden></span>
+    </div>
+    <button class="btn btn-primary btn-block" id="k3dNext">Next step</button>
+  </div>
+</div>
+
+<!-- Done panel -->
+<div class="k3d-panel" id="k3dDone" hidden>
+  <div class="k3d-panel-card k3d-done">
+    <button class="k3d-x" data-k3d-close aria-label="Close">&times;</button>
+    <p class="eyebrow center">Plated!</p>
+    <h2 id="k3dDoneName"></h2>
+    <p class="k3d-done-macros" id="k3dDoneMacros"></p>
+    <div class="k3d-alma-row">
+      <img src="images/alma-face-portrait.jpg" alt="Alma" class="k3d-alma-sm" />
+      <div>
+        <p class="k3d-alma-name">Alma</p>
+        <p class="k3d-alma-say">"See? You just cooked that. Imagine eating like this most days — that's the Plate pillar working. If you want me building your whole week of meals around your goals, that's exactly what coaching is."</p>
+      </div>
+    </div>
+    <div class="k3d-done-actions">
+      <button class="btn btn-outline" id="k3dCookAnother">Cook Another Meal</button>
+      <button class="btn btn-ghost" data-k3d-return>Back to the Kitchen</button>
+      <a class="btn btn-primary" href="/#pricing">See Coaching Packages</a>
+    </div>
+  </div>
+</div>
+
+<!-- Fallback if WebGL unavailable -->
+<div class="k3d-overlay" id="k3dFallback" hidden>
+  <div class="k3d-card">
+    <p class="eyebrow center">The Kitchen</p>
+    <h1>Your browser can't load the 3D kitchen</h1>
+    <p class="k3d-card-lead">No worries — the ideas behind it still work everywhere.</p>
+    <a class="btn btn-primary" href="/plate.html">Read: Why Nutrition Needs a Coach</a>
+    <a class="k3d-skip" href="/#free-guide">Get the Free 7-Day Guide &rarr;</a>
+  </div>
+</div>
+
+<script type="module" src="kitchen.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
