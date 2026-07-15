@@ -722,6 +722,32 @@ a { color: inherit; text-decoration: none; }
 .value-prop-icon svg { width: 28px; height: 28px; }
 .value-prop h3 { font-size: 1.02rem; margin-bottom: 0.4em; }
 .value-prop p { font-size: 0.88rem; color: var(--ink-soft); margin: 0; }
+a.value-prop {
+  display: block;
+  color: inherit;
+  padding: 24px 14px 20px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+a.value-prop:hover, a.value-prop:focus-visible {
+  transform: translateY(-4px);
+  background: var(--card);
+  border-color: var(--line);
+  box-shadow: var(--shadow);
+}
+.value-prop-go {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--clay);
+}
+
+/* Standalone page headings (method / about / faq) */
+.method-page-title { color: #fff; }
+.method .method-page-title, .faq h1, .about h1 { font-size: clamp(1.9rem, 3.6vw, 2.6rem); }
+.method-page-cta, .faq-page-cta { justify-content: center; }
 
 /* ---------- Problem ---------- */
 .problem { background: var(--paper); }
