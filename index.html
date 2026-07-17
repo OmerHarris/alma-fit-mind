@@ -31,7 +31,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css" />
-<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 
 <script type="application/ld+json">
 {
@@ -447,35 +446,37 @@
     <div class="wrap">
       <p class="eyebrow center">Get Started</p>
       <h2 class="center">Ready to train your body and rebuild your mindset?</h2>
-      <p class="section-lead center">Book your free 10-minute discovery call below — no pressure, just an honest conversation about where you are and whether this is the right fit.</p>
-
-      <div class="calendly-wrap">
-        <div class="calendly-inline-widget" data-url="https://calendly.com/almafitandmind/free-discovery-call?hide_gdpr_banner=1&background_color=ffffff&text_color=221d17&primary_color=b08d57" style="min-width:320px;height:680px;">
-          <div class="calendly-loading">
-            <span class="calendly-spinner" aria-hidden="true"></span>
-            <p>Loading your calendar&hellip;</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="contact-divider"><span>or send a quick message instead</span></div>
+      <p class="section-lead center">Leave your details below and Alma will personally reach out for a free, no-pressure chat about where you are and whether this is the right fit.</p>
 
       <div class="final-cta-inner">
         <form class="contact-form" id="contactForm">
           <div class="form-row">
-            <label for="name">Name</label>
+            <label for="name">Name <span class="field-req">(required)</span></label>
             <input type="text" id="name" name="name" required autocomplete="name" />
           </div>
           <div class="form-row">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required autocomplete="email" />
+            <label for="phone">Phone Number <span class="field-req">(required)</span></label>
+            <input type="tel" id="phone" name="phone" required autocomplete="tel" inputmode="tel" placeholder="(804) 555-0100" />
           </div>
           <div class="form-row">
-            <label for="goal">What are you hoping to change?</label>
+            <label for="email">Email <span class="field-opt">(optional)</span></label>
+            <input type="email" id="email" name="email" autocomplete="email" />
+          </div>
+          <div class="form-row">
+            <label for="goal">Brief Message <span class="field-opt">(optional)</span></label>
             <textarea id="goal" name="goal" rows="4" placeholder="Tell me a little about where you're starting from and what you're working toward."></textarea>
           </div>
-          <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+          <div class="check-row">
+            <input type="checkbox" id="callConsent" name="callConsent" required />
+            <label for="callConsent">You have my permission to call this number. <span class="field-req">(required)</span></label>
+          </div>
+          <div class="check-row">
+            <input type="checkbox" id="vmConsent" name="vmConsent" />
+            <label for="vmConsent">You may leave me a voicemail. <span class="field-opt">(optional)</span></label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Request My Free Consultation</button>
           <p class="form-note" id="formNote" role="status"></p>
+          <p class="form-helper-note">Not for emergencies. For urgent medical or safety concerns, call 911 or your healthcare provider.</p>
         </form>
       </div>
     </div>
@@ -547,13 +548,12 @@
 
 <div class="cookie-banner" id="cookieBanner">
   <div class="cookie-banner-inner">
-    <p>We use cookies from trusted services (Calendly, Stripe) to power booking and checkout on this site. By continuing to use it, you agree to our <a href="/terms.html#privacy">Privacy Policy</a>.</p>
+    <p>We use cookies from trusted services (Stripe) to power checkout on this site. By continuing to use it, you agree to our <a href="/terms.html#privacy">Privacy Policy</a>.</p>
     <button type="button" class="btn btn-primary btn-sm" id="cookieBannerAccept">Got it</button>
   </div>
 </div>
 <script>if (localStorage.getItem("cookieConsent")) { document.getElementById("cookieBanner").style.display = "none"; }</script>
 
-<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 <script src="i18n.js"></script>
 <script src="script.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>

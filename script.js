@@ -1,29 +1,4 @@
 const __t = (s) => (window.__afmT ? window.__afmT(s) : s);
-// Calendly loading placeholder — hide it once the real widget iframe appears
-const calendlyWidget = document.querySelector(".calendly-inline-widget");
-if (calendlyWidget) {
-  const hideLoading = () => {
-    const loading = calendlyWidget.querySelector(".calendly-loading");
-    if (loading) loading.style.display = "none";
-  };
-
-  const iframe = calendlyWidget.querySelector("iframe");
-  if (iframe) {
-    hideLoading();
-  } else {
-    const observer = new MutationObserver(() => {
-      const foundIframe = calendlyWidget.querySelector("iframe");
-      if (foundIframe) {
-        foundIframe.addEventListener("load", hideLoading, { once: true });
-        // Fallback in case the load event doesn't fire as expected
-        setTimeout(hideLoading, 2500);
-        observer.disconnect();
-      }
-    });
-    observer.observe(calendlyWidget, { childList: true });
-  }
-}
-
 // Plate chooser modal — pick between the article and the kitchen
 const plateModal = document.getElementById("plateModal");
 if (plateModal) {
@@ -201,8 +176,11 @@ if (contactForm) {
 
     const payload = {
       name: document.getElementById("name").value,
+      phone: document.getElementById("phone").value,
       email: document.getElementById("email").value,
       goal: document.getElementById("goal").value,
+      callConsent: document.getElementById("callConsent").checked,
+      vmConsent: document.getElementById("vmConsent").checked,
     };
 
     try {
@@ -214,7 +192,7 @@ if (contactForm) {
       const data = await response.json().catch(() => ({}));
 
       if (response.ok) {
-        formNote.textContent = __t("Thanks! Your message is on its way — Alma will be in touch soon.");
+        formNote.textContent = __t("Thanks! Alma will reach out to you soon.");
         contactForm.reset();
       } else {
         formNote.textContent = data.error || __t("Something went wrong. Please try again shortly.");

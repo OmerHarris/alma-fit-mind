@@ -133,17 +133,23 @@
       "Extra: Sesión Intensiva 1:1 (90 minutos, enfocada en mentalidad y metas, sin suscripción) —",
     "Book this": "Resérvala",
 
-    // ---- Final CTA ----
+    // ---- Final CTA / intake form ----
     "Ready to train your body and rebuild your mindset?": "¿Lista/o para entrenar tu cuerpo y reconstruir tu mentalidad?",
-    "Book your free 10-minute discovery call below — no pressure, just an honest conversation about where you are and whether this is the right fit.":
-      "Agenda abajo tu llamada gratis de 10 minutos — sin presión, solo una conversación honesta sobre dónde estás y si esto es para ti.",
-    "or send a quick message instead": "o envía un mensaje rápido",
+    "Leave your details below and Alma will personally reach out for a free, no-pressure chat about where you are and whether this is the right fit.":
+      "Deja tus datos abajo y Alma te contactará personalmente para una charla gratis y sin compromiso sobre dónde estás y si esto es para ti.",
     "Name": "Nombre",
+    "Phone Number": "Número de Teléfono",
     "Email": "Correo",
-    "What are you hoping to change?": "¿Qué te gustaría cambiar?",
+    "Brief Message": "Mensaje Breve",
+    "(required)": "(obligatorio)",
+    "(optional)": "(opcional)",
     "Tell me a little about where you're starting from and what you're working toward.":
       "Cuéntame un poco desde dónde partes y hacia dónde quieres llegar.",
-    "Send Message": "Enviar Mensaje",
+    "You have my permission to call this number.": "Tienes mi permiso para llamar a este número.",
+    "You may leave me a voicemail.": "Puedes dejarme un mensaje de voz.",
+    "Request My Free Consultation": "Solicitar Mi Consulta Gratis",
+    "Not for emergencies. For urgent medical or safety concerns, call 911 or your healthcare provider.":
+      "No es para emergencias. Para asuntos médicos o de seguridad urgentes, llama al 911 o a tu proveedor de salud.",
 
     // ---- Plate chooser modal ----
     "Pillar Two · Plate": "Pilar Dos · Plato",
@@ -236,7 +242,9 @@
 
     // ---- Dynamic JS strings ----
     "Sending…": "Enviando…",
-    "Thanks! Your message is on its way — Alma will be in touch soon.": "¡Gracias! Tu mensaje va en camino — Alma te contactará pronto.",
+    "Thanks! Alma will reach out to you soon.": "¡Gracias! Alma se pondrá en contacto contigo pronto.",
+    "Please enter a valid phone number.": "Ingresa un número de teléfono válido.",
+    "Please confirm we have permission to call you.": "Confirma que tenemos permiso para llamarte.",
     "Something went wrong. Please try again shortly.": "Algo salió mal. Inténtalo de nuevo en un momento.",
     "Here's your guide — bookmark this page to come back to it anytime.": "Aquí está tu guía — guarda esta página para volver cuando quieras.",
     "Please enter a valid email address.": "Ingresa un correo electrónico válido.",
