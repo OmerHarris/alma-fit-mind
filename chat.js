@@ -9,6 +9,13 @@
   const T = (s) => (window.__afmT ? window.__afmT(s) : s);
   const answers = {};
 
+  // Embedded (inside the floating widget iframe): drop the site chrome, wire close to parent.
+  if (new URLSearchParams(location.search).get("embed") === "1") {
+    document.body.classList.add("chat-embed");
+    const closeLink = document.querySelector(".chat-close");
+    if (closeLink) closeLink.addEventListener("click", (e) => { e.preventDefault(); parent.postMessage("afm-close-chat", "*"); });
+  }
+
   // ---- Flow definition -------------------------------------------------
   // types: say | text | number | single | multi | textarea
   const STEPS = [

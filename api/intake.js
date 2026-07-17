@@ -1,7 +1,13 @@
+const { generateIntakePdf } = require("./_lib/intake-pdf");
+
 function escapeHtml(str) {
   return String(str).replace(/[&<>"']/g, (c) => (
     { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]
   ));
+}
+
+function slug(s) {
+  return String(s).trim().replace(/[^\w\s-]/g, "").replace(/\s+/g, "-").slice(0, 40) || "client";
 }
 
 // Fields shown in the email, in order. key -> label
@@ -58,22 +64,40 @@ module.exports = async (req, res) => {
     return;
   }
 
-  const rows = FIELD_LABELS.map(([key, label]) => {
+  // Build normalized [label, value] rows once, reused for the email table + the PDF document.
+  const plainRows = FIELD_LABELS.map(([key, label]) => {
     let v = data[key];
     if (Array.isArray(v)) v = v.join(", ");
     if (v === true) v = "Yes";
     if (v === false) v = "No";
     if (v === undefined || v === null || v === "") v = "(skipped)";
-    return `<tr><td style="padding:6px 12px;font-weight:600;color:#14181a;vertical-align:top;white-space:nowrap">${escapeHtml(label)}</td><td style="padding:6px 12px;color:#4a4a4a">${escapeHtml(v).replace(/\n/g, "<br>")}</td></tr>`;
-  }).join("");
+    return [label, String(v)];
+  });
+
+  const rows = plainRows.map(([label, v]) =>
+    `<tr><td style="padding:6px 12px;font-weight:600;color:#14181a;vertical-align:top;white-space:nowrap">${escapeHtml(label)}</td><td style="padding:6px 12px;color:#4a4a4a">${escapeHtml(v).replace(/\n/g, "<br>")}</td></tr>`
+  ).join("");
 
   const html = `
     <h2 style="font-family:Georgia,serif;color:#14181a">New client intake — ${escapeHtml(data.name.trim())}</h2>
     <p style="color:#6b6255">Completed via the Alma's Assistant chat. Preferred contact: <strong>${escapeHtml(data.contactPlatform)}</strong> — <strong>${escapeHtml(data.contactHandle)}</strong></p>
+    <p style="color:#6b6255">The full profile is also attached as a single PDF document below.</p>
     <table style="border-collapse:collapse;width:100%;max-width:640px;font-family:Arial,sans-serif;font-size:14px;border:1px solid #eee">
       ${rows}
     </table>
   `;
+
+  // Consolidated single-document attachment.
+  let attachments;
+  try {
+    const pdfBytes = await generateIntakePdf(data.name.trim(), plainRows);
+    attachments = [{
+      filename: `Client-Intake-${slug(data.name)}.pdf`,
+      content: Buffer.from(pdfBytes).toString("base64"),
+    }];
+  } catch (e) {
+    console.error("Intake PDF error:", e);
+  }
 
   try {
     const resendRes = await fetch("https://api.resend.com/emails", {
@@ -84,6 +108,7 @@ module.exports = async (req, res) => {
         to: [toEmail],
         subject: `New client intake from ${data.name.trim()} — via ${data.contactPlatform}`,
         html,
+        ...(attachments ? { attachments } : {}),
       }),
     });
     if (!resendRes.ok) {
