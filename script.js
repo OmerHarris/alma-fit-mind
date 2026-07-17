@@ -1,3 +1,4 @@
+const __t = (s) => (window.__afmT ? window.__afmT(s) : s);
 // Calendly loading placeholder — hide it once the real widget iframe appears
 const calendlyWidget = document.querySelector(".calendly-inline-widget");
 if (calendlyWidget) {
@@ -160,7 +161,7 @@ if (leadForm) {
     const submitBtn = leadForm.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
     submitBtn.disabled = true;
-    submitBtn.textContent = "Sending…";
+    submitBtn.textContent = __t("Sending…");
     leadNote.textContent = "";
 
     const email = document.getElementById("leadEmail").value;
@@ -175,7 +176,7 @@ if (leadForm) {
       // Reveal the guide regardless — the lead notification is best-effort only.
     }
 
-    leadNote.textContent = "Here's your guide — bookmark this page to come back to it anytime.";
+    leadNote.textContent = __t("Here's your guide — bookmark this page to come back to it anytime.");
     guideContent.hidden = false;
     guideContent.scrollIntoView({ behavior: "smooth", block: "start" });
     leadForm.reset();
@@ -195,7 +196,7 @@ if (contactForm) {
     const submitBtn = contactForm.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
     submitBtn.disabled = true;
-    submitBtn.textContent = "Sending…";
+    submitBtn.textContent = __t("Sending…");
     formNote.textContent = "";
 
     const payload = {
@@ -213,13 +214,13 @@ if (contactForm) {
       const data = await response.json().catch(() => ({}));
 
       if (response.ok) {
-        formNote.textContent = "Thanks! Your message is on its way — Alma will be in touch soon.";
+        formNote.textContent = __t("Thanks! Your message is on its way — Alma will be in touch soon.");
         contactForm.reset();
       } else {
-        formNote.textContent = data.error || "Something went wrong. Please try again shortly.";
+        formNote.textContent = data.error || __t("Something went wrong. Please try again shortly.");
       }
     } catch (err) {
-      formNote.textContent = "Something went wrong. Please try again shortly.";
+      formNote.textContent = __t("Something went wrong. Please try again shortly.");
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = originalText;
