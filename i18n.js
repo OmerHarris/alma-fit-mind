@@ -107,7 +107,6 @@
       "Cada nivel se basa en el método Cuerpo–Plato–Mente. Los niveles superiores añaden más tiempo de coaching directo, ajustes más rápidos y un trabajo de mentalidad más profundo.",
     "Most Popular": "Más Popular",
     "/month": "/mes",
-    "one-time": "pago único",
     "Custom workout program, refreshed monthly": "Programa de entrenamiento a medida, renovado cada mes",
     "Personalized diet plan": "Plan de alimentación personalizado",
     "Weekly progress check-in": "Seguimiento semanal de progreso",
@@ -124,14 +123,7 @@
     "Priority messaging & quarterly accountability audits": "Mensajes prioritarios y auditorías trimestrales",
     "Image consulting — style, etiquette, skin care, and posture & body language coaching":
       "Asesoría de imagen — estilo, etiqueta, cuidado de la piel, y postura y lenguaje corporal",
-    "A structured, fixed-outcome intensive": "Un intensivo estructurado con resultado definido",
-    "Elite-level coaching for 12 weeks": "Coaching nivel Elite durante 12 semanas",
-    "Defined body-and-mind curriculum": "Currículo definido de cuerpo y mente",
-    "Clear start and end point": "Inicio y final claros",
     "Get Started": "Empieza Ya",
-    "Add-on: single 1:1 Deep-Dive Session (90 minutes, mindset & goal-setting focused, no subscription required) —":
-      "Extra: Sesión Intensiva 1:1 (90 minutos, enfocada en mentalidad y metas, sin suscripción) —",
-    "Book this": "Resérvala",
 
     // ---- Final CTA / intake form ----
     "Ready to train your body and rebuild your mindset?": "¿Lista/o para entrenar tu cuerpo y reconstruir tu mentalidad?",
@@ -214,8 +206,8 @@
     "After your onboarding assessment, your custom workout and nutrition plan is delivered through the coaching platform within 5–7 business days.":
       "Después de tu evaluación inicial, tu plan de entrenamiento y nutrición a medida se entrega en la plataforma de coaching en un plazo de 5 a 7 días hábiles.",
     "What's the cancellation policy?": "¿Cuál es la política de cancelación?",
-    "Monthly coaching tiers are month-to-month — cancel anytime, with 14 days' notice where possible. Cancelling stops future billing, but the current billing period isn't refunded. The 12-Week Total Transformation is non-refundable once your plan has been delivered, but it is transferable in defined hardship cases. Full details in our":
-      "Los planes mensuales son mes a mes — cancela cuando quieras, con 14 días de aviso si es posible. Cancelar detiene los cobros futuros, pero el periodo actual no es reembolsable. El 12-Week Total Transformation no es reembolsable una vez entregado tu plan, aunque es transferible en casos de dificultad definidos. Detalles completos en nuestros",
+    "Monthly coaching tiers are month-to-month — cancel anytime, with 14 days' notice where possible. Cancelling stops future billing, but the current billing period isn't refunded. Full details in our":
+      "Los planes mensuales son mes a mes — cancela cuando quieras, con 14 días de aviso si es posible. Cancelar detiene los cobros futuros, pero el periodo actual no es reembolsable. Detalles completos en nuestros",
     "Is coaching safe if I have an injury or health condition?": "¿Es seguro el coaching si tengo una lesión o condición de salud?",
     "Coaching is educational, not medical — Alma is not a physician or physical therapist and doesn't diagnose, treat, or rehab injuries. All clients complete an intake that screens for conditions requiring medical clearance, and must sign an informed consent and liability waiver before starting. If you're currently injured or recovering from one, please get clearance from your doctor or physical therapist first. Full details in our":
       "El coaching es educativo, no médico — Alma no es médica ni fisioterapeuta y no diagnostica, trata ni rehabilita lesiones. Todos los clientes completan una evaluación que detecta condiciones que requieren autorización médica, y deben firmar un consentimiento informado antes de empezar. Si tienes una lesión o estás en recuperación, primero obtén autorización de tu médico o fisioterapeuta. Detalles completos en nuestros",

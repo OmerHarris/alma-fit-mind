@@ -1019,8 +1019,10 @@ a.value-prop:hover, a.value-prop:focus-visible {
 .pricing { background: var(--paper); }
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 22px;
+  max-width: 980px;
+  margin: 0 auto;
 }
 .price-card {
   background: var(--card);
