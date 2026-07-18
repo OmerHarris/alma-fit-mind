@@ -1543,6 +1543,7 @@ a.value-prop:hover, a.value-prop:focus-visible {
 /* Embedded chat (inside the floating widget iframe) */
 body.chat-embed { background: var(--card); }
 body.chat-embed .site-header,
+body.chat-embed .chat-close,
 body.chat-embed .chat-privacy-note { display: none; }
 body.chat-embed .chat-section { padding: 0; }
 body.chat-embed .chat-section .wrap { padding: 0; max-width: none; }
