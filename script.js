@@ -1,28 +1,4 @@
 const __t = (s) => (window.__afmT ? window.__afmT(s) : s);
-// Plate chooser modal — pick between the article and the kitchen
-const plateModal = document.getElementById("plateModal");
-if (plateModal) {
-  const openModal = (e) => {
-    e.preventDefault();
-    plateModal.hidden = false;
-    document.body.style.overflow = "hidden";
-    plateModal.querySelector(".plate-option").focus();
-  };
-  const closeModal = () => {
-    plateModal.hidden = true;
-    document.body.style.overflow = "";
-  };
-
-  document.querySelectorAll(".pillar-plate").forEach((el) => {
-    el.addEventListener("click", openModal);
-  });
-  plateModal.querySelectorAll("[data-plate-close]").forEach((el) => {
-    el.addEventListener("click", closeModal);
-  });
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !plateModal.hidden) closeModal();
-  });
-}
 
 // Promo bar dismiss
 const promoBarClose = document.getElementById("promoBarClose");
