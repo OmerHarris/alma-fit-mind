@@ -69,6 +69,65 @@ const RECIPES = [
       { text: "Heat off while they're still glossy — they finish cooking on the plate. That's the whole secret.", heat: 0, seconds: 0 },
     ],
   },
+  {
+    id: "shrimp",
+    name: "Garlic Shrimp & Zucchini Skillet",
+    tag: "Light & Fast",
+    kcal: 360, protein: 32, time: "12 min",
+    cookware: "pan",
+    steps: [
+      { text: "Pan on medium-high. While it heats, pat 8 oz of shrimp dry — dry shrimp sear, wet shrimp steam.", heat: 3, seconds: 30 },
+      { text: "Add 1 tablespoon of olive oil and 3 sliced garlic cloves. Thirty seconds — just until it smells amazing.", heat: 3, seconds: 30 },
+      { text: "Shrimp in, one layer. Two minutes without touching them.", heat: 3, seconds: 120 },
+      { text: "Flip everything, add 1 sliced zucchini and a pinch of chili flakes. Three more minutes, stirring once.", heat: 3, seconds: 180 },
+      { text: "Heat off. Squeeze half a lemon over the top and finish with fresh parsley if you have it.", heat: 0, seconds: 0 },
+    ],
+  },
+  {
+    id: "chili",
+    name: "Hearty Turkey Chili",
+    tag: "Comfort, Upgraded",
+    kcal: 430, protein: 38, time: "30 min",
+    cookware: "pot",
+    steps: [
+      { text: "Pot on medium with 1 tablespoon of olive oil. Chili rewards a little patience — worth it.", heat: 2, seconds: 30 },
+      { text: "Brown 8 oz of lean ground turkey, breaking it up as it cooks — about 5 minutes.", heat: 2, seconds: 300 },
+      { text: "Add half a diced onion and 2 minced garlic cloves. Three minutes until soft.", heat: 2, seconds: 180 },
+      { text: "Spices: 1 tablespoon chili powder, 1 teaspoon cumin, a pinch of salt. Stir for 1 minute to wake them up.", heat: 2, seconds: 60 },
+      { text: "Pour in 1 can of crushed tomatoes, 1 cup of black beans, and half a cup of broth. Stir it all together.", heat: 2, seconds: 0 },
+      { text: "Heat down to low. Lid on, 15 minutes. Go stretch — I'll wait.", heat: 1, seconds: 900 },
+      { text: "Heat off. Serve with a spoonful of Greek yogurt on top — creamy, and it adds protein.", heat: 0, seconds: 0 },
+    ],
+  },
+  {
+    id: "sweetpotato",
+    name: "Sweet Potato & Black Bean Skillet",
+    tag: "Vegetarian Power",
+    kcal: 390, protein: 24, time: "20 min",
+    cookware: "pan",
+    steps: [
+      { text: "Pan on medium with 1 tablespoon of olive oil. Dice 1 medium sweet potato small — small pieces cook faster.", heat: 2, seconds: 30 },
+      { text: "Sweet potato in. Eight minutes, stirring every couple of minutes, until it starts to soften.", heat: 2, seconds: 480 },
+      { text: "Add half a diced onion and half a bell pepper. Three more minutes.", heat: 2, seconds: 180 },
+      { text: "Stir in 1 cup of black beans and 1 teaspoon of smoked paprika. Two minutes to heat through.", heat: 2, seconds: 120 },
+      { text: "Make two little wells and crack an egg into each. Heat to low, lid on, 4 minutes until the whites set.", heat: 1, seconds: 240 },
+      { text: "Heat off. A few slices of avocado on top and it's done — hearty, colorful, all real food.", heat: 0, seconds: 0 },
+    ],
+  },
+  {
+    id: "fajita",
+    name: "Chicken Fajita Skillet",
+    tag: "Family Favorite",
+    kcal: 400, protein: 36, time: "15 min",
+    cookware: "pan",
+    steps: [
+      { text: "Pan on high with 1 tablespoon of avocado oil. Fajitas want a hot pan — that's where the flavor comes from.", heat: 3, seconds: 45 },
+      { text: "Add 6 oz of chicken strips tossed with 1 teaspoon each of chili powder, cumin, and garlic powder. Four minutes, turning once.", heat: 3, seconds: 240 },
+      { text: "Add 1 sliced bell pepper and half a sliced onion. Four more minutes — a little char is a good thing.", heat: 3, seconds: 240 },
+      { text: "Heat off. A big squeeze of lime over everything.", heat: 0, seconds: 0 },
+      { text: "Serve in warm tortillas, over rice, or straight from the pan. All three are correct answers.", heat: 0, seconds: 0 },
+    ],
+  },
 ];
 
 /* ============================================================
@@ -96,7 +155,8 @@ scene.background = new THREE.Color(0xdfe3e6);
 
 const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.05, 50);
 const EYE = 1.62;
-camera.position.set(0, EYE, 2.1);
+// Spawn just inside the door (right wall) — Alma meets you here and walks you in.
+camera.position.set(2.55, EYE, 2.2);
 
 /* ============================================================
    Canvas texture factories
@@ -463,6 +523,242 @@ for (const px of [-0.85, 0, 0.85]) {
 }
 
 /* ============================================================
+   Alma — your 3D host
+   She meets you at the door, walks you to the range,
+   coaches with gestures while you cook, and celebrates the plate.
+   ============================================================ */
+const alma = new THREE.Group();
+world.add(alma);
+
+const AM = {
+  skin: new THREE.MeshStandardMaterial({ color: 0xc98e63, roughness: 0.75 }),
+  hair: new THREE.MeshStandardMaterial({ color: 0x33241a, roughness: 0.85 }),
+  top: new THREE.MeshStandardMaterial({ color: 0xd99a2e, roughness: 0.65 }),
+  leggings: new THREE.MeshStandardMaterial({ color: 0x26292c, roughness: 0.8 }),
+  shoe: new THREE.MeshStandardMaterial({ color: 0xf2efe8, roughness: 0.6 }),
+  dark: new THREE.MeshStandardMaterial({ color: 0x1c1512, roughness: 0.6 }),
+};
+
+// Torso: charcoal high-waist leggings + gold athletic top
+cyl(0.115, 0.13, 0.34, AM.leggings, 0, 1.05, 0, { group: alma });
+cyl(0.125, 0.108, 0.36, AM.top, 0, 1.33, 0, { group: alma });
+cyl(0.03, 0.035, 0.09, AM.skin, 0, 1.53, 0, { group: alma });
+
+// Head with hair cap, ponytail, eyes + smile (front is +z)
+const almaHead = new THREE.Group();
+almaHead.position.set(0, 1.64, 0);
+alma.add(almaHead);
+{
+  const head = new THREE.Mesh(new THREE.SphereGeometry(0.1, 22, 16), AM.skin);
+  head.castShadow = true; almaHead.add(head);
+  const hair = new THREE.Mesh(new THREE.SphereGeometry(0.108, 22, 16, 0, Math.PI * 2, 0, Math.PI * 0.55), AM.hair);
+  hair.position.set(0, 0.01, -0.012);
+  hair.rotation.x = -0.28;
+  hair.castShadow = true; almaHead.add(hair);
+  const tail = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.012, 0.3, 10), AM.hair);
+  tail.position.set(0, -0.07, -0.1);
+  tail.rotation.x = 0.35;
+  tail.castShadow = true; almaHead.add(tail);
+  for (const sx of [-1, 1]) {
+    const eye = new THREE.Mesh(new THREE.SphereGeometry(0.011, 8, 8), AM.dark);
+    eye.position.set(sx * 0.035, 0.015, 0.092);
+    almaHead.add(eye);
+  }
+  const smile = new THREE.Mesh(new THREE.TorusGeometry(0.026, 0.005, 6, 12, Math.PI * 0.75), AM.dark);
+  smile.position.set(0, -0.026, 0.088);
+  smile.rotation.z = Math.PI * 1.125;
+  almaHead.add(smile);
+}
+
+// Arms + legs as pivot groups so they can swing/gesture
+function almaArm(side) {
+  const pivot = new THREE.Group();
+  pivot.position.set(side * 0.16, 1.46, 0);
+  cyl(0.046, 0.04, 0.14, AM.top, 0, -0.06, 0, { group: pivot });
+  cyl(0.036, 0.031, 0.36, AM.skin, 0, -0.3, 0, { group: pivot });
+  const hand = new THREE.Mesh(new THREE.SphereGeometry(0.042, 10, 8), AM.skin);
+  hand.position.y = -0.5; hand.castShadow = true; pivot.add(hand);
+  pivot.rotation.z = side * 0.12;
+  alma.add(pivot);
+  return pivot;
+}
+function almaLeg(side) {
+  const pivot = new THREE.Group();
+  pivot.position.set(side * 0.075, 0.9, 0);
+  cyl(0.06, 0.05, 0.42, AM.leggings, 0, -0.21, 0, { group: pivot });
+  cyl(0.046, 0.038, 0.38, AM.leggings, 0, -0.6, 0, { group: pivot });
+  box(0.095, 0.07, 0.2, AM.shoe, 0, -0.865, 0.035, { group: pivot });
+  alma.add(pivot);
+  return pivot;
+}
+const armL = almaArm(-1), armR = almaArm(1);
+const legL = almaLeg(-1), legR = almaLeg(1);
+
+// Speech bubble above her head
+const bubbleCanvas = document.createElement("canvas");
+bubbleCanvas.width = 512; bubbleCanvas.height = 140;
+const bubbleTex = new THREE.CanvasTexture(bubbleCanvas);
+bubbleTex.colorSpace = THREE.SRGBColorSpace;
+const bubble = new THREE.Sprite(new THREE.SpriteMaterial({ map: bubbleTex, transparent: true, depthWrite: false }));
+bubble.scale.set(1.35, 0.37, 1);
+bubble.position.set(0, 2.04, 0);
+bubble.visible = false;
+alma.add(bubble);
+let bubbleUntil = 0;
+function almaSay(text, secs = 4.5) {
+  const g = bubbleCanvas.getContext("2d");
+  g.clearRect(0, 0, 512, 140);
+  g.font = "600 34px 'Inter', system-ui, sans-serif";
+  const tw = Math.min(g.measureText(text).width + 60, 504);
+  const x0 = (512 - tw) / 2, y0 = 8, hh = 92, r = 26;
+  g.fillStyle = "rgba(20,24,26,0.92)";
+  g.beginPath();
+  g.moveTo(x0 + r, y0);
+  g.arcTo(x0 + tw, y0, x0 + tw, y0 + hh, r);
+  g.arcTo(x0 + tw, y0 + hh, x0, y0 + hh, r);
+  g.arcTo(x0, y0 + hh, x0, y0, r);
+  g.arcTo(x0, y0, x0 + tw, y0, r);
+  g.fill();
+  g.beginPath();
+  g.moveTo(236, y0 + hh - 2); g.lineTo(276, y0 + hh - 2); g.lineTo(256, y0 + hh + 28);
+  g.fill();
+  g.fillStyle = "#f5efe2";
+  g.textAlign = "center"; g.textBaseline = "middle";
+  g.fillText(text, 256, y0 + hh / 2 + 2, tw - 44);
+  bubbleTex.needsUpdate = true;
+  bubble.visible = true;
+  bubbleUntil = performance.now() + secs * 1000;
+}
+
+// Her spots: greeting by the door, path around the island, hosting beside the range
+alma.position.set(2.25, 0, 0.95);
+alma.rotation.y = Math.PI * 0.12;
+const ALMA_PATH = [
+  new THREE.Vector3(2.32, 0, -0.2),
+  new THREE.Vector3(2.32, 0, -1.1),
+  new THREE.Vector3(1.05, 0, -1.72),
+];
+const ALMA_HOST = { x: 1.05, z: -1.72 };
+const almaCtl = { mode: "door", entered: 0, wp: 0, said: {}, celebrateAt: 0, phase: 0 };
+
+function almaFace(tx, tz, dt, rate = 6) {
+  const target = Math.atan2(tx - alma.position.x, tz - alma.position.z);
+  let diff = target - alma.rotation.y;
+  while (diff > Math.PI) diff -= Math.PI * 2;
+  while (diff < -Math.PI) diff += Math.PI * 2;
+  alma.rotation.y += diff * Math.min(1, dt * rate);
+}
+function toward(tx, tz, dt, speed = 1.05) {
+  const dx = tx - alma.position.x, dz = tz - alma.position.z;
+  const d = Math.hypot(dx, dz);
+  if (d < 0.08) return true;
+  const sp = Math.min(speed * dt, d);
+  alma.position.x += (dx / d) * sp;
+  alma.position.z += (dz / d) * sp;
+  almaFace(tx, tz, dt, 8);
+  return false;
+}
+const lerpN = (cur, target, k) => cur + (target - cur) * Math.min(1, k);
+
+function updateAlma(dt) {
+  const now = performance.now();
+  const p = camera.position;
+  const c = almaCtl;
+  let walking = false;
+  if (bubble.visible && now > bubbleUntil) bubble.visible = false;
+
+  if (c.mode === "door") {
+    almaFace(p.x, p.z, dt);
+    armR.rotation.z = 2.55 + Math.sin(now * 0.008) * 0.35;
+    armR.rotation.x = 0;
+    armL.rotation.z = -0.12;
+    if (!uiOpen && !c.entered) {
+      c.entered = now;
+      almaSay("Welcome to my kitchen! 👋", 4);
+    }
+    if (c.entered && now - c.entered > 2400) {
+      c.mode = "lead"; c.wp = 0;
+      almaSay("Follow me — the stove is this way!", 5);
+    }
+  } else if (c.mode === "lead") {
+    const distPlayer = Math.hypot(p.x - alma.position.x, p.z - alma.position.z);
+    if (distPlayer > 2.9) {
+      // wait + beckon until the player catches up
+      almaFace(p.x, p.z, dt);
+      armR.rotation.z = 2.4 + Math.sin(now * 0.009) * 0.3;
+      armR.rotation.x = 0;
+      if (!bubble.visible) almaSay("This way! 😊", 3);
+    } else {
+      const target = ALMA_PATH[c.wp];
+      if (toward(target.x, target.z, dt)) {
+        c.wp++;
+        if (c.wp >= ALMA_PATH.length) {
+          c.mode = "host";
+          almaSay("Here we are! Step up to the stove and press E.", 6);
+        }
+      } else {
+        walking = true;
+      }
+    }
+  } else if (c.mode === "host") {
+    if (!toward(ALMA_HOST.x, ALMA_HOST.z, dt)) walking = true;
+    else almaFace(p.x, p.z, dt, 4);
+  } else if (c.mode === "cook") {
+    if (!toward(ALMA_HOST.x, ALMA_HOST.z, dt, 1.4)) {
+      walking = true;
+    } else {
+      almaFace(FRONT_BURNER.x, backZ + FRONT_BURNER.z, dt, 4);
+      if (steaming) {
+        // stirring over the pan
+        armR.rotation.x = -1.05 + Math.sin(now * 0.012) * 0.14;
+        armR.rotation.z = 0.25 + Math.cos(now * 0.012) * 0.14;
+        armL.rotation.x = -0.25;
+        armL.rotation.z = -0.2;
+      } else if (heatLevel > 0) {
+        // pointing at the burner
+        armR.rotation.x = -1.25;
+        armR.rotation.z = 0.1;
+        armL.rotation.x = 0;
+        armL.rotation.z = -0.15;
+      } else {
+        armR.rotation.x = lerpN(armR.rotation.x, 0, dt * 5);
+        armR.rotation.z = lerpN(armR.rotation.z, 0.12, dt * 5);
+        armL.rotation.x = lerpN(armL.rotation.x, 0, dt * 5);
+        armL.rotation.z = lerpN(armL.rotation.z, -0.12, dt * 5);
+      }
+    }
+  } else if (c.mode === "celebrate") {
+    almaFace(p.x, p.z, dt, 5);
+    armR.rotation.z = 2.75 + Math.sin(now * 0.014) * 0.2;
+    armL.rotation.z = -2.75 - Math.sin(now * 0.014 + 1) * 0.2;
+    armR.rotation.x = 0; armL.rotation.x = 0;
+    alma.position.y = Math.abs(Math.sin(now * 0.009)) * 0.06;
+    if (now - c.celebrateAt > 3200) { c.mode = "host"; alma.position.y = 0; }
+  }
+
+  if (walking) {
+    c.phase += dt * 7.5;
+    const s = Math.sin(c.phase);
+    legL.rotation.x = s * 0.55;
+    legR.rotation.x = -s * 0.55;
+    armL.rotation.x = -s * 0.4; armL.rotation.z = -0.12;
+    armR.rotation.x = s * 0.4; armR.rotation.z = 0.12;
+    alma.position.y = Math.abs(Math.cos(c.phase)) * 0.025;
+  } else {
+    legL.rotation.x = lerpN(legL.rotation.x, 0, dt * 8);
+    legR.rotation.x = lerpN(legR.rotation.x, 0, dt * 8);
+    if (c.mode !== "celebrate") alma.position.y = lerpN(alma.position.y, 0, dt * 6);
+    if (c.mode === "host") {
+      armR.rotation.z = lerpN(armR.rotation.z, 0.12, dt * 5);
+      armR.rotation.x = lerpN(armR.rotation.x, Math.sin(now * 0.0012) * 0.05, dt * 5);
+      armL.rotation.z = lerpN(armL.rotation.z, -0.12, dt * 5);
+      armL.rotation.x = lerpN(armL.rotation.x, Math.sin(now * 0.0012 + 1) * 0.05, dt * 5);
+    }
+  }
+  almaHead.rotation.y = Math.sin(now * 0.0009) * 0.06;
+}
+
+/* ============================================================
    Global lighting
    ============================================================ */
 scene.add(new THREE.HemisphereLight(0xf2ede2, 0x6b5c4a, 0.85));
@@ -717,6 +1013,7 @@ const HEAT_LABEL = ["Off", "Low", "Medium", "High"];
 function startRecipe(r) {
   activeRecipe = r;
   stepIndex = 0;
+  almaCtl.mode = "cook";
   setCookware(r.cookware);
   document.getElementById("k3dCookTitle").textContent = r.name;
   openPanel(cookPanel);
@@ -774,6 +1071,9 @@ function finishRecipe() {
   setHeat(0);
   steaming = false;
   setCookware(null);
+  almaCtl.mode = "celebrate";
+  almaCtl.celebrateAt = performance.now();
+  almaSay("Beautiful! Chef's kiss 🤌", 4);
   document.getElementById("k3dDoneName").textContent = activeRecipe.name;
   document.getElementById("k3dDoneMacros").textContent =
     `≈ ${activeRecipe.kcal} kcal · ${activeRecipe.protein}g protein`;
@@ -785,6 +1085,7 @@ document.querySelectorAll("[data-k3d-return]").forEach((b) => b.addEventListener
 document.querySelectorAll("[data-k3d-close]").forEach((b) => {
   b.addEventListener("click", () => {
     setHeat(0); steaming = false; setCookware(null);
+    if (almaCtl.mode === "cook") almaCtl.mode = "host";
     enterWorld();
   });
 });
@@ -793,12 +1094,11 @@ document.querySelectorAll("[data-k3d-close]").forEach((b) => {
    Animate
    ============================================================ */
 const clock = new THREE.Clock();
-function animate() {
-  requestAnimationFrame(animate);
-  const dt = Math.min(clock.getDelta(), 0.05);
+function tick(dt) {
   moveStep(dt);
   applyLook();
   checkPrompt();
+  updateAlma(dt);
   // flame flicker
   if (heatLevel > 0) {
     M.flame.opacity = 0.55 + heatLevel * 0.12 + Math.sin(performance.now() * 0.02) * 0.12;
@@ -823,6 +1123,10 @@ function animate() {
   }
   renderer.render(scene, camera);
 }
+function animate() {
+  requestAnimationFrame(animate);
+  tick(Math.min(clock.getDelta(), 0.05));
+}
 applyLook();
 animate();
 
@@ -832,17 +1136,24 @@ window.addEventListener("resize", () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
-/* Auto-enter (testing / direct links) */
-if (location.hash === "#enter") {
+/* Auto-enter (testing / direct links) — supports #enter&cam=x,z,yaw and &cook=recipeId */
+if (location.hash.startsWith("#enter")) {
   startOverlay.hidden = true;
   uiOpen = false;
   crosshair.hidden = false;
   hud.hidden = false;
+  const camM = location.hash.match(/cam=(-?[\d.]+),(-?[\d.]+),(-?[\d.]+)/);
+  if (camM) { camera.position.set(+camM[1], EYE, +camM[2]); yaw = +camM[3]; }
+  const cookM = location.hash.match(/cook=(\w+)/);
+  if (cookM) {
+    const r = RECIPES.find((x) => x.id === cookM[1]);
+    if (r) setTimeout(() => startRecipe(r), 800);
+  }
 }
 
 /* Debug hooks for testing */
 window.__k3d = {
-  scene, camera, openRecipes, startRecipe, RECIPES,
+  scene, camera, openRecipes, startRecipe, RECIPES, alma, almaCtl, almaSay, tick, canvas,
   get uiOpen() { return uiOpen; },
   get heatLevel() { return heatLevel; },
   get steaming() { return steaming; },
