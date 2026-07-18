@@ -1431,8 +1431,18 @@ textarea:focus-visible {
 }
 
 @media (max-width: 640px) {
-  .hero { padding: 110px 0 90px; min-height: 520px; }
-  .hero-pillars { display: none; }
+  .hero { padding: 110px 0 90px; min-height: 520px; flex-direction: column; }
+  .hero-pillars {
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    padding: 0 16px;
+    margin-top: 22px;
+  }
+  .pillar { position: static; width: 74px; height: 74px; font-size: 0.72rem; }
+  .pillar-icon { width: 26px; height: 26px; }
   .photo-banner { padding: 64px 0; }
 }
 
