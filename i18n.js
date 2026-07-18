@@ -38,8 +38,6 @@
       "Una coach para tu entrenamiento, tu nutrición y tu mentalidad — un plan que por fin funciona.",
     "Book Your Free Discovery Call": "Agenda tu Llamada Gratis",
     "See How It Works": "Mira Cómo Funciona",
-    "Free 10-minute call · No pressure, just a genuine fit check":
-      "Llamada gratis de 10 minutos · Sin presión, solo para ver si encajamos",
     "Body": "Cuerpo",
     "Plate": "Plato",
     "Mind": "Mente",
