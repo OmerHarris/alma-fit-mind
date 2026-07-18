@@ -143,18 +143,6 @@
     "Not for emergencies. For urgent medical or safety concerns, call 911 or your healthcare provider.":
       "No es para emergencias. Para asuntos médicos o de seguridad urgentes, llama al 911 o a tu proveedor de salud.",
 
-    // ---- Plate chooser modal ----
-    "Pillar Two · Plate": "Pilar Dos · Plato",
-    "Where would you like to go?": "¿A dónde quieres ir?",
-    "Why Nutrition Needs a Coach": "Por Qué la Nutrición Necesita una Coach",
-    "The thinking behind the Plate pillar — why meal plans fail and coaching doesn't.":
-      "La idea detrás del pilar Plato — por qué los planes de comida fallan y el coaching no.",
-    "Read it →": "Léelo →",
-    "Cook with Alma": "Cocina con Alma",
-    "Step into the kitchen — where the food actually gets made, together.":
-      "Entra a la cocina — donde la comida se prepara de verdad, juntos.",
-    "Enter the kitchen →": "Entra a la cocina →",
-
     // ---- Method page ----
     "The Signature Method": "El Método Insignia",
     "The Body–Plate–Mind Method": "El Método Cuerpo–Plato–Mente",
@@ -224,7 +212,6 @@
     "Why You Need a Coach Who Understands the Mental Challenges": "Por Qué Necesitas una Coach Que Entienda los Retos Mentales",
     "Nobody quits because they forgot squats build muscle. Here's the part of coaching almost every program skips — and why it's the one that actually determines the outcome.":
       "Nadie abandona porque olvidó que las sentadillas construyen músculo. Esta es la parte que casi todos los programas omiten — y la que realmente determina el resultado.",
-    "Cook with Alma →": "Cocina con Alma →",
 
     // ---- 404 ----
     "This page skipped leg day.": "Esta página se saltó el día de pierna.",

@@ -2,7 +2,7 @@
 (function () {
   if (window.self !== window.top) return;                 // never inside an iframe
   const p = location.pathname;
-  if (/\/chat\.html$/.test(p) || /\/kitchen\.html$/.test(p)) return; // chat is itself; kitchen is fullscreen
+  if (/\/chat\.html$/.test(p) || /\/kitchen\.html$/.test(p)) return; // chat is itself; kitchen redirects immediately
 
   const T = (s) => (window.__afmT ? window.__afmT(s) : s);
 
