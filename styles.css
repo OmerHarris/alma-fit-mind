@@ -864,11 +864,12 @@ a.value-prop:hover, a.value-prop:focus-visible {
   align-items: start;
 }
 .about-visual { position: relative; }
-.about-avatar-photo {
+.about-portrait-photo {
   width: 100%;
-  aspect-ratio: 1;
-  border-radius: 50%;
+  aspect-ratio: 3 / 4;
+  border-radius: 18px;
   object-fit: cover;
+  object-position: 50% 18%;
   box-shadow: var(--shadow);
   border: 4px solid var(--card);
 }
@@ -1452,7 +1453,7 @@ textarea:focus-visible {
   .grid-3 { grid-template-columns: 1fr; }
   .pricing-grid { grid-template-columns: 1fr 1fr; }
   .about-inner { grid-template-columns: 1fr; }
-  .about-visual { max-width: 220px; margin: 0 auto; }
+  .about-visual { max-width: 300px; margin: 0 auto; }
   .grid-values { grid-template-columns: repeat(2, 1fr); }
   .grid-4 { grid-template-columns: repeat(2, 1fr); gap: 32px 20px; }
   .footer-inner { grid-template-columns: 1fr; }
