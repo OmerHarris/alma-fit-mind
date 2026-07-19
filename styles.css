@@ -660,7 +660,7 @@ a.value-prop:hover, a.value-prop:focus-visible {
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  object-position: 50% 18%;
+  object-position: 56% 22%;
   border-radius: 18px;
   box-shadow: var(--shadow);
 }
@@ -697,7 +697,7 @@ a.value-prop:hover, a.value-prop:focus-visible {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 1280 / 853; /* reserve height before load so the band never collapses */
+  aspect-ratio: 1280 / 1016; /* reserve height before load so the band never collapses */
 }
 /* Dark only on the far-left, behind the text; her body + the barbell stay bright */
 .power-scrim {
