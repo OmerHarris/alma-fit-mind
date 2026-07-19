@@ -565,28 +565,6 @@ a.value-prop:hover, a.value-prop:focus-visible {
 .photo-banner h2 { color: #fff; max-width: 640px; margin-left: auto; margin-right: auto; }
 .photo-banner p { color: #d8dadb; max-width: 480px; margin: 0 auto; }
 
-/* ---------- Services ---------- */
-.services { background: var(--paper); }
-.service-card {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 32px 26px;
-  box-shadow: var(--shadow);
-}
-.service-icon {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: var(--gold-tint);
-  color: var(--gold-dark);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 18px;
-}
-.service-icon svg { width: 26px; height: 26px; }
-
 /* ---------- Personas ---------- */
 .personas { background: var(--sage-tint); }
 .persona-card {
@@ -608,19 +586,6 @@ a.value-prop:hover, a.value-prop:focus-visible {
   gap: 52px;
   align-items: center;
 }
-.lead-points { display: grid; gap: 12px; margin: 0 0 26px; }
-.lead-point {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 14px;
-  padding: 14px 16px;
-}
-.lead-point p { margin: 0; color: #c7c9c6; font-size: 0.92rem; }
-.lead-point p strong { color: #fff; }
-.lead-point-icon { font-size: 1.15rem; line-height: 1.5; }
 .lead-photo img {
   display: block;
   width: 100%;
