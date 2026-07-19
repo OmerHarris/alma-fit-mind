@@ -298,33 +298,44 @@ a { color: inherit; text-decoration: none; }
 }
 .photo-bg > * { position: relative; z-index: 1; }
 
-/* ---------- Hero ---------- */
-.hero {
-  padding: 120px 0 72px;
+/* ---------- Hero (full-bleed photo, text on the dark left) ---------- */
+.hero-cover {
+  position: relative;
+  background: #0b0d0e;
+  isolation: isolate;
   overflow: hidden;
-  min-height: 620px;
+}
+/* Trim only the empty dark ceiling/floor — her whole body (legs, waist, arms, face) stays in frame */
+.hero-cover-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 128 / 89;
+  object-fit: cover;
+  object-position: center 58%;
+}
+/* Dark scrim, heaviest on the left so the copy reads and her body stays clear on the right */
+.hero-cover-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    rgba(8, 10, 11, 0.95) 0%,
+    rgba(8, 10, 11, 0.82) 24%,
+    rgba(8, 10, 11, 0.42) 44%,
+    rgba(8, 10, 11, 0.1) 62%,
+    transparent 78%
+  );
+}
+.hero-cover-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
   display: flex;
   align-items: center;
 }
-.hero-split {
-  background:
-    radial-gradient(ellipse 52% 62% at 74% 42%, rgba(176, 141, 87, 0.18), transparent 72%),
-    radial-gradient(ellipse 70% 55% at 20% 100%, rgba(181, 80, 46, 0.08), transparent 70%),
-    linear-gradient(180deg, #111415 0%, #0c0e0f 100%);
-}
-.hero-split-inner {
-  width: 100%;
-  display: grid;
-  grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr);
-  grid-template-areas:
-    "headline photo"
-    "actions  photo";
-  column-gap: 48px;
-  align-items: center;
-}
-.hero-headline { grid-area: headline; max-width: 580px; align-self: end; }
-.hero-actions-wrap { grid-area: actions; max-width: 580px; align-self: start; }
-.hero-photo { grid-area: photo; }
+.hero-cover-copy { max-width: 470px; }
 .hero .eyebrow { color: var(--gold); }
 .hero h1 { color: #fff; }
 .hero-lead { font-size: 1.12rem; color: #d8dadb; }
@@ -336,25 +347,6 @@ a { color: inherit; text-decoration: none; }
 }
 .hero .btn-ghost { color: #fff; border-color: rgba(255,255,255,0.35); }
 .hero .btn-ghost:hover { border-color: #fff; }
-
-.hero-photo { position: relative; }
-.hero-photo img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  object-position: 48% 16%;
-}
-/* Fade the photo's edges into the dark hero background */
-.hero-photo::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(90deg, #0d0f10 0%, rgba(13, 15, 16, 0) 14%, rgba(13, 15, 16, 0) 86%, #0d0f10 100%),
-    linear-gradient(180deg, #101314 0%, rgba(16, 19, 20, 0) 16%, rgba(13, 15, 16, 0) 92%, rgba(13, 15, 16, 0.8) 100%);
-}
 
 .hero-pillars { display: flex; gap: 16px; margin-top: 34px; flex-wrap: wrap; }
 .pillar {
@@ -809,6 +801,23 @@ a.value-prop:hover, a.value-prop:focus-visible {
   position: relative;
 }
 .price-card h3 { font-size: 1.1rem; }
+.price-card .btn { margin-top: auto; }
+
+/* Foundation card: blended photo header, "Foundations $49…" beneath it */
+.price-card-photo { padding-top: 0; overflow: hidden; }
+.price-card-img {
+  height: 210px;
+  margin: 0 -24px 20px;
+  background-size: cover;
+  background-position: center 20%;
+  position: relative;
+}
+.price-card-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 24, 26, 0.05) 0%, rgba(20, 24, 26, 0) 45%, var(--card) 100%);
+}
 .price {
   font-family: var(--serif);
   font-size: 1.9rem;
@@ -1524,14 +1533,10 @@ textarea:focus-visible {
   .grid-values { grid-template-columns: repeat(2, 1fr); }
   .grid-4 { grid-template-columns: repeat(2, 1fr); gap: 32px 20px; }
   .footer-inner { grid-template-columns: 1fr; }
-  /* Phone: keep the laptop's left-aligned look, photo prominent under the headline */
-  .hero-split-inner {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "headline" "photo" "actions";
-    gap: 18px;
-  }
-  .hero-headline, .hero-actions-wrap { max-width: none; align-self: auto; }
-  .hero-photo { width: 100%; max-width: 480px; margin: 4px 0 8px; }
+  /* Phone: full photo on top, copy below on the dark background */
+  .hero-cover-scrim { display: none; }
+  .hero-cover-content { position: static; padding: 26px 0 6px; }
+  .hero-cover-copy { max-width: none; }
   .lead-split { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .lead-photo { order: -1; width: 100%; max-width: 460px; margin: 0 0 4px; }
   /* Power band stacks: full photo on top, text below, left-aligned like the laptop */
