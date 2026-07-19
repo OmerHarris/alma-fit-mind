@@ -12,7 +12,7 @@
     "Pricing": "Precios",
     "About Alma": "Sobre Alma",
     "FAQ": "Preguntas",
-    "Book Free Discovery Call": "Agenda tu Llamada Gratis",
+    "Get Your Plan": "Obtén tu Plan",
     "Explore": "Explora",
     "Contact": "Contacto",
     "Free Guide": "Guía Gratis",
@@ -36,7 +36,6 @@
     "Retrain the Mind.": "Reentrena la Mente.",
     "One coach for your training, your nutrition, and your mindset — one plan that finally sticks.":
       "Una coach para tu entrenamiento, tu nutrición y tu mentalidad — un plan que por fin funciona.",
-    "Book Your Free Discovery Call": "Agenda tu Llamada Gratis",
     "Body": "Cuerpo",
     "Plate": "Plato",
     "Mind": "Mente",
@@ -136,7 +135,7 @@
       "Cuéntame un poco desde dónde partes y hacia dónde quieres llegar.",
     "You have my permission to call this number.": "Tienes mi permiso para llamar a este número.",
     "You may leave me a voicemail.": "Puedes dejarme un mensaje de voz.",
-    "Request My Free Consultation": "Solicitar Mi Consulta Gratis",
+    "Get My Plan": "Obtener Mi Plan",
     "Not for emergencies. For urgent medical or safety concerns, call 911 or your healthcare provider.":
       "No es para emergencias. Para asuntos médicos o de seguridad urgentes, llama al 911 o a tu proveedor de salud.",
 

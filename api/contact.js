@@ -44,9 +44,9 @@ module.exports = async (req, res) => {
   const emailPayload = {
     from: fromEmail,
     to: [toEmail],
-    subject: `New consultation request from ${name.trim()}`,
+    subject: `New coaching inquiry from ${name.trim()}`,
     html: `
-      <h2>New consultation request</h2>
+      <h2>New coaching inquiry</h2>
       <p><strong>Name:</strong> ${escapeHtml(name.trim())}</p>
       <p><strong>Phone:</strong> ${escapeHtml(phone.trim())}</p>
       <p><strong>Email:</strong> ${hasEmail ? escapeHtml(email.trim()) : "(not provided)"}</p>
