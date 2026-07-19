@@ -687,20 +687,6 @@ a.value-prop:hover, a.value-prop:focus-visible {
 }
 .power-band-content .wrap { width: 100%; }
 .power-band-inner { max-width: 440px; }
-
-/* Contact section: lighter overlay so the photo reads clearly behind the form */
-.final-cta.photo-bg::before {
-  background:
-    radial-gradient(ellipse 90% 70% at 50% 40%, rgba(20, 24, 26, 0.25), rgba(20, 24, 26, 0.78) 80%),
-    linear-gradient(180deg, rgba(20, 24, 26, 0.78) 0%, rgba(20, 24, 26, 0.4) 35%, rgba(20, 24, 26, 0.86) 100%);
-}
-
-/* Contact section: lighter overlay so the photo reads clearly behind the form */
-.final-cta.photo-bg::before {
-  background:
-    radial-gradient(ellipse 90% 70% at 50% 40%, rgba(20, 24, 26, 0.25), rgba(20, 24, 26, 0.78) 80%),
-    linear-gradient(180deg, rgba(20, 24, 26, 0.78) 0%, rgba(20, 24, 26, 0.4) 35%, rgba(20, 24, 26, 0.86) 100%);
-}
 .power-stars {
   color: var(--gold);
   letter-spacing: 3px;
@@ -1050,11 +1036,26 @@ a.value-prop:hover, a.value-prop:focus-visible {
 .faq-a p { padding: 0 4px 22px; margin: 0; }
 .faq-a a { color: var(--gold-dark); text-decoration: underline; text-underline-offset: 2px; }
 
-/* ---------- Final CTA ---------- */
-.final-cta { padding: 120px 0; }
+/* ---------- Final CTA (split: full photo + form) ---------- */
+.final-cta { padding: 110px 0; background: var(--charcoal-dark); }
 .final-cta .eyebrow { color: var(--gold); }
 .final-cta h2 { color: #fff; }
-.final-cta .section-lead { color: #d8dadb; }
+.final-cta .section-lead { color: #d8dadb; margin-bottom: 2.6rem; }
+.final-cta-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 52px;
+  align-items: center;
+}
+/* Show the whole seated photo — nothing cropped, nothing hidden behind the form */
+.cta-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1280 / 853; /* reserve height before the lazy image loads */
+  border-radius: 18px;
+  box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.7);
+}
 
 /* ---------- Legal page ---------- */
 .legal { background: var(--paper); padding-top: 64px; }
@@ -1566,6 +1567,8 @@ textarea:focus-visible {
   .power-scrim { display: none; }
   .power-band-inner { max-width: none; text-align: center; }
   .power-stars { justify-content: center; }
+  .final-cta-split { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .cta-photo { max-width: 560px; margin: 0 auto; width: 100%; }
 }
 
 @media (max-width: 640px) {
