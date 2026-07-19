@@ -25,8 +25,8 @@
     "Alma Fit & Mind provides fitness, nutrition & mindset coaching for educational and motivational purposes only. This is not medical advice, and is not a substitute for licensed medical, dietetic, or mental health treatment. Alma Fit & Mind is not liable for injuries, or the aggravation of existing injuries, arising from participation in our programs — see our":
       "Alma Fit & Mind ofrece coaching de fitness, nutrición y mentalidad con fines educativos y motivacionales únicamente. No es consejo médico ni sustituye tratamiento médico, dietético o de salud mental con licencia. Alma Fit & Mind no se hace responsable de lesiones, o del agravamiento de lesiones existentes, derivadas de la participación en nuestros programas — consulta nuestros",
     "for full details.": "para más detalles.",
-    "We use cookies from trusted services (Calendly, Stripe) to power booking and checkout on this site. By continuing to use it, you agree to our":
-      "Usamos cookies de servicios confiables (Calendly, Stripe) para las reservas y pagos de este sitio. Al seguir usándolo, aceptas nuestra",
+    "We use cookies from trusted services (Stripe) to power checkout on this site. By continuing to use it, you agree to our":
+      "Usamos cookies de servicios confiables (Stripe) para los pagos de este sitio. Al seguir usándolo, aceptas nuestra",
     "Privacy Policy": "Política de Privacidad",
     "Got it": "Entendido",
 
@@ -53,13 +53,6 @@
     "No Crash Diets": "Sin Dietas Extremas",
     "Sustainable habits over quick fixes, built to actually last.":
       "Hábitos sostenibles en vez de soluciones rápidas, hechos para durar.",
-    "See the method →": "Conoce el método →",
-
-    // ---- Photo banner ----
-    "Coaching, In Real Life": "Coaching, En La Vida Real",
-    "Real training. Real coaching. Real accountability.": "Entrenamiento real. Coaching real. Compromiso real.",
-    "No templates, no generic programs — every session is Alma, actually coaching.":
-      "Sin plantillas ni programas genéricos — en cada sesión está Alma, entrenándote de verdad.",
 
     // ---- Services ----
     "Core Services": "Servicios Principales",
@@ -76,8 +69,8 @@
 
     // ---- Lead magnet ----
     "Not ready for full coaching yet? Start here.": "¿Aún no estás listo para el coaching completo? Empieza aquí.",
-    "The 7-Day Mind-Body Reset — one small Body, Plate, and Mind action each day for a week. No crash diet, no 5am non-negotiables, just a real taste of how the method works.":
-      "El Reinicio Mente-Cuerpo de 7 Días — una pequeña acción de Cuerpo, Plato y Mente cada día durante una semana. Sin dietas extremas, solo una probada real de cómo funciona el método.",
+    "One small Body, Plate & Mind action a day for a week. A real taste of the method — free.":
+      "Una pequeña acción de Cuerpo, Plato y Mente cada día durante una semana. Una probada real del método — gratis.",
     "Get the Free Guide": "Recibe la Guía Gratis",
 
     // ---- Testimonials / results ----
@@ -123,8 +116,8 @@
 
     // ---- Final CTA / intake form ----
     "Ready to train your body and rebuild your mindset?": "¿Lista/o para entrenar tu cuerpo y reconstruir tu mentalidad?",
-    "Leave your details below and Alma will personally reach out for a free, no-pressure chat about where you are and whether this is the right fit.":
-      "Deja tus datos abajo y Alma te contactará personalmente para una charla gratis y sin compromiso sobre dónde estás y si esto es para ti.",
+    "Leave your details and Alma will personally reach out — no pressure.":
+      "Deja tus datos y Alma te contactará personalmente — sin presión.",
     "Name": "Nombre",
     "Phone Number": "Número de Teléfono",
     "Email": "Correo",
@@ -166,10 +159,6 @@
     "Mindset, habit-formation & mental-health-informed coaching": "Mentalidad, formación de hábitos y coaching informado en salud mental",
     "1:1 coaching that combines accountability, goal-setting & genuine behavior change":
       "Coaching 1:1 que combina compromiso, metas y cambio real de conducta",
-    "Certifications & Credentials": "Certificaciones y Credenciales",
-    "Alma holds certifications spanning personal training, nutrition/diet coaching, and mindset/life coaching, along with CPR/AED certification.":
-      "Alma cuenta con certificaciones en entrenamiento personal, coaching de nutrición y coaching de vida/mentalidad, además de certificación en RCP/DEA.",
-    "[Certification details to be added.]": "[Detalles de certificaciones por añadir.]",
     "See the Method": "Ver el Método",
 
     // ---- FAQ page ----
@@ -196,6 +185,7 @@
 
     // ---- Pillar page heroes ----
     "Pillar One ·": "Pilar Uno ·",
+    "Pillar Two ·": "Pilar Dos ·",
     "Pillar Three ·": "Pilar Tres ·",
     "Why You Need a Coach Who Pushes You to Train Hard": "Por Qué Necesitas una Coach Que Te Empuje a Entrenar Fuerte",
     "Willpower runs out around week three. That's not a character flaw — it's just how motivation works. Here's what actually keeps people training past the point they'd normally quit.":
@@ -207,6 +197,251 @@
     "Nobody quits because they forgot squats build muscle. Here's the part of coaching almost every program skips — and why it's the one that actually determines the outcome.":
       "Nadie abandona porque olvidó que las sentadillas construyen músculo. Esta es la parte que casi todos los programas omiten — y la que realmente determina el resultado.",
 
+    // ---- Pillar page prev/next nav ----
+    "← Body": "← Cuerpo",
+    "Body →": "Cuerpo →",
+    "← Plate": "← Plato",
+    "Plate →": "Plato →",
+    "← Mind": "← Mente",
+    "Mind →": "Mente →",
+
+    // ---- Body pillar page ----
+    "The problem isn't the workout. It's the day you don't want to do it.":
+      "El problema no es el entrenamiento. Es el día que no quieres hacerlo.",
+    "Everyone can follow a workout plan on the days they feel good. That was never the hard part. The hard part is the Tuesday after a bad night's sleep, the week work got heavy, the day the scale didn't move and quitting quietly feels easier than showing up again.":
+      "Cualquiera puede seguir un plan de entrenamiento los días que se siente bien. Eso nunca fue lo difícil. Lo difícil es el martes después de una mala noche de sueño, la semana que el trabajo se puso pesado, el día que la báscula no se movió y rendirse en silencio parece más fácil que volver a presentarte.",
+    "A PDF doesn't know it's that kind of day. A coach does.":
+      "Un PDF no sabe que es uno de esos días. Una coach sí.",
+    "What a coach actually does during training": "Qué hace realmente una coach durante el entrenamiento",
+    "At Alma Fit & Mind, 1:1 sessions aren't a check-in call about workouts you did on your own — Alma trains":
+      "En Alma Fit & Mind, las sesiones 1:1 no son una llamada de seguimiento sobre entrenamientos que hiciste por tu cuenta — Alma entrena",
+    "with": "contigo",
+    "you, live, in real time. That means:": "en vivo, en tiempo real. Esto significa:",
+    "Motivation in the moment — the push to get through the last two reps you'd normally cut, from someone who's actually watching, not a app streak counter.":
+      "Motivación en el momento — el empujón para terminar las últimas dos repeticiones que normalmente recortarías, de alguien que de verdad te está viendo, no un contador de rachas de una app.",
+    "Real-time form correction — catching the small technique breakdowns that lead to plateaus or injury, before they become a habit.":
+      "Corrección de técnica en tiempo real — detectando los pequeños errores que llevan a estancamientos o lesiones, antes de que se vuelvan un hábito.",
+    "Intensity that adjusts to your actual day — pushing harder when you've got it, scaling back intelligently when you don't, instead of a static plan that assumes every week is your best week.":
+      "Intensidad que se ajusta a tu día real — exigiendo más cuando tienes con qué, bajando el ritmo con inteligencia cuando no, en vez de un plan fijo que asume que cada semana es tu mejor semana.",
+    "Programming that evolves — your training changes as you get stronger, not just every six weeks on a schedule, but based on how you're actually responding.":
+      "Programación que evoluciona — tu entrenamiento cambia conforme te haces más fuerte, no solo cada seis semanas por calendario, sino según cómo estás respondiendo realmente.",
+    "Why this matters more than the program itself": "Por qué esto importa más que el programa en sí",
+    "Two people can follow the exact same program and get completely different results — because the variable that matters most isn't the exercise selection, it's whether someone actually finishes the last set on the hard days. That's not a supplement or a better app. It's a person in your corner who knows the difference between \"I can't\" and \"I don't want to,\" and knows exactly how to respond to each.":
+      "Dos personas pueden seguir exactamente el mismo programa y obtener resultados completamente distintos — porque la variable que más importa no es la selección de ejercicios, sino si esa persona realmente termina la última serie en los días difíciles. Eso no lo da un suplemento ni una mejor app. Es tener a alguien en tu equipo que sabe distinguir entre \"no puedo\" y \"no quiero,\" y sabe exactamente cómo responder a cada uno.",
+    "Safety is part of the job, not an afterthought": "La seguridad es parte del trabajo, no una idea de último momento",
+    "Pushing hard only works if it's pushing correctly. Every program is scaled to your current fitness level and any physical limitations you disclose during onboarding — and coaching stays within what's appropriate for a general fitness setting. If something is outside that scope, you'll be referred to a licensed professional rather than pushed through it. See our":
+      "Exigir fuerte solo funciona si se exige correctamente. Cada programa se adapta a tu nivel actual de condición física y a cualquier limitación física que informes durante el proceso de admisión — y el coaching se mantiene dentro de lo apropiado para un entorno general de fitness. Si algo está fuera de ese alcance, se te referirá a un profesional con licencia en vez de hacerte continuar. Consulta nuestros",
+    "for full details on scope of practice.": "para más detalles sobre el alcance de la práctica.",
+    "General fitness guidance for healthy adults. Not a substitute for medical advice — consult a physician before beginning any new exercise program, especially if you have an injury or health condition.":
+      "Orientación general de fitness para adultos sanos. No sustituye el consejo médico — consulta a un médico antes de comenzar cualquier programa de ejercicio nuevo, especialmente si tienes una lesión o condición de salud.",
+
+    // ---- Plate pillar page ----
+    "A meal plan is a document. Nutrition coaching is a relationship.": "Un plan de comidas es un documento. El coaching de nutrición es una relación.",
+    "Anyone can hand you a spreadsheet of what to eat for a week. The problem is your life doesn't run on a spreadsheet — it runs on late meetings, a friend's birthday dinner, a genuinely exhausting Thursday where cooking feels impossible. A plan that only works in ideal conditions isn't really a plan. It's a countdown to the week it falls apart.":
+      "Cualquiera puede darte una hoja de cálculo de qué comer en una semana. El problema es que tu vida no funciona como una hoja de cálculo — funciona con reuniones que se alargan, la cena de cumpleaños de una amiga, un jueves realmente agotador en el que cocinar parece imposible. Un plan que solo funciona en condiciones ideales no es realmente un plan. Es una cuenta regresiva para la semana en que se derrumba.",
+    "What a coach actually does with your nutrition": "Qué hace realmente una coach con tu nutrición",
+    "The job isn't writing you a diet. It's translating \"eat well\" into decisions you can actually make in your actual kitchen, on your actual schedule:":
+      "El trabajo no es escribirte una dieta. Es traducir \"comer bien\" en decisiones que puedas tomar de verdad en tu cocina real, con tu horario real:",
+    "Calorie and macro targets built around your goals — but explained, not just handed to you, so you understand the \"why\" instead of blindly following numbers.":
+      "Objetivos de calorías y macros según tus metas — pero explicados, no solo entregados, para que entiendas el \"por qué\" en lugar de seguir números a ciegas.",
+    "Real strategies for eating out, travel, and social occasions — the situations that sink most diets, planned for instead of dreaded.":
+      "Estrategias reales para comer fuera, viajar y ocasiones sociales — las situaciones que hunden la mayoría de las dietas, planeadas en vez de temidas.",
+    "Adjustments as you go — when something isn't working, a coach changes the plan; a PDF just sits there being wrong.":
+      "Ajustes sobre la marcha — cuando algo no funciona, una coach cambia el plan; un PDF simplemente se queda ahí, equivocado.",
+    "Food education, not food rules — the goal is a client who eventually doesn't need a meal plan at all, because they understand how to build one.":
+      "Educación alimentaria, no reglas alimentarias — la meta es un cliente que eventualmente no necesite ningún plan de comidas, porque entiende cómo crear uno.",
+    "Why \"just eat less\" was never the whole answer": "Por qué \"solo come menos\" nunca fue toda la respuesta",
+    "If willpower around food were the real issue, diets wouldn't have a well-documented failure rate. The actual issue is usually one of: a plan too rigid for real life, no accountability when things slip, or no one to ask when a situation isn't covered by the meal plan. A coach solves for all three — not by being stricter, but by being available and building something flexible enough to survive contact with your actual week.":
+      "Si la fuerza de voluntad con la comida fuera el verdadero problema, las dietas no tendrían una tasa de fracaso tan bien documentada. El problema real suele ser uno de estos: un plan demasiado rígido para la vida real, ninguna rendición de cuentas cuando algo falla, o nadie a quien preguntar cuando una situación no está contemplada en el plan de comidas. Una coach resuelve los tres a la vez — no siendo más estricta, sino estando disponible y construyendo algo lo bastante flexible para sobrevivir al contacto con tu semana real.",
+    "Sustainable, not restrictive — on purpose": "Sostenible, no restrictivo — a propósito",
+    "Crash diets work until they don't. The focus here is building habits you could keep for years, not weeks — because the goal was never a good month. It's not needing to think about this anymore.":
+      "Las dietas extremas funcionan hasta que dejan de funcionar. Aquí el enfoque es construir hábitos que puedas mantener por años, no por semanas — porque la meta nunca fue un buen mes. Es dejar de tener que pensar en esto.",
+    "General nutrition guidance for healthy adults, not medical nutrition therapy. If you have a condition requiring medical nutrition therapy (diabetes, an eating disorder, a GI condition, pregnancy), you'll be referred to a registered dietitian — see our":
+      "Orientación nutricional general para adultos sanos, no terapia nutricional médica. Si tienes una condición que requiere terapia nutricional médica (diabetes, un trastorno alimentario, una condición gastrointestinal, embarazo), se te referirá a una dietista registrada — consulta nuestros",
+
+    // ---- Mind pillar page ----
+    "The workout was never really the problem": "El entrenamiento nunca fue realmente el problema",
+    "Think back to the last time a fitness plan fell apart. Was it because the exercises were wrong? Almost certainly not. It was a stressful week, a moment of self-doubt, a bad day that turned into a bad week that turned into \"I'll restart Monday\" — and Monday never quite came. That moment is not a discipline failure. It's a completely normal human response that nobody ever taught you how to handle.":
+      "Piensa en la última vez que un plan de fitness se vino abajo. ¿Fue porque los ejercicios estaban mal? Casi seguro que no. Fue una semana estresante, un momento de duda, un mal día que se convirtió en una mala semana que se convirtió en \"empiezo de nuevo el lunes\" — y ese lunes nunca llegó del todo. Ese momento no es una falla de disciplina. Es una respuesta humana completamente normal que nadie te enseñó a manejar.",
+    "What \"understanding the mental challenges\" actually looks like":
+      "Qué significa realmente \"entender los retos mentales\"",
+    "It's not motivational quotes. It's not toxic positivity about \"no excuses.\" It's someone who can sit with you in the actual moment you want to quit and help you understand what's happening, instead of either judging it or ignoring it:":
+      "No son frases motivacionales. No es positividad tóxica sobre \"sin excusas\". Es alguien que puede acompañarte en el momento exacto en que quieres rendirte y ayudarte a entender qué está pasando, en lugar de juzgarlo o ignorarlo:",
+    "Recognizing the pattern — the specific thoughts and situations that precede you falling off, so they stop feeling random and start feeling predictable and manageable.":
+      "Reconocer el patrón — los pensamientos y situaciones específicas que anteceden a que abandones, para que dejen de sentirse aleatorios y empiecen a sentirse predecibles y manejables.",
+    "Separating the behavior from the identity — \"I missed a week\" is a fact. \"I always fail at this\" is a story, and usually the wrong one.":
+      "Separar la conducta de la identidad — \"me salté una semana\" es un hecho. \"Siempre fallo en esto\" es una historia, y casi siempre la equivocada.",
+    "Real accountability, not guilt — a coach who checks in because they actually want to know how you're doing, not to make you feel bad about a missed session.":
+      "Compromiso real, no culpa — una coach que se comunica contigo porque de verdad quiere saber cómo estás, no para hacerte sentir mal por una sesión que te perdiste.",
+    "Walking through it, not around it — staying with you through the actual hard week instead of just waiting for you to come back once you've sorted yourself out.":
+      "Acompañarte en el proceso, no rodearlo — estar contigo durante la semana difícil de verdad, en lugar de solo esperar a que vuelvas una vez que ya lo hayas resuelto por tu cuenta.",
+    "Why this is the differentiator, not an add-on": "Por qué esto es el diferenciador, no un extra",
+    "A trainer can build you a perfect program. A dietitian can build you a perfect meal plan. Neither one is trained to help you understand why you keep quitting — and that gap is exactly where most fitness journeys actually end. Alma's background isn't just fitness and nutrition; it includes a genuine, ongoing depth of study in mental health and mindset work, applied specifically to the moments that make or break consistency.":
+      "Un entrenador puede armarte un programa perfecto. Una nutrióloga puede armarte un plan de comidas perfecto. Ninguno está capacitado para ayudarte a entender por qué sigues abandonando — y ese vacío es justo donde terminan la mayoría de los procesos de fitness. La formación de Alma no es solo fitness y nutrición; incluye un estudio genuino y continuo en salud mental y trabajo de mentalidad, aplicado específicamente a los momentos que determinan si mantienes la constancia o no.",
+    "Where the line is, and why that matters": "Dónde está el límite, y por qué importa",
+    "This is mindset and habit-formation coaching — not therapy, and not a replacement for it. If what you're navigating goes beyond coaching's scope (clinical anxiety or depression, disordered eating, trauma), you'll be told that honestly and referred to a licensed mental health professional. That boundary isn't a limitation — it's what makes the rest of the coaching trustworthy. Full detail in our":
+      "Esto es coaching de mentalidad y formación de hábitos — no es terapia, ni la reemplaza. Si lo que estás enfrentando va más allá del alcance del coaching (ansiedad o depresión clínica, trastornos alimentarios, trauma), te lo diremos con honestidad y te referiremos a un profesional de salud mental con licencia. Ese límite no es una limitación — es lo que hace que el resto del coaching sea confiable. Detalle completo en nuestros",
+    "Mindset and habit-formation coaching for educational and motivational purposes, not a substitute for licensed mental health treatment or therapy.":
+      "Coaching de mentalidad y formación de hábitos con fines educativos y motivacionales, no un sustituto de tratamiento de salud mental o terapia con licencia.",
+
+    // ---- Misc accessibility labels ----
+    "Toggle menu": "Abrir menú",
+    "Dismiss announcement": "Cerrar aviso",
+    "Leave chat": "Salir del chat",
+    "Chat with Alma's Assistant": "Chatea con la Asistente de Alma",
+    "Close chat": "Cerrar chat",
+
+    // ---- Terms & Policies page ----
+    "Terms of Service, Cancellation & Privacy Policy": "Términos de Servicio, Cancelación y Política de Privacidad",
+    "Last updated: July 2026": "Última actualización: julio de 2026",
+    "1. Scope of Services — No Medical Advice": "1. Alcance de los Servicios — No Es Consejo Médico",
+    "Alma Fit & Mind provides online fitness, nutrition, and mindset coaching for":
+      "Alma Fit & Mind ofrece coaching en línea de fitness, nutrición y mentalidad con fines",
+    "educational and motivational purposes only": "educativos y motivacionales únicamente",
+    ". Nothing provided through our coaching — including workout programs, nutrition plans, 1:1 sessions, or any written or verbal guidance — constitutes medical advice, diagnosis, or treatment of any kind.":
+      ". Nada de lo que se ofrece a través de nuestro coaching — incluyendo programas de entrenamiento, planes de nutrición, sesiones 1:1, o cualquier orientación escrita o verbal — constituye consejo médico, diagnóstico o tratamiento de ningún tipo.",
+    "Alma is not a physician, physical therapist, registered dietitian, or licensed mental health provider. Coaching is":
+      "Alma no es médica, fisioterapeuta, dietista registrada, ni proveedora de salud mental con licencia. El coaching",
+    "not": "no es",
+    "a substitute for licensed medical care, physical therapy, dietetic treatment, or mental health treatment. You should always consult a qualified physician before beginning any exercise or nutrition program — especially if you are pregnant, have a pre-existing medical condition, are recovering from an injury or surgery, or have any concern about your ability to safely participate.":
+      "un sustituto de la atención médica, la fisioterapia, el tratamiento dietético, o el tratamiento de salud mental con licencia. Siempre debes consultar a un médico calificado antes de comenzar cualquier programa de ejercicio o nutrición — especialmente si estás embarazada, tienes una condición médica preexistente, te estás recuperando de una lesión o cirugía, o tienes alguna inquietud sobre tu capacidad para participar de forma segura.",
+    "If your needs fall outside the scope of coaching — including but not limited to clinical anxiety or depression, disordered eating, an injury requiring medical clearance, or a condition requiring medical nutrition therapy — you will be referred to an appropriate licensed professional rather than coached through it.":
+      "Si tus necesidades van más allá del alcance del coaching — incluyendo entre otros ansiedad clínica o depresión, trastornos alimentarios, una lesión que requiera autorización médica, o una condición que requiera terapia nutricional médica — se te referirá a un profesional con licencia adecuado en lugar de recibir coaching para ello.",
+    "2. Assumption of Risk & Limitation of Liability": "2. Asunción de Riesgos y Limitación de Responsabilidad",
+    "Exercise and physical training carry inherent risks, including but not limited to muscle strain, sprain, joint injury, cardiovascular events, and — in rare cases — serious injury. By participating in any Alma Fit & Mind program, you voluntarily assume all risks associated with physical exercise, and you confirm that you are physically able to participate or have obtained medical clearance to do so.":
+      "El ejercicio y el entrenamiento físico conllevan riesgos inherentes, incluyendo entre otros distensión muscular, esguinces, lesiones articulares, eventos cardiovasculares y — en casos poco frecuentes — lesiones graves. Al participar en cualquier programa de Alma Fit & Mind, asumes voluntariamente todos los riesgos asociados con el ejercicio físico, y confirmas que estás en condiciones físicas para participar o que has obtenido autorización médica para hacerlo.",
+    "Alma Fit & Mind does not provide injury diagnosis, treatment, or rehabilitation services.":
+      "Alma Fit & Mind no ofrece diagnóstico, tratamiento ni servicios de rehabilitación de lesiones.",
+    "If you are currently injured, recovering from an injury, or have a condition that may be affected by exercise, you are responsible for consulting a licensed physician or physical therapist before beginning or continuing any program, and for following their guidance — including stopping a program if advised to do so.":
+      "Si actualmente tienes una lesión, te estás recuperando de una lesión, o tienes una condición que pueda verse afectada por el ejercicio, eres responsable de consultar a un médico o fisioterapeuta con licencia antes de comenzar o continuar cualquier programa, y de seguir sus indicaciones — incluyendo detener un programa si así te lo aconsejan.",
+    "To the fullest extent permitted by law, Alma Fit & Mind, its founder, and any affiliated coaches or contractors are not liable for any injury, aggravation of an existing injury or condition, or other harm arising from or related to your participation in our coaching programs, or from your failure to obtain appropriate medical clearance before participating.":
+      "En la máxima medida permitida por la ley, Alma Fit & Mind, su fundadora, y cualquier coach o contratista afiliado no son responsables de ninguna lesión, agravamiento de una lesión o condición existente, u otro daño derivado de o relacionado con tu participación en nuestros programas de coaching, o de tu falta de obtención de la autorización médica correspondiente antes de participar.",
+    "Before beginning any program, clients complete an intake assessment and must sign a separate Informed Consent and Liability Waiver acknowledging these risks in writing. Purchasing a coaching package does not replace or waive this requirement — coaching will not begin until a signed waiver is on file.":
+      "Antes de comenzar cualquier programa, los clientes completan una evaluación inicial y deben firmar un Consentimiento Informado y Exención de Responsabilidad por separado, reconociendo estos riesgos por escrito. La compra de un paquete de coaching no reemplaza ni exime este requisito — el coaching no comenzará hasta que haya una exención firmada en archivo.",
+    "3. Cancellation & Refund Policy": "3. Política de Cancelación y Reembolsos",
+    "Monthly coaching subscriptions (Foundations, Transformation, Elite Mind & Body)":
+      "Suscripciones mensuales de coaching (Foundations, Transformation, Elite Mind & Body)",
+    "These are month-to-month subscriptions. You may cancel at any time; we ask for 14 days' notice where possible so we can wrap up your current coaching cycle. Cancelling stops future billing, but amounts already paid for the current billing period are not refunded, since coaching and programming for that period have been made available to you.":
+      "Estas son suscripciones mes a mes. Puedes cancelar en cualquier momento; te pedimos 14 días de aviso cuando sea posible para poder cerrar tu ciclo de coaching actual. Cancelar detiene los cobros futuros, pero los montos ya pagados por el periodo de facturación actual no son reembolsables, ya que el coaching y la programación de ese periodo ya han estado disponibles para ti.",
+    "Disputes": "Disputas",
+    "If you believe you were charged in error, contact us first at":
+      "Si crees que se te cobró por error, contáctanos primero en",
+    "so we can resolve it directly — this is almost always faster than a card dispute.":
+      "para que podamos resolverlo directamente — esto casi siempre es más rápido que una disputa con la tarjeta.",
+    "4. Payments": "4. Pagos",
+    "Payments are processed securely by Stripe. We do not store your card information. Subscription payments renew automatically each billing period until cancelled.":
+      "Los pagos se procesan de forma segura a través de Stripe. No almacenamos la información de tu tarjeta. Los pagos de suscripción se renuevan automáticamente en cada periodo de facturación hasta que se cancelen.",
+    "5. No Guarantee of Results": "5. Sin Garantía de Resultados",
+    "Fitness, nutrition, and mindset outcomes vary by individual and depend on factors outside our control, including your effort, consistency, and starting health status. We do not guarantee specific results.":
+      "Los resultados de fitness, nutrición y mentalidad varían según cada persona y dependen de factores fuera de nuestro control, incluyendo tu esfuerzo, constancia y estado de salud inicial. No garantizamos resultados específicos.",
+    "6. Privacy": "6. Privacidad",
+    "We collect the information you provide directly — such as your name, email, and any details you share through our contact form, booking scheduler, or intake process — to deliver and improve our coaching services. We do not sell your personal information.":
+      "Recopilamos la información que nos proporcionas directamente — como tu nombre, correo electrónico y cualquier detalle que compartas a través de nuestro formulario de contacto, calendario de reservas, o proceso de admisión — para brindar y mejorar nuestros servicios de coaching. No vendemos tu información personal.",
+    "Our site uses a small number of third-party services to operate: Stripe (payments) and Resend (email delivery). Each of these providers processes limited data — like your name, email, phone number, or payment details — solely to complete the function you're using (checkout or contact). We don't share your information with anyone beyond what's needed to provide the service you requested.":
+      "Nuestro sitio utiliza un número reducido de servicios de terceros para funcionar: Stripe (pagos) y Resend (envío de correos). Cada uno de estos proveedores procesa datos limitados — como tu nombre, correo electrónico, número de teléfono o detalles de pago — únicamente para completar la función que estás usando (pago o contacto). No compartimos tu información con nadie más allá de lo necesario para brindarte el servicio que solicitaste.",
+    "Questions about your data can be sent to":
+      "Las preguntas sobre tus datos pueden enviarse a",
+    "7. Contact": "7. Contacto",
+    "This page is provided for general transparency and is not a substitute for legal advice. The liability and assumption-of-risk language above is a starting point, not a substitute for a signed waiver reviewed by an attorney licensed in your state — health and fitness businesses are often subject to state-specific consumer protection and health-club-contract laws, so have this page and your intake waiver reviewed before relying on them.":
+      "Esta página se ofrece con fines de transparencia general y no sustituye el asesoramiento legal. El lenguaje sobre responsabilidad y asunción de riesgos anterior es un punto de partida, no un sustituto de una exención firmada y revisada por un abogado con licencia en tu estado — los negocios de fitness y salud suelen estar sujetos a leyes estatales específicas de protección al consumidor y de contratos de clubes de salud, así que haz revisar esta página y tu exención de admisión antes de basarte en ellas.",
+
+    // ---- Blog index ----
+    "The Blog": "El Blog",
+    "Training, Nutrition & Mindset — Together": "Entrenamiento, Nutrición y Mentalidad — Juntos",
+    "The thinking behind the Body–Plate–Mind method, in writing.":
+      "La filosofía detrás del método Cuerpo–Plato–Mente, por escrito.",
+    "Mindset": "Mentalidad",
+    "Why Your Workout Plan Keeps Failing (And It's Not About Willpower)":
+      "Por Qué Tu Plan de Entrenamiento Sigue Fallando (Y No Es Por Falta de Fuerza de Voluntad)",
+    "You've started over more times than you can count. Here's what's actually happening — and why \"just be more disciplined\" was never going to fix it.":
+      "Has empezado de cero más veces de las que puedes contar. Esto es lo que realmente está pasando — y por qué \"simplemente sé más disciplinado\" nunca iba a arreglarlo.",
+    "Read the article →": "Leer el artículo →",
+    "The Body–Plate–Mind Method, Explained": "El Método Cuerpo–Plato–Mente, Explicado",
+    "A closer look at the three-part framework behind every Alma Fit & Mind program — and why treating them separately is usually what causes people to quit.":
+      "Una mirada más de cerca al marco de tres partes detrás de cada programa de Alma Fit & Mind — y por qué tratarlas por separado suele ser lo que hace que la gente abandone.",
+
+    // ---- Blog: The Body-Plate-Mind Method, Explained ----
+    "← The Blog": "← El Blog",
+    "· Method": "· Método",
+    "By Alma · July 2026": "Por Alma · julio 2026",
+    "Every program I build runs on the same three-part framework, and the name is deliberately literal: Body, Plate, Mind. Not because it's catchy — though I'll take it — but because those are the only three levers that actually determine whether a transformation lasts. Miss one, and the other two eventually give out too.":
+      "Cada programa que diseño se basa en el mismo marco de tres partes, y el nombre es deliberadamente literal: Cuerpo, Plato, Mente. No porque suene bien — aunque lo acepto —, sino porque esas son las únicas tres palancas que realmente determinan si una transformación dura. Descuida una, y las otras dos terminan fallando también.",
+    "Body: training that fits the life you actually have": "Cuerpo: entrenamiento que encaja con la vida que realmente tienes",
+    "The \"Body\" piece is what most people expect from a coach: a structured training program. But the detail that matters more than the exercises themselves is fit — a program has to match your current fitness level, your equipment, and realistically, your schedule. A perfect program you can only do three days out of the intended six isn't a perfect program. It's a program that quietly teaches you to feel behind.":
+      "La parte de \"Cuerpo\" es lo que la mayoría espera de una coach: un programa de entrenamiento estructurado. Pero el detalle que importa más que los ejercicios en sí es el ajuste — un programa tiene que coincidir con tu nivel actual, tu equipo y, siendo realistas, tu horario. Un programa perfecto que solo puedes hacer tres días de los seis planeados no es un programa perfecto. Es un programa que silenciosamente te enseña a sentirte atrasado.",
+    "Good programming scales. It goes up when you're recovering well and life is calm, and it flexes down without falling apart when a week gets chaotic. That flexibility isn't a compromise on results — it's what makes results possible past week four.":
+      "Una buena programación se adapta. Sube cuando te recuperas bien y la vida está tranquila, y baja sin desmoronarse cuando una semana se vuelve caótica. Esa flexibilidad no es un sacrificio en los resultados — es lo que hace posible los resultados después de la semana cuatro.",
+    "Plate: nutrition you can actually live inside of": "Plato: nutrición con la que realmente puedes vivir",
+    "\"Plate\" covers nutrition, and I chose that word instead of \"diet\" on purpose. Diet implies a temporary state you enter and exit. A plate is just what's in front of you at every meal, for the rest of your life — which is a more honest way to think about food.":
+      "\"Plato\" cubre la nutrición, y elegí esa palabra en vez de \"dieta\" a propósito. Dieta implica un estado temporal al que entras y del que sales. Un plato es simplemente lo que tienes enfrente en cada comida, por el resto de tu vida — lo cual es una forma más honesta de pensar en la comida.",
+    "This means macro and calorie targets, yes, but built around what you'll actually eat: your schedule, your preferences, the way you eat when you travel or go out with friends. A nutrition plan that only works when life is easy isn't a nutrition plan — it's a countdown to the week it stops working.":
+      "Esto significa metas de macros y calorías, sí, pero construidas alrededor de lo que realmente vas a comer: tu horario, tus preferencias, cómo comes cuando viajas o sales con amigos. Un plan de nutrición que solo funciona cuando la vida es fácil no es un plan de nutrición — es una cuenta regresiva hasta la semana en que deja de funcionar.",
+    "Mind: the piece almost everyone else skips": "Mente: la parte que casi todos se saltan",
+    "This is the one that makes the whole method work, and it's the one most fitness programs don't touch at all. \"Mind\" is the habits, self-talk, and emotional patterns underneath your behavior — the actual reason a plan gets followed or doesn't.":
+      "Esta es la que hace que todo el método funcione, y es la que la mayoría de los programas de fitness ni siquiera toca. \"Mente\" son los hábitos, el diálogo interno y los patrones emocionales detrás de tu comportamiento — la verdadera razón por la que un plan se sigue o no.",
+    "Nobody skips a workout because they forgot squats build muscle. They skip it because of stress, self-doubt, a bad day, or a story they're telling themselves about who they are and what they're capable of finishing. Training that ignores this treats the symptom and leaves the cause completely untouched.":
+      "Nadie se salta un entrenamiento porque olvidó que las sentadillas construyen músculo. Se lo salta por estrés, inseguridad, un mal día, o una historia que se está contando sobre quién es y de qué es capaz de terminar. Un entrenamiento que ignora esto trata el síntoma y deja la causa completamente intacta.",
+    "Why the three have to move together": "Por qué los tres tienen que avanzar juntos",
+    "Here's the part that took me the longest to really understand, even after I'd learned all three disciplines individually: they don't work in isolation. Perfect programming with no nutrition support stalls out. Great nutrition with no mindset work collapses the first stressful week. And mindset work without any body or plate component stays abstract — insight with nowhere to land.":
+      "Esta es la parte que más me costó entender de verdad, incluso después de haber aprendido las tres disciplinas por separado: no funcionan de forma aislada. Una programación perfecta sin apoyo nutricional se estanca. Una gran nutrición sin trabajo de mentalidad colapsa en la primera semana estresante. Y el trabajo de mentalidad sin ningún componente de cuerpo o plato se queda en lo abstracto — una idea sin dónde aterrizar.",
+    "That's the actual argument for integration. Not convenience, not \"one-stop shopping.\" It's that these three things are, in practice, one system — and coaching them separately is coaching around the problem instead of at it.":
+      "Ese es el verdadero argumento a favor de la integración. No es conveniencia, no es \"todo en un solo lugar.\" Es que estas tres cosas son, en la práctica, un solo sistema — y entrenarlas por separado es rodear el problema en lugar de atacarlo.",
+    "What this looks like week to week": "Cómo se ve esto semana a semana",
+    "In practice: your training adjusts based on how your nutrition and recovery are actually going, not just what a spreadsheet says you should be doing in week six. Your nutrition plan accounts for the actual week you're having, not a hypothetical easy one. And every coaching conversation makes room for the real reason a habit did or didn't happen — because that reason is the actual work.":
+      "En la práctica: tu entrenamiento se ajusta según cómo va realmente tu nutrición y tu recuperación, no solo lo que una hoja de cálculo dice que deberías estar haciendo en la semana seis. Tu plan de nutrición toma en cuenta la semana que realmente estás teniendo, no una hipotética semana fácil. Y cada conversación de coaching deja espacio para la verdadera razón por la que un hábito pasó o no pasó — porque esa razón es el verdadero trabajo.",
+    "It's slower to explain than \"12-week shred.\" It's also the difference between a program you survive and one you actually keep.":
+      "Es más lento de explicar que un \"shred de 12 semanas.\" También es la diferencia entre un programa que sobrevives y uno que realmente mantienes.",
+    "General educational content, not personalized medical, fitness, or mental health advice. If you're managing a diagnosed condition, talk to a licensed professional about what's right for you.":
+      "Contenido educativo general, no consejo médico, de fitness o de salud mental personalizado. Si estás manejando una condición diagnosticada, habla con un profesional con licencia sobre lo que es adecuado para ti.",
+    "Get your plan": "Obtén tu plan",
+
+    // ---- Blog: Why Your Workout Plan Keeps Failing ----
+    "· Mindset": "· Mentalidad",
+    "You've started over before. Probably more than once. A new program on Monday, real momentum for two, maybe three weeks — and then life happens, one workout gets skipped, and somehow that one skipped workout turns into a skipped month.":
+      "Ya has empezado de cero antes. Probablemente más de una vez. Un programa nuevo el lunes, impulso real durante dos, quizás tres semanas — y luego la vida pasa, se salta un entrenamiento, y de alguna manera ese entrenamiento saltado se convierte en un mes saltado.",
+    "If you've quietly decided this means you lack discipline, I want to stop you right there. In years of coaching, \"not enough willpower\" is almost never the real diagnosis. It's just the story people tell themselves because it's simpler than the actual answer.":
+      "Si en silencio has decidido que esto significa que te falta disciplina, quiero detenerte justo ahí. En años de coaching, \"no tener suficiente fuerza de voluntad\" casi nunca es el diagnóstico real. Es solo la historia que la gente se cuenta porque es más simple que la respuesta verdadera.",
+    "The plan was never the problem": "El plan nunca fue el problema",
+    "Most fitness plans fail for a boring, unglamorous reason: they were built for a version of you that doesn't have a job, doesn't get tired, and never has a bad week. A program that demands five hard sessions a week from someone who's already stretched thin isn't a discipline problem waiting to happen — it's a design problem that already happened, before you did a single rep.":
+      "La mayoría de los planes de fitness fallan por una razón aburrida y nada glamorosa: fueron diseñados para una versión de ti que no tiene trabajo, no se cansa y nunca tiene una mala semana. Un programa que exige cinco sesiones intensas a la semana a alguien que ya está al límite no es un problema de disciplina esperando a ocurrir — es un problema de diseño que ya ocurrió, antes de que hicieras una sola repetición.",
+    "When the plan doesn't survive contact with your actual life, missing a session doesn't feel like an adjustment. It feels like proof you're not cut out for this. That belief is the expensive part — far more expensive than the missed workout itself.":
+      "Cuando el plan no sobrevive al contacto con tu vida real, saltarte una sesión no se siente como un ajuste. Se siente como prueba de que no naciste para esto. Esa creencia es la parte costosa — mucho más costosa que el entrenamiento perdido en sí.",
+    "What's actually happening when you \"fall off\"": "Qué está pasando en realidad cuando \"te caes del vagón\"",
+    "In practice, it's rarely one big collapse. It's a small sequence, and it looks the same for almost everyone:":
+      "En la práctica, rara vez es un gran colapso. Es una pequeña secuencia, y se ve igual para casi todos:",
+    "1. Something disrupts the routine — a late night, a stressful week, travel, a minor injury.":
+      "1. Algo interrumpe la rutina — una noche sin dormir, una semana estresante, un viaje, una lesión menor.",
+    "2. You miss a session and privately catalog it as a failure, not a normal variance.":
+      "2. Te saltas una sesión y en privado lo clasificas como un fracaso, no como una variación normal.",
+    "3. The next session feels harder to show up for, because now there's something to prove.":
+      "3. La siguiente sesión se siente más difícil de cumplir, porque ahora hay algo que demostrar.",
+    "4. Avoiding the discomfort of \"proving yourself\" again becomes easier than just training.":
+      "4. Evitar la incomodidad de \"demostrarte a ti mismo\" otra vez se vuelve más fácil que simplemente entrenar.",
+    "Notice what's missing from that sequence: motivation. Willpower. None of it is really about whether you":
+      "Nota lo que falta en esa secuencia: motivación. Fuerza de voluntad. Nada de eso tiene que ver realmente con si tú",
+    "want": "quieres",
+    "it enough. It's about what happens in your head in the 48 hours after a miss — and almost nobody is taught how to handle that moment.":
+      "lo suficiente. Se trata de lo que pasa en tu cabeza en las 48 horas después de un fallo — y casi nadie aprende a manejar ese momento.",
+    "Why this is a mindset problem, not a fitness problem": "Por qué esto es un problema de mentalidad, no de fitness",
+    "This is exactly why training and mindset can't be separated, even though the fitness industry mostly treats them like two different businesses. A trainer can give you a perfect program. A dietitian can give you a perfect meal plan. Neither one teaches you what to do with the voice in your head after you miss a Tuesday.":
+      "Por esto exactamente el entrenamiento y la mentalidad no se pueden separar, aunque la industria del fitness casi siempre los trata como dos negocios distintos. Un entrenador puede darte un programa perfecto. Una nutricionista puede darte un plan de comidas perfecto. Ninguno de los dos te enseña qué hacer con la voz en tu cabeza después de saltarte un martes.",
+    "That's the actual skill that determines whether someone gets results in month one and keeps them in year three: not motivation, but the ability to have an imperfect week without treating it as a referendum on who you are.":
+      "Esa es la habilidad real que determina si alguien obtiene resultados en el primer mes y los mantiene en el tercer año: no la motivación, sino la capacidad de tener una semana imperfecta sin tratarla como un referéndum sobre quién eres.",
+    "What to do instead": "Qué hacer en su lugar",
+    "A few things that hold up better than \"try harder\":": "Algunas cosas que funcionan mejor que \"esfuérzate más\":",
+    "Plan for the miss, not just the win.": "Planea para el fallo, no solo para el triunfo.",
+    "Decide in advance what a \"recovery\" looks like after a skipped session — not a guilt-driven overcorrection, just the next normal one.":
+      "Decide de antemano cómo se ve una \"recuperación\" después de una sesión saltada — no una sobrecorrección impulsada por la culpa, solo la siguiente sesión normal.",
+    "Track consistency, not perfection.": "Rastrea la constancia, no la perfección.",
+    "Four out of five weeks is a good month. Zero out of five because week one wasn't perfect is the actual failure mode.":
+      "Cuatro de cinco semanas es un buen mes. Cero de cinco porque la semana uno no fue perfecta es el verdadero modo de fracaso.",
+    "Separate the behavior from the identity.": "Separa el comportamiento de la identidad.",
+    "\"I missed a workout\" is a fact about Tuesday. \"I'm someone who can't stick to anything\" is a story — and it's usually wrong.":
+      "\"Me salté un entrenamiento\" es un hecho sobre el martes. \"Soy alguien que no puede mantener nada\" es una historia — y normalmente es falsa.",
+    "This is the whole point of Body–Plate–Mind": "Este es el punto central de Cuerpo–Plato–Mente",
+    "It's why every program at Alma Fit & Mind includes real 1:1 coaching on this exact moment — not just a workout PDF and good luck. The training and the nutrition matter, but the thing that actually determines whether they stick is what happens in your head after the first hard week. That's not a soft add-on. It's the part most plans skip, and it's usually the reason they don't work.":
+      "Por eso cada programa en Alma Fit & Mind incluye coaching 1:1 real sobre este momento exacto — no solo un PDF de entrenamiento y buena suerte. El entrenamiento y la nutrición importan, pero lo que realmente determina si se mantienen es lo que pasa en tu cabeza después de la primera semana difícil. Eso no es un extra opcional. Es la parte que la mayoría de los planes se saltan, y suele ser la razón por la que no funcionan.",
+
     // ---- 404 ----
     "This page skipped leg day.": "Esta página se saltó el día de pierna.",
     "The page you're looking for doesn't exist — maybe it moved, maybe the link was wrong. Either way, let's get you back on track.":
@@ -216,11 +451,120 @@
     // ---- Dynamic JS strings ----
     "Sending…": "Enviando…",
     "Thanks! Alma will reach out to you soon.": "¡Gracias! Alma se pondrá en contacto contigo pronto.",
-    "Please enter a valid phone number.": "Ingresa un número de teléfono válido.",
-    "Please confirm we have permission to call you.": "Confirma que tenemos permiso para llamarte.",
     "Something went wrong. Please try again shortly.": "Algo salió mal. Inténtalo de nuevo en un momento.",
     "Here's your guide — bookmark this page to come back to it anytime.": "Aquí está tu guía — guarda esta página para volver cuando quieras.",
-    "Please enter a valid email address.": "Ingresa un correo electrónico válido.",
+
+    // ---- Chat assistant ----
+    "Hey there! 👋 I'm Alma's assistant.": "¡Hola! 👋 Soy la asistente de Alma.",
+    "Alma likes to really get to know you *before* she reaches out — so she can help from the very first message instead of asking generic questions.":
+      "A Alma le gusta conocerte bien *antes* de escribirte — así puede ayudarte desde el primer mensaje en vez de hacerte preguntas genéricas.",
+    "It takes about 2 minutes, and everything stays private between you and Alma. Let's start simple.":
+      "Toma unos 2 minutos, y todo queda privado entre tú y Alma. Empecemos con algo simple.",
+    "Almost done — just how to reach you. 🙌": "Ya casi terminamos — solo falta saber cómo contactarte. 🙌",
+    "What should Alma call you?": "¿Cómo debería llamarte Alma?",
+    "Your first name": "Tu nombre",
+    "Nice to meet you{name}! How old are you?": "¡Mucho gusto{name}! ¿Cuántos años tienes?",
+    "Age": "Edad",
+    "How tall are you? However's easiest — feet/inches or cm.": "¿Cuánto mides? Como te sea más fácil — pies/pulgadas o cm.",
+    "e.g. 5'8\" or 173 cm": "ej. 5'8\" o 173 cm",
+    "And roughly how much do you weigh right now?": "¿Y más o menos cuánto pesas ahora mismo?",
+    "e.g. 165 lb or 75 kg": "ej. 165 lb o 75 kg",
+    "What are you hoping to achieve? Pick any that fit.": "¿Qué te gustaría lograr? Elige las que apliquen.",
+    "Lose fat": "Perder grasa",
+    "Build muscle": "Ganar músculo",
+    "Get stronger": "Ganar fuerza",
+    "General fitness & health": "Estado físico y salud en general",
+    "Feel better mentally": "Sentirme mejor mentalmente",
+    "More energy": "Más energía",
+    "Athletic performance": "Rendimiento deportivo",
+    "Something else": "Otra cosa",
+    "How long have you been training?": "¿Cuánto tiempo llevas entrenando?",
+    "I'm just starting": "Apenas estoy empezando",
+    "Less than 6 months": "Menos de 6 meses",
+    "6–12 months": "6–12 meses",
+    "1–3 years": "1–3 años",
+    "3+ years": "3+ años",
+    "How many days a week do you train — or could realistically commit to?":
+      "¿Cuántos días a la semana entrenas — o podrías comprometerte realistamente?",
+    "I don't train yet": "Todavía no entreno",
+    "1–2 days": "1–2 días",
+    "3–4 days": "3–4 días",
+    "5–6 days": "5–6 días",
+    "Every day": "Todos los días",
+    "Any injuries, disabilities, or physical limitations Alma should know about?":
+      "¿Alguna lesión, discapacidad o limitación física que Alma deba saber?",
+    "Type here, or tap None": "Escribe aquí, o toca Ninguna",
+    "None": "Ninguna",
+    "Any food allergies or intolerances?": "¿Alguna alergia o intolerancia alimentaria?",
+    "What's your favorite food? (Alma builds plans around foods you actually love.)":
+      "¿Cuál es tu comida favorita? (Alma arma planes con base en lo que de verdad te gusta comer.)",
+    "Your favorite meal or food": "Tu comida o platillo favorito",
+    "Do you drink alcohol?": "¿Tomas alcohol?",
+    "Occasionally": "De vez en cuando",
+    "Regularly": "Regularmente",
+    "Prefer not to say": "Prefiero no decirlo",
+    "Do you smoke?": "¿Fumas?",
+    "Sometimes": "A veces",
+    "Yes": "Sí",
+    "Any recreational drug use Alma should factor in? Totally confidential.":
+      "¿Consumes alguna droga recreativa que Alma deba considerar? Totalmente confidencial.",
+    "What kind of work do you do?": "¿A qué te dedicas?",
+    "e.g. desk job, nurse, teacher, driver…": "ej. trabajo de oficina, enfermera/o, maestra/o, conductor…",
+    "Outside of workouts, how active is your day?": "Fuera de tus entrenamientos, ¿qué tan activo es tu día?",
+    "Mostly sitting": "Mayormente sentado/a",
+    "Moderately active": "Moderadamente activo/a",
+    "On my feet a lot": "De pie la mayor parte del tiempo",
+    "Very physical": "Muy físico",
+    "What's your relationship status? (Helps Alma understand your schedule and support.)":
+      "¿Cuál es tu estado civil? (Ayuda a Alma a entender tu horario y tu apoyo.)",
+    "Single": "Soltero/a",
+    "In a relationship": "En una relación",
+    "Married": "Casado/a",
+    "Divorced": "Divorciado/a",
+    "Where's the best place for Alma to message you?": "¿Cuál es el mejor lugar para que Alma te escriba?",
+    "Email / Phone": "Correo / Teléfono",
+    "Perfect — what's your {platform} username or number, so she can find you?":
+      "Perfecto — ¿cuál es tu usuario o número de {platform}, para que pueda encontrarte?",
+    "Your username or number": "Tu usuario o número",
+    "Last one — anything else you'd like Alma to know?": "Última pregunta — ¿algo más que quieras que Alma sepa?",
+    "Optional…": "Opcional…",
+    "Nothing else": "Nada más",
+    "Type your answer…": "Escribe tu respuesta…",
+    "Skip": "Omitir",
+    "Continue": "Continuar",
+    "Sure — tap the question you'd like to change.": "Claro — toca la pregunta que te gustaría cambiar.",
+    "Got it — updated! 👍": "¡Listo — actualizado! 👍",
+    "Welcome back! Looks like we were partway through — want to pick up where you left off, or start over?":
+      "¡Qué bueno tenerte de vuelta! Parece que íbamos a la mitad — ¿quieres continuar donde lo dejamos, o empezar de nuevo?",
+    "Continue where I left off": "Continuar donde lo dejé",
+    "Review my answers": "Revisar mis respuestas",
+    "Start over": "Empezar de nuevo",
+    "Back": "Atrás",
+    "I'm happy for Alma to reach out to me on {platform}.": "Estoy de acuerdo en que Alma me contacte por {platform}.",
+    "Send to Alma": "Enviar a Alma",
+    "That's everything, {name} — thank you! One last thing before I pass this to Alma:":
+      "Eso es todo, {name} — ¡gracias! Una última cosa antes de pasarle esto a Alma:",
+    "All set! 🎉 Alma now has a real picture of you and will reach out personally on {platform} soon.":
+      "¡Todo listo! 🎉 Alma ya tiene una imagen real de ti y te contactará personalmente por {platform} pronto.",
+    "In the meantime, feel free to look around the site. Talk soon! 💛":
+      "Mientras tanto, siéntete libre de explorar el sitio. ¡Nos vemos pronto! 💛",
+    "Height": "Estatura",
+    "Weight": "Peso",
+    "Goals": "Metas",
+    "Training history": "Historial de entrenamiento",
+    "Training frequency": "Frecuencia de entrenamiento",
+    "Injuries": "Lesiones",
+    "Allergies": "Alergias",
+    "Favorite food": "Comida favorita",
+    "Alcohol": "Alcohol",
+    "Smoking": "Fumar",
+    "Drug use": "Consumo de drogas",
+    "Job": "Trabajo",
+    "Daily activity": "Actividad diaria",
+    "Relationship status": "Estado civil",
+    "Contact platform": "Plataforma de contacto",
+    "Contact info": "Datos de contacto",
+    "Notes": "Notas",
   };
 
   const STORAGE_KEY = "afmLang";

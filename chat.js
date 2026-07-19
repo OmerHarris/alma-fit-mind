@@ -264,7 +264,7 @@
     const step = answeredSteps.find((s) => shortLabel(s) === choice);
     if (!step) return;
     addBubble("user", T(choice));
-    await botSay(interp(step.ask));
+    await botSay(interp(T(step.ask)));
     let ans;
     if (step.type === "single") ans = await askSingle(step);
     else if (step.type === "multi") ans = await askMulti(step);
@@ -290,7 +290,7 @@
     for (let i = 0; i < savedIndex; i++) {
       const step = STEPS[i];
       if (step.type === "say" || !step.key || answers[step.key] === undefined) continue;
-      addBubble("bot", interp(step.ask));
+      addBubble("bot", interp(T(step.ask)));
       addBubble("user", displayOf(step, answers[step.key]));
     }
     return savedIndex;
@@ -345,8 +345,8 @@
     for (let i = startIndex; i < STEPS.length; i++) {
       const step = STEPS[i];
       setProgress(i);
-      if (step.type === "say") { await botSay(interp(step.text)); await delay(250); continue; }
-      await botSay(interp(step.ask));
+      if (step.type === "say") { await botSay(interp(T(step.text))); await delay(250); continue; }
+      await botSay(interp(T(step.ask)));
       let ans;
       if (step.type === "single") ans = await askSingle(step);
       else if (step.type === "multi") ans = await askMulti(step);
