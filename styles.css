@@ -414,10 +414,9 @@ a { color: inherit; text-decoration: none; }
 
 /* ---------- Pillar deep-dive pages ---------- */
 .pillar-hero {
-  min-height: 560px;
   display: flex;
   align-items: center;
-  padding: 160px 0 80px;
+  padding: 124px 0 52px;
   background-color: #14181a;
 }
 .pillar-hero.photo-bg::before {
