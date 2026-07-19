@@ -651,29 +651,49 @@ a.value-prop:hover, a.value-prop:focus-visible {
 .lead-form input::placeholder { color: #8a9092; }
 .lead-form input:focus { outline: 2px solid var(--gold); outline-offset: 2px; }
 
-/* ---------- Power band (full-bleed photo CTA) ---------- */
+/* ---------- Power band (full uncropped photo CTA) ---------- */
 .power-band {
   position: relative;
-  display: flex;
-  align-items: center;
-  background-size: cover;
-  background-position: center 30%;
-  min-height: 680px;
-  padding: 80px 0;
+  background: var(--charcoal-dark);
   isolation: isolate;
+  overflow: hidden;
 }
-.power-band .wrap { width: 100%; }
-.power-band::before {
-  content: "";
+/* Show the WHOLE photo — the loaded barbell, her waist and legs — nothing cropped */
+.power-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1280 / 853; /* reserve height before load so the band never collapses */
+}
+/* Dark only on the far-left, behind the text; her body + the barbell stay bright */
+.power-scrim {
   position: absolute;
   inset: 0;
-  z-index: 0;
-  background:
-    linear-gradient(90deg, rgba(10, 12, 13, 0.88) 0%, rgba(10, 12, 13, 0.6) 36%, rgba(10, 12, 13, 0.18) 68%, rgba(10, 12, 13, 0.42) 100%),
-    linear-gradient(180deg, rgba(10, 12, 13, 0.4) 0%, rgba(10, 12, 13, 0.12) 30%, rgba(10, 12, 13, 0.5) 100%);
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    rgba(10, 12, 13, 0.92) 0%,
+    rgba(10, 12, 13, 0.6) 22%,
+    rgba(10, 12, 13, 0.1) 40%,
+    transparent 55%
+  );
 }
-.power-band > * { position: relative; z-index: 1; }
-.power-band-inner { max-width: 560px; }
+.power-band-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+}
+.power-band-content .wrap { width: 100%; }
+.power-band-inner { max-width: 440px; }
+
+/* Contact section: lighter overlay so the photo reads clearly behind the form */
+.final-cta.photo-bg::before {
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 40%, rgba(20, 24, 26, 0.25), rgba(20, 24, 26, 0.78) 80%),
+    linear-gradient(180deg, rgba(20, 24, 26, 0.78) 0%, rgba(20, 24, 26, 0.4) 35%, rgba(20, 24, 26, 0.86) 100%);
+}
 
 /* Contact section: lighter overlay so the photo reads clearly behind the form */
 .final-cta.photo-bg::before {
@@ -1541,7 +1561,11 @@ textarea:focus-visible {
   .hero-photo { width: 100%; max-width: 430px; margin: 0 auto; }
   .lead-split { grid-template-columns: minmax(0, 1fr); gap: 36px; }
   .lead-photo { width: 100%; max-width: 380px; margin: 0 auto; }
-  .power-band { min-height: 540px; padding: 70px 0; }
+  /* Stack: full photo on top, text below — no overlay squeeze on narrow screens */
+  .power-band-content { position: static; padding: 34px 0 42px; }
+  .power-scrim { display: none; }
+  .power-band-inner { max-width: none; text-align: center; }
+  .power-stars { justify-content: center; }
 }
 
 @media (max-width: 640px) {
