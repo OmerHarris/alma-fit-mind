@@ -199,81 +199,50 @@
     "Mind →": "Mente →",
 
     // ---- Body pillar page ----
-    "The problem isn't the workout. It's the day you don't want to do it.":
-      "El problema no es el entrenamiento. Es el día que no quieres hacerlo.",
-    "Everyone can follow a workout plan on the days they feel good. That was never the hard part. The hard part is the Tuesday after a bad night's sleep, the week work got heavy, the day the scale didn't move and quitting quietly feels easier than showing up again.":
-      "Cualquiera puede seguir un plan de entrenamiento los días que se siente bien. Eso nunca fue lo difícil. Lo difícil es el martes después de una mala noche de sueño, la semana que el trabajo se puso pesado, el día que la báscula no se movió y rendirse en silencio parece más fácil que volver a presentarte.",
-    "A PDF doesn't know it's that kind of day. A coach does.":
-      "Un PDF no sabe que es uno de esos días. Una coach sí.",
     "What a coach actually does during training": "Qué hace realmente una coach durante el entrenamiento",
-    "At Alma Fit & Mind, 1:1 sessions aren't a check-in call about workouts you did on your own — Alma trains":
-      "En Alma Fit & Mind, las sesiones 1:1 no son una llamada de seguimiento sobre entrenamientos que hiciste por tu cuenta — Alma entrena",
+    "Alma trains": "Alma entrena",
     "with": "contigo",
-    "you, live, in real time. That means:": "en vivo, en tiempo real. Esto significa:",
-    "Motivation in the moment — the push to get through the last two reps you'd normally cut, from someone who's actually watching, not a app streak counter.":
-      "Motivación en el momento — el empujón para terminar las últimas dos repeticiones que normalmente recortarías, de alguien que de verdad te está viendo, no un contador de rachas de una app.",
-    "Real-time form correction — catching the small technique breakdowns that lead to plateaus or injury, before they become a habit.":
-      "Corrección de técnica en tiempo real — detectando los pequeños errores que llevan a estancamientos o lesiones, antes de que se vuelvan un hábito.",
-    "Intensity that adjusts to your actual day — pushing harder when you've got it, scaling back intelligently when you don't, instead of a static plan that assumes every week is your best week.":
-      "Intensidad que se ajusta a tu día real — exigiendo más cuando tienes con qué, bajando el ritmo con inteligencia cuando no, en vez de un plan fijo que asume que cada semana es tu mejor semana.",
-    "Programming that evolves — your training changes as you get stronger, not just every six weeks on a schedule, but based on how you're actually responding.":
-      "Programación que evoluciona — tu entrenamiento cambia conforme te haces más fuerte, no solo cada seis semanas por calendario, sino según cómo estás respondiendo realmente.",
-    "Why this matters more than the program itself": "Por qué esto importa más que el programa en sí",
-    "Two people can follow the exact same program and get completely different results — because the variable that matters most isn't the exercise selection, it's whether someone actually finishes the last set on the hard days. That's not a supplement or a better app. It's a person in your corner who knows the difference between \"I can't\" and \"I don't want to,\" and knows exactly how to respond to each.":
-      "Dos personas pueden seguir exactamente el mismo programa y obtener resultados completamente distintos — porque la variable que más importa no es la selección de ejercicios, sino si esa persona realmente termina la última serie en los días difíciles. Eso no lo da un suplemento ni una mejor app. Es tener a alguien en tu equipo que sabe distinguir entre \"no puedo\" y \"no quiero,\" y sabe exactamente cómo responder a cada uno.",
-    "Safety is part of the job, not an afterthought": "La seguridad es parte del trabajo, no una idea de último momento",
-    "Pushing hard only works if it's pushing correctly. Every program is scaled to your current fitness level and any physical limitations you disclose during onboarding — and coaching stays within what's appropriate for a general fitness setting. If something is outside that scope, you'll be referred to a licensed professional rather than pushed through it. See our":
-      "Exigir fuerte solo funciona si se exige correctamente. Cada programa se adapta a tu nivel actual de condición física y a cualquier limitación física que informes durante el proceso de admisión — y el coaching se mantiene dentro de lo apropiado para un entorno general de fitness. Si algo está fuera de ese alcance, se te referirá a un profesional con licencia en vez de hacerte continuar. Consulta nuestros",
-    "for full details on scope of practice.": "para más detalles sobre el alcance de la práctica.",
+    "you, live — not a check-in call about workouts you did alone. That means:":
+      "en vivo — no una llamada de seguimiento sobre entrenamientos que hiciste sola. Esto significa:",
+    "Motivation in the moment — the push through the reps you'd normally cut, from someone actually watching.":
+      "Motivación en el momento — el empujón para terminar las repeticiones que normalmente recortarías, de alguien que de verdad te observa.",
+    "Real-time form correction — catching breakdowns before they cause plateaus or injury.":
+      "Corrección de técnica en tiempo real — detectando errores antes de que causen estancamientos o lesiones.",
+    "Intensity that adjusts to your day — harder when you've got it, scaled back when you don't.":
+      "Intensidad que se ajusta a tu día — más cuando tienes con qué, menos cuando no.",
+    "Programming that evolves as you get stronger, based on how you're actually responding.":
+      "Programación que evoluciona conforme te haces más fuerte, según cómo estás respondiendo realmente.",
     "General fitness guidance for healthy adults. Not a substitute for medical advice — consult a physician before beginning any new exercise program, especially if you have an injury or health condition.":
       "Orientación general de fitness para adultos sanos. No sustituye el consejo médico — consulta a un médico antes de comenzar cualquier programa de ejercicio nuevo, especialmente si tienes una lesión o condición de salud.",
 
     // ---- Plate pillar page ----
-    "A meal plan is a document. Nutrition coaching is a relationship.": "Un plan de comidas es un documento. El coaching de nutrición es una relación.",
-    "Anyone can hand you a spreadsheet of what to eat for a week. The problem is your life doesn't run on a spreadsheet — it runs on late meetings, a friend's birthday dinner, a genuinely exhausting Thursday where cooking feels impossible. A plan that only works in ideal conditions isn't really a plan. It's a countdown to the week it falls apart.":
-      "Cualquiera puede darte una hoja de cálculo de qué comer en una semana. El problema es que tu vida no funciona como una hoja de cálculo — funciona con reuniones que se alargan, la cena de cumpleaños de una amiga, un jueves realmente agotador en el que cocinar parece imposible. Un plan que solo funciona en condiciones ideales no es realmente un plan. Es una cuenta regresiva para la semana en que se derrumba.",
     "What a coach actually does with your nutrition": "Qué hace realmente una coach con tu nutrición",
-    "The job isn't writing you a diet. It's translating \"eat well\" into decisions you can actually make in your actual kitchen, on your actual schedule:":
-      "El trabajo no es escribirte una dieta. Es traducir \"comer bien\" en decisiones que puedas tomar de verdad en tu cocina real, con tu horario real:",
-    "Calorie and macro targets built around your goals — but explained, not just handed to you, so you understand the \"why\" instead of blindly following numbers.":
-      "Objetivos de calorías y macros según tus metas — pero explicados, no solo entregados, para que entiendas el \"por qué\" en lugar de seguir números a ciegas.",
-    "Real strategies for eating out, travel, and social occasions — the situations that sink most diets, planned for instead of dreaded.":
-      "Estrategias reales para comer fuera, viajar y ocasiones sociales — las situaciones que hunden la mayoría de las dietas, planeadas en vez de temidas.",
-    "Adjustments as you go — when something isn't working, a coach changes the plan; a PDF just sits there being wrong.":
-      "Ajustes sobre la marcha — cuando algo no funciona, una coach cambia el plan; un PDF simplemente se queda ahí, equivocado.",
-    "Food education, not food rules — the goal is a client who eventually doesn't need a meal plan at all, because they understand how to build one.":
-      "Educación alimentaria, no reglas alimentarias — la meta es un cliente que eventualmente no necesite ningún plan de comidas, porque entiende cómo crear uno.",
-    "Why \"just eat less\" was never the whole answer": "Por qué \"solo come menos\" nunca fue toda la respuesta",
-    "If willpower around food were the real issue, diets wouldn't have a well-documented failure rate. The actual issue is usually one of: a plan too rigid for real life, no accountability when things slip, or no one to ask when a situation isn't covered by the meal plan. A coach solves for all three — not by being stricter, but by being available and building something flexible enough to survive contact with your actual week.":
-      "Si la fuerza de voluntad con la comida fuera el verdadero problema, las dietas no tendrían una tasa de fracaso tan bien documentada. El problema real suele ser uno de estos: un plan demasiado rígido para la vida real, ninguna rendición de cuentas cuando algo falla, o nadie a quien preguntar cuando una situación no está contemplada en el plan de comidas. Una coach resuelve los tres a la vez — no siendo más estricta, sino estando disponible y construyendo algo lo bastante flexible para sobrevivir al contacto con tu semana real.",
-    "Sustainable, not restrictive — on purpose": "Sostenible, no restrictivo — a propósito",
-    "Crash diets work until they don't. The focus here is building habits you could keep for years, not weeks — because the goal was never a good month. It's not needing to think about this anymore.":
-      "Las dietas extremas funcionan hasta que dejan de funcionar. Aquí el enfoque es construir hábitos que puedas mantener por años, no por semanas — porque la meta nunca fue un buen mes. Es dejar de tener que pensar en esto.",
+    "Not a diet — \"eat well\" translated into decisions you can actually make in your real kitchen, on your real schedule:":
+      "No una dieta — \"comer bien\" traducido en decisiones que puedas tomar de verdad en tu cocina real, con tu horario real:",
+    "Calorie and macro targets built around your goals — explained, not just handed to you.":
+      "Objetivos de calorías y macros según tus metas — explicados, no solo entregados.",
+    "Real strategies for eating out, travel, and social occasions — planned for, not dreaded.":
+      "Estrategias reales para comer fuera, viajar y ocasiones sociales — planeadas, no temidas.",
+    "Adjustments as you go — when something isn't working, the plan changes.":
+      "Ajustes sobre la marcha — cuando algo no funciona, el plan cambia.",
+    "Food education, not food rules — so you eventually don't need a meal plan at all.":
+      "Educación alimentaria, no reglas — para que eventualmente no necesites un plan de comidas.",
     "General nutrition guidance for healthy adults, not medical nutrition therapy. If you have a condition requiring medical nutrition therapy (diabetes, an eating disorder, a GI condition, pregnancy), you'll be referred to a registered dietitian — see our":
       "Orientación nutricional general para adultos sanos, no terapia nutricional médica. Si tienes una condición que requiere terapia nutricional médica (diabetes, un trastorno alimentario, una condición gastrointestinal, embarazo), se te referirá a una dietista registrada — consulta nuestros",
 
     // ---- Mind pillar page ----
-    "The workout was never really the problem": "El entrenamiento nunca fue realmente el problema",
-    "Think back to the last time a fitness plan fell apart. Was it because the exercises were wrong? Almost certainly not. It was a stressful week, a moment of self-doubt, a bad day that turned into a bad week that turned into \"I'll restart Monday\" — and Monday never quite came. That moment is not a discipline failure. It's a completely normal human response that nobody ever taught you how to handle.":
-      "Piensa en la última vez que un plan de fitness se vino abajo. ¿Fue porque los ejercicios estaban mal? Casi seguro que no. Fue una semana estresante, un momento de duda, un mal día que se convirtió en una mala semana que se convirtió en \"empiezo de nuevo el lunes\" — y ese lunes nunca llegó del todo. Ese momento no es una falla de disciplina. Es una respuesta humana completamente normal que nadie te enseñó a manejar.",
     "What \"understanding the mental challenges\" actually looks like":
       "Qué significa realmente \"entender los retos mentales\"",
-    "It's not motivational quotes. It's not toxic positivity about \"no excuses.\" It's someone who can sit with you in the actual moment you want to quit and help you understand what's happening, instead of either judging it or ignoring it:":
-      "No son frases motivacionales. No es positividad tóxica sobre \"sin excusas\". Es alguien que puede acompañarte en el momento exacto en que quieres rendirte y ayudarte a entender qué está pasando, en lugar de juzgarlo o ignorarlo:",
-    "Recognizing the pattern — the specific thoughts and situations that precede you falling off, so they stop feeling random and start feeling predictable and manageable.":
-      "Reconocer el patrón — los pensamientos y situaciones específicas que anteceden a que abandones, para que dejen de sentirse aleatorios y empiecen a sentirse predecibles y manejables.",
-    "Separating the behavior from the identity — \"I missed a week\" is a fact. \"I always fail at this\" is a story, and usually the wrong one.":
-      "Separar la conducta de la identidad — \"me salté una semana\" es un hecho. \"Siempre fallo en esto\" es una historia, y casi siempre la equivocada.",
-    "Real accountability, not guilt — a coach who checks in because they actually want to know how you're doing, not to make you feel bad about a missed session.":
-      "Compromiso real, no culpa — una coach que se comunica contigo porque de verdad quiere saber cómo estás, no para hacerte sentir mal por una sesión que te perdiste.",
-    "Walking through it, not around it — staying with you through the actual hard week instead of just waiting for you to come back once you've sorted yourself out.":
-      "Acompañarte en el proceso, no rodearlo — estar contigo durante la semana difícil de verdad, en lugar de solo esperar a que vuelvas una vez que ya lo hayas resuelto por tu cuenta.",
-    "Why this is the differentiator, not an add-on": "Por qué esto es el diferenciador, no un extra",
-    "A trainer can build you a perfect program. A dietitian can build you a perfect meal plan. Neither one is trained to help you understand why you keep quitting — and that gap is exactly where most fitness journeys actually end. Alma's background isn't just fitness and nutrition; it includes a genuine, ongoing depth of study in mental health and mindset work, applied specifically to the moments that make or break consistency.":
-      "Un entrenador puede armarte un programa perfecto. Una nutrióloga puede armarte un plan de comidas perfecto. Ninguno está capacitado para ayudarte a entender por qué sigues abandonando — y ese vacío es justo donde terminan la mayoría de los procesos de fitness. La formación de Alma no es solo fitness y nutrición; incluye un estudio genuino y continuo en salud mental y trabajo de mentalidad, aplicado específicamente a los momentos que determinan si mantienes la constancia o no.",
-    "Where the line is, and why that matters": "Dónde está el límite, y por qué importa",
-    "This is mindset and habit-formation coaching — not therapy, and not a replacement for it. If what you're navigating goes beyond coaching's scope (clinical anxiety or depression, disordered eating, trauma), you'll be told that honestly and referred to a licensed mental health professional. That boundary isn't a limitation — it's what makes the rest of the coaching trustworthy. Full detail in our":
-      "Esto es coaching de mentalidad y formación de hábitos — no es terapia, ni la reemplaza. Si lo que estás enfrentando va más allá del alcance del coaching (ansiedad o depresión clínica, trastornos alimentarios, trauma), te lo diremos con honestidad y te referiremos a un profesional de salud mental con licencia. Ese límite no es una limitación — es lo que hace que el resto del coaching sea confiable. Detalle completo en nuestros",
+    "Not motivational quotes or \"no excuses\" — someone who sits with you in the moment you want to quit and helps you understand it:":
+      "No frases motivacionales ni \"sin excusas\" — alguien que te acompaña en el momento en que quieres rendirte y te ayuda a entenderlo:",
+    "Recognizing the pattern — the thoughts and situations that precede falling off, so they stop feeling random.":
+      "Reconocer el patrón — los pensamientos y situaciones que anteceden a que abandones, para que dejen de sentirse aleatorios.",
+    "Separating the behavior from the identity — \"I missed a week\" is a fact, not who you are.":
+      "Separar la conducta de la identidad — \"me salté una semana\" es un hecho, no quién eres.",
+    "Real accountability, not guilt — check-ins because she wants to know how you're doing.":
+      "Compromiso real, no culpa — seguimiento porque de verdad quiere saber cómo estás.",
+    "Walking through it, not around it — staying with you through the hard week, not waiting for you to return.":
+      "Acompañarte en el proceso, no rodearlo — estar contigo en la semana difícil, no esperar a que vuelvas.",
     "Mindset and habit-formation coaching for educational and motivational purposes, not a substitute for licensed mental health treatment or therapy.":
       "Coaching de mentalidad y formación de hábitos con fines educativos y motivacionales, no un sustituto de tratamiento de salud mental o terapia con licencia.",
 
