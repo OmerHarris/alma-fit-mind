@@ -37,7 +37,6 @@
     "One coach for your training, your nutrition, and your mindset — one plan that finally sticks.":
       "Una coach para tu entrenamiento, tu nutrición y tu mentalidad — un plan que por fin funciona.",
     "Book Your Free Discovery Call": "Agenda tu Llamada Gratis",
-    "See How It Works": "Mira Cómo Funciona",
     "Body": "Cuerpo",
     "Plate": "Plato",
     "Mind": "Mente",
@@ -153,8 +152,6 @@
     "1:1 coaching that addresses the habits, self-talk, and emotional patterns that determine whether a plan actually gets followed.":
       "Coaching 1:1 que trabaja los hábitos, el diálogo interno y los patrones emocionales que determinan si un plan realmente se cumple.",
     "Learn more →": "Saber más →",
-    "Why It Works": "Por Qué Funciona",
-    "Built different, on purpose": "Diferente a propósito",
     "See Coaching Packages": "Ver Paquetes de Coaching",
 
     // ---- About page ----
