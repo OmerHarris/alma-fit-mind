@@ -67,8 +67,23 @@
     "Live video sessions where Alma trains with you — pushing you, fixing your form, and coaching the mindset that keeps you consistent.":
       "Sesiones en video en vivo donde Alma entrena contigo — te motiva, corrige tu técnica y trabaja la mentalidad que te mantiene constante.",
 
+    // ---- Power band ----
+    "Rated 5.0 by clients": "Calificación 5.0 de clientes",
+    "Your strongest self is one decision away.": "Tu versión más fuerte está a una decisión de distancia.",
+    "Real coaching, real accountability — body, plate, and mind, together.":
+      "Coaching real y compromiso real — cuerpo, plato y mente, juntos.",
+
     // ---- Lead magnet ----
     "Not ready for full coaching yet? Start here.": "¿Aún no estás listo para el coaching completo? Empieza aquí.",
+    "Body.": "Cuerpo.",
+    "One small workout a day — squats, push-ups, a walk. No gym required.":
+      "Un pequeño entrenamiento al día — sentadillas, flexiones, una caminata. Sin gimnasio.",
+    "Plate.": "Plato.",
+    "One realistic eating habit at a time — water, protein, planning.":
+      "Un hábito de alimentación realista a la vez — agua, proteína, planificación.",
+    "Mind.": "Mente.",
+    "Five honest minutes with yourself, daily. That's where change sticks.":
+      "Cinco minutos honestos contigo cada día. Ahí es donde el cambio se queda.",
     "One small Body, Plate & Mind action a day for a week. A real taste of the method — free.":
       "Una pequeña acción de Cuerpo, Plato y Mente cada día durante una semana. Una probada real del método — gratis.",
     "Get the Free Guide": "Recibe la Guía Gratis",
