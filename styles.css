@@ -1172,41 +1172,66 @@ a.value-prop:hover, a.value-prop:focus-visible {
   box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.7);
 }
 
-/* ---------- Final CTA with abs photo blended into the background ---------- */
-.cta-abs { position: relative; isolation: isolate; overflow: hidden; }
-/* Photo lives on the left ~56% and bleeds to the screen edge */
+/* ---------- Final CTA: abs photo as a full-screen background, form on top ---------- */
+.cta-abs {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+/* The photo takes over the whole section */
 .cta-abs-img {
   position: absolute;
   z-index: 0;
-  left: 0; top: 0;
-  width: 56%; height: 100%;
+  inset: 0;
+  width: 100%; height: 100%;
   object-fit: cover;
-  object-position: 46% 50%; /* keep the lit abs in frame */
+  object-position: 38% 46%; /* keep the lit abs in frame */
 }
-/* Blend the photo's right edge seamlessly into the dark section behind the form */
+/* Light on the left so the abs stay visible, darker on the right for the form */
 .cta-abs-scrim {
   position: absolute;
   z-index: 1;
-  left: 0; top: 0;
-  width: 62%; height: 100%;
+  inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(20, 24, 26, 0.12) 0%,
-    rgba(20, 24, 26, 0.12) 42%,
-    rgba(20, 24, 26, 0.55) 68%,
-    rgba(20, 24, 26, 0.9) 86%,
-    var(--charcoal-dark) 100%
+    rgba(12, 14, 15, 0.42) 0%,
+    rgba(12, 14, 15, 0.40) 34%,
+    rgba(12, 14, 15, 0.58) 66%,
+    rgba(12, 14, 15, 0.74) 100%
   );
 }
 .cta-abs-inner {
   position: relative;
   z-index: 2;
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 40px;
 }
 .cta-abs-copy { grid-column: 2; }
+/* Headings readable over the photo */
+.cta-abs .eyebrow { text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5); }
+.cta-abs h2, .cta-abs .section-lead { text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6); }
+/* The form sits directly on the photo — no white card, translucent frosted fields */
+.cta-abs .contact-form { background: transparent; padding: 0; box-shadow: none; }
+.cta-abs .form-row label { color: #fff; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6); }
+.cta-abs .form-row input,
+.cta-abs .form-row textarea {
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  color: #fff;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.cta-abs .form-row input::placeholder,
+.cta-abs .form-row textarea::placeholder { color: rgba(255, 255, 255, 0.62); }
+.cta-abs .check-row label { color: #e9e8e2; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55); }
+.cta-abs .field-opt { color: rgba(255, 255, 255, 0.62); }
+.cta-abs .form-helper-note { color: rgba(255, 255, 255, 0.62); }
 
 /* ---------- Legal page ---------- */
 .legal { background: var(--paper); padding-top: 64px; }
@@ -1736,20 +1761,18 @@ textarea:focus-visible {
   .showcase-inner { max-width: none; }
   .final-cta-split { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   .cta-photo { max-width: 560px; margin: 0 auto; width: 100%; }
-  /* Abs CTA stacks: photo as a top band blending down into the form's dark background */
-  .cta-abs-img { width: 100%; height: 280px; object-position: 50% 40%; }
+  /* Abs CTA on mobile: photo still fills the whole section, form sits over it */
+  .cta-abs { min-height: 0; }
+  .cta-abs-inner { display: block; }
+  .cta-abs-copy { grid-column: auto; }
   .cta-abs-scrim {
-    width: 100%; height: 320px;
     background: linear-gradient(
       180deg,
-      rgba(20, 24, 26, 0.1) 0%,
-      rgba(20, 24, 26, 0.1) 40%,
-      rgba(20, 24, 26, 0.7) 78%,
-      var(--charcoal-dark) 100%
+      rgba(12, 14, 15, 0.52) 0%,
+      rgba(12, 14, 15, 0.44) 32%,
+      rgba(12, 14, 15, 0.64) 100%
     );
   }
-  .cta-abs-inner { display: block; padding-top: 250px; }
-  .cta-abs-copy { grid-column: auto; }
 }
 
 @media (max-width: 640px) {
