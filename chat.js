@@ -49,26 +49,26 @@
     { type: "say", text: "Hey there! 👋 I'm Alma's assistant." },
     { type: "say", text: "Alma likes to really get to know you *before* she reaches out — so she can help from the very first message instead of asking generic questions." },
     { type: "say", text: "It takes about 2 minutes, and everything stays private between you and Alma. Let's start simple." },
-    { key: "name", type: "text", ask: "What should Alma call you?", placeholder: "Your first name" },
-    { key: "age", type: "number", ask: "Nice to meet you{name}! How old are you?", placeholder: "Age", suffix: "years" },
-    { key: "height", type: "text", ask: "How tall are you? However's easiest — feet/inches or cm.", placeholder: "e.g. 5'8\" or 173 cm" },
-    { key: "weight", type: "text", ask: "And roughly how much do you weigh right now?", placeholder: "e.g. 165 lb or 75 kg", skippable: true },
+    { key: "name", type: "text", ask: "What should Alma call you?", placeholder: "Your first name", maxLength: 40, kind: "name" },
+    { key: "age", type: "number", ask: "Nice to meet you{name}! How old are you?", placeholder: "Age", suffix: "years", min: 18 },
+    { key: "height", type: "text", ask: "How tall are you? However's easiest — feet/inches or cm.", placeholder: "e.g. 5'8\" or 173 cm", maxLength: 30 },
+    { key: "weight", type: "text", ask: "And roughly how much do you weigh right now?", placeholder: "e.g. 165 lb or 75 kg", skippable: true, maxLength: 20 },
     { key: "goals", type: "multi", ask: "What are you hoping to achieve? Pick any that fit.", options: ["Lose fat", "Build muscle", "Get stronger", "General fitness & health", "Feel better mentally", "More energy", "Athletic performance", "Something else"] },
     { key: "trainingHistory", type: "single", ask: "How long have you been training?", options: ["I'm just starting", "Less than 6 months", "6–12 months", "1–3 years", "3+ years"] },
     { key: "frequency", type: "single", ask: "How many days a week do you train — or could realistically commit to?", options: ["I don't train yet", "1–2 days", "3–4 days", "5–6 days", "Every day"] },
-    { key: "injuries", type: "text", ask: "Any injuries, disabilities, or physical limitations Alma should know about?", placeholder: "Type here, or tap None", skippable: true, skipLabel: "None" },
-    { key: "allergies", type: "text", ask: "Any food allergies or intolerances?", placeholder: "Type here, or tap None", skippable: true, skipLabel: "None" },
-    { key: "favoriteFood", type: "text", ask: "What's your favorite food? (Alma builds plans around foods you actually love.)", placeholder: "Your favorite meal or food" },
+    { key: "injuries", type: "text", ask: "Any injuries, disabilities, or physical limitations Alma should know about?", placeholder: "Type here, or tap None", skippable: true, skipLabel: "None", maxLength: 300 },
+    { key: "allergies", type: "text", ask: "Any food allergies or intolerances?", placeholder: "Type here, or tap None", skippable: true, skipLabel: "None", maxLength: 200 },
+    { key: "favoriteFood", type: "text", ask: "What's your favorite food? (Alma builds plans around foods you actually love.)", placeholder: "Your favorite meal or food", maxLength: 60 },
     { key: "alcohol", type: "single", ask: "Do you drink alcohol?", options: ["No", "Occasionally", "Regularly", "Prefer not to say"] },
     { key: "smoke", type: "single", ask: "Do you smoke?", options: ["No", "Sometimes", "Yes", "Prefer not to say"] },
     { key: "drugs", type: "single", ask: "Any recreational drug use Alma should factor in? Totally confidential.", options: ["No", "Occasionally", "Prefer not to say"] },
-    { key: "job", type: "text", ask: "What kind of work do you do?", placeholder: "e.g. desk job, nurse, teacher, driver…" },
+    { key: "job", type: "text", ask: "What kind of work do you do?", placeholder: "e.g. desk job, nurse, teacher, driver…", maxLength: 60 },
     { key: "activity", type: "single", ask: "Outside of workouts, how active is your day?", options: ["Mostly sitting", "Moderately active", "On my feet a lot", "Very physical"] },
     { key: "status", type: "single", ask: "What's your relationship status? (Helps Alma understand your schedule and support.)", options: ["Single", "In a relationship", "Married", "Divorced", "Prefer not to say"] },
     { type: "say", text: "Almost done — just how to reach you. 🙌" },
     { key: "contactPlatform", type: "single", ask: "Where's the best place for Alma to message you?", options: ["WhatsApp", "Telegram", "Instagram", "Facebook", "Email / Phone"] },
-    { key: "contactHandle", type: "text", ask: "Perfect — what's your {platform} username or number, so she can find you?", placeholder: "Your username or number" },
-    { key: "notes", type: "textarea", ask: "Last one — anything else you'd like Alma to know?", placeholder: "Optional…", skippable: true, skipLabel: "Nothing else" },
+    { key: "contactHandle", type: "text", ask: "Perfect — what's your {platform} username or number, so she can find you?", placeholder: "Your username or number", maxLength: 60, kind: "handle" },
+    { key: "notes", type: "textarea", ask: "Last one — anything else you'd like Alma to know?", placeholder: "Optional…", skippable: true, skipLabel: "Nothing else", maxLength: 600 },
   ];
 
   // ---- Rendering helpers ----------------------------------------------
@@ -129,6 +129,33 @@
       .replace("{platform}", answers.contactPlatform || "there");
   }
 
+  // ---- Input validation (nonsense/abuse guards) -------------------------
+  function looksLikeSentence(v) {
+    if (/[?!.,;:]/.test(v)) return true;
+    return v.trim().split(/\s+/).length > 4;
+  }
+  function isRepeatedCharSpam(v) {
+    const compact = v.replace(/\s+/g, "");
+    if (compact.length < 5) return false;
+    const counts = {};
+    for (const ch of compact) counts[ch] = (counts[ch] || 0) + 1;
+    return Math.max(...Object.values(counts)) / compact.length > 0.6;
+  }
+  function validateAnswer(step, raw) {
+    const v = raw.trim();
+    if (step.kind === "name") {
+      if (looksLikeSentence(v) || isRepeatedCharSpam(v) || !/[a-zA-ZÀ-ÿ]/.test(v)) {
+        return T("Just your first name is perfect — what should Alma call you?");
+      }
+    }
+    if (step.kind === "handle") {
+      if (isRepeatedCharSpam(v) || v.length < 2) {
+        return T("That doesn't look right — mind double-checking it?");
+      }
+    }
+    return null;
+  }
+
   function setProgress(i) {
     const total = STEPS.filter((s) => s.type !== "say").length;
     const done = STEPS.slice(0, i).filter((s) => s.type !== "say").length;
@@ -149,7 +176,12 @@
       if (isArea) field.rows = 2;
       field.className = "chat-field-input";
       field.placeholder = T(step.placeholder || "Type your answer…");
-      if (step.type === "number") { field.min = "1"; field.inputMode = "numeric"; }
+      if (step.type === "number") {
+        field.min = "1";
+        field.inputMode = "numeric";
+      } else if (step.maxLength) {
+        field.maxLength = step.maxLength;
+      }
       const send = document.createElement("button");
       send.type = "submit";
       send.className = "chat-send";
@@ -158,6 +190,11 @@
       form.appendChild(field);
       form.appendChild(send);
       inputArea.appendChild(form);
+
+      const error = document.createElement("p");
+      error.className = "chat-field-error";
+      error.hidden = true;
+      inputArea.appendChild(error);
 
       if (step.skippable) {
         const skip = document.createElement("button");
@@ -169,10 +206,27 @@
       }
       scrollDown();
       field.focus();
+
+      function showError(msg) {
+        error.textContent = msg;
+        error.hidden = false;
+        field.focus();
+        scrollDown();
+      }
+
       form.addEventListener("submit", (e) => {
         e.preventDefault();
         const v = field.value.trim();
         if (!v) { field.focus(); return; }
+        if (step.type === "number") {
+          const n = Number(v);
+          if (!Number.isFinite(n) || n < 1 || n > 120) {
+            showError(T("Please enter a valid age."));
+            return;
+          }
+        }
+        const err = validateAnswer(step, v);
+        if (err) { showError(err); return; }
         resolve(v);
       });
       if (isArea) {
@@ -296,6 +350,15 @@
     return savedIndex;
   }
 
+  async function underageExit() {
+    await botSay(T("Thanks for being honest about that. Alma's coaching programs are only available to adults 18 and older, so I'm not able to continue this chat with you — nothing you've shared has been sent anywhere. If you're under 18, please have a parent or guardian reach out on Alma's behalf if they're interested."));
+    clearInput();
+    inputArea.innerHTML =
+      '<div class="chat-done-actions">' +
+      '<a class="btn btn-ghost btn-sm" href="/">' + T("Back to Home") + "</a></div>";
+    scrollDown();
+  }
+
   // ---- Final confirm + send -------------------------------------------
   function finalConfirm() {
     return new Promise((resolve) => {
@@ -354,6 +417,11 @@
       answers[step.key] = ans;
       addBubble("user", displayOf(step, ans));
       clearInput();
+      if (step.key === "age" && Number(ans) < (step.min || 18)) {
+        clearProgress();
+        await underageExit();
+        return;
+      }
       saveProgress(i + 1);
       await delay(200);
     }

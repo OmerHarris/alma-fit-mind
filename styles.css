@@ -1233,6 +1233,7 @@ a.value-prop:hover, a.value-prop:focus-visible {
 .chat-consent { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 14px; font-size: 0.9rem; color: var(--ink-soft); cursor: pointer; }
 .chat-consent input { margin-top: 3px; width: 18px; height: 18px; flex-shrink: 0; accent-color: var(--gold-dark); }
 .chat-send-note { text-align: center; font-size: 0.85rem; color: var(--sage); margin: 12px 0 0; min-height: 1em; }
+.chat-field-error { font-size: 0.82rem; color: var(--clay); margin: 8px 0 0; }
 .chat-done-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
 .chat-privacy-note { text-align: center; font-size: 0.8rem; color: var(--ink-soft); margin: 16px auto 0; max-width: 460px; }
 

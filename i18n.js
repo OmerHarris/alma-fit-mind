@@ -534,6 +534,12 @@
     "Continue": "Continuar",
     "Sure — tap the question you'd like to change.": "Claro — toca la pregunta que te gustaría cambiar.",
     "Got it — updated! 👍": "¡Listo — actualizado! 👍",
+    "Just your first name is perfect — what should Alma call you?":
+      "Solo tu primer nombre está perfecto — ¿cómo debería llamarte Alma?",
+    "That doesn't look right — mind double-checking it?": "Eso no se ve bien — ¿puedes revisarlo?",
+    "Please enter a valid age.": "Por favor ingresa una edad válida.",
+    "Thanks for being honest about that. Alma's coaching programs are only available to adults 18 and older, so I'm not able to continue this chat with you — nothing you've shared has been sent anywhere. If you're under 18, please have a parent or guardian reach out on Alma's behalf if they're interested.":
+      "Gracias por ser honesto/a al respecto. Los programas de coaching de Alma solo están disponibles para adultos de 18 años o más, así que no puedo continuar esta conversación contigo — nada de lo que compartiste fue enviado a ningún lado. Si eres menor de 18, pide a un padre, madre o tutor que se comunique en tu nombre si están interesados.",
     "Welcome back! Looks like we were partway through — want to pick up where you left off, or start over?":
       "¡Qué bueno tenerte de vuelta! Parece que íbamos a la mitad — ¿quieres continuar donde lo dejamos, o empezar de nuevo?",
     "Continue where I left off": "Continuar donde lo dejé",
