@@ -44,15 +44,15 @@
     "Real 1:1 Coaching": "Coaching 1:1 Real",
     "Not a template library — Alma, coaching you directly, every step.":
       "Nada de plantillas — Alma te acompaña directamente, en cada paso.",
-    "Built Around Your Life": "Hecho Para Tu Vida",
-    "Programs that flex with your schedule, not the other way around.":
-      "Programas que se adaptan a tu horario, no al revés.",
-    "Body + Plate + Mind": "Cuerpo + Plato + Mente",
-    "One integrated method — not three disconnected vendors.":
-      "Un método integrado — no tres servicios desconectados.",
     "No Crash Diets": "Sin Dietas Extremas",
     "Sustainable habits over quick fixes, built to actually last.":
       "Hábitos sostenibles en vez de soluciones rápidas, hechos para durar.",
+    "Mindset That Sticks": "Una Mentalidad Que Perdura",
+    "Willpower fades — coaching keeps you going long after motivation quits.":
+      "La fuerza de voluntad se agota — el coaching te mantiene en marcha mucho después de que la motivación se rinda.",
+    "Body + Plate + Mind": "Cuerpo + Plato + Mente",
+    "One integrated method — not three disconnected vendors.":
+      "Un método integrado — no tres servicios desconectados.",
 
     // ---- Showcase band ----
     "Show Up For Yourself": "Preséntate por ti mismo",

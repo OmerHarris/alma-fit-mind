@@ -479,6 +479,79 @@ a.value-prop:hover, a.value-prop:focus-visible {
   color: var(--clay);
 }
 
+/* ---------- Pillar web: three pillars merging into one method ---------- */
+.pillar-web { max-width: 940px; margin: 0 auto; }
+.pillar-props { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+.value-prop-icon { transition: transform 0.2s ease; }
+.value-prop-icon.vp-body { background: var(--charcoal-dark); color: #fff; }
+.value-prop-icon.vp-plate { background: var(--gold); color: #fff; }
+.value-prop-icon.vp-mind { background: var(--clay); color: #fff; }
+.pillar-prop:hover .value-prop-icon,
+.pillar-prop:focus-visible .value-prop-icon { transform: scale(1.07); }
+
+.pillar-merge { position: relative; margin-top: 2px; }
+.pillar-merge-lines { display: flex; height: 46px; }
+.pillar-merge-lines span { flex: 1; position: relative; }
+/* vertical stub dropping from each pillar icon toward the spine */
+.pillar-merge-lines span::before {
+  content: "";
+  position: absolute;
+  left: 50%; top: 0;
+  width: 2px; height: 23px;
+  margin-left: -1px;
+  border-radius: 1px;
+}
+/* horizontal spine at mid-height, segments meet edge-to-edge (no gap) */
+.pillar-merge-lines span::after {
+  content: "";
+  position: absolute;
+  top: 23px; height: 2px;
+  border-radius: 1px;
+}
+.pillar-merge-lines span:first-child::after { left: 50%; right: 0; }
+.pillar-merge-lines span:nth-child(2)::after { left: 0; right: 0; }
+.pillar-merge-lines span:last-child::after { left: 0; right: 50%; }
+/* middle branch continues straight down into the node */
+.pillar-merge-lines span:nth-child(2)::before { height: 46px; }
+/* colour each branch to its pillar */
+.pillar-merge-lines span:nth-child(1)::before,
+.pillar-merge-lines span:nth-child(1)::after { background: var(--charcoal-dark); }
+.pillar-merge-lines span:nth-child(2)::before,
+.pillar-merge-lines span:nth-child(2)::after { background: var(--gold); }
+.pillar-merge-lines span:nth-child(3)::before,
+.pillar-merge-lines span:nth-child(3)::after { background: var(--clay); }
+
+.pillar-merge-node {
+  display: block;
+  max-width: 440px;
+  margin: 0 auto;
+  text-align: center;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px 28px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.pillar-merge-node:hover, .pillar-merge-node:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px -12px rgba(20, 24, 26, 0.28);
+  border-color: var(--gold);
+}
+.pillar-merge-title {
+  display: block;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.18rem;
+  letter-spacing: 0.01em;
+}
+.pillar-merge-title .w-body { color: var(--charcoal-dark); }
+.pillar-merge-title .w-plate { color: var(--gold-dark); }
+.pillar-merge-title .w-mind { color: var(--clay); }
+.pillar-merge-sub { display: block; font-size: 0.85rem; color: var(--ink-soft); margin-top: 5px; }
+
 /* Standalone page headings (method / about / faq) */
 .method-page-title { color: #fff; }
 .method .method-page-title, .faq h1, .about h1 { font-size: clamp(1.9rem, 3.6vw, 2.6rem); }
@@ -1597,6 +1670,19 @@ textarea:focus-visible {
   .grid-values { grid-template-columns: repeat(2, 1fr); }
   .grid-4 { grid-template-columns: repeat(2, 1fr); gap: 32px 20px; }
   .footer-inner { grid-template-columns: 1fr; }
+  /* Pillar web stacks: cards on top of each other, one line down to the method node */
+  .pillar-props { grid-template-columns: 1fr; row-gap: 10px; }
+  .pillar-merge-lines { display: none; }
+  .pillar-merge { margin-top: 30px; }
+  .pillar-merge-node::before {
+    content: "";
+    position: absolute;
+    left: 50%; top: -30px;
+    width: 2px; height: 30px;
+    margin-left: -1px;
+    border-radius: 1px;
+    background: var(--gold);
+  }
   /* Phone: full photo on top, copy below on the dark background */
   .hero-cover-scrim { display: none; }
   .hero-cover-content { position: static; padding: 26px 0 6px; }
