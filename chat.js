@@ -9,6 +9,33 @@
   const T = (s) => (window.__afmT ? window.__afmT(s) : s);
   const answers = {};
 
+  // ---- Progress persistence --------------------------------------------
+  const STORAGE_KEY = "afmChatProgress";
+  function loadProgress() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
+      const data = JSON.parse(raw);
+      if (!data || typeof data !== "object" || !data.answers || typeof data.stepIndex !== "number") return null;
+      return data;
+    } catch (e) { return null; }
+  }
+  function saveProgress(stepIndex) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ stepIndex, answers })); } catch (e) {}
+  }
+  function clearProgress() {
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+  }
+
+  const LABELS = {
+    name: "Name", age: "Age", height: "Height", weight: "Weight", goals: "Goals",
+    trainingHistory: "Training history", frequency: "Training frequency", injuries: "Injuries",
+    allergies: "Allergies", favoriteFood: "Favorite food", alcohol: "Alcohol", smoke: "Smoking",
+    drugs: "Drug use", job: "Job", activity: "Daily activity", status: "Relationship status",
+    contactPlatform: "Contact platform", contactHandle: "Contact info", notes: "Notes",
+  };
+  function shortLabel(step) { return LABELS[step.key] || step.key; }
+
   // Embedded (inside the floating widget iframe): drop the site chrome, wire close to parent.
   if (new URLSearchParams(location.search).get("embed") === "1") {
     document.body.classList.add("chat-embed");
@@ -45,7 +72,10 @@
   ];
 
   // ---- Rendering helpers ----------------------------------------------
-  function scrollDown() { log.scrollTop = log.scrollHeight; }
+  function scrollDown() {
+    log.scrollTop = log.scrollHeight;
+    requestAnimationFrame(() => { log.scrollTop = log.scrollHeight; });
+  }
 
   function addBubble(role, text) {
     const wrap = document.createElement("div");
@@ -55,6 +85,7 @@
       av.className = "chat-msg-avatar";
       av.src = "images/alma-face-portrait.jpg";
       av.alt = "";
+      av.addEventListener("load", scrollDown);
       wrap.appendChild(av);
     }
     const b = document.createElement("div");
@@ -136,6 +167,7 @@
         skip.addEventListener("click", () => resolve(step.skipLabel || "Skipped"));
         inputArea.appendChild(skip);
       }
+      scrollDown();
       field.focus();
       form.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -165,6 +197,7 @@
         chips.appendChild(b);
       });
       inputArea.appendChild(chips);
+      scrollDown();
     });
   }
 
@@ -194,12 +227,73 @@
       cont.addEventListener("click", () => resolve([...picked]));
       inputArea.appendChild(chips);
       inputArea.appendChild(cont);
+      scrollDown();
     });
   }
 
   function displayOf(step, ans) {
     if (Array.isArray(ans)) return ans.map(T).join(", ");
     return T(ans);
+  }
+
+  function askChoice(options) {
+    return new Promise((resolve) => {
+      clearInput();
+      const chips = document.createElement("div");
+      chips.className = "chat-chips";
+      options.forEach((opt) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "chat-chip";
+        b.textContent = T(opt);
+        b.addEventListener("click", () => resolve(opt));
+        chips.appendChild(b);
+      });
+      inputArea.appendChild(chips);
+      scrollDown();
+    });
+  }
+
+  // ---- Resume / review saved progress -----------------------------------
+  async function reviewAnswers(savedIndex) {
+    const answeredSteps = STEPS.slice(0, savedIndex).filter((s) => s.key && answers[s.key] !== undefined);
+    await botSay(T("Sure — tap the question you'd like to change."));
+    const labels = answeredSteps.map(shortLabel);
+    const choice = await askChoice([...labels, "Back"]);
+    if (choice === "Back") return;
+    const step = answeredSteps.find((s) => shortLabel(s) === choice);
+    if (!step) return;
+    addBubble("user", T(choice));
+    await botSay(interp(step.ask));
+    let ans;
+    if (step.type === "single") ans = await askSingle(step);
+    else if (step.type === "multi") ans = await askMulti(step);
+    else ans = await askText(step);
+    answers[step.key] = ans;
+    addBubble("user", displayOf(step, ans));
+    saveProgress(savedIndex);
+    await botSay(T("Got it — updated! 👍"));
+  }
+
+  async function resumeOrRestart(savedIndex) {
+    await botSay(T("Welcome back! Looks like we were partway through — want to pick up where you left off, or start over?"));
+    const choice = await askChoice(["Continue where I left off", "Review my answers", "Start over"]);
+    if (choice === "Start over") {
+      clearProgress();
+      Object.keys(answers).forEach((k) => delete answers[k]);
+      return 0;
+    }
+    if (choice === "Review my answers") {
+      await reviewAnswers(savedIndex);
+      return resumeOrRestart(savedIndex);
+    }
+    for (let i = 0; i < savedIndex; i++) {
+      const step = STEPS[i];
+      if (step.type === "say" || !step.key || answers[step.key] === undefined) continue;
+      addBubble("bot", interp(step.ask));
+      addBubble("user", displayOf(step, answers[step.key]));
+    }
+    return savedIndex;
   }
 
   // ---- Final confirm + send -------------------------------------------
@@ -214,6 +308,7 @@
         '<button type="button" class="btn btn-primary btn-block" id="chatSend" disabled>' + T("Send to Alma") + "</button>" +
         '<p class="chat-send-note" id="chatSendNote" role="status"></p>';
       inputArea.appendChild(box);
+      scrollDown();
       const cb = box.querySelector("#chatConsent");
       const btn = box.querySelector("#chatSend");
       const note = box.querySelector("#chatSendNote");
@@ -241,7 +336,13 @@
 
   // ---- Runner ----------------------------------------------------------
   async function run() {
-    for (let i = 0; i < STEPS.length; i++) {
+    let startIndex = 0;
+    const saved = loadProgress();
+    if (saved && saved.stepIndex > 0 && saved.stepIndex < STEPS.length) {
+      Object.assign(answers, saved.answers);
+      startIndex = await resumeOrRestart(saved.stepIndex);
+    }
+    for (let i = startIndex; i < STEPS.length; i++) {
       const step = STEPS[i];
       setProgress(i);
       if (step.type === "say") { await botSay(interp(step.text)); await delay(250); continue; }
@@ -253,6 +354,7 @@
       answers[step.key] = ans;
       addBubble("user", displayOf(step, ans));
       clearInput();
+      saveProgress(i + 1);
       await delay(200);
     }
     // Review + consent
@@ -260,6 +362,7 @@
     await botSay(interp(T("That's everything, {name} — thank you! One last thing before I pass this to Alma:")));
     await finalConfirm();
     // Success
+    clearProgress();
     progressBar.style.width = "100%";
     clearInput();
     await botSay(interp(T("All set! 🎉 Alma now has a real picture of you and will reach out personally on {platform} soon.")));
@@ -268,6 +371,7 @@
       '<div class="chat-done-actions">' +
       '<a class="btn btn-outline btn-sm" href="/#pricing">' + T("See Coaching Packages") + "</a>" +
       '<a class="btn btn-ghost btn-sm" href="/">' + T("Back to Home") + "</a></div>";
+    scrollDown();
   }
 
   // Kick off once i18n has had a chance to set language

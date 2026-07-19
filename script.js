@@ -72,7 +72,7 @@ if (navToggle) {
     navToggle.setAttribute("aria-expanded", String(isOpen));
   });
 
-  document.querySelectorAll(".main-nav a").forEach((link) => {
+  document.querySelectorAll(".main-nav a, .header-cta a").forEach((link) => {
     link.addEventListener("click", () => {
       siteHeader.classList.remove("nav-open");
       navToggle.setAttribute("aria-expanded", "false");
