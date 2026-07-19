@@ -54,6 +54,13 @@
     "Sustainable habits over quick fixes, built to actually last.":
       "Hábitos sostenibles en vez de soluciones rápidas, hechos para durar.",
 
+    // ---- Showcase band ----
+    "Show Up For Yourself": "Preséntate por ti mismo",
+    "Every rep is a promise you keep to yourself.":
+      "Cada repetición es una promesa que te cumples a ti mismo.",
+    "Coached training, real accountability, and a plan built around your life — so showing up finally gets easier.":
+      "Entrenamiento con coaching, compromiso real y un plan hecho a tu medida — para que presentarte por fin sea más fácil.",
+
     // ---- Power band ----
     "Rated 5.0 by clients": "Calificación 5.0 de clientes",
     "Your strongest self is one decision away.": "Tu versión más fuerte está a una decisión de distancia.",

@@ -668,6 +668,64 @@ a.value-prop:hover, a.value-prop:focus-visible {
   margin-bottom: 28px;
 }
 
+/* ---------- Showcase band (statement photo, text on the dark left) ---------- */
+.showcase-band {
+  position: relative;
+  background: #08090a;
+  isolation: isolate;
+  overflow: hidden;
+}
+/* Show the WHOLE lunge shot — her legs, waist, and the weight rack, nothing cropped */
+.showcase-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1280 / 853; /* reserve height before load so the band never collapses */
+}
+/* Dark on the left, behind the headline; she stays bright on the right */
+.showcase-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    rgba(6, 7, 8, 0.94) 0%,
+    rgba(6, 7, 8, 0.7) 24%,
+    rgba(6, 7, 8, 0.18) 44%,
+    transparent 60%
+  );
+}
+.showcase-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+}
+.showcase-content .wrap { width: 100%; }
+.showcase-inner { max-width: 500px; }
+.showcase-eyebrow {
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.showcase-band h2 {
+  color: #fff;
+  font-size: clamp(1.9rem, 4.4vw, 3.15rem);
+  line-height: 1.08;
+  margin-bottom: 18px;
+}
+.showcase-lead {
+  color: #d8dadb;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  max-width: 440px;
+  margin-bottom: 30px;
+}
+
 .guide-content { margin-top: 3rem; }
 .guide-grid {
   display: grid;
@@ -1549,6 +1607,11 @@ textarea:focus-visible {
   .power-band-content { position: static; padding: 30px 0 40px; }
   .power-scrim { display: none; }
   .power-band-inner { max-width: none; }
+  /* Showcase band stacks the same way: full photo on top, headline below */
+  .showcase-band { background: #101314; }
+  .showcase-content { position: static; padding: 30px 0 42px; }
+  .showcase-scrim { display: none; }
+  .showcase-inner { max-width: none; }
   .final-cta-split { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   .cta-photo { max-width: 560px; margin: 0 auto; width: 100%; }
 }
