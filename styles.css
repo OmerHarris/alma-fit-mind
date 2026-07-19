@@ -300,36 +300,61 @@ a { color: inherit; text-decoration: none; }
 
 /* ---------- Hero ---------- */
 .hero {
-  padding: 140px 0 120px;
+  padding: 120px 0 72px;
   overflow: hidden;
   min-height: 620px;
   display: flex;
   align-items: center;
 }
-.hero-inner-full { width: 100%; }
-.hero-copy-center {
-  max-width: 680px;
-  margin: 0 auto;
-  text-align: center;
+.hero-split {
+  background:
+    radial-gradient(ellipse 52% 62% at 74% 42%, rgba(176, 141, 87, 0.18), transparent 72%),
+    radial-gradient(ellipse 70% 55% at 20% 100%, rgba(181, 80, 46, 0.08), transparent 70%),
+    linear-gradient(180deg, #111415 0%, #0c0e0f 100%);
 }
+.hero-split-inner {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr);
+  gap: 48px;
+  align-items: center;
+}
+.hero-copy { max-width: 580px; }
 .hero .eyebrow { color: var(--gold); }
 .hero h1 { color: #fff; }
-.hero-lead { font-size: 1.12rem; color: #d8dadb; margin-left: auto; margin-right: auto; }
+.hero-lead { font-size: 1.12rem; color: #d8dadb; }
 .hero-actions {
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
   margin: 28px 0 14px;
 }
-.hero-actions.center { justify-content: center; }
 .hero .btn-ghost { color: #fff; border-color: rgba(255,255,255,0.35); }
 .hero .btn-ghost:hover { border-color: #fff; }
 
-.hero-pillars { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-.pillar {
+.hero-photo { position: relative; }
+.hero-photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 48% 16%;
+}
+/* Fade the photo's edges into the dark hero background */
+.hero-photo::after {
+  content: "";
   position: absolute;
-  width: 96px;
-  height: 96px;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, #0d0f10 0%, rgba(13, 15, 16, 0) 16%, rgba(13, 15, 16, 0) 84%, #0d0f10 100%),
+    linear-gradient(180deg, #101314 0%, rgba(16, 19, 20, 0) 18%, rgba(13, 15, 16, 0) 78%, #0d0f10 100%);
+}
+
+.hero-pillars { display: flex; gap: 16px; margin-top: 34px; flex-wrap: wrap; }
+.pillar {
+  width: 92px;
+  height: 92px;
   border-radius: 50%;
   display: flex;
   flex-direction: column;
@@ -342,7 +367,6 @@ a { color: inherit; text-decoration: none; }
   box-shadow: var(--shadow);
   background: var(--card);
   color: var(--charcoal-dark);
-  pointer-events: auto;
   text-decoration: none;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -352,9 +376,10 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 0 16px 32px -12px rgba(20, 24, 26, 0.5);
 }
 .pillar-icon { width: 32px; height: 32px; }
-.pillar-body { top: 18%; left: 6%; background: var(--charcoal-dark); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
-.pillar-plate { bottom: 14%; left: 10%; background: var(--gold); color: #fff; }
-.pillar-mind { bottom: 22%; right: 7%; background: var(--clay); color: #fff; }
+.pillar-body { background: var(--charcoal-dark); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+.pillar-plate { background: var(--gold); color: #fff; }
+.pillar-mind { background: var(--clay); color: #fff; }
+
 
 /* ---------- 404 ---------- */
 .not-found { padding: 140px 0; background: var(--paper); }
@@ -1431,20 +1456,17 @@ textarea:focus-visible {
   .grid-values { grid-template-columns: repeat(2, 1fr); }
   .grid-4 { grid-template-columns: repeat(2, 1fr); gap: 32px 20px; }
   .footer-inner { grid-template-columns: 1fr; }
+  .hero-split-inner { grid-template-columns: minmax(0, 1fr); gap: 12px; text-align: center; }
+  .hero-copy { max-width: 640px; margin: 0 auto; }
+  .hero-actions { justify-content: center; }
+  .hero-pillars { justify-content: center; }
+  .hero-photo { max-width: 430px; margin: 0 auto; }
 }
 
 @media (max-width: 640px) {
-  .hero { padding: 110px 0 90px; min-height: 520px; flex-direction: column; }
-  .hero-pillars {
-    position: static;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-    padding: 0 16px;
-    margin-top: 22px;
-  }
-  .pillar { position: static; width: 74px; height: 74px; font-size: 0.72rem; }
+  .hero { padding: 96px 0 56px; min-height: 0; }
+  .hero-pillars { gap: 12px; margin-top: 24px; }
+  .pillar { width: 76px; height: 76px; font-size: 0.72rem; }
   .pillar-icon { width: 26px; height: 26px; }
   .photo-banner { padding: 64px 0; }
 }
