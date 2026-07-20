@@ -931,7 +931,20 @@ a.value-prop:hover, a.value-prop:focus-visible {
 }
 
 /* ---------- Testimonials ---------- */
-.testimonials { background: var(--gold-tint); }
+.testimonials {
+  position: relative;
+  isolation: isolate;
+  background-color: #0b0d0e;
+  background-image:
+    linear-gradient(rgba(10, 12, 13, 0.72), rgba(10, 12, 13, 0.8)),
+    url("images/gym-bg.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.testimonials .eyebrow { color: var(--gold); }
+.testimonials h2 { color: #fff; }
+.testimonials .section-lead { color: #d8dadb; }
+.testimonials .results-disclaimer { color: rgba(255, 255, 255, 0.62); }
 .testimonial-card {
   flex: 0 0 auto;
   width: clamp(280px, 82vw, 360px);
