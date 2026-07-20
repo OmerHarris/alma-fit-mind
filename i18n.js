@@ -425,11 +425,32 @@
     "Here's your guide — bookmark this page to come back to it anytime.": "Aquí está tu guía — guarda esta página para volver cuando quieras.",
 
     // ---- Chat assistant ----
-    "Hey there! 👋 I'm Alma's assistant.": "¡Hola! 👋 Soy la asistente de Alma.",
-    "Alma likes to really get to know you *before* she reaches out — so she can help from the very first message instead of asking generic questions.":
-      "A Alma le gusta conocerte bien *antes* de escribirte — así puede ayudarte desde el primer mensaje en vez de hacerte preguntas genéricas.",
-    "It takes about 2 minutes, and everything stays private between you and Alma. Let's start simple.":
-      "Toma unos 2 minutos, y todo queda privado entre tú y Alma. Empecemos con algo simple.",
+    "Hey — I'm Alma's assistant. 👋 Really glad you found your way here.": "Hola — soy la asistente de Alma. 👋 Qué bueno que llegaste aquí.",
+    "Before Alma reaches out, she likes to *actually* know you — your goals, your life, what's gotten in the way before. That way her very first message is about *you*, not some copy-paste advice.":
+      "Antes de escribirte, a Alma le gusta *conocerte de verdad* — tus metas, tu vida, lo que te ha frenado antes. Así su primer mensaje ya es sobre *ti*, no un consejo genérico.",
+    "It's a few quick questions, about 2 minutes, and it stays completely private between you and Alma. Ready? Let's go. 💛":
+      "Son unas preguntas rápidas, como 2 minutos, y todo queda totalmente privado entre tú y Alma. ¿Lista/o? Vamos. 💛",
+    "Real talk for a second — *why now*? What made today the day you decided something has to change?":
+      "Hablando en serio un momento — *¿por qué ahora?* ¿Qué hizo que hoy fuera el día en que decidiste que algo tiene que cambiar?",
+    "Even one honest line helps Alma get you…": "Aunque sea una línea honesta ayuda a Alma a entenderte…",
+    "I'd rather tell Alma directly": "Prefiero decírselo a Alma directamente",
+    "A few honest lifestyle questions next — zero judgment, ever. They just help Alma build around your *real* life, not a textbook.":
+      "Ahora unas preguntas honestas sobre tu estilo de vida — cero juicios, nunca. Solo ayudan a Alma a construir en torno a tu vida *real*, no a un libro de texto.",
+    "That's a strong list. Alma coaches training, food, *and* mindset as one system — that's exactly why her clients' results actually last.":
+      "Es una lista fuerte. Alma entrena el ejercicio, la comida *y* la mentalidad como un solo sistema — por eso los resultados de sus clientes de verdad duran.",
+    "That reason right there? Hold onto it. That's what Alma will remind you of on the days it's hard. 💛":
+      "¿Esa razón que acabas de dar? No la sueltes. Es justo lo que Alma te recordará en los días difíciles. 💛",
+    "Perfect timing — beginners make the fastest, most visible progress once they've got real coaching behind them. You're starting at the best possible moment.":
+      "Momento perfecto — los principiantes logran el progreso más rápido y visible cuando tienen coaching real detrás. Empiezas en el mejor momento posible.",
+    "Love it — you've already built a base. Alma's job now is to break the plateau and make this next phase your best one yet.":
+      "Me encanta — ya tienes una base. El trabajo de Alma ahora es romper el estancamiento y hacer de esta próxima etapa la mejor de todas.",
+    "Thank you for trusting me with that. Alma will build your plan *around* it — so you get stronger without getting hurt.":
+      "Gracias por confiarme eso. Alma armará tu plan *en torno* a ello — para que te hagas más fuerte sin lastimarte.",
+    "Noted — and it's staying on the menu. Alma builds plans around foods you actually love. No joyless dieting here.":
+      "Anotado — y se queda en el menú. Alma arma planes con las comidas que de verdad amas. Aquí no hay dietas tristes.",
+    "Perfect. Alma will reach out there herself — usually within a day or two. 🙌":
+      "Perfecto. Alma te escribirá ahí en persona — normalmente en uno o dos días. 🙌",
+    "Why now": "Por qué ahora",
     "Almost done — just how to reach you. 🙌": "Ya casi terminamos — solo falta saber cómo contactarte. 🙌",
     "What should Alma call you?": "¿Cómo debería llamarte Alma?",
     "Your first name": "Tu nombre",
@@ -518,12 +539,16 @@
     "Back": "Atrás",
     "I'm happy for Alma to reach out to me on {platform}.": "Estoy de acuerdo en que Alma me contacte por {platform}.",
     "Send to Alma": "Enviar a Alma",
-    "That's everything, {name} — thank you! One last thing before I pass this to Alma:":
-      "Eso es todo, {name} — ¡gracias! Una última cosa antes de pasarle esto a Alma:",
-    "All set! 🎉 Alma now has a real picture of you and will reach out personally on {platform} soon.":
-      "¡Todo listo! 🎉 Alma ya tiene una imagen real de ti y te contactará personalmente por {platform} pronto.",
-    "In the meantime, feel free to look around the site. Talk soon! 💛":
-      "Mientras tanto, siéntete libre de explorar el sitio. ¡Nos vemos pronto! 💛",
+    "That's everything{name} — and honestly, that's more than most people share with a coach on day one. Thank you. 💛 One last thing before I hand you to Alma:":
+      "Eso es todo{name} — y sinceramente, es más de lo que la mayoría comparte con un coach el primer día. Gracias. 💛 Una última cosa antes de pasarte con Alma:",
+    "Done{name}. 🎉 Alma has the *real* you now — not a form, an actual picture of your life and what you're chasing.":
+      "Listo{name}. 🎉 Alma ya te conoce de *verdad* — no un formulario, sino una imagen real de tu vida y de lo que buscas.",
+    "She'll message you personally on {platform}, usually within a day or two. Keep an eye out for her.":
+      "Te escribirá personalmente por {platform}, normalmente en uno o dos días. Mantente atento/a.",
+    "One thing I've learned watching Alma work: the people who go furthest are the ones who decided — *before* her first message — that this time is different. You just did that. Don't let that feeling go. 💛":
+      "Algo que aprendí viendo trabajar a Alma: quienes llegan más lejos son los que decidieron — *antes* de su primer mensaje — que esta vez es diferente. Tú acabas de hacerlo. No dejes ir esa sensación. 💛",
+    "While you wait, take two minutes to see exactly how Alma coaches — and picture yourself in it:":
+      "Mientras esperas, tómate dos minutos para ver exactamente cómo entrena Alma — e imagínate ahí:",
     "Height": "Estatura",
     "Weight": "Peso",
     "Goals": "Metas",

@@ -17,6 +17,7 @@ const FIELD_LABELS = [
   ["height", "Height"],
   ["weight", "Weight"],
   ["goals", "Goals"],
+  ["why", "Why now / motivation"],
   ["trainingHistory", "Training experience"],
   ["frequency", "Trains per week"],
   ["injuries", "Injuries / disabilities"],

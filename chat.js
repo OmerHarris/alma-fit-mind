@@ -28,7 +28,7 @@
   }
 
   const LABELS = {
-    name: "Name", age: "Age", height: "Height", weight: "Weight", goals: "Goals",
+    name: "Name", age: "Age", height: "Height", weight: "Weight", goals: "Goals", why: "Why now",
     trainingHistory: "Training history", frequency: "Training frequency", injuries: "Injuries",
     allergies: "Allergies", favoriteFood: "Favorite food", alcohol: "Alcohol", smoke: "Smoking",
     drugs: "Drug use", job: "Job", activity: "Daily activity", status: "Relationship status",
@@ -46,19 +46,21 @@
   // ---- Flow definition -------------------------------------------------
   // types: say | text | number | single | multi | textarea
   const STEPS = [
-    { type: "say", text: "Hey there! 👋 I'm Alma's assistant." },
-    { type: "say", text: "Alma likes to really get to know you *before* she reaches out — so she can help from the very first message instead of asking generic questions." },
-    { type: "say", text: "It takes about 2 minutes, and everything stays private between you and Alma. Let's start simple." },
+    { type: "say", text: "Hey — I'm Alma's assistant. 👋 Really glad you found your way here." },
+    { type: "say", text: "Before Alma reaches out, she likes to *actually* know you — your goals, your life, what's gotten in the way before. That way her very first message is about *you*, not some copy-paste advice." },
+    { type: "say", text: "It's a few quick questions, about 2 minutes, and it stays completely private between you and Alma. Ready? Let's go. 💛" },
     { key: "name", type: "text", ask: "What should Alma call you?", placeholder: "Your first name", maxLength: 40, kind: "name" },
     { key: "age", type: "number", ask: "Nice to meet you{name}! How old are you?", placeholder: "Age", suffix: "years", min: 18 },
     { key: "height", type: "text", ask: "How tall are you? However's easiest — feet/inches or cm.", placeholder: "e.g. 5'8\" or 173 cm", maxLength: 30 },
     { key: "weight", type: "text", ask: "And roughly how much do you weigh right now?", placeholder: "e.g. 165 lb or 75 kg", skippable: true, maxLength: 20 },
     { key: "goals", type: "multi", ask: "What are you hoping to achieve? Pick any that fit.", options: ["Lose fat", "Build muscle", "Get stronger", "General fitness & health", "Feel better mentally", "More energy", "Athletic performance", "Something else"] },
+    { key: "why", type: "textarea", ask: "Real talk for a second — *why now*? What made today the day you decided something has to change?", placeholder: "Even one honest line helps Alma get you…", skippable: true, skipLabel: "I'd rather tell Alma directly", maxLength: 400 },
     { key: "trainingHistory", type: "single", ask: "How long have you been training?", options: ["I'm just starting", "Less than 6 months", "6–12 months", "1–3 years", "3+ years"] },
     { key: "frequency", type: "single", ask: "How many days a week do you train — or could realistically commit to?", options: ["I don't train yet", "1–2 days", "3–4 days", "5–6 days", "Every day"] },
     { key: "injuries", type: "text", ask: "Any injuries, disabilities, or physical limitations Alma should know about?", placeholder: "Type here, or tap None", skippable: true, skipLabel: "None", maxLength: 300 },
     { key: "allergies", type: "text", ask: "Any food allergies or intolerances?", placeholder: "Type here, or tap None", skippable: true, skipLabel: "None", maxLength: 200 },
     { key: "favoriteFood", type: "text", ask: "What's your favorite food? (Alma builds plans around foods you actually love.)", placeholder: "Your favorite meal or food", maxLength: 60 },
+    { type: "say", text: "A few honest lifestyle questions next — zero judgment, ever. They just help Alma build around your *real* life, not a textbook." },
     { key: "alcohol", type: "single", ask: "Do you drink alcohol?", options: ["No", "Occasionally", "Regularly", "Prefer not to say"] },
     { key: "smoke", type: "single", ask: "Do you smoke?", options: ["No", "Sometimes", "Yes", "Prefer not to say"] },
     { key: "drugs", type: "single", ask: "Any recreational drug use Alma should factor in? Totally confidential.", options: ["No", "Occasionally", "Prefer not to say"] },
@@ -154,6 +156,32 @@
       }
     }
     return null;
+  }
+
+  // ---- Warm, human reactions to what they share -------------------------
+  // Returns a translated line (or null) to say right after an answer, so the
+  // chat feels like a real coach listening — not a form.
+  function reactTo(step, ans) {
+    switch (step.key) {
+      case "goals":
+        return T("That's a strong list. Alma coaches training, food, *and* mindset as one system — that's exactly why her clients' results actually last.");
+      case "why":
+        if (ans === step.skipLabel) return null;
+        return T("That reason right there? Hold onto it. That's what Alma will remind you of on the days it's hard. 💛");
+      case "trainingHistory":
+        if (ans === "I'm just starting" || ans === "Less than 6 months")
+          return T("Perfect timing — beginners make the fastest, most visible progress once they've got real coaching behind them. You're starting at the best possible moment.");
+        return T("Love it — you've already built a base. Alma's job now is to break the plateau and make this next phase your best one yet.");
+      case "injuries":
+        if (ans === step.skipLabel || ans === "None") return null;
+        return T("Thank you for trusting me with that. Alma will build your plan *around* it — so you get stronger without getting hurt.");
+      case "favoriteFood":
+        return T("Noted — and it's staying on the menu. Alma builds plans around foods you actually love. No joyless dieting here.");
+      case "contactHandle":
+        return T("Perfect. Alma will reach out there herself — usually within a day or two. 🙌");
+      default:
+        return null;
+    }
   }
 
   function setProgress(i) {
@@ -422,22 +450,26 @@
         await underageExit();
         return;
       }
+      const reaction = reactTo(step, ans);
+      if (reaction) await botSay(interp(reaction));
       saveProgress(i + 1);
       await delay(200);
     }
     // Review + consent
     setProgress(STEPS.length);
-    await botSay(interp(T("That's everything, {name} — thank you! One last thing before I pass this to Alma:")));
+    await botSay(interp(T("That's everything{name} — and honestly, that's more than most people share with a coach on day one. Thank you. 💛 One last thing before I hand you to Alma:")));
     await finalConfirm();
     // Success
     clearProgress();
     progressBar.style.width = "100%";
     clearInput();
-    await botSay(interp(T("All set! 🎉 Alma now has a real picture of you and will reach out personally on {platform} soon.")));
-    await botSay(T("In the meantime, feel free to look around the site. Talk soon! 💛"));
+    await botSay(interp(T("Done{name}. 🎉 Alma has the *real* you now — not a form, an actual picture of your life and what you're chasing.")));
+    await botSay(interp(T("She'll message you personally on {platform}, usually within a day or two. Keep an eye out for her.")));
+    await botSay(T("One thing I've learned watching Alma work: the people who go furthest are the ones who decided — *before* her first message — that this time is different. You just did that. Don't let that feeling go. 💛"));
+    await botSay(T("While you wait, take two minutes to see exactly how Alma coaches — and picture yourself in it:"));
     inputArea.innerHTML =
       '<div class="chat-done-actions">' +
-      '<a class="btn btn-outline btn-sm" href="/#pricing">' + T("See Coaching Packages") + "</a>" +
+      '<a class="btn btn-primary btn-sm" href="/#pricing">' + T("See Coaching Packages") + "</a>" +
       '<a class="btn btn-ghost btn-sm" href="/">' + T("Back to Home") + "</a></div>";
     scrollDown();
   }
