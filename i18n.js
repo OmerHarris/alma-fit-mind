@@ -117,8 +117,8 @@
 
     // ---- Final CTA / intake form ----
     "Ready to train your body and rebuild your mindset?": "¿Lista/o para entrenar tu cuerpo y reconstruir tu mentalidad?",
-    "Leave your details and Alma will personally reach out — no pressure.":
-      "Deja tus datos y Alma te contactará personalmente — sin presión.",
+    "Leave your details and Alma will personally reach out via Email — no pressure.":
+      "Deja tus datos y Alma te contactará personalmente por correo — sin presión.",
     "Name": "Nombre",
     "Phone Number": "Número de Teléfono",
     "Email": "Correo",
