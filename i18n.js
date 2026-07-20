@@ -75,9 +75,13 @@
 
     // ---- Testimonials / results ----
     "Client Stories": "Historias de Clientes",
+    "Alma's Transformation": "La Transformación de Alma",
     "Real people. Real results.": "Personas reales. Resultados reales.",
+    "She's been where you are.": "Ella ha estado donde tú estás.",
     "Individual results vary — these reflect each client's own effort, consistency, and starting point, not a guaranteed outcome.":
       "Los resultados varían — reflejan el esfuerzo, la constancia y el punto de partida de cada cliente, no un resultado garantizado.",
+    "Individual results vary — this reflects Alma's own effort, consistency, and starting point, not a guaranteed outcome.":
+      "Los resultados varían — esto refleja el esfuerzo, la constancia y el punto de partida de la propia Alma, no un resultado garantizado.",
     "Before": "Antes",
     "After": "Después",
     "Alma — your coach": "Alma — tu coach",
@@ -89,6 +93,8 @@
       "\"Una buena experiencia en general. La coach hizo las preguntas correctas y me ayudó a sentirme más seguro.\"",
     "Results are not typical and vary based on individual effort, consistency, genetics, and starting point. Photos shared with client permission.":
       "Los resultados no son típicos y varían según el esfuerzo, la constancia, la genética y el punto de partida. Fotos compartidas con permiso de los clientes.",
+    "Results are not typical and vary based on individual effort, consistency, genetics, and starting point.":
+      "Los resultados no son típicos y varían según el esfuerzo, la constancia, la genética y el punto de partida.",
 
     // ---- Pricing ----
     "Coaching Packages": "Paquetes de Coaching",

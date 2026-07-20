@@ -884,6 +884,7 @@ a.value-prop:hover, a.value-prop:focus-visible {
 @media (hover: hover) and (pointer: fine) {
   .carousel-arrow { display: flex; }
 }
+.results-solo { display: flex; justify-content: center; margin-top: 2.5rem; }
 .result-card {
   flex: 0 0 auto;
   width: clamp(280px, 82vw, 360px);
