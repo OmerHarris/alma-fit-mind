@@ -100,6 +100,68 @@ document.querySelectorAll(".faq-item").forEach((item) => {
   });
 });
 
+// Carousels — drag-to-swipe (mouse) + arrow buttons; touch swipes natively
+document.querySelectorAll("[data-carousel]").forEach((carousel) => {
+  const track = carousel.querySelector("[data-track]");
+  if (!track) return;
+  const prev = carousel.querySelector(".carousel-prev");
+  const next = carousel.querySelector(".carousel-next");
+
+  const step = () => {
+    const card = track.firstElementChild;
+    const gap = parseFloat(getComputedStyle(track).gap) || 24;
+    return card ? card.getBoundingClientRect().width + gap : track.clientWidth * 0.8;
+  };
+
+  const update = () => {
+    const max = track.scrollWidth - track.clientWidth;
+    const overflow = max > 4;
+    if (prev) prev.hidden = !overflow || track.scrollLeft <= 4;
+    if (next) next.hidden = !overflow || track.scrollLeft >= max - 4;
+  };
+
+  if (prev) prev.addEventListener("click", () => track.scrollBy({ left: -step() }));
+  if (next) next.addEventListener("click", () => track.scrollBy({ left: step() }));
+  track.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
+  update();
+  // update once images load and change scrollWidth
+  track.querySelectorAll("img").forEach((img) => {
+    if (!img.complete) img.addEventListener("load", update, { once: true });
+  });
+
+  // Drag to scroll with a mouse/pen (touch already scrolls natively)
+  let down = false, startX = 0, startScroll = 0, moved = false;
+  track.addEventListener("pointerdown", (e) => {
+    if (e.pointerType === "touch") return;
+    down = true;
+    moved = false;
+    startX = e.clientX;
+    startScroll = track.scrollLeft;
+    track.classList.add("dragging");
+    track.setPointerCapture(e.pointerId);
+  });
+  track.addEventListener("pointermove", (e) => {
+    if (!down) return;
+    const dx = e.clientX - startX;
+    if (Math.abs(dx) > 4) moved = true;
+    track.scrollLeft = startScroll - dx;
+  });
+  const end = (e) => {
+    if (!down) return;
+    down = false;
+    track.classList.remove("dragging");
+    try { track.releasePointerCapture(e.pointerId); } catch (err) {}
+    update();
+  };
+  track.addEventListener("pointerup", end);
+  track.addEventListener("pointercancel", end);
+  // Swallow the click that follows a drag so cards/links don't fire
+  track.addEventListener("click", (e) => {
+    if (moved) { e.preventDefault(); e.stopPropagation(); }
+  }, true);
+});
+
 // Lead magnet — free guide
 const leadForm = document.getElementById("leadForm");
 const leadNote = document.getElementById("leadNote");
