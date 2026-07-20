@@ -80,6 +80,7 @@
       "Los resultados varían — reflejan el esfuerzo, la constancia y el punto de partida de cada cliente, no un resultado garantizado.",
     "Before": "Antes",
     "After": "Después",
+    "Alma — your coach": "Alma — tu coach",
     "\"The online coaching was easy to join and very helpful. I left each session feeling better.\"":
       "\"El coaching en línea fue fácil de empezar y muy útil. Salía de cada sesión sintiéndome mejor.\"",
     "\"I felt comfortable talking during the sessions. They helped me think more clearly.\"":
