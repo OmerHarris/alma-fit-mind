@@ -451,6 +451,117 @@
     "Perfect. Alma will reach out there herself — usually within a day or two. 🙌":
       "Perfecto. Alma te escribirá ahí en persona — normalmente en uno o dos días. 🙌",
     "Why now": "Por qué ahora",
+
+    // ---- Flirty quiz flow ----
+    "Hey you. 👋 I'm Alma's assistant — and something tells me you're going to be worth her time.":
+      "Hola tú. 👋 Soy la asistente de Alma — y algo me dice que vas a valer su tiempo.",
+    "Give me two minutes and a little honesty, and I'll tell you *exactly* which of Alma's plans was made for you. Everything stays between us. 💛":
+      "Dame dos minutos y un poco de honestidad, y te diré *exactamente* cuál de los planes de Alma fue hecho para ti. Todo queda entre nosotras. 💛",
+    "First things first — what should Alma call you?": "Lo primero — ¿cómo debería llamarte Alma?",
+    "Before we get into it{name} — how old are you? (Alma only coaches adults, 18 and up.)":
+      "Antes de empezar{name} — ¿cuántos años tienes? (Alma solo entrena a adultos, de 18 en adelante.)",
+    "Okay{name}, now we can really talk. 😏": "Muy bien{name}, ahora sí podemos hablar. 😏",
+    "Which of these best describes your fitness goals? Pick all that apply — no judgment if you want it all. 😉":
+      "¿Cuál de estas describe mejor tus metas de fitness? Elige todas las que apliquen — sin juzgar si lo quieres todo. 😉",
+    "Now tell me something real — *why now*? What made today the day? (I love a person who knows what they want.)":
+      "Ahora dime algo real — *¿por qué ahora?* ¿Qué hizo que hoy fuera el día? (Me encanta alguien que sabe lo que quiere.)",
+    "Even one honest line…": "Aunque sea una línea honesta…",
+    "Where do you prefer to train?": "¿Dónde prefieres entrenar?",
+    "Gym": "Gimnasio",
+    "At home": "En casa",
+    "I don't mind": "Me da igual",
+    "How long can you give me each day? 😏": "¿Cuánto tiempo me puedes dar cada día? 😏",
+    "⏰ 45–60 minutes": "⏰ 45–60 minutos",
+    "⏰ 30–45 minutes": "⏰ 30–45 minutos",
+    "⏰ 20–30 minutes": "⏰ 20–30 minutos",
+    "How many times per week do you *want* to train?": "¿Cuántas veces por semana *quieres* entrenar?",
+    "6+ days": "6+ días",
+    "4–5 days": "4–5 días",
+    "4 days or less": "4 días o menos",
+    "What type of strength workouts do you enjoy the most?": "¿Qué tipo de entrenamiento de fuerza disfrutas más?",
+    "Weight lifting in the gym": "Levantar pesas en el gimnasio",
+    "Dynamic full-body movements": "Movimientos dinámicos de cuerpo completo",
+    "Follow-along home workouts": "Rutinas en casa para seguir en video",
+    "What keeps you motivated when it gets hard?": "¿Qué te mantiene motivado/a cuando se pone difícil?",
+    "Your why, your people, your playlist…": "Tu porqué, tu gente, tu playlist…",
+    "Be honest — do you want Alma in your corner, pushing you?": "Sé honesto/a — ¿quieres a Alma de tu lado, empujándote?",
+    "Yes, push me!": "¡Sí, exígeme!",
+    "A little": "Un poco",
+    "No — I've got that part": "No — esa parte la tengo yo",
+    "On a scale of 1–10, how ready are you to try something new with your training? Don't be shy. 😏":
+      "En una escala del 1 al 10, ¿qué tan lista/o estás para probar algo nuevo en tu entrenamiento? No seas tímido/a. 😏",
+    "Not really": "Para nada",
+    "Let's go 🔥": "¡Vamos! 🔥",
+    "A few quick details so Alma can build for *your* body. How tall are you? Feet/inches or cm — whatever's easiest.":
+      "Unos datos rápidos para que Alma diseñe para *tu* cuerpo. ¿Cuánto mides? Pies/pulgadas o cm — como te sea más fácil.",
+    "And roughly where are you at weight-wise right now? No judgment — just a starting point.":
+      "¿Y más o menos en qué peso estás ahora mismo? Sin juzgar — solo un punto de partida.",
+    "What's a food you'd never give up? (Deal-breaker energy — I respect it.)":
+      "¿Cuál es una comida que nunca dejarías? (Sin negociación — lo respeto.)",
+    "A few honest lifestyle questions next — zero judgment, ever. They just help Alma build around your *real* life. 💛":
+      "Ahora unas preguntas honestas sobre tu estilo de vida — cero juicios, nunca. Solo ayudan a Alma a construir en torno a tu vida *real*. 💛",
+    "And what's your gender?": "¿Y cuál es tu género?",
+    "Woman": "Mujer",
+    "Man": "Hombre",
+    "Non-binary": "No binario",
+    "So — where should Alma reach out to you?": "Entonces — ¿por dónde debería contactarte Alma?",
+    "Perfect — drop your {platform} so she can find you. 😏": "Perfecto — pásame tu {platform} para que pueda encontrarte. 😏",
+    "Last one — anything else you want Alma to know?": "La última — ¿algo más que quieras que Alma sepa?",
+    "Your best match": "Tu mejor opción",
+    "See this plan": "Ver este plan",
+    "You've clearly got the drive — this hands you Alma's custom program and weekly check-ins to keep that fire pointed the right way. The perfect starting line. 😉":
+      "Está claro que tienes las ganas — esto te da el programa personalizado de Alma y seguimientos semanales para mantener ese fuego en la dirección correcta. La línea de salida perfecta. 😉",
+    "This one has your name written all over it. 😏 Real 1:1 coaching, weekly adjustments, and Alma actually in your corner — exactly the support your answers are asking for.":
+      "Este tiene tu nombre escrito por todas partes. 😏 Coaching 1:1 real, ajustes semanales y Alma de verdad de tu lado — justo el apoyo que piden tus respuestas.",
+    "Oh, you're *serious*. I like that. 🔥 Alma's highest-touch level — weekly 1:1s, fully bespoke programming, and dedicated mindset coaching. Made for someone who's all in. Like you.":
+      "Ah, vas *en serio*. Me gusta. 🔥 El nivel más cercano de Alma — sesiones 1:1 semanales, programación totalmente a medida y coaching de mentalidad dedicado. Hecho para alguien que va con todo. Como tú.",
+    "Okay{name}, I've been paying close attention… 😏": "Muy bien{name}, he estado poniendo mucha atención… 😏",
+    "And I know *exactly* which of Alma's plans was made for you:": "Y sé *exactamente* cuál de los planes de Alma fue hecho para ti:",
+    "Want Alma to build this one around *you*? Let's get you connected. 👇": "¿Quieres que Alma arme este plan en torno a *ti*? Vamos a conectarte. 👇",
+    "Ooh, ambitious. I like that in a person. 😏 Alma coaches training, food, *and* mindset as one system — that's exactly why her people actually get there.":
+      "Uy, ambiciosa/o. Eso me gusta en una persona. 😏 Alma entrena el ejercicio, la comida *y* la mentalidad como un solo sistema — por eso su gente de verdad llega.",
+    "*That's* the good stuff. Hold onto that reason — Alma will use it to keep you going when you'd rather quit. 💛":
+      "*Eso* es de lo bueno. No sueltes esa razón — Alma la usará para mantenerte en marcha cuando quieras rendirte. 💛",
+    "Perfect timing — beginners make the fastest, most visible progress once they've got real coaching behind them. You picked the best possible moment.":
+      "Momento perfecto — los principiantes logran el progreso más rápido y visible cuando tienen coaching real detrás. Elegiste el mejor momento posible.",
+    "Love it — you've already built a base. Now the fun part: Alma breaks the plateau and makes this next phase your best one yet.":
+      "Me encanta — ya tienes una base. Ahora lo divertido: Alma rompe el estancamiento y hace de esta etapa la mejor de todas.",
+    "Oh, we're going to get along just fine. 😏 Pushing you is Alma's favorite part.":
+      "Ah, tú y yo nos vamos a llevar muy bien. 😏 Exigirte es la parte favorita de Alma.",
+    "Perfect — a nudge when you need it, space when you don't. Alma's great at reading that.":
+      "Perfecto — un empujón cuando lo necesitas, espacio cuando no. Alma sabe leer eso muy bien.",
+    "A self-starter. 🔥 Alma loves those — she'll just make sure all that fire is aimed the right way.":
+      "Con iniciativa propia. 🔥 A Alma le encantan — solo se asegurará de que todo ese fuego apunte al lugar correcto.",
+    "That energy? Dangerous — in the best way. 😏 Alma is going to love working with you.":
+      "¿Esa energía? Peligrosa — en el mejor sentido. 😏 A Alma le va a encantar trabajar contigo.",
+    "Solid. And honestly, the fact that you're even here says more than a number ever could. 💛":
+      "Sólido. Y sinceramente, el hecho de que estés aquí dice más de lo que cualquier número podría. 💛",
+    "Hey — showing up when the spark is low is the real flex. Turning that dial up is literally Alma's job. 😉":
+      "Oye — presentarte cuando la chispa está baja es el verdadero mérito. Subir ese dial es literalmente el trabajo de Alma. 😉",
+    "Thank you for trusting me with that. Alma will build your plan *around* it — strong and safe, no shortcuts.":
+      "Gracias por confiarme eso. Alma armará tu plan *en torno* a ello — fuerte y seguro, sin atajos.",
+    "Noted — and it's staying. 😏 Alma builds plans around foods you actually love. No sad diets on her watch.":
+      "Anotado — y se queda. 😏 Alma arma planes con las comidas que de verdad amas. Nada de dietas tristes con ella.",
+    "Got it. 😏 Alma will reach out herself — usually within a day or two. Try to act surprised.":
+      "Listo. 😏 Alma te escribirá en persona — normalmente en uno o dos días. Intenta fingir sorpresa.",
+    "That's everything{name} — and you shared more than most people do on a first date. 😏 One last thing before I hand you to Alma:":
+      "Eso es todo{name} — y compartiste más de lo que la mayoría comparte en una primera cita. 😏 Una última cosa antes de pasarte con Alma:",
+    "Done{name}. 🎉 Alma's got the *real* you now — not a form, the whole picture.":
+      "Listo{name}. 🎉 Alma ya te conoce de *verdad* — no un formulario, el panorama completo.",
+    "She'll slide into your {platform} personally, usually within a day or two. Try to act surprised. 😉":
+      "Te escribirá por {platform} en persona, normalmente en uno o dos días. Intenta fingir sorpresa. 😉",
+    "And between us? The people who go furthest with Alma are the ones who decided — *before* her first message — that this time is different. You just did that. I saw it. 💛":
+      "¿Y entre nosotras? Quienes llegan más lejos con Alma son los que decidieron — *antes* de su primer mensaje — que esta vez es diferente. Tú acabas de hacerlo. Lo vi. 💛",
+    "Go get a closer look at the plan I picked for you while you wait: 👇":
+      "Ve a ver más de cerca el plan que elegí para ti mientras esperas: 👇",
+    "Training location": "Lugar de entrenamiento",
+    "Time per day": "Tiempo por día",
+    "Days per week": "Días por semana",
+    "Workout style": "Estilo de entrenamiento",
+    "Motivation": "Motivación",
+    "Wants a push": "Quiere que la/lo empujen",
+    "Readiness (1–10)": "Disposición (1–10)",
+    "Gender": "Género",
     "Almost done — just how to reach you. 🙌": "Ya casi terminamos — solo falta saber cómo contactarte. 🙌",
     "What should Alma call you?": "¿Cómo debería llamarte Alma?",
     "Your first name": "Tu nombre",

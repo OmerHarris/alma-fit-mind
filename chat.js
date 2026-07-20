@@ -29,9 +29,12 @@
 
   const LABELS = {
     name: "Name", age: "Age", height: "Height", weight: "Weight", goals: "Goals", why: "Why now",
-    trainingHistory: "Training history", frequency: "Training frequency", injuries: "Injuries",
-    allergies: "Allergies", favoriteFood: "Favorite food", alcohol: "Alcohol", smoke: "Smoking",
-    drugs: "Drug use", job: "Job", activity: "Daily activity", status: "Relationship status",
+    trainLocation: "Training location", duration: "Time per day", frequency: "Days per week",
+    workoutType: "Workout style", trainingHistory: "Training history",
+    motivation: "Motivation", needMotivation: "Wants a push", motivationScale: "Readiness (1–10)",
+    injuries: "Injuries", allergies: "Allergies", favoriteFood: "Favorite food",
+    alcohol: "Alcohol", smoke: "Smoking", drugs: "Drug use", job: "Job", activity: "Daily activity",
+    status: "Relationship status", gender: "Gender",
     contactPlatform: "Contact platform", contactHandle: "Contact info", notes: "Notes",
   };
   function shortLabel(step) { return LABELS[step.key] || step.key; }
@@ -46,32 +49,62 @@
   // ---- Flow definition -------------------------------------------------
   // types: say | text | number | single | multi | textarea
   const STEPS = [
-    { type: "say", text: "Hey — I'm Alma's assistant. 👋 Really glad you found your way here." },
-    { type: "say", text: "Before Alma reaches out, she likes to *actually* know you — your goals, your life, what's gotten in the way before. That way her very first message is about *you*, not some copy-paste advice." },
-    { type: "say", text: "It's a few quick questions, about 2 minutes, and it stays completely private between you and Alma. Ready? Let's go. 💛" },
-    { key: "name", type: "text", ask: "What should Alma call you?", placeholder: "Your first name", maxLength: 40, kind: "name" },
-    { key: "age", type: "number", ask: "Nice to meet you{name}! How old are you?", placeholder: "Age", suffix: "years", min: 18 },
-    { key: "height", type: "text", ask: "How tall are you? However's easiest — feet/inches or cm.", placeholder: "e.g. 5'8\" or 173 cm", maxLength: 30 },
-    { key: "weight", type: "text", ask: "And roughly how much do you weigh right now?", placeholder: "e.g. 165 lb or 75 kg", skippable: true, maxLength: 20 },
-    { key: "goals", type: "multi", ask: "What are you hoping to achieve? Pick any that fit.", options: ["Lose fat", "Build muscle", "Get stronger", "General fitness & health", "Feel better mentally", "More energy", "Athletic performance", "Something else"] },
-    { key: "why", type: "textarea", ask: "Real talk for a second — *why now*? What made today the day you decided something has to change?", placeholder: "Even one honest line helps Alma get you…", skippable: true, skipLabel: "I'd rather tell Alma directly", maxLength: 400 },
+    { type: "say", text: "Hey you. 👋 I'm Alma's assistant — and something tells me you're going to be worth her time." },
+    { type: "say", text: "Give me two minutes and a little honesty, and I'll tell you *exactly* which of Alma's plans was made for you. Everything stays between us. 💛" },
+    { key: "name", type: "text", ask: "First things first — what should Alma call you?", placeholder: "Your first name", maxLength: 40, kind: "name" },
+    { key: "age", type: "number", ask: "Before we get into it{name} — how old are you? (Alma only coaches adults, 18 and up.)", placeholder: "Age", suffix: "years", min: 18 },
+    { type: "say", text: "Okay{name}, now we can really talk. 😏" },
+    { key: "goals", type: "multi", ask: "Which of these best describes your fitness goals? Pick all that apply — no judgment if you want it all. 😉", options: ["Lose fat", "Build muscle", "Get stronger", "General fitness & health", "Feel better mentally", "More energy", "Athletic performance", "Something else"] },
+    { key: "why", type: "textarea", ask: "Now tell me something real — *why now*? What made today the day? (I love a person who knows what they want.)", placeholder: "Even one honest line…", skippable: true, skipLabel: "I'd rather tell Alma directly", maxLength: 400 },
+    { key: "trainLocation", type: "single", ask: "Where do you prefer to train?", options: ["Gym", "At home", "I don't mind"] },
+    { key: "duration", type: "single", ask: "How long can you give me each day? 😏", options: ["⏰ 45–60 minutes", "⏰ 30–45 minutes", "⏰ 20–30 minutes"] },
+    { key: "frequency", type: "single", ask: "How many times per week do you *want* to train?", options: ["6+ days", "4–5 days", "4 days or less"] },
+    { key: "workoutType", type: "single", ask: "What type of strength workouts do you enjoy the most?", options: ["Weight lifting in the gym", "Dynamic full-body movements", "Follow-along home workouts"] },
     { key: "trainingHistory", type: "single", ask: "How long have you been training?", options: ["I'm just starting", "Less than 6 months", "6–12 months", "1–3 years", "3+ years"] },
-    { key: "frequency", type: "single", ask: "How many days a week do you train — or could realistically commit to?", options: ["I don't train yet", "1–2 days", "3–4 days", "5–6 days", "Every day"] },
-    { key: "injuries", type: "text", ask: "Any injuries, disabilities, or physical limitations Alma should know about?", placeholder: "Type here, or tap None", skippable: true, skipLabel: "None", maxLength: 300 },
+    { key: "motivation", type: "text", ask: "What keeps you motivated when it gets hard?", placeholder: "Your why, your people, your playlist…", maxLength: 200 },
+    { key: "needMotivation", type: "single", ask: "Be honest — do you want Alma in your corner, pushing you?", options: ["Yes, push me!", "A little", "No — I've got that part"] },
+    { key: "motivationScale", type: "scale", ask: "On a scale of 1–10, how ready are you to try something new with your training? Don't be shy. 😏" },
+    { key: "height", type: "text", ask: "A few quick details so Alma can build for *your* body. How tall are you? Feet/inches or cm — whatever's easiest.", placeholder: "e.g. 5'8\" or 173 cm", maxLength: 30 },
+    { key: "weight", type: "text", ask: "And roughly where are you at weight-wise right now? No judgment — just a starting point.", placeholder: "e.g. 165 lb or 75 kg", skippable: true, maxLength: 20 },
+    { key: "injuries", type: "text", ask: "Any injuries, disabilities, or limitations Alma should know about?", placeholder: "Type here, or tap None", skippable: true, skipLabel: "None", maxLength: 300 },
     { key: "allergies", type: "text", ask: "Any food allergies or intolerances?", placeholder: "Type here, or tap None", skippable: true, skipLabel: "None", maxLength: 200 },
-    { key: "favoriteFood", type: "text", ask: "What's your favorite food? (Alma builds plans around foods you actually love.)", placeholder: "Your favorite meal or food", maxLength: 60 },
-    { type: "say", text: "A few honest lifestyle questions next — zero judgment, ever. They just help Alma build around your *real* life, not a textbook." },
+    { key: "favoriteFood", type: "text", ask: "What's a food you'd never give up? (Deal-breaker energy — I respect it.)", placeholder: "Your favorite meal or food", maxLength: 60 },
+    { type: "say", text: "A few honest lifestyle questions next — zero judgment, ever. They just help Alma build around your *real* life. 💛" },
     { key: "alcohol", type: "single", ask: "Do you drink alcohol?", options: ["No", "Occasionally", "Regularly", "Prefer not to say"] },
     { key: "smoke", type: "single", ask: "Do you smoke?", options: ["No", "Sometimes", "Yes", "Prefer not to say"] },
     { key: "drugs", type: "single", ask: "Any recreational drug use Alma should factor in? Totally confidential.", options: ["No", "Occasionally", "Prefer not to say"] },
     { key: "job", type: "text", ask: "What kind of work do you do?", placeholder: "e.g. desk job, nurse, teacher, driver…", maxLength: 60 },
     { key: "activity", type: "single", ask: "Outside of workouts, how active is your day?", options: ["Mostly sitting", "Moderately active", "On my feet a lot", "Very physical"] },
     { key: "status", type: "single", ask: "What's your relationship status? (Helps Alma understand your schedule and support.)", options: ["Single", "In a relationship", "Married", "Divorced", "Prefer not to say"] },
-    { type: "say", text: "Almost done — just how to reach you. 🙌" },
-    { key: "contactPlatform", type: "single", ask: "Where's the best place for Alma to message you?", options: ["WhatsApp", "Telegram", "Instagram", "Facebook", "Email / Phone"] },
-    { key: "contactHandle", type: "text", ask: "Perfect — what's your {platform} username or number, so she can find you?", placeholder: "Your username or number", maxLength: 60, kind: "handle" },
-    { key: "notes", type: "textarea", ask: "Last one — anything else you'd like Alma to know?", placeholder: "Optional…", skippable: true, skipLabel: "Nothing else", maxLength: 600 },
+    { key: "gender", type: "single", ask: "And what's your gender?", options: ["Woman", "Man", "Non-binary", "Prefer not to say"] },
+    { type: "recommend" },
+    { key: "contactPlatform", type: "single", ask: "So — where should Alma reach out to you?", options: ["WhatsApp", "Telegram", "Instagram", "Facebook", "Email / Phone"] },
+    { key: "contactHandle", type: "text", ask: "Perfect — drop your {platform} so she can find you. 😏", placeholder: "Your username or number", maxLength: 60, kind: "handle" },
+    { key: "notes", type: "textarea", ask: "Last one — anything else you want Alma to know?", placeholder: "Optional…", skippable: true, skipLabel: "Nothing else", maxLength: 600 },
   ];
+
+  // ---- Package recommendation -----------------------------------------
+  const PLANS = {
+    foundations: { name: "Foundations", price: "$49", blurb: "You've clearly got the drive — this hands you Alma's custom program and weekly check-ins to keep that fire pointed the right way. The perfect starting line. 😉" },
+    transformation: { name: "Transformation", price: "$99", blurb: "This one has your name written all over it. 😏 Real 1:1 coaching, weekly adjustments, and Alma actually in your corner — exactly the support your answers are asking for." },
+    elite: { name: "Elite Mind & Body", price: "$199", blurb: "Oh, you're *serious*. I like that. 🔥 Alma's highest-touch level — weekly 1:1s, fully bespoke programming, and dedicated mindset coaching. Made for someone who's all in. Like you." },
+  };
+  function recommendPlan(a) {
+    let s = 0;
+    const g = Array.isArray(a.goals) ? a.goals : [];
+    if (a.frequency === "6+ days") s += 2; else if (a.frequency === "4–5 days") s += 1;
+    if (typeof a.duration === "string" && a.duration.indexOf("45") >= 0) s += 1;
+    const scale = Number(a.motivationScale) || 0;
+    if (scale >= 8) s += 2; else if (scale >= 5) s += 1;
+    if (a.needMotivation === "Yes, push me!") s += 2; else if (a.needMotivation === "A little") s += 1;
+    if (g.indexOf("Feel better mentally") >= 0) s += 1;
+    if (g.indexOf("Athletic performance") >= 0) s += 1;
+    if (g.length >= 3) s += 1;
+    if (a.trainingHistory === "I'm just starting") s += 1;
+    if (s >= 7) return "elite";
+    if (s >= 3) return "transformation";
+    return "foundations";
+  }
 
   // ---- Rendering helpers ----------------------------------------------
   function scrollDown() {
@@ -164,21 +197,31 @@
   function reactTo(step, ans) {
     switch (step.key) {
       case "goals":
-        return T("That's a strong list. Alma coaches training, food, *and* mindset as one system — that's exactly why her clients' results actually last.");
+        return T("Ooh, ambitious. I like that in a person. 😏 Alma coaches training, food, *and* mindset as one system — that's exactly why her people actually get there.");
       case "why":
         if (ans === step.skipLabel) return null;
-        return T("That reason right there? Hold onto it. That's what Alma will remind you of on the days it's hard. 💛");
+        return T("*That's* the good stuff. Hold onto that reason — Alma will use it to keep you going when you'd rather quit. 💛");
       case "trainingHistory":
         if (ans === "I'm just starting" || ans === "Less than 6 months")
-          return T("Perfect timing — beginners make the fastest, most visible progress once they've got real coaching behind them. You're starting at the best possible moment.");
-        return T("Love it — you've already built a base. Alma's job now is to break the plateau and make this next phase your best one yet.");
+          return T("Perfect timing — beginners make the fastest, most visible progress once they've got real coaching behind them. You picked the best possible moment.");
+        return T("Love it — you've already built a base. Now the fun part: Alma breaks the plateau and makes this next phase your best one yet.");
+      case "needMotivation":
+        if (ans === "Yes, push me!") return T("Oh, we're going to get along just fine. 😏 Pushing you is Alma's favorite part.");
+        if (ans === "A little") return T("Perfect — a nudge when you need it, space when you don't. Alma's great at reading that.");
+        return T("A self-starter. 🔥 Alma loves those — she'll just make sure all that fire is aimed the right way.");
+      case "motivationScale": {
+        const n = Number(ans) || 0;
+        if (n >= 8) return T("That energy? Dangerous — in the best way. 😏 Alma is going to love working with you.");
+        if (n >= 5) return T("Solid. And honestly, the fact that you're even here says more than a number ever could. 💛");
+        return T("Hey — showing up when the spark is low is the real flex. Turning that dial up is literally Alma's job. 😉");
+      }
       case "injuries":
         if (ans === step.skipLabel || ans === "None") return null;
-        return T("Thank you for trusting me with that. Alma will build your plan *around* it — so you get stronger without getting hurt.");
+        return T("Thank you for trusting me with that. Alma will build your plan *around* it — strong and safe, no shortcuts.");
       case "favoriteFood":
-        return T("Noted — and it's staying on the menu. Alma builds plans around foods you actually love. No joyless dieting here.");
+        return T("Noted — and it's staying. 😏 Alma builds plans around foods you actually love. No sad diets on her watch.");
       case "contactHandle":
-        return T("Perfect. Alma will reach out there herself — usually within a day or two. 🙌");
+        return T("Got it. 😏 Alma will reach out herself — usually within a day or two. Try to act surprised.");
       default:
         return null;
     }
@@ -313,6 +356,51 @@
     });
   }
 
+  function askScale(step) {
+    return new Promise((resolve) => {
+      clearInput();
+      const wrap = document.createElement("div");
+      wrap.className = "chat-scale";
+      for (let n = 1; n <= 10; n++) {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "chat-scale-btn";
+        b.textContent = String(n);
+        b.addEventListener("click", () => resolve(String(n)));
+        wrap.appendChild(b);
+      }
+      const labels = document.createElement("div");
+      labels.className = "chat-scale-labels";
+      labels.innerHTML = "<span>" + T("Not really") + "</span><span>" + T("Let's go 🔥") + "</span>";
+      inputArea.appendChild(wrap);
+      inputArea.appendChild(labels);
+      scrollDown();
+    });
+  }
+
+  function addPlanCard(plan) {
+    const card = document.createElement("div");
+    card.className = "chat-plan-card";
+    card.innerHTML =
+      '<span class="chat-plan-badge">' + T("Your best match") + "</span>" +
+      '<h4 class="chat-plan-name">' + T(plan.name) + "</h4>" +
+      '<p class="chat-plan-price">' + plan.price + "<span>" + T("/month") + "</span></p>" +
+      '<p class="chat-plan-blurb">' + formatText(T(plan.blurb)) + "</p>" +
+      '<a class="btn btn-primary btn-sm" href="/#pricing">' + T("See this plan") + "</a>";
+    log.appendChild(card);
+    scrollDown();
+  }
+
+  async function showRecommendation() {
+    const key = recommendPlan(answers);
+    answers.recommendedPlan = PLANS[key].name;
+    await botSay(interp(T("Okay{name}, I've been paying close attention… 😏")));
+    await botSay(T("And I know *exactly* which of Alma's plans was made for you:"));
+    addPlanCard(PLANS[key]);
+    await delay(300);
+    await botSay(T("Want Alma to build this one around *you*? Let's get you connected. 👇"));
+  }
+
   function displayOf(step, ans) {
     if (Array.isArray(ans)) return ans.map(T).join(", ");
     return T(ans);
@@ -350,6 +438,7 @@
     let ans;
     if (step.type === "single") ans = await askSingle(step);
     else if (step.type === "multi") ans = await askMulti(step);
+    else if (step.type === "scale") ans = await askScale(step);
     else ans = await askText(step);
     answers[step.key] = ans;
     addBubble("user", displayOf(step, ans));
@@ -437,10 +526,12 @@
       const step = STEPS[i];
       setProgress(i);
       if (step.type === "say") { await botSay(interp(T(step.text))); await delay(250); continue; }
+      if (step.type === "recommend") { await showRecommendation(); await delay(200); continue; }
       await botSay(interp(T(step.ask)));
       let ans;
       if (step.type === "single") ans = await askSingle(step);
       else if (step.type === "multi") ans = await askMulti(step);
+      else if (step.type === "scale") ans = await askScale(step);
       else ans = await askText(step);
       answers[step.key] = ans;
       addBubble("user", displayOf(step, ans));
@@ -457,16 +548,16 @@
     }
     // Review + consent
     setProgress(STEPS.length);
-    await botSay(interp(T("That's everything{name} — and honestly, that's more than most people share with a coach on day one. Thank you. 💛 One last thing before I hand you to Alma:")));
+    await botSay(interp(T("That's everything{name} — and you shared more than most people do on a first date. 😏 One last thing before I hand you to Alma:")));
     await finalConfirm();
     // Success
     clearProgress();
     progressBar.style.width = "100%";
     clearInput();
-    await botSay(interp(T("Done{name}. 🎉 Alma has the *real* you now — not a form, an actual picture of your life and what you're chasing.")));
-    await botSay(interp(T("She'll message you personally on {platform}, usually within a day or two. Keep an eye out for her.")));
-    await botSay(T("One thing I've learned watching Alma work: the people who go furthest are the ones who decided — *before* her first message — that this time is different. You just did that. Don't let that feeling go. 💛"));
-    await botSay(T("While you wait, take two minutes to see exactly how Alma coaches — and picture yourself in it:"));
+    await botSay(interp(T("Done{name}. 🎉 Alma's got the *real* you now — not a form, the whole picture.")));
+    await botSay(interp(T("She'll slide into your {platform} personally, usually within a day or two. Try to act surprised. 😉")));
+    await botSay(T("And between us? The people who go furthest with Alma are the ones who decided — *before* her first message — that this time is different. You just did that. I saw it. 💛"));
+    await botSay(T("Go get a closer look at the plan I picked for you while you wait: 👇"));
     inputArea.innerHTML =
       '<div class="chat-done-actions">' +
       '<a class="btn btn-primary btn-sm" href="/#pricing">' + T("See Coaching Packages") + "</a>" +

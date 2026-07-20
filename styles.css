@@ -1600,6 +1600,54 @@ a.value-prop:hover, a.value-prop:focus-visible {
 .chat-done-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
 .chat-privacy-note { text-align: center; font-size: 0.8rem; color: var(--ink-soft); margin: 16px auto 0; max-width: 460px; }
 
+/* 1–10 readiness scale */
+.chat-scale { display: flex; flex-wrap: wrap; gap: 6px; }
+.chat-scale-btn {
+  flex: 1 1 34px;
+  min-width: 34px;
+  padding: 11px 0;
+  border: 1.5px solid var(--line);
+  background: var(--paper);
+  color: var(--charcoal-dark);
+  border-radius: 10px;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.chat-scale-btn:hover { background: var(--gold); color: #fff; border-color: var(--gold); transform: translateY(-2px); }
+.chat-scale-labels { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--ink-soft); margin-top: 6px; }
+
+/* Recommended-plan card in the chat */
+.chat-plan-card {
+  max-width: 300px;
+  margin: 6px 0 6px 42px;
+  background: var(--charcoal-dark);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  padding: 18px 20px;
+  box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.6);
+}
+.chat-plan-badge {
+  display: inline-block;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--charcoal-dark);
+  background: var(--gold);
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+.chat-plan-name { font-family: var(--serif); font-size: 1.25rem; color: #fff; margin: 0 0 2px; }
+.chat-plan-price { font-family: var(--serif); font-weight: 700; font-size: 1.45rem; color: var(--gold); margin: 0 0 10px; }
+.chat-plan-price span { font-size: 0.8rem; color: #cfd3d4; font-weight: 500; }
+.chat-plan-blurb { font-size: 0.9rem; color: #d8dadb; line-height: 1.5; margin: 0 0 14px; }
+.chat-plan-card .btn { width: 100%; }
+@media (max-width: 560px) { .chat-plan-card { margin-left: 36px; } }
+
 @media (max-width: 560px) {
   .chat-window { height: min(80vh, 620px); border-radius: 14px; }
 }
