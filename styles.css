@@ -833,13 +833,25 @@ a.value-prop:hover, a.value-prop:focus-visible {
 /* ---------- Results ---------- */
 .results { background: var(--paper); }
 .results-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  display: flex;
   gap: 24px;
-  max-width: 1040px;
+  max-width: 1008px;
   margin: 2.5rem auto 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 2px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+  padding-bottom: 12px;
 }
+.results-grid::-webkit-scrollbar { height: 8px; }
+.results-grid::-webkit-scrollbar-track { background: transparent; }
+.results-grid::-webkit-scrollbar-thumb { background: var(--line); border-radius: 999px; }
 .result-card {
+  flex: 0 0 auto;
+  width: clamp(268px, 80vw, 310px);
+  scroll-snap-align: start;
   background: var(--card);
   border-radius: var(--radius);
   padding: 20px;
@@ -884,8 +896,26 @@ a.value-prop:hover, a.value-prop:focus-visible {
 
 /* ---------- Testimonials ---------- */
 .testimonials { background: var(--gold-tint); }
-.testimonial-grid { margin-top: 2.5rem; }
+.testimonial-grid {
+  display: flex;
+  gap: 24px;
+  max-width: 1008px;
+  margin: 2.5rem auto 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 2px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+  padding-bottom: 12px;
+}
+.testimonial-grid::-webkit-scrollbar { height: 8px; }
+.testimonial-grid::-webkit-scrollbar-track { background: transparent; }
+.testimonial-grid::-webkit-scrollbar-thumb { background: var(--line); border-radius: 999px; }
 .testimonial-card {
+  flex: 0 0 auto;
+  width: clamp(268px, 80vw, 310px);
+  scroll-snap-align: start;
   background: var(--card);
   border-radius: var(--radius);
   padding: 30px 26px;
