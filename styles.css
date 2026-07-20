@@ -1138,10 +1138,11 @@ a.value-prop:hover, a.value-prop:focus-visible {
   position: absolute;
   bottom: -18px;
   right: -18px;
-  width: 34%;
+  width: 38%;
   aspect-ratio: 1;
   border-radius: 50%;
-  object-fit: cover;
+  object-fit: contain; /* show the whole photo inside the circle, even small */
+  background: var(--charcoal-dark);
   border: 4px solid var(--paper);
   box-shadow: var(--shadow);
 }

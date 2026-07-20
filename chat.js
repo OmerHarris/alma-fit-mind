@@ -40,8 +40,13 @@
   function shortLabel(step) { return LABELS[step.key] || step.key; }
 
   // Embedded (inside the floating widget iframe): drop the site chrome, wire close to parent.
-  if (new URLSearchParams(location.search).get("embed") === "1") {
+  const IS_EMBED = new URLSearchParams(location.search).get("embed") === "1";
+  if (IS_EMBED) {
     document.body.classList.add("chat-embed");
+    // Inside the floating widget iframe, any link (Back to Home, See Packages,
+    // See this plan…) must open in the parent tab — not load the whole site
+    // inside the little chat window.
+    document.head.insertAdjacentHTML("afterbegin", '<base target="_top">');
     const closeLink = document.querySelector(".chat-close");
     if (closeLink) closeLink.addEventListener("click", (e) => { e.preventDefault(); parent.postMessage("afm-close-chat", "*"); });
   }
