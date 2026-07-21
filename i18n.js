@@ -102,6 +102,8 @@
     "Every tier is built on the Body–Plate–Mind method. Higher tiers add more direct coaching time, faster plan adjustments, and deeper mindset work.":
       "Cada nivel se basa en el método Cuerpo–Plato–Mente. Los niveles superiores añaden más tiempo de coaching directo, ajustes más rápidos y un trabajo de mentalidad más profundo.",
     "Most Popular": "Más Popular",
+    "Pay month to month — one payment at a time, no automatic renewal. Secure checkout by Stripe.":
+      "Paga mes a mes — un pago a la vez, sin renovación automática. Pago seguro con Stripe.",
     "/month": "/mes",
     "Custom workout program, refreshed monthly": "Programa de entrenamiento a medida, renovado cada mes",
     "Personalized diet plan": "Plan de alimentación personalizado",

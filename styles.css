@@ -986,6 +986,12 @@ a.value-prop:hover, a.value-prop:focus-visible {
   max-width: 980px;
   margin: 0 auto;
 }
+.pricing-note {
+  max-width: 540px;
+  margin: 1.8rem auto 0;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
 .price-card {
   background: var(--card);
   border: 1px solid var(--line);
