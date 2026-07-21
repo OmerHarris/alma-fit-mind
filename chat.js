@@ -83,7 +83,7 @@
     { key: "status", type: "single", ask: "What's your relationship status? (Helps Alma understand your schedule and support.)", options: ["Single", "In a relationship", "Married", "Divorced", "Prefer not to say"] },
     { key: "gender", type: "single", ask: "And what's your gender?", options: ["Woman", "Man", "Non-binary", "Prefer not to say"] },
     { type: "recommend" },
-    { key: "contactPlatform", type: "single", ask: "So — where should Alma reach out to you?", options: ["WhatsApp", "Telegram", "Instagram", "Facebook", "Email / Phone"] },
+    { key: "contactPlatform", type: "single", ask: "So — where should Alma reach out to you?", options: ["WhatsApp", "Email", "Telegram"] },
     { key: "contactHandle", type: "text", ask: "Perfect — what's your {platform} so Alma can reach you?", placeholder: "Your username or number", maxLength: 60, kind: "handle" },
     { key: "notes", type: "textarea", ask: "Last one — anything else you want Alma to know?", placeholder: "Optional…", skippable: true, skipLabel: "Nothing else", maxLength: 600 },
   ];
