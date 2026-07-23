@@ -995,6 +995,92 @@ a.value-prop:hover, a.value-prop:focus-visible {
 /* Exclusive chat minute packs: 4 slim cards */
 .packs-grid { grid-template-columns: repeat(4, 1fr); max-width: 1080px; }
 .packs-grid .price-card { position: relative; }
+
+/* ---------- Exclusive chat timer ---------- */
+.chat-timer-pill {
+  position: fixed;
+  top: 86px;
+  right: 16px;
+  z-index: 99990;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--charcoal-dark);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  padding: 9px 16px;
+  box-shadow: 0 12px 30px -12px rgba(0, 0, 0, 0.55);
+  cursor: default;
+  font-size: 0.9rem;
+}
+.chat-timer-time { font-family: var(--serif); font-weight: 700; font-size: 1.05rem; color: var(--gold); }
+.chat-timer-status { font-size: 0.72rem; color: #cfd3d4; max-width: 150px; }
+.chat-timer-pill.is-live .chat-timer-time { color: #7fd67f; }
+.chat-timer-pill.is-done { cursor: pointer; }
+.chat-timer-pill.is-done .chat-timer-time { color: var(--clay); }
+.chat-timer-panel {
+  position: fixed;
+  top: 138px;
+  right: 16px;
+  z-index: 99990;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px 16px;
+  box-shadow: var(--shadow);
+  max-width: 250px;
+}
+.chat-timer-panel p { font-size: 0.82rem; color: var(--ink-soft); margin: 0 0 10px; }
+.chat-timer-claims { display: flex; gap: 6px; flex-wrap: wrap; }
+.chat-timer-claims button {
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1.5px solid var(--line);
+  background: var(--paper);
+  color: var(--charcoal-dark);
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.chat-timer-claims button:hover { border-color: var(--gold); }
+.chat-timeup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background: rgba(10, 12, 13, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.chat-timeup-card {
+  background: var(--card);
+  border-radius: 18px;
+  padding: 34px 30px;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.6);
+}
+.chat-timeup-card h3 { font-size: 1.3rem; margin-bottom: 0.4em; }
+.chat-timeup-card p { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 1.4em; }
+.chat-timeup-card .btn { width: 100%; }
+.chat-timeup-close {
+  margin-top: 12px;
+  background: none;
+  border: none;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+@media (max-width: 560px) {
+  .chat-timer-pill { top: 74px; right: 10px; padding: 8px 13px; }
+  .chat-timer-status { display: none; }
+  .chat-timer-panel { top: 120px; right: 10px; }
+}
 .price-card {
   background: var(--card);
   border: 1px solid var(--line);

@@ -83,6 +83,122 @@
 
 <script src="i18n.js"></script>
 <script src="script.js"></script>
+<script>
+// ---- Chat minute timer -------------------------------------------------
+// Counts down purchased minutes, but only while a chat is actually running
+// (Tawk chat started + this tab visible). Fairness/UX aid — Alma's Stripe
+// records remain the source of truth.
+(function () {
+  var T = function (s) { return window.__afmT ? window.__afmT(s) : s; };
+  var BAL_KEY = "afmChatBalance";      // seconds remaining
+  var PENDING_KEY = "afmPendingPack";  // {m: minutes, t: purchase click time}
+
+  function readBalance() {
+    var n = Number(localStorage.getItem(BAL_KEY));
+    return Number.isFinite(n) && n > 0 ? Math.floor(n) : 0;
+  }
+  function writeBalance(sec) {
+    try { localStorage.setItem(BAL_KEY, String(Math.max(0, Math.floor(sec)))); } catch (e) {}
+  }
+
+  // Credit a freshly bought pack (buy click within the last 2 hours).
+  var balance = readBalance();
+  try {
+    var pending = JSON.parse(localStorage.getItem(PENDING_KEY) || "null");
+    if (pending && pending.m > 0 && Date.now() - pending.t < 2 * 60 * 60 * 1000) {
+      balance += pending.m * 60;
+      writeBalance(balance);
+    }
+    localStorage.removeItem(PENDING_KEY);
+  } catch (e) {}
+
+  var chatting = false;
+
+  // ---- UI ----
+  var pill = document.createElement("div");
+  pill.className = "chat-timer-pill";
+  pill.innerHTML = '<span class="chat-timer-clock">⏱</span><span class="chat-timer-time"></span><span class="chat-timer-status"></span>';
+  document.body.appendChild(pill);
+  var timeEl = pill.querySelector(".chat-timer-time");
+  var statusEl = pill.querySelector(".chat-timer-status");
+
+  var panel = document.createElement("div");
+  panel.className = "chat-timer-panel";
+  panel.hidden = true;
+  panel.innerHTML =
+    "<p>" + T("Didn't get your timer? Tap the pack you bought:") + "</p>" +
+    '<div class="chat-timer-claims">' +
+    [5, 10, 20, 30].map(function (m) { return '<button type="button" data-m="' + m + '">' + m + " min</button>"; }).join("") +
+    "</div>";
+  document.body.appendChild(panel);
+  panel.querySelectorAll("button[data-m]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      balance += Number(b.dataset.m) * 60;
+      writeBalance(balance);
+      panel.hidden = true;
+      render();
+    });
+  });
+  pill.addEventListener("click", function () {
+    if (balance <= 0) panel.hidden = !panel.hidden;
+  });
+
+  var overlay = null;
+  function showTimeUp() {
+    if (overlay) return;
+    overlay = document.createElement("div");
+    overlay.className = "chat-timeup-overlay";
+    overlay.innerHTML =
+      '<div class="chat-timeup-card">' +
+      "<h3>" + T("Your minutes are used up 💛") + "</h3>" +
+      "<p>" + T("Want more time with Alma? Add another pack and keep going.") + "</p>" +
+      '<a class="btn btn-primary" href="/exclusive.html">' + T("Top up minutes") + "</a>" +
+      '<button type="button" class="chat-timeup-close">' + T("Close") + "</button>" +
+      "</div>";
+    document.body.appendChild(overlay);
+    overlay.querySelector(".chat-timeup-close").addEventListener("click", function () {
+      overlay.remove();
+      overlay = null;
+    });
+  }
+
+  function fmt(sec) {
+    var m = Math.floor(sec / 60), s = sec % 60;
+    return m + ":" + (s < 10 ? "0" : "") + s;
+  }
+  function render() {
+    timeEl.textContent = fmt(balance);
+    pill.classList.toggle("is-done", balance <= 0);
+    pill.classList.toggle("is-live", chatting && balance > 0 && document.visibilityState === "visible");
+    if (balance <= 0) statusEl.textContent = T("Time's up 💛");
+    else if (!chatting) statusEl.textContent = T("Starts when your chat begins");
+    else if (document.visibilityState !== "visible") statusEl.textContent = T("Paused — return to this tab");
+    else statusEl.textContent = T("Chatting");
+  }
+
+  // ---- Count only while genuinely chatting ----
+  window.Tawk_API = window.Tawk_API || {};
+  window.Tawk_API.onChatStarted = function () { chatting = true; render(); };
+  window.Tawk_API.onChatEnded = function () { chatting = false; writeBalance(balance); render(); };
+  document.addEventListener("visibilitychange", render);
+  window.addEventListener("beforeunload", function () { writeBalance(balance); });
+
+  setInterval(function () {
+    if (chatting && balance > 0 && document.visibilityState === "visible") {
+      balance--;
+      writeBalance(balance);
+      if (balance <= 0) {
+        chatting = false;
+        try { if (window.Tawk_API.endChat) window.Tawk_API.endChat(); } catch (e) {}
+        showTimeUp();
+      }
+      render();
+    }
+  }, 1000);
+
+  render();
+})();
+</script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

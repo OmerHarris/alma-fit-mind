@@ -620,6 +620,16 @@
     "Top up more minutes": "Recargar más minutos",
     "The chat room is being set up — Alma will reach out on the WhatsApp or Telegram you left at checkout.":
       "La sala de chat se está configurando — Alma te contactará por el WhatsApp o Telegram que dejaste en el pago.",
+    "Didn't get your timer? Tap the pack you bought:": "¿No apareció tu tiempo? Toca el paquete que compraste:",
+    "Starts when your chat begins": "Empieza cuando inicie tu chat",
+    "Chatting": "Conversando",
+    "Paused — return to this tab": "En pausa — vuelve a esta pestaña",
+    "Time's up 💛": "Se acabó el tiempo 💛",
+    "Your minutes are used up 💛": "Tus minutos se han agotado 💛",
+    "Want more time with Alma? Add another pack and keep going.":
+      "¿Quieres más tiempo con Alma? Agrega otro paquete y sigan conversando.",
+    "Top up minutes": "Recargar minutos",
+    "Close": "Cerrar",
 
     "Training location": "Lugar de entrenamiento",
     "Time per day": "Tiempo por día",

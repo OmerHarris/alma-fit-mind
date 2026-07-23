@@ -179,6 +179,16 @@
 <script src="i18n.js"></script>
 <script src="script.js"></script>
 <script src="widget.js"></script>
+<script>
+// Remember which pack they're buying so the chat room can start their timer.
+document.querySelectorAll(".pack-buy").forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    try {
+      localStorage.setItem("afmPendingPack", JSON.stringify({ m: Number(btn.dataset.pack), t: Date.now() }));
+    } catch (e) {}
+  });
+});
+</script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
