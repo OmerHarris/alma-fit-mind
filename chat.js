@@ -529,8 +529,16 @@
     addBubble("user", T(choice));
     clearInput();
     if (choice === "💎 Exclusive Chat with Alma") {
-      await botSay(T("Taking you to Alma's private chat — talk soon. 💛"));
-      (IS_EMBED ? window.top : window).location.href = "/exclusive.html";
+      // Already has minutes? Straight to the chat room, not the sales page.
+      var bal = 0;
+      try { bal = Number(localStorage.getItem("afmChatBalance")) || 0; } catch (e) {}
+      if (bal > 0) {
+        await botSay(T("Welcome back — taking you straight to your private chat with Alma. 💛"));
+        (IS_EMBED ? window.top : window).location.href = "/exclusive-chat.html";
+      } else {
+        await botSay(T("Taking you to Alma's private chat — talk soon. 💛"));
+        (IS_EMBED ? window.top : window).location.href = "/exclusive.html";
+      }
       return false;
     }
     return true;

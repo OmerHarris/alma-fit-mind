@@ -996,6 +996,20 @@ a.value-prop:hover, a.value-prop:focus-visible {
 .packs-grid { grid-template-columns: repeat(4, 1fr); max-width: 1080px; }
 .packs-grid .price-card { position: relative; }
 
+/* Returning buyer: way back into the chat room */
+.have-minutes-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  background: var(--charcoal-dark);
+  border-radius: 14px;
+  padding: 18px 24px;
+  margin-bottom: 2.2rem;
+}
+.have-minutes-banner p { color: #fff; margin: 0; font-weight: 600; }
+
 /* ---------- Exclusive chat timer ---------- */
 .chat-timer-pill {
   position: fixed;

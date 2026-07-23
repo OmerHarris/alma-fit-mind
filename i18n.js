@@ -569,6 +569,11 @@
     "Alma's Assistant (free)": "Asistente de Alma (gratis)",
     "Taking you to Alma's private chat — talk soon. 💛":
       "Te llevo al chat privado de Alma — nos vemos allá. 💛",
+    "Welcome back — taking you straight to your private chat with Alma. 💛":
+      "Bienvenido/a de vuelta — te llevo directo a tu chat privado con Alma. 💛",
+    "You still have {time} of chat time with Alma.":
+      "Todavía tienes {time} de tiempo de chat con Alma.",
+    "Enter your chat room": "Entrar a tu sala de chat",
     "Exclusive Access": "Acceso Exclusivo",
     "Chat with Alma. Directly. Just you two.": "Chatea con Alma. Directamente. Solo ustedes dos.",
     "Not the assistant — Alma herself. Buy chat minutes and get a private 1:1 conversation: your questions, her full attention, in real time.":

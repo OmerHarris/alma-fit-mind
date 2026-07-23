@@ -188,6 +188,21 @@ document.querySelectorAll(".pack-buy").forEach(function (btn) {
     } catch (e) {}
   });
 });
+// Already bought minutes? Offer the way back into the chat room.
+(function () {
+  var T = function (s) { return window.__afmT ? window.__afmT(s) : s; };
+  var bal = 0;
+  try { bal = Number(localStorage.getItem("afmChatBalance")) || 0; } catch (e) {}
+  if (bal <= 0) return;
+  var m = Math.floor(bal / 60), s = bal % 60;
+  var banner = document.createElement("div");
+  banner.className = "have-minutes-banner";
+  banner.innerHTML =
+    "<p>" + T("You still have {time} of chat time with Alma.").replace("{time}", m + ":" + (s < 10 ? "0" : "") + s) + "</p>" +
+    '<a class="btn btn-primary" href="/exclusive-chat.html">' + T("Enter your chat room") + "</a>";
+  var section = document.querySelector("#minutes .wrap");
+  section.insertBefore(banner, section.firstChild);
+})();
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
