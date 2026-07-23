@@ -521,8 +521,7 @@
 
   // ---- Runner ----------------------------------------------------------
   // Two doors: paid 1:1 chat with Alma herself, or the free guided assistant.
-  // Enabled once the exclusive minute-pack checkout links are live.
-  const EXCLUSIVE_ENABLED = false;
+  const EXCLUSIVE_ENABLED = true;
 
   async function chooseDoor() {
     await botSay(T("Hey! 👋 Before we start — who would you like to talk to?"));
