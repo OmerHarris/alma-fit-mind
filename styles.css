@@ -992,6 +992,9 @@ a.value-prop:hover, a.value-prop:focus-visible {
   font-size: 0.85rem;
   color: var(--ink-soft);
 }
+/* Exclusive chat minute packs: 4 slim cards */
+.packs-grid { grid-template-columns: repeat(4, 1fr); max-width: 1080px; }
+.packs-grid .price-card { position: relative; }
 .price-card {
   background: var(--card);
   border: 1px solid var(--line);

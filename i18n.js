@@ -562,6 +562,65 @@
       "Y esto es lo importante: quienes llegan más lejos con Alma son los que decidieron — *antes* de su primer mensaje — que esta vez es diferente. Tú acabas de hacerlo. 💛",
     "Go get a closer look at the plan I picked for you while you wait: 👇":
       "Ve a ver más de cerca el plan que elegí para ti mientras esperas: 👇",
+    // ---- Exclusive chat ----
+    "Hey! 👋 Before we start — who would you like to talk to?":
+      "¡Hola! 👋 Antes de empezar — ¿con quién te gustaría hablar?",
+    "💎 Exclusive Chat with Alma": "💎 Chat Exclusivo con Alma",
+    "Alma's Assistant (free)": "Asistente de Alma (gratis)",
+    "Taking you to Alma's private chat — talk soon. 💛":
+      "Te llevo al chat privado de Alma — nos vemos allá. 💛",
+    "Exclusive Access": "Acceso Exclusivo",
+    "Chat with Alma. Directly. Just you two.": "Chatea con Alma. Directamente. Solo ustedes dos.",
+    "Not the assistant — Alma herself. Buy chat minutes and get a private 1:1 conversation: your questions, her full attention, in real time.":
+      "No la asistente — Alma en persona. Compra minutos de chat y ten una conversación privada 1:1: tus preguntas, toda su atención, en tiempo real.",
+    "Chat Minutes": "Minutos de Chat",
+    "Pick your time with Alma": "Elige tu tiempo con Alma",
+    "99¢ per minute — and every pack longer than 5 minutes gets 20% off.":
+      "99¢ por minuto — y todo paquete de más de 5 minutos tiene 20% de descuento.",
+    "5 Minutes": "5 Minutos",
+    "10 Minutes": "10 Minutos",
+    "20 Minutes": "20 Minutos",
+    "30 Minutes": "30 Minutos",
+    "20% Off": "20% Desc.",
+    "Quick question or check-in": "Una pregunta rápida o un check-in",
+    "99¢ per minute": "99¢ por minuto",
+    "A real conversation": "Una conversación de verdad",
+    "79¢ per minute": "79¢ por minuto",
+    "Go deep on your plan": "Profundiza en tu plan",
+    "A full private session": "Una sesión privada completa",
+    "Buy 5 Minutes": "Comprar 5 Minutos",
+    "Buy 10 Minutes": "Comprar 10 Minutos",
+    "Buy 20 Minutes": "Comprar 20 Minutos",
+    "Buy 30 Minutes": "Comprar 30 Minutos",
+    "One-time payment — no subscription, no auto-renewal. Secure checkout by Stripe.":
+      "Pago único — sin suscripción, sin renovación automática. Pago seguro con Stripe.",
+    "How it works": "Cómo funciona",
+    "Pick a pack and check out securely with Stripe. At checkout, leave your WhatsApp or Telegram.":
+      "Elige un paquete y paga de forma segura con Stripe. En el pago, deja tu WhatsApp o Telegram.",
+    "Alma messages you personally — usually within a few hours — to start or schedule your private chat.":
+      "Alma te escribe personalmente — normalmente en unas horas — para empezar o agendar tu chat privado.",
+    "Your minutes are yours: use them in one conversation or split them up. Alma keeps track.":
+      "Tus minutos son tuyos: úsalos en una conversación o divídelos. Alma lleva la cuenta.",
+    "Want more time? Top up anytime with another pack.":
+      "¿Quieres más tiempo? Recarga cuando quieras con otro paquete.",
+    "Private chat is personal coaching conversation — motivation, guidance, and accountability. It is not medical, dietetic, or mental-health treatment, and availability depends on Alma's schedule. Minutes are valid for 90 days from purchase.":
+      "El chat privado es una conversación de coaching personal — motivación, orientación y compromiso. No es tratamiento médico, dietético ni de salud mental, y la disponibilidad depende de la agenda de Alma. Los minutos son válidos por 90 días desde la compra.",
+    "Prefer the free assistant? Start here": "¿Prefieres la asistente gratuita? Empieza aquí",
+    "You're in. 🎉": "Ya estás dentro. 🎉",
+    "Thank you — your minutes are confirmed. Open the chat bubble in the corner to start talking to Alma directly.":
+      "Gracias — tus minutos están confirmados. Abre la burbuja de chat en la esquina para hablar directamente con Alma.",
+    "Say hi and use the same name you used at checkout, so Alma knows it's you.":
+      "Saluda y usa el mismo nombre que usaste en el pago, para que Alma sepa que eres tú.",
+    "If Alma is with another client or training, she'll reply as soon as she's free — your minutes only count while you're actively chatting.":
+      "Si Alma está con otro cliente o entrenando, responderá en cuanto se libere — tus minutos solo cuentan mientras están conversando activamente.",
+    "Keep this page open while you chat. You can come back to it anytime from your purchase confirmation.":
+      "Mantén esta página abierta mientras chatean. Puedes volver cuando quieras desde tu confirmación de compra.",
+    "Private chat is personal coaching conversation — motivation, guidance, and accountability. It is not medical, dietetic, or mental-health treatment. Minutes are valid for 90 days from purchase.":
+      "El chat privado es una conversación de coaching personal — motivación, orientación y compromiso. No es tratamiento médico, dietético ni de salud mental. Los minutos son válidos por 90 días desde la compra.",
+    "Top up more minutes": "Recargar más minutos",
+    "The chat room is being set up — Alma will reach out on the WhatsApp or Telegram you left at checkout.":
+      "La sala de chat se está configurando — Alma te contactará por el WhatsApp o Telegram que dejaste en el pago.",
+
     "Training location": "Lugar de entrenamiento",
     "Time per day": "Tiempo por día",
     "Days per week": "Días por semana",

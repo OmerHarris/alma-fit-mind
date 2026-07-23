@@ -520,7 +520,28 @@
   }
 
   // ---- Runner ----------------------------------------------------------
+  // Two doors: paid 1:1 chat with Alma herself, or the free guided assistant.
+  // Enabled once the exclusive minute-pack checkout links are live.
+  const EXCLUSIVE_ENABLED = false;
+
+  async function chooseDoor() {
+    await botSay(T("Hey! 👋 Before we start — who would you like to talk to?"));
+    const choice = await askChoice(["💎 Exclusive Chat with Alma", "Alma's Assistant (free)"]);
+    addBubble("user", T(choice));
+    clearInput();
+    if (choice === "💎 Exclusive Chat with Alma") {
+      await botSay(T("Taking you to Alma's private chat — talk soon. 💛"));
+      (IS_EMBED ? window.top : window).location.href = "/exclusive.html";
+      return false;
+    }
+    return true;
+  }
+
   async function run() {
+    if (EXCLUSIVE_ENABLED) {
+      const proceed = await chooseDoor();
+      if (!proceed) return;
+    }
     let startIndex = 0;
     const saved = loadProgress();
     if (saved && saved.stepIndex > 0 && saved.stepIndex < STEPS.length) {

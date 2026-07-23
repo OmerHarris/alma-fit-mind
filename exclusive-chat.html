@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Your Private Chat with Alma | Alma Fit &amp; Mind</title>
+<meta name="description" content="Your private 1:1 chat room with Alma." />
+<link rel="canonical" href="https://almafitandmind.com/exclusive-chat.html" />
+<meta name="robots" content="noindex" />
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+<meta name="theme-color" content="#14181a" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" id="siteHeader">
+  <div class="wrap header-inner">
+    <a class="logo" href="/">
+      <span class="logo-mark">A</span>
+      <span class="logo-text">Alma <em>Fit &amp; Mind</em></span>
+    </a>
+  </div>
+</header>
+
+<main id="main">
+  <section class="section legal" style="padding-top: 140px;">
+    <div class="wrap legal-inner" style="text-align:center;">
+      <p class="eyebrow">Exclusive Access</p>
+      <h1>You're in. 🎉</h1>
+      <p class="section-lead">Thank you — your minutes are confirmed. Open the chat bubble in the corner to start talking to Alma directly.</p>
+      <ul class="check-list" style="text-align:left; max-width: 520px; margin: 2rem auto;">
+        <li>Say hi and use the same name you used at checkout, so Alma knows it's you.</li>
+        <li>If Alma is with another client or training, she'll reply as soon as she's free — your minutes only count while you're actively chatting.</li>
+        <li>Keep this page open while you chat. You can come back to it anytime from your purchase confirmation.</li>
+      </ul>
+      <p class="legal-disclaimer">Private chat is personal coaching conversation — motivation, guidance, and accountability. It is not medical, dietetic, or mental-health treatment. Minutes are valid for 90 days from purchase.</p>
+      <div class="pillar-cta" style="justify-content:center;">
+        <a class="btn btn-outline" href="/exclusive.html">Top up more minutes</a>
+        <a class="btn btn-ghost" href="/">Back to Home</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Tawk.to live chat — Alma replies from the Tawk mobile/desktop app -->
+<script>
+(function () {
+  // Paste the ID part of the Tawk.to embed URL here, e.g. "6879f.../1j0k..."
+  var TAWK_ID = "";
+  if (!TAWK_ID) {
+    // Not configured yet — show a gentle note instead of a dead chat bubble.
+    document.addEventListener("DOMContentLoaded", function () {
+      var note = document.createElement("p");
+      note.className = "form-helper-note";
+      note.style.maxWidth = "460px";
+      note.style.margin = "24px auto 0";
+      note.textContent = (window.__afmT ? window.__afmT("The chat room is being set up — Alma will reach out on the WhatsApp or Telegram you left at checkout.") : "The chat room is being set up — Alma will reach out on the WhatsApp or Telegram you left at checkout.");
+      var lead = document.querySelector(".section-lead");
+      if (lead) lead.insertAdjacentElement("afterend", note);
+    });
+    return;
+  }
+  var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+  window.Tawk_API = Tawk_API; window.Tawk_LoadStart = Tawk_LoadStart;
+  var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+  s1.async = true;
+  s1.src = "https://embed.tawk.to/" + TAWK_ID;
+  s1.charset = "UTF-8";
+  s1.setAttribute("crossorigin", "*");
+  s0.parentNode.insertBefore(s1, s0);
+})();
+</script>
+
+<script src="i18n.js"></script>
+<script src="script.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
