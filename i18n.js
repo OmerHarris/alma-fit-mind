@@ -610,7 +610,8 @@
     "Top up more minutes": "Recargar más minutos",
     "The chat room is being set up — Alma will reach out on the WhatsApp or Telegram you left at checkout.":
       "La sala de chat se está configurando — Alma te contactará por el WhatsApp o Telegram que dejaste en el pago.",
-    "Starts when your chat begins": "Empieza cuando inicie tu chat",
+    "Starts when Alma replies": "Empieza cuando Alma responda",
+    "Waiting for Alma — not counting yet": "Esperando a Alma — aún no corre el tiempo",
     "Chatting": "Conversando",
     "Paused — return to this tab": "En pausa — vuelve a esta pestaña",
     "Time's up — tap to top up 💛": "Se acabó el tiempo — toca para recargar 💛",

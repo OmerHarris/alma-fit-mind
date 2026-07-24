@@ -124,7 +124,8 @@
     if (paidArrival || pending) localStorage.removeItem(PENDING_KEY);
   } catch (e) {}
 
-  var chatting = false;
+  var chatting = false; // counting — begins with Alma's first reply, not the visitor's message
+  var waiting = false;  // visitor started a chat, Alma hasn't replied yet
 
   // ---- UI ----
   var pill = document.createElement("div");
@@ -168,7 +169,8 @@
     pill.classList.toggle("is-done", balance <= 0);
     pill.classList.toggle("is-live", chatting && balance > 0 && document.visibilityState === "visible");
     if (balance <= 0) statusEl.textContent = T("Time's up — tap to top up 💛");
-    else if (!chatting) statusEl.textContent = T("Starts when your chat begins");
+    else if (waiting) statusEl.textContent = T("Waiting for Alma — not counting yet");
+    else if (!chatting) statusEl.textContent = T("Starts when Alma replies");
     else if (document.visibilityState !== "visible") statusEl.textContent = T("Paused — return to this tab");
     else statusEl.textContent = T("Chatting");
   }
@@ -185,12 +187,19 @@
   window.Tawk_API.onChatMinimized = function () { pill.classList.remove("chat-open"); };
   window.Tawk_API.onChatHidden = function () { pill.classList.remove("chat-open"); };
   window.Tawk_API.onChatStarted = function () {
-    chatting = true;
+    // Visitor opened the conversation — don't count yet; Alma may be away.
+    waiting = true;
     render();
     // Best effort: let Alma see the visitor's remaining time in the dashboard timeline.
     try { window.Tawk_API.addEvent("points-timer", { remaining: fmt(balance) }, function () {}); } catch (e) {}
   };
-  window.Tawk_API.onChatEnded = function () { chatting = false; writeBalance(balance); render(); };
+  // The clock starts only once Alma sends her first message.
+  window.Tawk_API.onChatMessageAgent = function () {
+    waiting = false;
+    chatting = true;
+    render();
+  };
+  window.Tawk_API.onChatEnded = function () { chatting = false; waiting = false; writeBalance(balance); render(); };
   document.addEventListener("visibilitychange", render);
   window.addEventListener("beforeunload", function () { writeBalance(balance); });
 
