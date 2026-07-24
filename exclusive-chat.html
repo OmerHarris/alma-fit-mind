@@ -223,9 +223,15 @@
   // "!resume" (or ▶) restarts it. Only agent messages reach this handler,
   // so visitors can't trigger the commands themselves.
   function agentCommand(msg) {
-    var m = String(msg || "").trim().toLowerCase();
-    if (m === "!pause" || m === "⏸" || m === "⏸️") return "pause";
-    if (m === "!resume" || m === "▶" || m === "▶️") return "resume";
+    // Tawk's payload shape varies — accept a raw string or an object with a
+    // message/text/body field, strip any HTML, and match by "contains".
+    var m = "";
+    if (typeof msg === "string") m = msg;
+    else if (msg) m = String(msg.message || msg.text || msg.body || "");
+    m = m.replace(/<[^>]*>/g, " ").toLowerCase();
+    try { console.debug("afm agent msg payload:", typeof msg, JSON.stringify(msg).slice(0, 300)); } catch (e) {}
+    if (m.indexOf("!pause") !== -1 || m.indexOf("⏸") !== -1) return "pause";
+    if (m.indexOf("!resume") !== -1 || m.indexOf("▶") !== -1) return "resume";
     return null;
   }
   window.Tawk_API.onChatMessageAgent = function (message) {
