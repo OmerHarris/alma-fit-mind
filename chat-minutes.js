@@ -69,22 +69,36 @@
   var pausedByAlma = readPaused();   // Alma sent !pause; only !resume restarts the clock
 
   // ---- Conversation state that survives a page refresh -------------------
-  function markActive() {
-    try { localStorage.setItem(ACTIVE_KEY, JSON.stringify({ t: Date.now() })); } catch (e) {}
+  function readState() {
+    try { return JSON.parse(localStorage.getItem(ACTIVE_KEY) || "null"); } catch (e) { return null; }
+  }
+  // `replied` records that Alma has joined this conversation, so a page change
+  // can tell "resume the running clock" apart from "waiting for her first reply".
+  function markActive(replied) {
+    var s = readState() || {};
+    s.t = Date.now();
+    if (replied) s.replied = true;
+    try { localStorage.setItem(ACTIVE_KEY, JSON.stringify(s)); } catch (e) {}
   }
   function clearActive() {
     try { localStorage.removeItem(ACTIVE_KEY); } catch (e) {}
   }
-  // Resume counting after a reload only for a genuinely live conversation:
-  // recent activity, and Tawk confirming the chat is still ongoing.
+  function repliedRecently() {
+    var s = readState();
+    return !!(s && s.replied && s.t && Date.now() - s.t <= 30 * 60 * 1000);
+  }
+  // Resume counting only for a genuinely live conversation: Alma already
+  // replied, it was recent, and Tawk still reports the chat as ongoing.
   function shouldResume() {
-    var saved = null;
-    try { saved = JSON.parse(localStorage.getItem(ACTIVE_KEY) || "null"); } catch (e) {}
-    if (!saved || !saved.t || Date.now() - saved.t > 30 * 60 * 1000) return false;
+    if (!repliedRecently()) return false;
     if (window.Tawk_API && typeof window.Tawk_API.isChatOngoing === "function") {
       try { return !!window.Tawk_API.isChatOngoing(); } catch (e) {}
     }
     return true;
+  }
+  function tryResume() {
+    if (chatting || pausedByAlma || balance <= 0) return;
+    if (shouldResume()) { chatting = true; waiting = false; render(); }
   }
 
   // ---- Timer pill --------------------------------------------------------
@@ -167,10 +181,14 @@
       // asynchronously, so lock again shortly after load.
       lockChat();
       setTimeout(lockChat, 1500);
-    } else if (shouldResume()) {
+    } else {
       // A refresh (or moving to another page) mid-conversation shouldn't
-      // silently stop the clock.
-      chatting = true;
+      // silently stop the clock. Tawk restores the session a moment after it
+      // loads, so keep checking briefly instead of giving up on the first try.
+      tryResume();
+      setTimeout(tryResume, 1200);
+      setTimeout(tryResume, 3000);
+      setTimeout(tryResume, 6000);
     }
     render();
   };
@@ -201,14 +219,18 @@
   window.Tawk_API.onChatStarted = function () {
     // Visitor opened the conversation — don't count yet; Alma may be away.
     // On a reload Tawk replays this for the restored session, so never undo a
-    // conversation that is already counting.
-    if (!chatting) waiting = true;
-    markActive();
+    // conversation that is already counting — and if Alma had already joined,
+    // this is a restored chat: pick the clock back up rather than "waiting".
+    markActive(false);
+    if (!chatting) {
+      if (repliedRecently() && !pausedByAlma) chatting = true;
+      else waiting = true;
+    }
     render();
     // Best effort: let Alma see the visitor's remaining time in her dashboard.
     try { window.Tawk_API.addEvent("chat-minutes", { remaining: fmt(balance) }, function () {}); } catch (e) {}
   };
-  window.Tawk_API.onChatMessageVisitor = function () { markActive(); };
+  window.Tawk_API.onChatMessageVisitor = function () { markActive(false); };
 
   // The clock starts once Alma sends her first message — and Alma can control
   // it from inside the chat: "!pause" (🛑 / ✋) freezes the timer, "!resume"
@@ -238,7 +260,7 @@
     return null;
   }
   window.Tawk_API.onChatMessageAgent = function (message) {
-    markActive();
+    markActive(true); // Alma has joined this conversation
     var cmd = agentCommand(message);
     if (cmd === "pause") { pausedByAlma = true; writePaused(true); render(); return; }
     if (cmd === "resume") { pausedByAlma = false; writePaused(false); waiting = false; chatting = true; render(); return; }
