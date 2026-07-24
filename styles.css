@@ -1052,32 +1052,6 @@ a.value-prop:hover, a.value-prop:focus-visible {
 .chat-timer-pill.is-live .chat-timer-time { color: #7fd67f; }
 .chat-timer-pill.is-done { cursor: pointer; }
 .chat-timer-pill.is-done .chat-timer-time { color: var(--clay); }
-.chat-timer-panel {
-  position: fixed;
-  top: 138px;
-  left: 16px;
-  z-index: 99990;
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 14px 16px;
-  box-shadow: var(--shadow);
-  max-width: 250px;
-}
-.chat-timer-panel p { font-size: 0.82rem; color: var(--ink-soft); margin: 0 0 10px; }
-.chat-timer-claims { display: flex; gap: 6px; flex-wrap: wrap; }
-.chat-timer-claims button {
-  padding: 7px 12px;
-  border-radius: 999px;
-  border: 1.5px solid var(--line);
-  background: var(--paper);
-  color: var(--charcoal-dark);
-  font-family: var(--sans);
-  font-size: 0.82rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-.chat-timer-claims button:hover { border-color: var(--gold); }
 .chat-timeup-overlay {
   position: fixed;
   inset: 0;
@@ -1112,7 +1086,6 @@ a.value-prop:hover, a.value-prop:focus-visible {
 @media (max-width: 560px) {
   .chat-timer-pill { top: 74px; left: 10px; padding: 8px 13px; }
   .chat-timer-status { display: none; }
-  .chat-timer-panel { top: 120px; left: 10px; }
 }
 /* Phone + chat open: Tawk goes fullscreen, so float the timer over it,
    top-center, below Tawk's header controls and out of their way. */
