@@ -576,16 +576,16 @@
     "Enter your chat room": "Entrar a tu sala de chat",
     "Exclusive Access": "Acceso Exclusivo",
     "Chat with Alma. Directly. Just you two.": "Chatea con Alma. Directamente. Solo ustedes dos.",
-    "Not the assistant — Alma herself. Load your points and unlock a private 1:1 conversation: your questions, her full attention, in real time.":
-      "No la asistente — Alma en persona. Carga tus puntos y desbloquea una conversación privada 1:1: tus preguntas, toda su atención, en tiempo real.",
-    "5 points": "5 puntos",
-    "10 points": "10 puntos",
-    "20 points": "20 puntos",
-    "30 points": "30 puntos",
-    "1 point = 1 minute of private chat · Secure checkout by Stripe":
-      "1 punto = 1 minuto de chat privado · Pago seguro con Stripe",
-    "Pick your points and check out securely with Stripe. At checkout, leave your WhatsApp or Telegram.":
-      "Elige tus puntos y paga de forma segura con Stripe. En el pago, deja tu WhatsApp o Telegram.",
+    "Not the assistant — Alma herself. Pick your minutes and unlock a private 1:1 conversation: your questions, her full attention, in real time.":
+      "No la asistente — Alma en persona. Elige tus minutos y desbloquea una conversación privada 1:1: tus preguntas, toda su atención, en tiempo real.",
+    "5 mins": "5 min",
+    "10 mins": "10 min",
+    "20 mins": "20 min",
+    "30 mins": "30 min",
+    "Private 1:1 chat time with Alma · Secure checkout by Stripe":
+      "Tiempo de chat privado 1:1 con Alma · Pago seguro con Stripe",
+    "Pick your minutes and check out securely with Stripe. At checkout, leave your WhatsApp or Telegram.":
+      "Elige tus minutos y paga de forma segura con Stripe. En el pago, deja tu WhatsApp o Telegram.",
     "How it works": "Cómo funciona",
     "Alma messages you personally — usually within a few hours — to start or schedule your private chat.":
       "Alma te escribe personalmente — normalmente en unas horas — para empezar o agendar tu chat privado.",
