@@ -204,13 +204,30 @@
     }
     render();
   };
+  // Keep the pill inside the *visible* viewport when the phone keyboard is up:
+  // iOS pans/shrinks the visual viewport and fixed elements can end up outside
+  // the visible strip, so re-pin the pill to the visual viewport's top edge.
+  var vv = window.visualViewport;
+  function pinPill() {
+    if (pill.classList.contains("chat-open") && vv) {
+      pill.style.top = Math.round(vv.offsetTop + 62) + "px";
+    } else {
+      pill.style.top = "";
+    }
+  }
+  if (vv) {
+    vv.addEventListener("resize", pinPill);
+    vv.addEventListener("scroll", pinPill);
+  }
+
   window.Tawk_API.onChatMaximized = function () {
     if (balance <= 0) { lockChat(); return; } // out of time: panel may not reopen
     elevate();
     pill.classList.add("chat-open");
+    pinPill();
   };
-  window.Tawk_API.onChatMinimized = function () { pill.classList.remove("chat-open"); };
-  window.Tawk_API.onChatHidden = function () { pill.classList.remove("chat-open"); };
+  window.Tawk_API.onChatMinimized = function () { pill.classList.remove("chat-open"); pinPill(); };
+  window.Tawk_API.onChatHidden = function () { pill.classList.remove("chat-open"); pinPill(); };
   window.Tawk_API.onChatStarted = function () {
     // Visitor opened the conversation — don't count yet; Alma may be away.
     waiting = true;
