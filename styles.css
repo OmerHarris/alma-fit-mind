@@ -1013,6 +1013,7 @@ a.value-prop:hover, a.value-prop:focus-visible {
 .hero-price-chip:hover { border-color: var(--gold); background: rgba(255, 255, 255, 0.14); transform: translateY(-2px); }
 .hero-price-chip-featured { border-color: var(--gold); background: var(--gold); color: #14181a; }
 .hero-price-chip-featured:hover { background: #c8a468; }
+.hero-points-note { margin-top: 14px; font-size: 0.82rem; color: #cfd3d4; }
 
 /* Returning buyer: way back into the chat room */
 .have-minutes-banner {

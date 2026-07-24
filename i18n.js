@@ -576,32 +576,17 @@
     "Enter your chat room": "Entrar a tu sala de chat",
     "Exclusive Access": "Acceso Exclusivo",
     "Chat with Alma. Directly. Just you two.": "Chatea con Alma. Directamente. Solo ustedes dos.",
-    "Not the assistant — Alma herself. Buy chat minutes and get a private 1:1 conversation: your questions, her full attention, in real time.":
-      "No la asistente — Alma en persona. Compra minutos de chat y ten una conversación privada 1:1: tus preguntas, toda su atención, en tiempo real.",
-    "Chat Minutes": "Minutos de Chat",
-    "Pick your time with Alma": "Elige tu tiempo con Alma",
-    "99¢ per minute — and every pack longer than 5 minutes gets 20% off.":
-      "99¢ por minuto — y todo paquete de más de 5 minutos tiene 20% de descuento.",
-    "5 Minutes": "5 Minutos",
-    "10 Minutes": "10 Minutos",
-    "20 Minutes": "20 Minutos",
-    "30 Minutes": "30 Minutos",
-    "20% Off": "20% Desc.",
-    "Quick question or check-in": "Una pregunta rápida o un check-in",
-    "99¢ per minute": "99¢ por minuto",
-    "A real conversation": "Una conversación de verdad",
-    "79¢ per minute": "79¢ por minuto",
-    "Go deep on your plan": "Profundiza en tu plan",
-    "A full private session": "Una sesión privada completa",
-    "Buy 5 Minutes": "Comprar 5 Minutos",
-    "Buy 10 Minutes": "Comprar 10 Minutos",
-    "Buy 20 Minutes": "Comprar 20 Minutos",
-    "Buy 30 Minutes": "Comprar 30 Minutos",
-    "One-time payment — no subscription, no auto-renewal. Secure checkout by Stripe.":
-      "Pago único — sin suscripción, sin renovación automática. Pago seguro con Stripe.",
+    "Not the assistant — Alma herself. Load your points and unlock a private 1:1 conversation: your questions, her full attention, in real time.":
+      "No la asistente — Alma en persona. Carga tus puntos y desbloquea una conversación privada 1:1: tus preguntas, toda su atención, en tiempo real.",
+    "5 points": "5 puntos",
+    "10 points": "10 puntos",
+    "20 points": "20 puntos",
+    "30 points": "30 puntos",
+    "1 point = 1 minute of private chat · Secure checkout by Stripe":
+      "1 punto = 1 minuto de chat privado · Pago seguro con Stripe",
+    "Pick your points and check out securely with Stripe. At checkout, leave your WhatsApp or Telegram.":
+      "Elige tus puntos y paga de forma segura con Stripe. En el pago, deja tu WhatsApp o Telegram.",
     "How it works": "Cómo funciona",
-    "Pick a pack and check out securely with Stripe. At checkout, leave your WhatsApp or Telegram.":
-      "Elige un paquete y paga de forma segura con Stripe. En el pago, deja tu WhatsApp o Telegram.",
     "Alma messages you personally — usually within a few hours — to start or schedule your private chat.":
       "Alma te escribe personalmente — normalmente en unas horas — para empezar o agendar tu chat privado.",
     "Your minutes are yours: use them in one conversation or split them up. Alma keeps track.":

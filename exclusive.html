@@ -59,64 +59,14 @@
     <div class="wrap">
       <p class="eyebrow">Exclusive Access</p>
       <h1>Chat with Alma. Directly. Just you two.</h1>
-      <p class="pillar-hero-lead">Not the assistant — Alma herself. Buy chat minutes and get a private 1:1 conversation: your questions, her full attention, in real time.</p>
+      <p class="pillar-hero-lead">Not the assistant — Alma herself. Load your points and unlock a private 1:1 conversation: your questions, her full attention, in real time.</p>
       <div class="hero-price-chips">
-        <a class="hero-price-chip" href="#minutes">5 min · $4.95</a>
-        <a class="hero-price-chip hero-price-chip-featured" href="#minutes">10 min · $7.92</a>
-        <a class="hero-price-chip" href="#minutes">20 min · $15.84</a>
-        <a class="hero-price-chip" href="#minutes">30 min · $23.76</a>
+        <a class="hero-price-chip pack-buy" data-pack="5" href="https://buy.stripe.com/bJe7sL3DY37O2Em5XU6wE0c" target="_blank" rel="noopener">5 points</a>
+        <a class="hero-price-chip hero-price-chip-featured pack-buy" data-pack="10" href="https://buy.stripe.com/dRm6oHgqKgYEfr8bie6wE0b" target="_blank" rel="noopener">10 points</a>
+        <a class="hero-price-chip pack-buy" data-pack="20" href="https://buy.stripe.com/eVqcN5gqK37ObaS4TQ6wE0a" target="_blank" rel="noopener">20 points</a>
+        <a class="hero-price-chip pack-buy" data-pack="30" href="https://buy.stripe.com/aFa00j3DYeQw7YG71Y6wE09" target="_blank" rel="noopener">30 points</a>
       </div>
-    </div>
-  </section>
-
-  <!-- MINUTE PACKS -->
-  <section class="section pricing" id="minutes">
-    <div class="wrap">
-      <p class="eyebrow center">Chat Minutes</p>
-      <h2 class="center">Pick your time with Alma</h2>
-      <p class="section-lead center">99¢ per minute — and every pack longer than 5 minutes gets 20% off.</p>
-      <div class="pricing-grid packs-grid">
-        <div class="price-card">
-          <h3>5 Minutes</h3>
-          <p class="price"><span>$4.95</span></p>
-          <ul class="price-features">
-            <li>Quick question or check-in</li>
-            <li>99¢ per minute</li>
-          </ul>
-          <a class="btn btn-outline pack-buy" data-pack="5" href="https://buy.stripe.com/bJe7sL3DY37O2Em5XU6wE0c" target="_blank" rel="noopener">Buy 5 Minutes</a>
-        </div>
-        <div class="price-card price-card-featured">
-          <span class="price-badge">20% Off</span>
-          <h3>10 Minutes</h3>
-          <p class="price"><span>$7.92</span></p>
-          <ul class="price-features">
-            <li>A real conversation</li>
-            <li>79¢ per minute</li>
-          </ul>
-          <a class="btn btn-primary pack-buy" data-pack="10" href="https://buy.stripe.com/dRm6oHgqKgYEfr8bie6wE0b" target="_blank" rel="noopener">Buy 10 Minutes</a>
-        </div>
-        <div class="price-card">
-          <span class="price-badge">20% Off</span>
-          <h3>20 Minutes</h3>
-          <p class="price"><span>$15.84</span></p>
-          <ul class="price-features">
-            <li>Go deep on your plan</li>
-            <li>79¢ per minute</li>
-          </ul>
-          <a class="btn btn-outline pack-buy" data-pack="20" href="https://buy.stripe.com/eVqcN5gqK37ObaS4TQ6wE0a" target="_blank" rel="noopener">Buy 20 Minutes</a>
-        </div>
-        <div class="price-card">
-          <span class="price-badge">20% Off</span>
-          <h3>30 Minutes</h3>
-          <p class="price"><span>$23.76</span></p>
-          <ul class="price-features">
-            <li>A full private session</li>
-            <li>79¢ per minute</li>
-          </ul>
-          <a class="btn btn-outline pack-buy" data-pack="30" href="https://buy.stripe.com/aFa00j3DYeQw7YG71Y6wE09" target="_blank" rel="noopener">Buy 30 Minutes</a>
-        </div>
-      </div>
-      <p class="pricing-note center">One-time payment — no subscription, no auto-renewal. Secure checkout by Stripe.</p>
+      <p class="hero-points-note">1 point = 1 minute of private chat · Secure checkout by Stripe</p>
     </div>
   </section>
 
@@ -125,7 +75,7 @@
     <div class="wrap legal-inner">
       <h2>How it works</h2>
       <ul class="check-list">
-        <li>Pick a pack and check out securely with Stripe. At checkout, leave your WhatsApp or Telegram.</li>
+        <li>Pick your points and check out securely with Stripe. At checkout, leave your WhatsApp or Telegram.</li>
         <li>Alma messages you personally — usually within a few hours — to start or schedule your private chat.</li>
         <li>Your minutes are yours: use them in one conversation or split them up. Alma keeps track.</li>
         <li>Want more time? Top up anytime with another pack.</li>
@@ -206,8 +156,8 @@ document.querySelectorAll(".pack-buy").forEach(function (btn) {
   banner.innerHTML =
     "<p>" + T("You still have {time} of chat time with Alma.").replace("{time}", m + ":" + (s < 10 ? "0" : "") + s) + "</p>" +
     '<a class="btn btn-primary" href="/exclusive-chat.html">' + T("Enter your chat room") + "</a>";
-  var section = document.querySelector("#minutes .wrap");
-  section.insertBefore(banner, section.firstChild);
+  var section = document.querySelector("main .legal .wrap");
+  if (section) section.insertBefore(banner, section.firstChild);
 })();
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
