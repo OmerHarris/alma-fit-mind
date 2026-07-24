@@ -124,8 +124,9 @@
     if (paidArrival || pending) localStorage.removeItem(PENDING_KEY);
   } catch (e) {}
 
-  var chatting = false; // counting — begins with Alma's first reply, not the visitor's message
-  var waiting = false;  // visitor started a chat, Alma hasn't replied yet
+  var chatting = false;     // counting — begins with Alma's first reply, not the visitor's message
+  var waiting = false;      // visitor started a chat, Alma hasn't replied yet
+  var pausedByAlma = false; // Alma typed !pause in the chat; only !resume restarts the clock
 
   // ---- UI ----
   var pill = document.createElement("div");
@@ -140,6 +141,16 @@
   pill.addEventListener("click", function () {
     if (balance <= 0) window.location.href = "/exclusive.html";
   });
+
+  // No balance → no chat. End the session and remove the widget so the
+  // conversation can't continue after the minutes run out.
+  function lockChat() {
+    try {
+      if (window.Tawk_API.endChat) window.Tawk_API.endChat();
+      if (window.Tawk_API.minimize) window.Tawk_API.minimize();
+      if (window.Tawk_API.hideWidget) window.Tawk_API.hideWidget();
+    } catch (e) {}
+  }
 
   var overlay = null;
   function showTimeUp() {
@@ -167,8 +178,9 @@
   function render() {
     timeEl.textContent = fmt(balance);
     pill.classList.toggle("is-done", balance <= 0);
-    pill.classList.toggle("is-live", chatting && balance > 0 && document.visibilityState === "visible");
+    pill.classList.toggle("is-live", chatting && !pausedByAlma && balance > 0 && document.visibilityState === "visible");
     if (balance <= 0) statusEl.textContent = T("Time's up — tap to top up 💛");
+    else if (pausedByAlma) statusEl.textContent = T("Paused by Alma 💛");
     else if (waiting) statusEl.textContent = T("Waiting for Alma — not counting yet");
     else if (!chatting) statusEl.textContent = T("Starts when Alma replies");
     else if (document.visibilityState !== "visible") statusEl.textContent = T("Paused — return to this tab");
@@ -182,8 +194,21 @@
   function elevate() {
     document.body.appendChild(pill);
   }
-  window.Tawk_API.onLoad = function () { elevate(); render(); };
-  window.Tawk_API.onChatMaximized = function () { elevate(); pill.classList.add("chat-open"); };
+  window.Tawk_API.onLoad = function () {
+    elevate();
+    if (balance <= 0) {
+      // No minutes, no chat — and Tawk restores a previously-open panel
+      // asynchronously, so lock again shortly after load.
+      lockChat();
+      setTimeout(lockChat, 1500);
+    }
+    render();
+  };
+  window.Tawk_API.onChatMaximized = function () {
+    if (balance <= 0) { lockChat(); return; } // out of time: panel may not reopen
+    elevate();
+    pill.classList.add("chat-open");
+  };
   window.Tawk_API.onChatMinimized = function () { pill.classList.remove("chat-open"); };
   window.Tawk_API.onChatHidden = function () { pill.classList.remove("chat-open"); };
   window.Tawk_API.onChatStarted = function () {
@@ -193,23 +218,35 @@
     // Best effort: let Alma see the visitor's remaining time in the dashboard timeline.
     try { window.Tawk_API.addEvent("points-timer", { remaining: fmt(balance) }, function () {}); } catch (e) {}
   };
-  // The clock starts only once Alma sends her first message.
-  window.Tawk_API.onChatMessageAgent = function () {
+  // The clock starts only once Alma sends her first message — and Alma can
+  // control it from inside the chat: "!pause" (or ⏸) freezes the timer,
+  // "!resume" (or ▶) restarts it. Only agent messages reach this handler,
+  // so visitors can't trigger the commands themselves.
+  function agentCommand(msg) {
+    var m = String(msg || "").trim().toLowerCase();
+    if (m === "!pause" || m === "⏸" || m === "⏸️") return "pause";
+    if (m === "!resume" || m === "▶" || m === "▶️") return "resume";
+    return null;
+  }
+  window.Tawk_API.onChatMessageAgent = function (message) {
+    var cmd = agentCommand(message);
+    if (cmd === "pause") { pausedByAlma = true; render(); return; }
+    if (cmd === "resume") { pausedByAlma = false; waiting = false; chatting = true; render(); return; }
     waiting = false;
-    chatting = true;
+    chatting = true; // a paused clock stays paused until !resume — see tick guard
     render();
   };
-  window.Tawk_API.onChatEnded = function () { chatting = false; waiting = false; writeBalance(balance); render(); };
+  window.Tawk_API.onChatEnded = function () { chatting = false; waiting = false; pausedByAlma = false; writeBalance(balance); render(); };
   document.addEventListener("visibilitychange", render);
   window.addEventListener("beforeunload", function () { writeBalance(balance); });
 
   setInterval(function () {
-    if (chatting && balance > 0 && document.visibilityState === "visible") {
+    if (chatting && !pausedByAlma && balance > 0 && document.visibilityState === "visible") {
       balance--;
       writeBalance(balance);
       if (balance <= 0) {
         chatting = false;
-        try { if (window.Tawk_API.endChat) window.Tawk_API.endChat(); } catch (e) {}
+        lockChat();
         showTimeUp();
       }
       render();

@@ -612,6 +612,7 @@
       "La sala de chat se está configurando — Alma te contactará por el WhatsApp o Telegram que dejaste en el pago.",
     "Starts when Alma replies": "Empieza cuando Alma responda",
     "Waiting for Alma — not counting yet": "Esperando a Alma — aún no corre el tiempo",
+    "Paused by Alma 💛": "En pausa por Alma 💛",
     "Chatting": "Conversando",
     "Paused — return to this tab": "En pausa — vuelve a esta pestaña",
     "Time's up — tap to top up 💛": "Se acabó el tiempo — toca para recargar 💛",
