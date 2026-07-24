@@ -94,8 +94,8 @@
   var PENDING_KEY = "afmPendingPack";  // {m: minutes, t: purchase click time}
 
   // TESTING MODE: credit tiny durations instead of the real minutes.
-  // When done testing, set TEST_MODE = false to restore full packs.
-  var TEST_MODE = true;
+  // Set to true only while testing the flow end to end.
+  var TEST_MODE = false;
   var TEST_SECONDS = { 5: 75, 10: 80, 20: 85, 30: 90 };
   function packSeconds(m) {
     if (TEST_MODE && TEST_SECONDS[m]) return TEST_SECONDS[m];
