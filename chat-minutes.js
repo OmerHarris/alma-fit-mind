@@ -9,6 +9,7 @@
   var BAL_KEY = "afmChatBalance";      // seconds remaining
   var PENDING_KEY = "afmPendingPack";  // {m: minutes, t: buy-click time}
   var ACTIVE_KEY = "afmChatActive";    // {t: last message time} — survives refreshes
+  var PAUSED_KEY = "afmChatPaused";    // Alma's pause — must survive refreshes too
   var TAWK_ID = "6a629ffdab56b61d4772487e/1ju8k1u43";
 
   // TESTING MODE: credit tiny durations instead of the real minutes.
@@ -53,9 +54,19 @@
   // where the pill offers a way to top up.
   if (balance <= 0 && !onChatRoom) return;
 
-  var chatting = false;     // counting — begins with Alma's first reply
-  var waiting = false;      // visitor opened a chat, Alma hasn't replied yet
-  var pausedByAlma = false; // Alma sent !pause; only !resume restarts the clock
+  function readPaused() {
+    try { return localStorage.getItem(PAUSED_KEY) === "1"; } catch (e) { return false; }
+  }
+  function writePaused(on) {
+    try {
+      if (on) localStorage.setItem(PAUSED_KEY, "1");
+      else localStorage.removeItem(PAUSED_KEY);
+    } catch (e) {}
+  }
+
+  var chatting = false;              // counting — begins with Alma's first reply
+  var waiting = false;               // visitor opened a chat, Alma hasn't replied yet
+  var pausedByAlma = readPaused();   // Alma sent !pause; only !resume restarts the clock
 
   // ---- Conversation state that survives a page refresh -------------------
   function markActive() {
@@ -129,12 +140,17 @@
     timeEl.textContent = fmt(balance);
     pill.classList.toggle("is-done", balance <= 0);
     pill.classList.toggle("is-live", chatting && !pausedByAlma && balance > 0 && document.visibilityState === "visible");
+    // Counting always wins over "waiting" — Tawk re-fires chat-started on
+    // reload, and the label must never claim it's free while it's ticking.
     if (balance <= 0) statusEl.textContent = T("Time's up — tap to top up 💛");
     else if (pausedByAlma) statusEl.textContent = T("Paused by Alma 💛");
+    else if (chatting) {
+      statusEl.textContent = document.visibilityState !== "visible"
+        ? T("Paused — return to this tab")
+        : T("Chatting");
+    }
     else if (waiting) statusEl.textContent = T("Waiting for Alma — not counting yet");
-    else if (!chatting) statusEl.textContent = T("Starts when Alma replies");
-    else if (document.visibilityState !== "visible") statusEl.textContent = T("Paused — return to this tab");
-    else statusEl.textContent = T("Chatting");
+    else statusEl.textContent = T("Starts when Alma replies");
   }
 
   // ---- Tawk hooks --------------------------------------------------------
@@ -184,7 +200,9 @@
   window.Tawk_API.onChatHidden = function () { pill.classList.remove("chat-open"); pinPill(); };
   window.Tawk_API.onChatStarted = function () {
     // Visitor opened the conversation — don't count yet; Alma may be away.
-    waiting = true;
+    // On a reload Tawk replays this for the restored session, so never undo a
+    // conversation that is already counting.
+    if (!chatting) waiting = true;
     markActive();
     render();
     // Best effort: let Alma see the visitor's remaining time in her dashboard.
@@ -196,28 +214,41 @@
   // it from inside the chat: "!pause" (🛑 / ✋) freezes the timer, "!resume"
   // (✅ / 🟢) restarts it. Only agent messages reach this handler, so visitors
   // can't trigger the commands themselves.
+  // Pause/resume triggers. Tawk often replaces an emoji with an <img> whose
+  // URL carries the Unicode codepoint (🛑 -> 1f6d1), so match the raw markup
+  // as well as the plain text.
+  var PAUSE_TOKENS = ["!pause", "🛑", "✋", "⏸", "1f6d1", "270b", "23f8"];
+  var RESUME_TOKENS = ["!resume", "✅", "🟢", "▶", "2705", "1f7e2", "25b6"];
   function agentCommand(msg) {
     // Tawk's payload shape varies — accept a raw string or an object with a
-    // message/text/body field, strip any HTML, and match by "contains".
-    var m = "";
-    if (typeof msg === "string") m = msg;
-    else if (msg) m = String(msg.message || msg.text || msg.body || "");
-    m = m.replace(/<[^>]*>/g, " ").toLowerCase();
-    if (m.indexOf("!pause") !== -1 || m.indexOf("🛑") !== -1 || m.indexOf("✋") !== -1 || m.indexOf("⏸") !== -1) return "pause";
-    if (m.indexOf("!resume") !== -1 || m.indexOf("✅") !== -1 || m.indexOf("🟢") !== -1 || m.indexOf("▶") !== -1) return "resume";
+    // message/text/body field.
+    var raw = "";
+    if (typeof msg === "string") raw = msg;
+    else if (msg) raw = String(msg.message || msg.text || msg.body || "");
+    raw = raw.toLowerCase();
+    var text = raw.replace(/<[^>]*>/g, " ");
+    function has(tokens) {
+      for (var i = 0; i < tokens.length; i++) {
+        if (text.indexOf(tokens[i]) !== -1 || raw.indexOf(tokens[i]) !== -1) return true;
+      }
+      return false;
+    }
+    if (has(PAUSE_TOKENS)) return "pause";
+    if (has(RESUME_TOKENS)) return "resume";
     return null;
   }
   window.Tawk_API.onChatMessageAgent = function (message) {
     markActive();
     var cmd = agentCommand(message);
-    if (cmd === "pause") { pausedByAlma = true; render(); return; }
-    if (cmd === "resume") { pausedByAlma = false; waiting = false; chatting = true; render(); return; }
+    if (cmd === "pause") { pausedByAlma = true; writePaused(true); render(); return; }
+    if (cmd === "resume") { pausedByAlma = false; writePaused(false); waiting = false; chatting = true; render(); return; }
     waiting = false;
     chatting = true; // a paused clock stays paused until !resume — see tick guard
     render();
   };
   window.Tawk_API.onChatEnded = function () {
     chatting = false; waiting = false; pausedByAlma = false;
+    writePaused(false);
     clearActive();
     writeSpent(balance);
     render();
@@ -231,6 +262,7 @@
       writeSpent(balance);
       if (balance <= 0) {
         chatting = false;
+        writePaused(false);
         clearActive();
         lockChat();
         showTimeUp();
