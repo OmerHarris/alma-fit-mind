@@ -996,6 +996,24 @@ a.value-prop:hover, a.value-prop:focus-visible {
 .packs-grid { grid-template-columns: repeat(4, 1fr); max-width: 1080px; }
 .packs-grid .price-card { position: relative; }
 
+/* Price chips in the exclusive hero — prices visible immediately */
+.hero-price-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 26px; }
+.hero-price-chip {
+  display: inline-block;
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-decoration: none;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+}
+.hero-price-chip:hover { border-color: var(--gold); background: rgba(255, 255, 255, 0.14); transform: translateY(-2px); }
+.hero-price-chip-featured { border-color: var(--gold); background: var(--gold); color: #14181a; }
+.hero-price-chip-featured:hover { background: #c8a468; }
+
 /* Returning buyer: way back into the chat room */
 .have-minutes-banner {
   display: flex;
