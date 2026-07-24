@@ -230,8 +230,8 @@
     else if (msg) m = String(msg.message || msg.text || msg.body || "");
     m = m.replace(/<[^>]*>/g, " ").toLowerCase();
     try { console.debug("afm agent msg payload:", typeof msg, JSON.stringify(msg).slice(0, 300)); } catch (e) {}
-    if (m.indexOf("!pause") !== -1 || m.indexOf("⏸") !== -1) return "pause";
-    if (m.indexOf("!resume") !== -1 || m.indexOf("▶") !== -1) return "resume";
+    if (m.indexOf("!pause") !== -1 || m.indexOf("🛑") !== -1 || m.indexOf("✋") !== -1 || m.indexOf("⏸") !== -1) return "pause";
+    if (m.indexOf("!resume") !== -1 || m.indexOf("✅") !== -1 || m.indexOf("🟢") !== -1 || m.indexOf("▶") !== -1) return "resume";
     return null;
   }
   window.Tawk_API.onChatMessageAgent = function (message) {
