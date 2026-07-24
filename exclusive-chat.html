@@ -96,7 +96,7 @@
   // TESTING MODE: credit tiny durations instead of the real minutes.
   // When done testing, set TEST_MODE = false to restore full packs.
   var TEST_MODE = true;
-  var TEST_SECONDS = { 5: 15, 10: 20, 20: 25, 30: 30 };
+  var TEST_SECONDS = { 5: 75, 10: 80, 20: 85, 30: 90 };
   function packSeconds(m) {
     if (TEST_MODE && TEST_SECONDS[m]) return TEST_SECONDS[m];
     return m * 60;
