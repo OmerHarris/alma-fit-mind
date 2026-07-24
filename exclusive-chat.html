@@ -187,7 +187,22 @@
 
   // ---- Count only while genuinely chatting ----
   window.Tawk_API = window.Tawk_API || {};
-  window.Tawk_API.onChatStarted = function () { chatting = true; render(); };
+  // Keep the pill painted ABOVE Tawk's widget (same max z-index — later DOM node wins),
+  // and float it top-center over the fullscreen chat on phones.
+  function elevate() {
+    document.body.appendChild(pill);
+    document.body.appendChild(panel);
+  }
+  window.Tawk_API.onLoad = function () { elevate(); render(); };
+  window.Tawk_API.onChatMaximized = function () { elevate(); pill.classList.add("chat-open"); };
+  window.Tawk_API.onChatMinimized = function () { pill.classList.remove("chat-open"); };
+  window.Tawk_API.onChatHidden = function () { pill.classList.remove("chat-open"); };
+  window.Tawk_API.onChatStarted = function () {
+    chatting = true;
+    render();
+    // Best effort: let Alma see the visitor's remaining time in the dashboard timeline.
+    try { window.Tawk_API.addEvent("points-timer", { remaining: fmt(balance) }, function () {}); } catch (e) {}
+  };
   window.Tawk_API.onChatEnded = function () { chatting = false; writeBalance(balance); render(); };
   document.addEventListener("visibilitychange", render);
   window.addEventListener("beforeunload", function () { writeBalance(balance); });
