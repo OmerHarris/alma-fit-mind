@@ -4,6 +4,12 @@
   const p = location.pathname;
   if (/\/chat\.html$/.test(p) || /\/kitchen\.html$/.test(p)) return; // chat is itself; kitchen redirects immediately
 
+  // Paid minutes left? Alma's own live chat takes the corner instead of the
+  // assistant launcher, so the two widgets never stack.
+  try {
+    if (Number(localStorage.getItem("afmChatBalance")) > 0) return;
+  } catch (e) {}
+
   const T = (s) => (window.__afmT ? window.__afmT(s) : s);
 
   const fab = document.createElement("button");
