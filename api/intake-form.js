@@ -61,10 +61,8 @@ const FIELD_LABELS = [
   ["q2", "Home equipment"],
   ["q3", "Wearable"],
   [null, "COACHING & BOUNDARIES"],
-  ["p1", "Why now"],
   ["p2", "Preferred coaching style"],
   ["p3", "Check-in channel"],
-  ["p4", "Tactile form-correction consent"],
   [null, "ACKNOWLEDGMENT"],
   ["ack", "Certified accurate + agreed to Terms & Waiver"],
   ["signature", "Signed (typed)"],
@@ -91,14 +89,12 @@ module.exports = async (req, res) => {
     res.status(400).json({ error: "Please enter a phone number." });
     return;
   }
-  if (!data.emergencyName || !data.emergencyPhone) {
-    res.status(400).json({ error: "Please add an emergency contact." });
-    return;
-  }
-  const age = Number(data.age);
-  if (!Number.isFinite(age) || age < 18 || age > 120) {
-    res.status(400).json({ error: "Coaching is for adults 18 and older." });
-    return;
+  if (data.age !== undefined && data.age !== null && data.age !== "") {
+    const age = Number(data.age);
+    if (Number.isFinite(age) && (age < 18 || age > 120)) {
+      res.status(400).json({ error: "Coaching is for adults 18 and older." });
+      return;
+    }
   }
   if (data.ack !== true) {
     res.status(400).json({ error: "Please confirm the acknowledgment." });

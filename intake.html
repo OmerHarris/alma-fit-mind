@@ -29,6 +29,21 @@
       <span class="logo-mark">A</span>
       <span class="logo-text">Alma <em>Fit &amp; Mind</em></span>
     </a>
+    <div class="mobile-menu">
+      <nav class="main-nav" id="mainNav" aria-label="Primary">
+      <a href="/method.html">Method</a>
+      <a href="/#pricing">Coaching</a>
+      <a href="/intake.html">Onboarding</a>
+      <a href="/about.html">About Alma</a>
+      <a href="/faq.html">FAQ</a>
+    </nav>
+    <div class="header-cta">
+      <a class="btn btn-primary btn-sm" href="/#pricing">Get Your Plan</a>
+    </div>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -55,8 +70,8 @@
             <input type="text" id="fullName" name="fullName" required autocomplete="name" maxlength="80" />
           </div>
           <div class="form-row">
-            <label for="dob">Date of birth <span class="field-req">(required — coaching is 18+)</span></label>
-            <input type="date" id="dob" name="dob" required />
+            <label for="dob">Date of birth <span class="field-opt">(optional — coaching is 18+)</span></label>
+            <input type="date" id="dob" name="dob" />
           </div>
           <div class="form-row">
             <label for="email">Email <span class="field-req">(required)</span></label>
@@ -67,12 +82,12 @@
             <input type="tel" id="phone" name="phone" required autocomplete="tel" inputmode="tel" maxlength="40" />
           </div>
           <div class="form-row">
-            <label for="emergencyName">Emergency contact — name <span class="field-req">(required)</span></label>
-            <input type="text" id="emergencyName" name="emergencyName" required maxlength="80" />
+            <label for="emergencyName">Emergency contact — name <span class="field-opt">(optional)</span></label>
+            <input type="text" id="emergencyName" name="emergencyName" maxlength="80" />
           </div>
           <div class="form-row">
-            <label for="emergencyPhone">Emergency contact — phone <span class="field-req">(required)</span></label>
-            <input type="tel" id="emergencyPhone" name="emergencyPhone" required inputmode="tel" maxlength="40" />
+            <label for="emergencyPhone">Emergency contact — phone <span class="field-opt">(optional)</span></label>
+            <input type="tel" id="emergencyPhone" name="emergencyPhone" inputmode="tel" maxlength="40" />
           </div>
         </fieldset>
 
@@ -81,7 +96,7 @@
           <legend>🫀 Health &amp; safety</legend>
           <p class="intake-blurb">Zero judgment — this is purely so every single workout is safe for your body. If anything here needs a doctor's okay first, Alma will tell you.</p>
 
-          <div class="intake-q" data-req-group="h1">
+          <div class="intake-q">
             <p class="intake-qlabel">Any injuries, chronic joint pain (knees, lower back, shoulders…) or recent surgeries?</p>
             <div class="intake-chips">
               <label class="intake-chip"><input type="radio" name="h1" value="Yes" data-reveal="h1DetailsWrap" /><span>Yes</span></label>
@@ -93,7 +108,7 @@
             </div>
           </div>
 
-          <div class="intake-q" data-req-group="h2">
+          <div class="intake-q">
             <p class="intake-qlabel">Ever been diagnosed with high blood pressure, diabetes, asthma, or heart problems?</p>
             <div class="intake-chips">
               <label class="intake-chip"><input type="radio" name="h2" value="Yes" data-reveal="h2DetailsWrap" /><span>Yes</span></label>
@@ -105,7 +120,7 @@
             </div>
           </div>
 
-          <div class="intake-q" data-req-group="h3">
+          <div class="intake-q">
             <p class="intake-qlabel">Taking any medication that could affect your heart rate, blood pressure, or balance during exercise?</p>
             <div class="intake-chips">
               <label class="intake-chip"><input type="radio" name="h3" value="Yes" data-reveal="h3DetailsWrap" /><span>Yes</span></label>
@@ -117,7 +132,7 @@
             </div>
           </div>
 
-          <div class="intake-q" data-req-group="h4">
+          <div class="intake-q">
             <p class="intake-qlabel">Ever feel dizzy, lightheaded, or chest pain during — or right after — physical exertion?</p>
             <div class="intake-chips">
               <label class="intake-chip"><input type="radio" name="h4" value="Yes" data-reveal="h4DetailsWrap" /><span>Yes</span></label>
@@ -129,7 +144,7 @@
             </div>
           </div>
 
-          <div class="intake-q" data-req-group="h5">
+          <div class="intake-q">
             <p class="intake-qlabel">Are you currently pregnant, or have you given birth within the past 12 months?</p>
             <div class="intake-chips">
               <label class="intake-chip"><input type="radio" name="h5" value="Yes" /><span>Yes</span></label>
@@ -144,7 +159,7 @@
           <legend>🎯 Your goal</legend>
           <p class="intake-blurb">Define the win, and we'll build the roadmap to it.</p>
 
-          <div class="intake-q" data-req-group="g1">
+          <div class="intake-q">
             <p class="intake-qlabel">What's the #1 thing you're hiring a coach for?</p>
             <div class="intake-chips">
               <label class="intake-chip"><input type="radio" name="g1" value="Fat loss" /><span>Fat loss</span></label>
@@ -170,7 +185,7 @@
             </div>
           </div>
 
-          <div class="intake-q" data-req-group="g3">
+          <div class="intake-q">
             <p class="intake-qlabel">Your target timeline for real, measurable progress?</p>
             <div class="intake-chips">
               <label class="intake-chip"><input type="radio" name="g3" value="1-3 months" /><span>1–3 months</span></label>
@@ -193,7 +208,7 @@
           <legend>🏋️ Your experience</legend>
           <p class="intake-blurb">Knowing where you've been keeps the program from being boring, repetitive, or risky.</p>
 
-          <div class="intake-q" data-req-group="e1">
+          <div class="intake-q">
             <p class="intake-qlabel">Worked with a trainer or followed a structured program before?</p>
             <div class="intake-chips">
               <label class="intake-chip"><input type="radio" name="e1" value="Yes" data-reveal="e1DetailsWrap" /><span>Yes</span></label>
@@ -231,7 +246,7 @@
             <div class="form-row"><input type="text" name="l1Job" maxlength="120" placeholder="e.g. nurse, developer, driver, full-time parent…" /></div>
           </div>
 
-          <div class="intake-q" data-req-group="l1Sitting">
+          <div class="intake-q">
             <p class="intake-qlabel">Hours per day sitting at a desk or driving?</p>
             <div class="intake-chips">
               <label class="intake-chip"><input type="radio" name="l1Sitting" value="0-2" /><span>0–2</span></label>
@@ -241,7 +256,7 @@
             </div>
           </div>
 
-          <div class="intake-q" data-req-group="l2Days">
+          <div class="intake-q">
             <p class="intake-qlabel">Days per week you can realistically train?</p>
             <div class="intake-chips">
               <label class="intake-chip"><input type="radio" name="l2Days" value="1-2" /><span>1–2</span></label>
@@ -251,7 +266,7 @@
             </div>
           </div>
 
-          <div class="intake-q" data-req-group="l2Session">
+          <div class="intake-q">
             <p class="intake-qlabel">And how long per session?</p>
             <div class="intake-chips">
               <label class="intake-chip"><input type="radio" name="l2Session" value="20-30 min" /><span>20–30 min</span></label>
@@ -261,7 +276,7 @@
             </div>
           </div>
 
-          <div class="intake-q" data-req-group="l3Sleep">
+          <div class="intake-q">
             <p class="intake-qlabel">Sleep per night, on average?</p>
             <div class="intake-chips">
               <label class="intake-chip"><input type="radio" name="l3Sleep" value="Under 5h" /><span>Under 5h</span></label>
@@ -271,7 +286,7 @@
             </div>
           </div>
 
-          <div class="intake-q" data-req-group="l3Rested">
+          <div class="intake-q">
             <p class="intake-qlabel">Do you wake up feeling rested?</p>
             <div class="intake-chips">
               <label class="intake-chip"><input type="radio" name="l3Rested" value="Usually" /><span>Usually</span></label>
@@ -296,7 +311,7 @@
           <legend>🍎 Your plate</legend>
           <p class="intake-blurb">Training and food are one system. This spots the energy gaps before they slow you down.</p>
 
-          <div class="intake-q" data-req-group="n1">
+          <div class="intake-q">
             <p class="intake-qlabel">Meals on a typical day?</p>
             <div class="intake-chips">
               <label class="intake-chip"><input type="radio" name="n1" value="1-2" /><span>1–2</span></label>
@@ -310,7 +325,7 @@
             </div>
           </div>
 
-          <div class="intake-q" data-req-group="n2">
+          <div class="intake-q">
             <p class="intake-qlabel">Water on an average day?</p>
             <div class="intake-chips">
               <label class="intake-chip"><input type="radio" name="n2" value="Under 1 L" /><span>Under 1 L</span></label>
@@ -325,7 +340,7 @@
             <div class="form-row"><textarea name="n3" rows="2" maxlength="500" placeholder="None"></textarea></div>
           </div>
 
-          <div class="intake-q" data-req-group="n4">
+          <div class="intake-q">
             <p class="intake-qlabel">Emotional eating, late-night snacking, or strong sugar/salt cravings when stressed or tired?</p>
             <div class="intake-chips">
               <label class="intake-chip"><input type="radio" name="n4" value="Yes" /><span>Yes</span></label>
@@ -340,7 +355,7 @@
           <legend>🏠 Your setup</legend>
           <p class="intake-blurb">So every workout is built for the space and gear you actually have.</p>
 
-          <div class="intake-q" data-req-group="q1">
+          <div class="intake-q">
             <p class="intake-qlabel">Where will your workouts happen?</p>
             <div class="intake-chips">
               <label class="intake-chip"><input type="radio" name="q1" value="Commercial gym" /><span>Commercial gym</span></label>
@@ -354,7 +369,7 @@
             </div>
           </div>
 
-          <div class="intake-q" data-req-group="q3">
+          <div class="intake-q">
             <p class="intake-qlabel">Do you track steps, sleep or calories with a wearable?</p>
             <div class="intake-chips">
               <label class="intake-chip"><input type="radio" name="q3" value="Apple Watch" /><span>Apple Watch</span></label>
@@ -373,37 +388,23 @@
           <p class="intake-blurb">How we'll work together — trust, accountability, and clear boundaries from day one.</p>
 
           <div class="intake-q">
-            <p class="intake-qlabel">Real talk: why now? Why not six months ago — or six months from now?</p>
-            <div class="form-row"><textarea name="p1" rows="3" maxlength="800" placeholder="This is the answer Alma reads first. 💛" required></textarea></div>
-          </div>
-
-          <div class="intake-q" data-req-group="p2">
             <p class="intake-qlabel">How do you want to be coached?</p>
             <div class="intake-chips intake-chips-stack">
-              <label class="intake-chip"><input type="radio" name="p2" value="Direct and demanding - tough love" /><span>🔥 Direct &amp; demanding — tough love</span></label>
               <label class="intake-chip"><input type="radio" name="p2" value="Gentle, patient and educational" /><span>💛 Gentle, patient &amp; educational</span></label>
-              <label class="intake-chip"><input type="radio" name="p2" value="A mix of both" /><span>⚖️ A mix of both</span></label>
+              <label class="intake-chip"><input type="radio" name="p2" value="A mix of both" /><span>⚖️ A mix — encouraging, but firm when needed</span></label>
             </div>
           </div>
 
-          <div class="intake-q" data-req-group="p3">
+          <div class="intake-q">
             <p class="intake-qlabel">Best channel for weekly check-ins and support?</p>
             <div class="intake-chips">
               <label class="intake-chip"><input type="radio" name="p3" value="WhatsApp" /><span>WhatsApp</span></label>
               <label class="intake-chip"><input type="radio" name="p3" value="Email" /><span>Email</span></label>
               <label class="intake-chip"><input type="radio" name="p3" value="Phone call" /><span>Phone call</span></label>
-              <label class="intake-chip"><input type="radio" name="p3" value="Training app" /><span>Training app</span></label>
             </div>
           </div>
 
-          <div class="intake-q" data-req-group="p4">
-            <p class="intake-qlabel">During in-person sessions, are you comfortable with light tactile guidance (a hand on the shoulder, hip, or back) to correct your form?</p>
-            <div class="intake-chips intake-chips-stack">
-              <label class="intake-chip"><input type="radio" name="p4" value="Yes, I'm comfortable with it" /><span>Yes, I'm comfortable with it</span></label>
-              <label class="intake-chip"><input type="radio" name="p4" value="Verbal and visual cues only" /><span>Verbal &amp; visual cues only, please</span></label>
-            </div>
-          </div>
-        </fieldset>
+</fieldset>
 
         <!-- STEP 9 · SIGN & SEND -->
         <fieldset class="intake-step" data-title="✍️ Make it official">
@@ -565,7 +566,7 @@
       if (!fs.querySelector('input[name="' + name + '"]:checked')) return T("Please tap an answer for every question.");
     }
     var dob = fs.querySelector("#dob");
-    if (dob) {
+    if (dob && dob.value) {
       var age = ageFromDob(dob.value);
       if (!(age >= 18 && age <= 120)) return T("Coaching is for adults — you must be 18 or older.");
     }

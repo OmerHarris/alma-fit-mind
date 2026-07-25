@@ -577,6 +577,9 @@
 
     // ---- Intake questionnaire ----
     "New Client Onboarding": "Bienvenida de Nuevos Clientes",
+    "Onboarding": "Registro",
+    "(optional — coaching is 18+)": "(opcional — el coaching es 18+)",
+    "⚖️ A mix — encouraging, but firm when needed": "⚖️ Una mezcla — motivadora, pero firme cuando hace falta",
     "Let's build your plan.": "Construyamos tu plan.",
     "A few honest answers so your program fits your body, your life, and your head. Takes about 8 minutes — your progress saves automatically, so you can come back anytime.":
       "Unas respuestas honestas para que tu programa se adapte a tu cuerpo, tu vida y tu mente. Toma unos 8 minutos — tu progreso se guarda automáticamente, así que puedes volver cuando quieras.",
@@ -585,7 +588,6 @@
       "Para que Alma sepa para quién está construyendo — y a quién llamar si algo pasa en plena sesión.",
     "Full name": "Nombre completo",
     "Date of birth": "Fecha de nacimiento",
-    "(required — coaching is 18+)": "(obligatorio — el coaching es 18+)",
     "Phone / WhatsApp": "Teléfono / WhatsApp",
     "Emergency contact — name": "Contacto de emergencia — nombre",
     "Emergency contact — phone": "Contacto de emergencia — teléfono",
@@ -673,19 +675,10 @@
     "🤝 You + Alma": "🤝 Tú + Alma",
     "How we'll work together — trust, accountability, and clear boundaries from day one.":
       "Cómo trabajaremos juntos — confianza, compromiso y límites claros desde el día uno.",
-    "Real talk: why now? Why not six months ago — or six months from now?":
-      "Hablando en serio: ¿por qué ahora? ¿Por qué no hace seis meses — o dentro de seis meses?",
     "How do you want to be coached?": "¿Cómo quieres que te entrenen?",
-    "🔥 Direct & demanding — tough love": "🔥 Directa y exigente — mano dura",
     "💛 Gentle, patient & educational": "💛 Suave, paciente y educativa",
-    "⚖️ A mix of both": "⚖️ Una mezcla de ambas",
     "Best channel for weekly check-ins and support?": "¿Mejor canal para los check-ins semanales y el apoyo?",
     "Phone call": "Llamada telefónica",
-    "Training app": "App de entrenamiento",
-    "During in-person sessions, are you comfortable with light tactile guidance (a hand on the shoulder, hip, or back) to correct your form?":
-      "En sesiones presenciales, ¿te sientes cómodo/a con guía táctil ligera (una mano en el hombro, cadera o espalda) para corregir tu postura?",
-    "Yes, I'm comfortable with it": "Sí, me siento cómodo/a",
-    "Verbal & visual cues only, please": "Solo indicaciones verbales y visuales, por favor",
     "✍️ Make it official": "✍️ Hazlo oficial",
     "Last step — then Alma takes it from here.": "Último paso — de aquí en adelante se encarga Alma.",
     "I certify that the health information I've provided is accurate and complete, and I have read and agree to the":

@@ -2038,6 +2038,8 @@ textarea:focus-visible {
   .section { padding: 64px 0; }
 }
 
+[hidden] { display: none !important; }
+
 /* ---------- Client intake wizard ---------- */
 .intake { background: var(--paper); padding-top: 130px; }
 .intake-wrap { max-width: 680px; }
