@@ -306,6 +306,12 @@
       }
       return false;
     }
+    // "!add 5" — Alma gifts extra minutes (capped, so a typo can't hand out hours).
+    var add = text.match(/!add\s*(\d{1,3})/) || raw.match(/!add\s*(\d{1,3})/);
+    if (add) {
+      var n = Number(add[1]) || 0;
+      if (n > 0) return { add: Math.min(n, 120) };
+    }
     if (has(PAUSE_TOKENS)) return "pause";
     if (has(RESUME_TOKENS)) return "resume";
     return null;
@@ -313,6 +319,23 @@
   window.Tawk_API.onChatMessageAgent = function (message) {
     markActive(true); // Alma has joined this conversation
     var cmd = agentCommand(message);
+    if (cmd && cmd.add) {
+      // Alma is gifting time — if they had run out, reopen the chat she just
+      // reopened the door to.
+      var wasEmpty = balance <= 0;
+      balance += cmd.add * 60;
+      writeBalance(balance);
+      if (wasEmpty) {
+        pausedByAlma = false;
+        writePaused(false);
+        if (overlay) { overlay.remove(); overlay = null; }
+        try { if (window.Tawk_API.showWidget) window.Tawk_API.showWidget(); } catch (e) {}
+      }
+      waiting = false;
+      chatting = true; // she's clearly here
+      render();
+      return;
+    }
     if (cmd === "pause") { pausedByAlma = true; writePaused(true); render(); return; }
     if (cmd === "resume") { pausedByAlma = false; writePaused(false); waiting = false; chatting = true; render(); return; }
     waiting = false;
@@ -346,8 +369,11 @@
 
   render();
 
-  // ---- Load Tawk (only when there's time to spend) -----------------------
-  if (balance > 0) {
+  // ---- Load Tawk ---------------------------------------------------------
+  // With time left, anywhere on the site. With none left, still load it in the
+  // chat room (hidden on load, so they can't keep texting) — that keeps the
+  // connection alive so Alma can gift minutes with "!add".
+  if (balance > 0 || onChatRoom) {
     window.Tawk_LoadStart = new Date();
     var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
     s1.async = true;
