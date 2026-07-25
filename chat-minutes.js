@@ -123,29 +123,30 @@
   function readState() {
     try { return JSON.parse(localStorage.getItem(ACTIVE_KEY) || "null"); } catch (e) { return null; }
   }
-  // `replied` records that Alma has joined this conversation, so a page change
-  // can tell "resume the running clock" apart from "waiting for her first reply".
-  function markActive(replied) {
+  // The conversation's state lives here so it survives page changes:
+  //   t        last activity
+  //   replied  Alma has joined this conversation
+  //   counting the clock was running when the page was left
+  var IDLE_LIMIT = 15 * 60 * 1000; // silence this long ends the session
+  function saveState(patch) {
     var s = readState() || {};
     s.t = Date.now();
-    if (replied) s.replied = true;
+    if (patch) { for (var k in patch) s[k] = patch[k]; }
     try { localStorage.setItem(ACTIVE_KEY, JSON.stringify(s)); } catch (e) {}
   }
+  function markActive(replied) { saveState(replied ? { replied: true } : null); }
   function clearActive() {
     try { localStorage.removeItem(ACTIVE_KEY); } catch (e) {}
   }
   function repliedRecently() {
     var s = readState();
-    return !!(s && s.replied && s.t && Date.now() - s.t <= 30 * 60 * 1000);
+    return !!(s && s.replied && s.t && Date.now() - s.t <= IDLE_LIMIT);
   }
-  // Resume counting only for a genuinely live conversation: Alma already
-  // replied, it was recent, and Tawk still reports the chat as ongoing.
+  // Resume the clock on a new page from our own record — Tawk doesn't reliably
+  // report a restored session, and waiting on it left the timer stopped.
   function shouldResume() {
-    if (!repliedRecently()) return false;
-    if (window.Tawk_API && typeof window.Tawk_API.isChatOngoing === "function") {
-      try { return !!window.Tawk_API.isChatOngoing(); } catch (e) {}
-    }
-    return true;
+    var s = readState();
+    return !!(s && s.counting && s.t && Date.now() - s.t <= IDLE_LIMIT);
   }
   function tryResume() {
     if (chatting || pausedByAlma || balance <= 0) return;
@@ -274,7 +275,7 @@
     // this is a restored chat: pick the clock back up rather than "waiting".
     markActive(false);
     if (!chatting) {
-      if (repliedRecently() && !pausedByAlma) chatting = true;
+      if (repliedRecently() && !pausedByAlma) { chatting = true; saveState({ counting: true }); }
       else waiting = true;
     }
     render();
@@ -333,13 +334,15 @@
       }
       waiting = false;
       chatting = true; // she's clearly here
+      saveState({ replied: true, counting: true });
       render();
       return;
     }
     if (cmd === "pause") { pausedByAlma = true; writePaused(true); render(); return; }
-    if (cmd === "resume") { pausedByAlma = false; writePaused(false); waiting = false; chatting = true; render(); return; }
+    if (cmd === "resume") { pausedByAlma = false; writePaused(false); waiting = false; chatting = true; saveState({ counting: true }); render(); return; }
     waiting = false;
     chatting = true; // a paused clock stays paused until !resume — see tick guard
+    saveState({ replied: true, counting: true });
     render();
   };
   window.Tawk_API.onChatEnded = function () {
@@ -356,6 +359,7 @@
     if (chatting && !pausedByAlma && balance > 0 && document.visibilityState === "visible") {
       balance--;
       writeSpent(balance);
+      if (balance % 20 === 0) saveState({ counting: true }); // keep the session fresh
       if (balance <= 0) {
         chatting = false;
         writePaused(false);
@@ -367,6 +371,9 @@
     }
   }, 1000);
 
+  // Pick the clock straight back up on a new page — don't wait for the chat
+  // widget to boot before the countdown continues.
+  tryResume();
   render();
 
   // ---- Load Tawk ---------------------------------------------------------
