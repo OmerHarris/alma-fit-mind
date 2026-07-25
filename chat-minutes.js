@@ -10,6 +10,7 @@
   var PENDING_KEY = "afmPendingPack";  // {m: minutes, t: buy-click time}
   var ACTIVE_KEY = "afmChatActive";    // {t: last message time} — survives refreshes
   var PAUSED_KEY = "afmChatPaused";    // Alma's pause — must survive refreshes too
+  var CREDITED_KEY = "afmCreditedSessions"; // Stripe sessions already credited
   var TAWK_ID = "6a629ffdab56b61d4772487e/1ju8k1u43";
 
   // TESTING MODE: credit tiny durations instead of the real minutes.
@@ -34,19 +35,69 @@
     writeBalance(Math.min(Math.floor(sec), readBalance()));
   }
 
-  // Credit a freshly bought pack — but only when arriving from Stripe's
+  // Credit a freshly bought pack — only when arriving from Stripe's
   // post-payment redirect (?paid=1), so backing out of checkout or opening
   // the chat room directly never credits time.
+  //
+  // The pack size travels in the redirect URL (&m=5) so the credit depends on
+  // the payment itself, not on a note left in the browser that can expire or
+  // be cleared. Stripe's &session_id={CHECKOUT_SESSION_ID} makes each payment
+  // creditable exactly once.
   var balance = readBalance();
-  var paidArrival = new URLSearchParams(location.search).get("paid") === "1";
-  try {
-    var pending = JSON.parse(localStorage.getItem(PENDING_KEY) || "null");
-    if (paidArrival && pending && pending.m > 0 && Date.now() - pending.t < 2 * 60 * 60 * 1000) {
-      balance += packSeconds(pending.m);
-      writeBalance(balance);
+  var params = new URLSearchParams(location.search);
+  var paidArrival = params.get("paid") === "1";
+  var urlMinutes = Number(params.get("m"));
+  var sessionId = params.get("session_id") || "";
+  var VALID_PACKS = [5, 10, 20, 30];
+
+  function creditedSessions() {
+    try { return JSON.parse(localStorage.getItem(CREDITED_KEY) || "[]") || []; } catch (e) { return []; }
+  }
+  function rememberSession(id) {
+    if (!id) return;
+    var list = creditedSessions();
+    if (list.indexOf(id) === -1) {
+      list.push(id);
+      if (list.length > 50) list = list.slice(-50);
+      try { localStorage.setItem(CREDITED_KEY, JSON.stringify(list)); } catch (e) {}
     }
-    if (paidArrival || pending) localStorage.removeItem(PENDING_KEY);
-  } catch (e) {}
+  }
+  function credit(minutes) {
+    balance += packSeconds(minutes);
+    writeBalance(balance);
+  }
+
+  if (paidArrival) {
+    var alreadyCredited = !!sessionId && creditedSessions().indexOf(sessionId) !== -1;
+    if (!alreadyCredited) {
+      if (VALID_PACKS.indexOf(urlMinutes) !== -1) {
+        credit(urlMinutes);
+        rememberSession(sessionId);
+        try { localStorage.removeItem(PENDING_KEY); } catch (e) {}
+      } else {
+        // Fallback for links that don't carry the pack size yet — generous
+        // window so a slow checkout still gets its minutes.
+        try {
+          var pending = JSON.parse(localStorage.getItem(PENDING_KEY) || "null");
+          if (pending && pending.m > 0 && Date.now() - pending.t < 24 * 60 * 60 * 1000) {
+            credit(pending.m);
+            rememberSession(sessionId);
+          }
+          localStorage.removeItem(PENDING_KEY);
+        } catch (e) {}
+      }
+    }
+    // Drop the query string so a refresh can't credit the same payment twice.
+    try {
+      if (window.history && history.replaceState) history.replaceState({}, "", location.pathname);
+    } catch (e) {}
+  } else {
+    // Bin a buy-click note that was never paid for.
+    try {
+      var stale = JSON.parse(localStorage.getItem(PENDING_KEY) || "null");
+      if (stale && stale.t && Date.now() - stale.t > 24 * 60 * 60 * 1000) localStorage.removeItem(PENDING_KEY);
+    } catch (e) {}
+  }
 
   var onChatRoom = /exclusive-chat\.html$/.test(location.pathname);
 
