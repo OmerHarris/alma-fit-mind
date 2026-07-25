@@ -1,20 +1,23 @@
 // Alma's private paid chat — available site-wide for as long as the visitor
 // has minutes left. Loads the Tawk widget, shows the countdown pill, and keeps
-// the balance in sync across pages and refreshes.
+// the balance in sync across pages, refreshes and tab switches.
 // Fairness/UX aid — Alma's Stripe records remain the source of truth.
 (function () {
   if (window.self !== window.top) return; // never inside the assistant iframe
 
   var T = function (s) { return window.__afmT ? window.__afmT(s) : s; };
-  var BAL_KEY = "afmChatBalance";      // seconds remaining
-  var PENDING_KEY = "afmPendingPack";  // {m: minutes, t: buy-click time}
-  var ACTIVE_KEY = "afmChatActive";    // {t: last message time} — survives refreshes
-  var PAUSED_KEY = "afmChatPaused";    // Alma's pause — must survive refreshes too
+  var BAL_KEY = "afmChatBalance";           // seconds remaining
+  var PENDING_KEY = "afmPendingPack";       // {m, t} buy-click note (fallback only)
+  var STATE_KEY = "afmChatActive";          // {t, replied, counting, runSince}
+  var PAUSED_KEY = "afmChatPaused";         // Alma's pause
   var CREDITED_KEY = "afmCreditedSessions"; // Stripe sessions already credited
   var TAWK_ID = "6a629ffdab56b61d4772487e/1ju8k1u43";
 
+  // A conversation with no messages either way for this long is over, so the
+  // clock stops even if a page was left open.
+  var IDLE_LIMIT = 15 * 60 * 1000;
+
   // TESTING MODE: credit tiny durations instead of the real minutes.
-  // Set to true only while testing the flow end to end.
   var TEST_MODE = false;
   var TEST_SECONDS = { 5: 75, 10: 80, 20: 85, 30: 90 };
   function packSeconds(m) {
@@ -22,6 +25,7 @@
     return m * 60;
   }
 
+  // ---- Balance -----------------------------------------------------------
   function readBalance() {
     var n = Number(localStorage.getItem(BAL_KEY));
     return Number.isFinite(n) && n > 0 ? Math.floor(n) : 0;
@@ -35,14 +39,37 @@
     writeBalance(Math.min(Math.floor(sec), readBalance()));
   }
 
-  // Credit a freshly bought pack — only when arriving from Stripe's
-  // post-payment redirect (?paid=1), so backing out of checkout or opening
-  // the chat room directly never credits time.
-  //
-  // The pack size travels in the redirect URL (&m=5) so the credit depends on
-  // the payment itself, not on a note left in the browser that can expire or
-  // be cleared. Stripe's &session_id={CHECKOUT_SESSION_ID} makes each payment
-  // creditable exactly once.
+  // ---- Conversation state (survives page changes) ------------------------
+  function readState() {
+    try { return JSON.parse(localStorage.getItem(STATE_KEY) || "null"); } catch (e) { return null; }
+  }
+  function saveState(patch) {
+    var s = readState() || {};
+    if (patch) { for (var k in patch) s[k] = patch[k]; }
+    try { localStorage.setItem(STATE_KEY, JSON.stringify(s)); } catch (e) {}
+  }
+  function clearState() {
+    try { localStorage.removeItem(STATE_KEY); } catch (e) {}
+  }
+  function touchState(patch) {
+    var p = patch || {};
+    p.t = Date.now(); // last message from either side
+    saveState(p);
+  }
+  function readPaused() {
+    try { return localStorage.getItem(PAUSED_KEY) === "1"; } catch (e) { return false; }
+  }
+  function writePaused(on) {
+    try {
+      if (on) localStorage.setItem(PAUSED_KEY, "1");
+      else localStorage.removeItem(PAUSED_KEY);
+    } catch (e) {}
+  }
+
+  // ---- Credit a purchase -------------------------------------------------
+  // The pack size travels in Stripe's redirect (&m=5) so the credit follows the
+  // payment, not a note in the browser that can expire. &session_id makes each
+  // payment creditable exactly once.
   var balance = readBalance();
   var params = new URLSearchParams(location.search);
   var paidArrival = params.get("paid") === "1";
@@ -75,8 +102,7 @@
         rememberSession(sessionId);
         try { localStorage.removeItem(PENDING_KEY); } catch (e) {}
       } else {
-        // Fallback for links that don't carry the pack size yet — generous
-        // window so a slow checkout still gets its minutes.
+        // Fallback for links that don't carry the pack size yet.
         try {
           var pending = JSON.parse(localStorage.getItem(PENDING_KEY) || "null");
           if (pending && pending.m > 0 && Date.now() - pending.t < 24 * 60 * 60 * 1000) {
@@ -92,7 +118,6 @@
       if (window.history && history.replaceState) history.replaceState({}, "", location.pathname);
     } catch (e) {}
   } else {
-    // Bin a buy-click note that was never paid for.
     try {
       var stale = JSON.parse(localStorage.getItem(PENDING_KEY) || "null");
       if (stale && stale.t && Date.now() - stale.t > 24 * 60 * 60 * 1000) localStorage.removeItem(PENDING_KEY);
@@ -101,56 +126,47 @@
 
   var onChatRoom = /exclusive-chat\.html$/.test(location.pathname);
 
-  // No minutes? Stay out of the way everywhere except the chat room itself,
-  // where the pill offers a way to top up.
+  // No minutes? Stay out of the way everywhere except the chat room itself.
   if (balance <= 0 && !onChatRoom) return;
 
-  function readPaused() {
-    try { return localStorage.getItem(PAUSED_KEY) === "1"; } catch (e) { return false; }
-  }
-  function writePaused(on) {
-    try {
-      if (on) localStorage.setItem(PAUSED_KEY, "1");
-      else localStorage.removeItem(PAUSED_KEY);
-    } catch (e) {}
-  }
+  var chatting = false;            // the clock is running
+  var waiting = false;             // chat open, Alma hasn't replied yet
+  var pausedByAlma = readPaused();
+  var runSince = null;             // wall-clock ms when the clock last started
 
-  var chatting = false;              // counting — begins with Alma's first reply
-  var waiting = false;               // visitor opened a chat, Alma hasn't replied yet
-  var pausedByAlma = readPaused();   // Alma sent !pause; only !resume restarts the clock
-
-  // ---- Conversation state that survives a page refresh -------------------
-  function readState() {
-    try { return JSON.parse(localStorage.getItem(ACTIVE_KEY) || "null"); } catch (e) { return null; }
+  // ---- Wall-clock accounting ---------------------------------------------
+  // Time is charged from real elapsed time, not from tick counts: browsers
+  // throttle timers in background tabs, so counting ticks would under-charge
+  // and stall whenever the visitor switched away.
+  function spendUntil(stopAt, from) {
+    var spent = Math.floor((stopAt - from) / 1000);
+    if (spent <= 0) return 0;
+    balance = Math.max(0, balance - spent);
+    writeSpent(balance);
+    return spent;
   }
-  // The conversation's state lives here so it survives page changes:
-  //   t        last activity
-  //   replied  Alma has joined this conversation
-  //   counting the clock was running when the page was left
-  var IDLE_LIMIT = 15 * 60 * 1000; // silence this long ends the session
-  function saveState(patch) {
-    var s = readState() || {};
-    s.t = Date.now();
-    if (patch) { for (var k in patch) s[k] = patch[k]; }
-    try { localStorage.setItem(ACTIVE_KEY, JSON.stringify(s)); } catch (e) {}
-  }
-  function markActive(replied) { saveState(replied ? { replied: true } : null); }
-  function clearActive() {
-    try { localStorage.removeItem(ACTIVE_KEY); } catch (e) {}
-  }
-  function repliedRecently() {
+  // Charge the gap while another page (or a closed tab) held the session, and
+  // report whether the conversation is still alive.
+  function settleGap() {
     var s = readState();
-    return !!(s && s.replied && s.t && Date.now() - s.t <= IDLE_LIMIT);
+    if (!s || !s.counting || !s.runSince) return false;
+    var now = Date.now();
+    var lastMsg = s.t || s.runSince;
+    var endsAt = lastMsg + IDLE_LIMIT;      // silence for this long ends it
+    spendUntil(Math.min(now, endsAt), s.runSince);
+    return now < endsAt;
   }
-  // Resume the clock on a new page from our own record — Tawk doesn't reliably
-  // report a restored session, and waiting on it left the timer stopped.
-  function shouldResume() {
-    var s = readState();
-    return !!(s && s.counting && s.t && Date.now() - s.t <= IDLE_LIMIT);
+  function startClock() {
+    runSince = Date.now();
+    chatting = true;
+    waiting = false;
+    saveState({ counting: true, runSince: runSince });
   }
-  function tryResume() {
-    if (chatting || pausedByAlma || balance <= 0) return;
-    if (shouldResume()) { chatting = true; waiting = false; render(); }
+  function stopClock() {
+    if (runSince !== null) spendUntil(Date.now(), runSince);
+    runSince = null;
+    chatting = false;
+    saveState({ counting: false, runSince: null });
   }
 
   // ---- Timer pill --------------------------------------------------------
@@ -165,8 +181,6 @@
   var timeEl = pill.querySelector(".chat-timer-time");
   var statusEl = pill.querySelector(".chat-timer-status");
 
-  // Out of time? The pill leads to the top-up page — minutes are only ever
-  // credited through a completed Stripe checkout.
   pill.addEventListener("click", function () {
     if (balance <= 0) window.location.href = "/exclusive.html";
   });
@@ -197,6 +211,13 @@
       overlay = null;
     });
   }
+  function outOfTime() {
+    stopClock();
+    clearState();
+    writePaused(false);
+    lockChat();
+    showTimeUp();
+  }
 
   function fmt(sec) {
     var m = Math.floor(sec / 60), s = sec % 60;
@@ -205,48 +226,38 @@
   function render() {
     timeEl.textContent = fmt(balance);
     pill.classList.toggle("is-done", balance <= 0);
-    pill.classList.toggle("is-live", chatting && !pausedByAlma && balance > 0 && document.visibilityState === "visible");
-    // Counting always wins over "waiting" — Tawk re-fires chat-started on
-    // reload, and the label must never claim it's free while it's ticking.
+    pill.classList.toggle("is-live", chatting && !pausedByAlma && balance > 0);
     if (balance <= 0) statusEl.textContent = T("Time's up — tap to top up 💛");
     else if (pausedByAlma) statusEl.textContent = T("Paused by Alma 💛");
-    else if (chatting) {
-      statusEl.textContent = document.visibilityState !== "visible"
-        ? T("Paused — return to this tab")
-        : T("Chatting");
-    }
+    else if (chatting) statusEl.textContent = T("Chatting");
     else if (waiting) statusEl.textContent = T("Waiting for Alma — not counting yet");
     else statusEl.textContent = T("Starts when Alma replies");
   }
 
+  // Pick a running conversation straight back up on a new page — before the
+  // chat widget has even booted.
+  (function resumeOnLoad() {
+    var stillLive = settleGap();
+    if (balance <= 0) { clearState(); return; }
+    if (stillLive && !pausedByAlma) startClock();
+    else if (stillLive && pausedByAlma) { chatting = true; saveState({ counting: true, runSince: null }); }
+    else if (!stillLive) clearState();
+  })();
+
   // ---- Tawk hooks --------------------------------------------------------
   window.Tawk_API = window.Tawk_API || {};
-  // Keep the pill painted above Tawk's widget (same max z-index — the later
-  // DOM node wins).
-  function elevate() {
-    if (document.body) document.body.appendChild(pill);
-  }
+  function elevate() { if (document.body) document.body.appendChild(pill); }
+
   window.Tawk_API.onLoad = function () {
     elevate();
     if (balance <= 0) {
-      // No minutes, no chat — and Tawk restores a previously-open panel
-      // asynchronously, so lock again shortly after load.
       lockChat();
       setTimeout(lockChat, 1500);
-    } else {
-      // A refresh (or moving to another page) mid-conversation shouldn't
-      // silently stop the clock. Tawk restores the session a moment after it
-      // loads, so keep checking briefly instead of giving up on the first try.
-      tryResume();
-      setTimeout(tryResume, 1200);
-      setTimeout(tryResume, 3000);
-      setTimeout(tryResume, 6000);
     }
     render();
   };
-  // Keep the pill inside the *visible* viewport when the phone keyboard is up:
-  // iOS pans/shrinks the visual viewport and fixed elements can end up outside
-  // the visible strip, so re-pin the pill to the visual viewport's top edge.
+
+  // Keep the pill inside the *visible* viewport when the phone keyboard is up.
   var vv = window.visualViewport;
   function pinPill() {
     if (pill.classList.contains("chat-open") && vv) {
@@ -261,41 +272,28 @@
   }
 
   window.Tawk_API.onChatMaximized = function () {
-    if (balance <= 0) { lockChat(); return; } // out of time: panel may not reopen
+    if (balance <= 0) { lockChat(); return; }
     elevate();
     pill.classList.add("chat-open");
     pinPill();
   };
   window.Tawk_API.onChatMinimized = function () { pill.classList.remove("chat-open"); pinPill(); };
   window.Tawk_API.onChatHidden = function () { pill.classList.remove("chat-open"); pinPill(); };
+
   window.Tawk_API.onChatStarted = function () {
-    // Visitor opened the conversation — don't count yet; Alma may be away.
-    // On a reload Tawk replays this for the restored session, so never undo a
-    // conversation that is already counting — and if Alma had already joined,
-    // this is a restored chat: pick the clock back up rather than "waiting".
-    markActive(false);
-    if (!chatting) {
-      if (repliedRecently() && !pausedByAlma) { chatting = true; saveState({ counting: true }); }
-      else waiting = true;
-    }
+    touchState();
+    if (!chatting && !pausedByAlma) waiting = true;
     render();
-    // Best effort: let Alma see the visitor's remaining time in her dashboard.
     try { window.Tawk_API.addEvent("chat-minutes", { remaining: fmt(balance) }, function () {}); } catch (e) {}
   };
-  window.Tawk_API.onChatMessageVisitor = function () { markActive(false); };
+  window.Tawk_API.onChatMessageVisitor = function () { touchState(); };
 
-  // The clock starts once Alma sends her first message — and Alma can control
-  // it from inside the chat: "!pause" (🛑 / ✋) freezes the timer, "!resume"
-  // (✅ / 🟢) restarts it. Only agent messages reach this handler, so visitors
-  // can't trigger the commands themselves.
-  // Pause/resume triggers. Tawk often replaces an emoji with an <img> whose
-  // URL carries the Unicode codepoint (🛑 -> 1f6d1), so match the raw markup
-  // as well as the plain text.
+  // Alma's controls, typed as ordinary chat messages. Tawk often replaces an
+  // emoji with an <img> whose URL carries the codepoint (🛑 -> 1f6d1), so match
+  // the raw markup as well as the plain text.
   var PAUSE_TOKENS = ["!pause", "🛑", "✋", "⏸", "1f6d1", "270b", "23f8"];
   var RESUME_TOKENS = ["!resume", "✅", "🟢", "▶", "2705", "1f7e2", "25b6"];
   function agentCommand(msg) {
-    // Tawk's payload shape varies — accept a raw string or an object with a
-    // message/text/body field.
     var raw = "";
     if (typeof msg === "string") raw = msg;
     else if (msg) raw = String(msg.message || msg.text || msg.body || "");
@@ -307,22 +305,21 @@
       }
       return false;
     }
-    // "!add 5" — Alma gifts extra minutes (capped, so a typo can't hand out hours).
     var add = text.match(/!add\s*(\d{1,3})/) || raw.match(/!add\s*(\d{1,3})/);
     if (add) {
       var n = Number(add[1]) || 0;
-      if (n > 0) return { add: Math.min(n, 120) };
+      if (n > 0) return { add: Math.min(n, 120) }; // capped so a typo can't gift hours
     }
     if (has(PAUSE_TOKENS)) return "pause";
     if (has(RESUME_TOKENS)) return "resume";
     return null;
   }
+
   window.Tawk_API.onChatMessageAgent = function (message) {
-    markActive(true); // Alma has joined this conversation
+    touchState({ replied: true });
     var cmd = agentCommand(message);
+
     if (cmd && cmd.add) {
-      // Alma is gifting time — if they had run out, reopen the chat she just
-      // reopened the door to.
       var wasEmpty = balance <= 0;
       balance += cmd.add * 60;
       writeBalance(balance);
@@ -332,48 +329,79 @@
         if (overlay) { overlay.remove(); overlay = null; }
         try { if (window.Tawk_API.showWidget) window.Tawk_API.showWidget(); } catch (e) {}
       }
-      waiting = false;
-      chatting = true; // she's clearly here
-      saveState({ replied: true, counting: true });
+      if (!pausedByAlma) startClock();
       render();
       return;
     }
-    if (cmd === "pause") { pausedByAlma = true; writePaused(true); render(); return; }
-    if (cmd === "resume") { pausedByAlma = false; writePaused(false); waiting = false; chatting = true; saveState({ counting: true }); render(); return; }
-    waiting = false;
-    chatting = true; // a paused clock stays paused until !resume — see tick guard
-    saveState({ replied: true, counting: true });
+    if (cmd === "pause") {
+      pausedByAlma = true;
+      writePaused(true);
+      stopClock();
+      chatting = true;                                  // still her conversation
+      saveState({ counting: true, runSince: null });    // frozen, not finished
+      render();
+      return;
+    }
+    if (cmd === "resume") {
+      pausedByAlma = false;
+      writePaused(false);
+      startClock();
+      render();
+      return;
+    }
+    if (!pausedByAlma) startClock();
     render();
   };
+
   window.Tawk_API.onChatEnded = function () {
-    chatting = false; waiting = false; pausedByAlma = false;
+    stopClock();
+    waiting = false;
+    pausedByAlma = false;
     writePaused(false);
-    clearActive();
-    writeSpent(balance);
+    clearState();
     render();
   };
-  document.addEventListener("visibilitychange", render);
-  window.addEventListener("beforeunload", function () { writeSpent(balance); });
+
+  // Coming back to the tab: settle what was spent while away and redraw.
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "visible" && chatting && !pausedByAlma && runSince !== null) {
+      var spentAway = spendUntil(Date.now(), runSince);
+      if (spentAway > 0) {
+        runSince += spentAway * 1000;
+        saveState({ runSince: runSince });
+        if (balance <= 0) outOfTime();
+      }
+    }
+    render();
+  });
+  window.addEventListener("pagehide", function () {
+    if (chatting && !pausedByAlma && runSince !== null) saveState({ runSince: runSince });
+  });
 
   setInterval(function () {
-    if (chatting && !pausedByAlma && balance > 0 && document.visibilityState === "visible") {
-      balance--;
-      writeSpent(balance);
-      if (balance % 20 === 0) saveState({ counting: true }); // keep the session fresh
-      if (balance <= 0) {
-        chatting = false;
-        writePaused(false);
-        clearActive();
-        lockChat();
-        showTimeUp();
-      }
+    if (!chatting || pausedByAlma || balance <= 0 || runSince === null) return;
+    var now = Date.now();
+    var s = readState();
+    var lastMsg = (s && s.t) || runSince;
+    // Nobody has said anything for a long while — the session is over.
+    if (now - lastMsg > IDLE_LIMIT) {
+      spendUntil(Math.min(now, lastMsg + IDLE_LIMIT), runSince);
+      stopClock();
+      clearState();
+      render();
+      return;
+    }
+    var spent = spendUntil(now, runSince);
+    if (spent > 0) {
+      // Advance by exactly what was charged — moving to `now` would drop the
+      // sub-second remainder every tick and quietly under-charge.
+      runSince += spent * 1000;
+      saveState({ runSince: runSince });
+      if (balance <= 0) outOfTime();
       render();
     }
   }, 1000);
 
-  // Pick the clock straight back up on a new page — don't wait for the chat
-  // widget to boot before the countdown continues.
-  tryResume();
   render();
 
   // ---- Load Tawk ---------------------------------------------------------
