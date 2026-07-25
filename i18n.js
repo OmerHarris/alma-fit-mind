@@ -574,6 +574,133 @@
     "You still have {time} of chat time with Alma.":
       "Todavía tienes {time} de tiempo de chat con Alma.",
     "Enter your chat room": "Entrar a tu sala de chat",
+
+    // ---- Intake questionnaire ----
+    "New Client Onboarding": "Bienvenida de Nuevos Clientes",
+    "Let's build your plan.": "Construyamos tu plan.",
+    "A few honest answers so your program fits your body, your life, and your head. Takes about 8 minutes — your progress saves automatically, so you can come back anytime.":
+      "Unas respuestas honestas para que tu programa se adapte a tu cuerpo, tu vida y tu mente. Toma unos 8 minutos — tu progreso se guarda automáticamente, así que puedes volver cuando quieras.",
+    "👋 First, the basics": "👋 Primero, lo básico",
+    "So Alma knows who she's building for — and who to call if anything ever comes up mid-session.":
+      "Para que Alma sepa para quién está construyendo — y a quién llamar si algo pasa en plena sesión.",
+    "Full name": "Nombre completo",
+    "Date of birth": "Fecha de nacimiento",
+    "(required — coaching is 18+)": "(obligatorio — el coaching es 18+)",
+    "Phone / WhatsApp": "Teléfono / WhatsApp",
+    "Emergency contact — name": "Contacto de emergencia — nombre",
+    "Emergency contact — phone": "Contacto de emergencia — teléfono",
+    "🫀 Health & safety": "🫀 Salud y seguridad",
+    "Zero judgment — this is purely so every single workout is safe for your body. If anything here needs a doctor's okay first, Alma will tell you.":
+      "Cero juicios — esto es únicamente para que cada entrenamiento sea seguro para tu cuerpo. Si algo aquí necesita el visto bueno de un médico, Alma te lo dirá.",
+    "Any injuries, chronic joint pain (knees, lower back, shoulders…) or recent surgeries?":
+      "¿Alguna lesión, dolor articular crónico (rodillas, lumbar, hombros…) o cirugía reciente?",
+    "Tell me what's going on:": "Cuéntame qué pasa:",
+    "Ever been diagnosed with high blood pressure, diabetes, asthma, or heart problems?":
+      "¿Te han diagnosticado presión alta, diabetes, asma o problemas cardíacos?",
+    "Which condition(s)?": "¿Cuál(es)?",
+    "Taking any medication that could affect your heart rate, blood pressure, or balance during exercise?":
+      "¿Tomas algún medicamento que pueda afectar tu ritmo cardíaco, presión o equilibrio durante el ejercicio?",
+    "Which one(s)?": "¿Cuál(es)?",
+    "Ever feel dizzy, lightheaded, or chest pain during — or right after — physical exertion?":
+      "¿Sientes mareo, aturdimiento o dolor en el pecho durante — o justo después — del esfuerzo físico?",
+    "When does it happen?": "¿Cuándo te ocurre?",
+    "Are you currently pregnant, or have you given birth within the past 12 months?":
+      "¿Estás embarazada, o has dado a luz en los últimos 12 meses?",
+    "Doesn't apply to me": "No aplica para mí",
+    "🎯 Your goal": "🎯 Tu meta",
+    "Define the win, and we'll build the roadmap to it.": "Define la victoria y construiremos la ruta para llegar.",
+    "What's the #1 thing you're hiring a coach for?": "¿Cuál es la razón #1 por la que contratas una coach?",
+    "Fat loss": "Perder grasa",
+    "Muscle gain": "Ganar músculo",
+    "Body recomposition": "Recomposición corporal",
+    "Improve endurance": "Mejorar resistencia",
+    "Reduce pain / move better": "Reducir dolor / moverme mejor",
+    "In your own words:": "En tus propias palabras:",
+    "How important is this goal to you right now?": "¿Qué tan importante es esta meta para ti ahora mismo?",
+    "Your target timeline for real, measurable progress?": "¿Tu plazo objetivo para un progreso real y medible?",
+    "1–3 months": "1–3 meses",
+    "3–6 months": "3–6 meses",
+    "No deadline — this is a lifestyle change": "Sin fecha límite — es un cambio de estilo de vida",
+    "Forget the scale for a second — how will we know this program was a complete success for you?":
+      "Olvida la báscula un segundo — ¿cómo sabremos que este programa fue un éxito total para ti?",
+    "🏋️ Your experience": "🏋️ Tu experiencia",
+    "Knowing where you've been keeps the program from being boring, repetitive, or risky.":
+      "Saber de dónde vienes evita que el programa sea aburrido, repetitivo o riesgoso.",
+    "Worked with a trainer or followed a structured program before?":
+      "¿Has trabajado con un entrenador o seguido un programa estructurado antes?",
+    "What did you like — or dislike — about it?": "¿Qué te gustó — o no te gustó — de esa experiencia?",
+    "Which activities do you genuinely enjoy?": "¿Qué actividades disfrutas de verdad?",
+    "Anything you absolutely dislike or want to avoid?": "¿Algo que definitivamente no te gusta o quieres evitar?",
+    "What's the biggest thing that broke your consistency in past attempts?":
+      "¿Qué fue lo que más rompió tu constancia en intentos anteriores?",
+    "📅 Your life": "📅 Tu vida",
+    "What happens outside the gym decides 80% of your results — so the plan bends around your life, not the other way round.":
+      "Lo que pasa fuera del gimnasio decide el 80% de tus resultados — así que el plan se adapta a tu vida, no al revés.",
+    "What do you do for work?": "¿A qué te dedicas?",
+    "Hours per day sitting at a desk or driving?": "¿Horas al día sentado/a en un escritorio o manejando?",
+    "Days per week you can realistically train?": "¿Días por semana que puedes entrenar de forma realista?",
+    "And how long per session?": "¿Y cuánto tiempo por sesión?",
+    "Sleep per night, on average?": "¿Horas de sueño por noche, en promedio?",
+    "Under 5h": "Menos de 5h",
+    "Do you wake up feeling rested?": "¿Despiertas sintiéndote descansado/a?",
+    "Usually": "Normalmente",
+    "Rarely": "Rara vez",
+    "Typical daily stress level?": "¿Tu nivel de estrés diario típico?",
+    "🍎 Your plate": "🍎 Tu plato",
+    "Training and food are one system. This spots the energy gaps before they slow you down.":
+      "Entrenamiento y comida son un solo sistema. Esto detecta los vacíos de energía antes de que te frenen.",
+    "Meals on a typical day?": "¿Comidas en un día típico?",
+    "I graze all day": "Picoteo todo el día",
+    "Any meals you often skip?": "¿Alguna comida que suelas saltarte?",
+    "Water on an average day?": "¿Agua en un día promedio?",
+    "Under 1 L": "Menos de 1 L",
+    "Food allergies, intolerances, or a framework you follow (vegetarian, vegan, gluten-free, low-carb…)?":
+      "¿Alergias alimentarias, intolerancias o un esquema que sigas (vegetariano, vegano, sin gluten, low-carb…)?",
+    "Emotional eating, late-night snacking, or strong sugar/salt cravings when stressed or tired?":
+      "¿Comer emocional, antojos nocturnos o ganas fuertes de azúcar/sal cuando estás estresado/a o cansado/a?",
+    "🏠 Your setup": "🏠 Tu espacio",
+    "So every workout is built for the space and gear you actually have.":
+      "Para que cada entrenamiento esté hecho para el espacio y el equipo que realmente tienes.",
+    "Where will your workouts happen?": "¿Dónde serán tus entrenamientos?",
+    "Commercial gym": "Gimnasio comercial",
+    "Building / hotel gym": "Gimnasio del edificio / hotel",
+    "A mix of places": "Una mezcla de lugares",
+    "What equipment do you have at home?": "¿Qué equipo tienes en casa?",
+    "Do you track steps, sleep or calories with a wearable?":
+      "¿Registras pasos, sueño o calorías con un reloj inteligente?",
+    "Other": "Otro",
+    "No tracker": "Sin dispositivo",
+    "🤝 You + Alma": "🤝 Tú + Alma",
+    "How we'll work together — trust, accountability, and clear boundaries from day one.":
+      "Cómo trabajaremos juntos — confianza, compromiso y límites claros desde el día uno.",
+    "Real talk: why now? Why not six months ago — or six months from now?":
+      "Hablando en serio: ¿por qué ahora? ¿Por qué no hace seis meses — o dentro de seis meses?",
+    "How do you want to be coached?": "¿Cómo quieres que te entrenen?",
+    "🔥 Direct & demanding — tough love": "🔥 Directa y exigente — mano dura",
+    "💛 Gentle, patient & educational": "💛 Suave, paciente y educativa",
+    "⚖️ A mix of both": "⚖️ Una mezcla de ambas",
+    "Best channel for weekly check-ins and support?": "¿Mejor canal para los check-ins semanales y el apoyo?",
+    "Phone call": "Llamada telefónica",
+    "Training app": "App de entrenamiento",
+    "During in-person sessions, are you comfortable with light tactile guidance (a hand on the shoulder, hip, or back) to correct your form?":
+      "En sesiones presenciales, ¿te sientes cómodo/a con guía táctil ligera (una mano en el hombro, cadera o espalda) para corregir tu postura?",
+    "Yes, I'm comfortable with it": "Sí, me siento cómodo/a",
+    "Verbal & visual cues only, please": "Solo indicaciones verbales y visuales, por favor",
+    "✍️ Make it official": "✍️ Hazlo oficial",
+    "Last step — then Alma takes it from here.": "Último paso — de aquí en adelante se encarga Alma.",
+    "I certify that the health information I've provided is accurate and complete, and I have read and agree to the":
+      "Certifico que la información de salud que he proporcionado es precisa y completa, y he leído y acepto los",
+    "Terms, Conditions, Cancellation Policy & Liability Waiver":
+      "Términos, Condiciones, Política de Cancelación y Exención de Responsabilidad",
+    "Type your full name as your signature": "Escribe tu nombre completo como firma",
+    "Date:": "Fecha:",
+    "That's everything. 🎉": "Eso es todo. 🎉",
+    "Alma reads every answer personally — your plan starts from the real you, not a template. She'll be in touch on your chosen channel within a couple of days.":
+      "Alma lee cada respuesta personalmente — tu plan parte de tu yo real, no de una plantilla. Te contactará por el canal que elegiste en un par de días.",
+    "Please fill in everything marked required.": "Por favor completa todo lo marcado como obligatorio.",
+    "Please tap an answer for every question.": "Por favor toca una respuesta en cada pregunta.",
+    "Coaching is for adults — you must be 18 or older.": "El coaching es para adultos — debes tener 18 años o más.",
+    "That email doesn't look right — mind checking it?": "Ese correo no se ve bien — ¿puedes revisarlo?",
     "Exclusive Access": "Acceso Exclusivo",
     "Chat with Alma. Directly. Just you two.": "Chatea con Alma. Directamente. Solo ustedes dos.",
     "Not the assistant — Alma herself. Pick your minutes and unlock a private 1:1 conversation: your questions, her full attention, in real time.":
