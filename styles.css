@@ -590,7 +590,14 @@ a.value-prop:hover, a.value-prop:focus-visible {
 }
 
 /* ---------- Method ---------- */
-.method { background: var(--charcoal-dark); }
+.method {
+  background-color: var(--charcoal-dark);
+  background-image:
+    linear-gradient(rgba(10, 13, 17, 0.5), rgba(10, 13, 17, 0.78)),
+    url("images/alma-blue.jpg");
+  background-size: cover;
+  background-position: center 22%;
+}
 .method .eyebrow { color: var(--gold); }
 .method h2, .method .section-lead { color: #fff; }
 .method .section-lead { color: #cfd3d4; }
@@ -2041,7 +2048,21 @@ textarea:focus-visible {
 [hidden] { display: none !important; }
 
 /* ---------- Client intake wizard ---------- */
-.intake { background: var(--paper); padding-top: 130px; }
+.intake {
+  background-color: #0b0d0e;
+  background-image:
+    linear-gradient(rgba(8, 10, 11, 0.78), rgba(8, 10, 11, 0.88)),
+    url("images/alma-barbell.jpg");
+  background-size: cover;
+  background-position: center 18%;
+  padding-top: 130px;
+}
+.intake .eyebrow { color: var(--gold); }
+.intake-head h1, .intake-success h2 { color: #fff; }
+.intake .section-lead { color: #d8dadb; }
+.intake-progress { background: rgba(255, 255, 255, 0.22); }
+.intake-nav .btn-ghost { color: #fff; border-color: rgba(255, 255, 255, 0.4); }
+.intake-nav .btn-ghost:hover { border-color: #fff; }
 .intake-wrap { max-width: 680px; }
 .intake-head h1 { margin-bottom: 0.4em; }
 .intake-progress {
@@ -2063,7 +2084,7 @@ textarea:focus-visible {
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: var(--ink-soft);
+  color: #cfd3d4;
   margin: 0 0 1.6rem;
 }
 .intake-step {
