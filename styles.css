@@ -2048,21 +2048,19 @@ textarea:focus-visible {
 [hidden] { display: none !important; }
 
 /* ---------- Client intake wizard ---------- */
-.intake {
-  background-color: #0b0d0e;
-  background-image:
-    linear-gradient(rgba(8, 10, 11, 0.78), rgba(8, 10, 11, 0.88)),
-    url("images/alma-barbell.jpg");
-  background-size: cover;
-  background-position: center 18%;
-  padding-top: 130px;
+.intake { background: var(--paper); padding-top: 44px; }
+/* Tall cinematic opener: show her face AND the bar, not a dark void */
+.intake-hero { min-height: 520px; }
+.pillar-hero.photo-bg.hero-light::before {
+  background: linear-gradient(90deg, rgba(20, 24, 26, 0.86) 0%, rgba(20, 24, 26, 0.55) 34%, rgba(20, 24, 26, 0.18) 62%, rgba(20, 24, 26, 0.04) 100%);
 }
-.intake .eyebrow { color: var(--gold); }
-.intake-head h1, .intake-success h2 { color: #fff; }
-.intake .section-lead { color: #d8dadb; }
-.intake-progress { background: rgba(255, 255, 255, 0.22); }
-.intake-nav .btn-ghost { color: #fff; border-color: rgba(255, 255, 255, 0.4); }
-.intake-nav .btn-ghost:hover { border-color: #fff; }
+@media (max-width: 720px) {
+  .intake-hero { min-height: 430px; }
+  /* On phones the text column spans the photo — keep her visible, text readable */
+  .pillar-hero.photo-bg.hero-light::before {
+    background: linear-gradient(rgba(20, 24, 26, 0.62), rgba(20, 24, 26, 0.55));
+  }
+}
 .intake-wrap { max-width: 680px; }
 .intake-head h1 { margin-bottom: 0.4em; }
 .intake-progress {
@@ -2084,7 +2082,7 @@ textarea:focus-visible {
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: #cfd3d4;
+  color: var(--ink-soft);
   margin: 0 0 1.6rem;
 }
 .intake-step {
