@@ -1036,6 +1036,25 @@ a.value-prop:hover, a.value-prop:focus-visible {
 }
 .have-minutes-banner p { color: #fff; margin: 0; font-weight: 600; }
 
+/* ---------- Private chat room: pink-outfit backdrop ---------- */
+.legal.chatroom {
+  background-color: #17141a;
+  background-image:
+    linear-gradient(rgba(18, 14, 22, 0.66), rgba(18, 14, 22, 0.74)),
+    url("images/alma-pink.jpg");
+  background-size: cover;
+  background-position: center 26%;
+}
+.chatroom .eyebrow { color: var(--gold); }
+.chatroom h1 { color: #fff; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55); }
+.chatroom .section-lead { color: #e6e3dd; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5); }
+.chatroom .check-list li { color: #e6e3dd; text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5); }
+.chatroom .legal-disclaimer { color: rgba(255, 255, 255, 0.65); border-top-color: rgba(255, 255, 255, 0.22); }
+.chatroom .btn-outline { color: #fff; border-color: rgba(255, 255, 255, 0.55); }
+.chatroom .btn-outline:hover { border-color: #fff; background: rgba(255, 255, 255, 0.1); }
+.chatroom .btn-ghost { color: #fff; border-color: rgba(255, 255, 255, 0.35); }
+.chatroom .btn-ghost:hover { border-color: #fff; }
+
 /* ---------- Exclusive chat timer ---------- */
 .chat-timer-pill {
   position: fixed;
