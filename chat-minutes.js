@@ -362,8 +362,22 @@
     render();
   };
 
+  // A purchase in another tab raises the stored balance. Adopt any increase,
+  // otherwise this page's stale copy would clamp the top-up away on its next
+  // write. Decreases are only adopted while not counting — while counting, the
+  // min() in writeSpent reconciles with other tabs on its own.
+  function syncBalance() {
+    var stored = readBalance();
+    if (stored > balance) balance = stored;
+    else if (!chatting && stored < balance) balance = stored;
+  }
+  window.addEventListener("storage", function (e) {
+    if (e.key === BAL_KEY) { syncBalance(); render(); }
+  });
+
   // Coming back to the tab: settle what was spent while away and redraw.
   document.addEventListener("visibilitychange", function () {
+    syncBalance();
     if (document.visibilityState === "visible" && chatting && !pausedByAlma && runSince !== null) {
       var spentAway = spendUntil(Date.now(), runSince);
       if (spentAway > 0) {
@@ -379,6 +393,7 @@
   });
 
   setInterval(function () {
+    syncBalance();
     if (!chatting || pausedByAlma || balance <= 0 || runSince === null) return;
     var now = Date.now();
     var s = readState();
