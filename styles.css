@@ -1038,12 +1038,12 @@ a.value-prop:hover, a.value-prop:focus-visible {
 
 /* ---------- Private chat room: pink-outfit backdrop ---------- */
 .legal.chatroom {
-  background-color: #17141a;
+  background-color: #1a0e10;
   background-image:
-    linear-gradient(rgba(18, 14, 22, 0.66), rgba(18, 14, 22, 0.74)),
-    url("images/alma-pink.jpg");
+    linear-gradient(rgba(20, 10, 12, 0.6), rgba(20, 10, 12, 0.72)),
+    url("images/alma-roses.jpg");
   background-size: cover;
-  background-position: center 26%;
+  background-position: 45% 60%;
 }
 .chatroom .eyebrow { color: var(--gold); }
 .chatroom h1 { color: #fff; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55); }
