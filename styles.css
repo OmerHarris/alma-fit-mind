@@ -741,9 +741,7 @@ a.value-prop:hover, a.value-prop:focus-visible {
   inset: -14% 0;
   z-index: 0;
   will-change: transform;
-  background-position: 42% 30%;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background: url("images/alma-row.jpg") 42% 30% / cover no-repeat;
   filter: blur(7px) brightness(0.42) saturate(0.75) contrast(1.15);
   transform: scale(1.08);
 }
@@ -790,19 +788,11 @@ a.value-prop:hover, a.value-prop:focus-visible {
   inset: 9% 0;
   pointer-events: none;
   will-change: transform;
+  background-image: url("images/pop/alma-row.webp");
   background-repeat: no-repeat;
   background-position: 88% bottom;
   background-size: contain;
 }
-/* Per-band plates */
-.power-cine .pc-bg { background-image: url("images/alma-row.jpg"); }
-.power-cine .pc-echo,
-.power-cine .pc-rim,
-.power-cine .pc-cut { background-image: url("images/pop/alma-row.webp"); }
-.showcase-cine .pc-bg { background-image: url("images/alma-lunge.jpg"); background-position: 38% 34%; }
-.showcase-cine .pc-echo,
-.showcase-cine .pc-rim,
-.showcase-cine .pc-cut { background-image: url("images/pop/alma-lunge.webp"); background-position: right bottom; }
 .pc-echo {
   z-index: 4;
   opacity: 0.14;
@@ -869,15 +859,13 @@ a.value-prop:hover, a.value-prop:focus-visible {
 }
 /* Copy is a sibling of the frame: overlaid on desktop, stacked under it on
    phones — either way it never covers her. */
-.power-cine .power-band-content,
-.showcase-cine .showcase-content {
+.power-cine .power-band-content {
   position: absolute;
   inset: 0;
   z-index: 11;
   display: flex;
   align-items: center;
 }
-.showcase-cine { background: #07080a; }
 .pc-rule {
   display: block;
   width: 120px;
@@ -907,14 +895,12 @@ a.value-prop:hover, a.value-prop:focus-visible {
   .pc-vig { background: radial-gradient(ellipse 100% 82% at 50% 50%, transparent 34%, rgba(4, 4, 6, 0.5) 76%, rgba(3, 3, 5, 0.88) 100%); }
   .pc-bar { height: 6%; }
   .pc-echo, .pc-rim, .pc-cut { inset: 8% 0 7%; background-position: center bottom; }
-  .power-cine .power-band-content,
-  .showcase-cine .showcase-content {
+  .power-cine .power-band-content {
     position: static;
     display: block;
     padding: 34px 24px 46px;
   }
-  .power-cine .power-band-inner,
-  .showcase-cine .showcase-inner { max-width: none; }
+  .power-cine .power-band-inner { max-width: none; }
   .pc-rule { width: 90px; margin-bottom: 14px; }
 }
 .power-stars {

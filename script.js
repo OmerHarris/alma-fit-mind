@@ -271,67 +271,56 @@ if (contactForm) {
   frame();
 })();
 
-// ---------- Cinematic film frames (power band + showcase band) ----------
+// ---------- Power band: cinematic film frame ----------
 // Every layer is tied to scroll position — nothing animates on its own.
 (function () {
+  var band = document.querySelector(".power-cine");
+  var stage = band && band.querySelector(".pc-stage");
+  if (!stage) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  var bands = Array.prototype.slice.call(document.querySelectorAll(".power-cine, .showcase-cine"));
-  if (!bands.length) return;
 
-  var scenes = bands.map(build).filter(Boolean);
-  if (!scenes.length) return;
-
-  function build(band) {
-    var stage = band.querySelector(".pc-stage");
-    if (!stage) return null;
-
-    var bg = stage.querySelector(".pc-bg");
-    var ray = stage.querySelector(".pc-ray");
-    var flare = stage.querySelector(".pc-flare");
-    var echo = stage.querySelector(".pc-echo");
-    var rimGold = stage.querySelector(".pc-rim-gold");
-    var rimCyan = stage.querySelector(".pc-rim-cyan");
-    var cut = stage.querySelector(".pc-cut");
-    var rule = band.querySelector(".pc-rule");
-    var dustA = stage.querySelector(".pc-dust-a");
-    var dustB = stage.querySelector(".pc-dust-b");
-    var barTop = stage.querySelector(".pc-bar-top");
-    var barBot = stage.querySelector(".pc-bar-bot");
-    if (!bg || !cut) return null;
-
-    return function draw() {
-      var r = stage.getBoundingClientRect();
-      var o = (r.top + r.height / 2 - window.innerHeight / 2) / window.innerHeight;
-      if (Math.abs(o) > 1.3) return;
-
-      bg.style.transform = "translate3d(0," + o * 11 + "%,0) scale(1.08)";
-      ray.style.transform = "translate3d(" + o * -6 + "%," + o * 24 + "%,0)";
-      flare.style.transform = "translate3d(0," + o * 30 + "%,0)";
-      flare.style.opacity = String(Math.max(0, 1 - Math.abs(o) * 1.5));
-
-      // aura and both rim lights ride with her so the edge light stays glued on
-      var scale = 1.04 - o * 0.07;
-      var lift = o * -9;
-      echo.style.transform = "translate3d(0," + lift + "%,0) scale(" + (scale + 0.035) + ")";
-      rimGold.style.transform = "translate3d(" + (lift - 0.7) + "%," + (lift - 0.9) + "%,0) scale(" + scale + ")";
-      rimCyan.style.transform = "translate3d(" + (lift + 0.9) + "%," + (lift - 0.3) + "%,0) scale(" + scale + ")";
-      cut.style.transform = "translate3d(0," + lift + "%,0) scale(" + scale + ")";
-
-      if (rule) rule.style.transform = "scaleX(" + Math.max(0.04, 1 - Math.abs(o) * 1.15) + ")";
-      dustA.style.transform = "translate3d(0," + o * -34 + "%,0)";
-      dustB.style.transform = "translate3d(0," + o * -62 + "%,0)";
-
-      // anamorphic bars breathe closed as the shot leaves centre
-      var bar = Math.abs(o) * 26;
-      barTop.style.transform = "translate3d(0," + -bar + "%,0)";
-      barBot.style.transform = "translate3d(0," + bar + "%,0)";
-    };
-    }
+  var bg = stage.querySelector(".pc-bg");
+  var ray = stage.querySelector(".pc-ray");
+  var flare = stage.querySelector(".pc-flare");
+  var echo = stage.querySelector(".pc-echo");
+  var rimGold = stage.querySelector(".pc-rim-gold");
+  var rimCyan = stage.querySelector(".pc-rim-cyan");
+  var cut = stage.querySelector(".pc-cut");
+  var rule = band.querySelector(".pc-rule");
+  var dustA = stage.querySelector(".pc-dust-a");
+  var dustB = stage.querySelector(".pc-dust-b");
+  var barTop = stage.querySelector(".pc-bar-top");
+  var barBot = stage.querySelector(".pc-bar-bot");
+  if (!bg || !cut) return;
 
   var ticking = false;
   function frame() {
     ticking = false;
-    for (var i = 0; i < scenes.length; i++) scenes[i]();
+    var r = stage.getBoundingClientRect();
+    var o = (r.top + r.height / 2 - window.innerHeight / 2) / window.innerHeight;
+    if (Math.abs(o) > 1.3) return;
+
+    bg.style.transform = "translate3d(0," + o * 11 + "%,0) scale(1.08)";
+    ray.style.transform = "translate3d(" + o * -6 + "%," + o * 24 + "%,0)";
+    flare.style.transform = "translate3d(0," + o * 30 + "%,0)";
+    flare.style.opacity = String(Math.max(0, 1 - Math.abs(o) * 1.5));
+
+    // aura and both rim lights ride with her so the edge light stays glued on
+    var scale = 1.04 - o * 0.07;
+    var lift = o * -9;
+    echo.style.transform = "translate3d(0," + lift + "%,0) scale(" + (scale + 0.035) + ")";
+    rimGold.style.transform = "translate3d(" + (lift - 0.7) + "%," + (lift - 0.9) + "%,0) scale(" + scale + ")";
+    rimCyan.style.transform = "translate3d(" + (lift + 0.9) + "%," + (lift - 0.3) + "%,0) scale(" + scale + ")";
+    cut.style.transform = "translate3d(0," + lift + "%,0) scale(" + scale + ")";
+
+    if (rule) rule.style.transform = "scaleX(" + Math.max(0.04, 1 - Math.abs(o) * 1.15) + ")";
+    dustA.style.transform = "translate3d(0," + o * -34 + "%,0)";
+    dustB.style.transform = "translate3d(0," + o * -62 + "%,0)";
+
+    // anamorphic bars breathe closed as the shot leaves centre
+    var bar = Math.abs(o) * 26;
+    barTop.style.transform = "translate3d(0," + -bar + "%,0)";
+    barBot.style.transform = "translate3d(0," + bar + "%,0)";
   }
   function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
   window.addEventListener("scroll", onScroll, { passive: true });
