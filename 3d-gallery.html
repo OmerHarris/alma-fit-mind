@@ -54,6 +54,26 @@
     -webkit-mask-image: linear-gradient(180deg, #000 88%, transparent 97%);
     mask-image: linear-gradient(180deg, #000 88%, transparent 97%);
   }
+  /* v2 treatment: tier color grade, gold rim light, and a stroked word copy
+     IN FRONT of the cutout so the full word always reads */
+  .fx .grade { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+  .fx.v2 .layer-cutout {
+    background-size: auto 82%;
+    filter: drop-shadow(0 30px 44px rgba(0,0,0,.65)) drop-shadow(0 0 30px rgba(217,180,92,.3));
+  }
+  .fx .layer-word-front {
+    position: absolute; inset: 0; z-index: 4; will-change: transform;
+    display: flex; align-items: flex-start; justify-content: center;
+    padding-top: 13vh; pointer-events: none;
+  }
+  .fx .layer-word-front span {
+    font-family: Fraunces, serif; font-weight: 700;
+    font-size: clamp(2.6rem, 12vw, 7.5rem);
+    letter-spacing: .06em; color: transparent;
+    -webkit-text-stroke: 2px rgba(217, 180, 92, .55);
+    white-space: nowrap;
+  }
+  .fx.w-long .layer-word-front span { font-size: clamp(1.8rem, 7.5vw, 5rem); letter-spacing: .12em; }
   .fx .badge {
     position: absolute; z-index: 5; top: 20px; left: 50%; transform: translateX(-50%);
     background: rgba(10, 12, 13, .78); border: 1px solid rgba(217, 180, 92, .5);
@@ -108,9 +128,15 @@
   var SCENES = [
     { n: 1, img: "alma-hero",    word: "ALMA",       where: "Homepage — main photo" },
     { n: 2, img: "alma-back",    word: "7 DAYS",     where: "Homepage — Free Guide" },
-    { n: 3, img: "alma-lat",     word: "FOUNDATION", where: "Homepage — Foundation plan card", long: true, fade: true },
-    { n: 4, img: "alma-side",    word: "STRONGER",   where: "Homepage — Transformation plan card", long: true, fade: true },
-    { n: 5, img: "alma-hang",    word: "ELITE",      where: "Homepage — Elite Mind & Body card", fade: true },
+    { n: 3, img: "alma-lat",     word: "FOUNDATION", where: "Homepage — Foundation plan card", long: true, fade: true,
+      v2: true, cut: "preview3d/cut2-alma-lat.png",
+      grade: "radial-gradient(ellipse 120% 90% at 50% 60%, transparent 42%, rgba(8,6,4,.6) 100%), linear-gradient(160deg, rgba(120,75,30,.32), transparent 55%, rgba(60,30,10,.4))" },
+    { n: 4, img: "alma-side",    word: "STRONGER",   where: "Homepage — Transformation plan card", long: true, fade: true,
+      v2: true, cut: "preview3d/cut2-alma-side.png",
+      grade: "radial-gradient(ellipse 120% 90% at 50% 60%, transparent 42%, rgba(8,6,4,.6) 100%), linear-gradient(160deg, rgba(180,130,40,.28), transparent 55%, rgba(90,55,15,.38))" },
+    { n: 5, img: "alma-hang",    word: "ELITE",      where: "Homepage — Elite Mind & Body card", fade: true,
+      v2: true, cut: "preview3d/cut2-alma-hang.png",
+      grade: "radial-gradient(ellipse 120% 90% at 50% 60%, transparent 42%, rgba(8,6,4,.62) 100%), linear-gradient(160deg, rgba(210,170,90,.26), transparent 55%, rgba(20,15,30,.5))" },
     { n: 6, img: "alma-lunge",   word: "POWER",      where: "Homepage — power section" },
     { n: 7, img: "alma-row",     word: "START",      where: "Homepage — “Start here” panel", fade: true },
     { n: 8, img: "alma-barbell", word: "DAY ONE",    where: "Onboarding page — top photo" },
@@ -126,10 +152,14 @@
     var sec = document.createElement("section");
     sec.className = "fx" + (s.long ? " w-long" : "") + (s.fade ? " fade-legs" : "");
     sec.id = "s" + s.n;
+    sec.className += s.v2 ? " v2" : "";
+    var cutUrl = "images/" + (s.cut || "preview3d/cut-" + s.img + ".png");
     sec.innerHTML =
       '<div class="layer layer-bg" style="background-image:url(images/' + s.img + '.jpg)"></div>' +
+      (s.grade ? '<div class="grade" style="background:' + s.grade + '"></div>' : "") +
       '<div class="layer-word"><span>' + s.word + "</span></div>" +
-      '<div class="layer layer-cutout" style="background-image:url(images/preview3d/cut-' + s.img + '.png)"></div>' +
+      '<div class="layer layer-cutout" style="background-image:url(' + cutUrl + ')"></div>' +
+      (s.v2 ? '<div class="layer-word-front"><span>' + s.word + "</span></div>" : "") +
       '<div class="badge"><strong>#' + s.n + "</strong> · " + s.where + "</div>";
     host.appendChild(sec);
   });
@@ -164,7 +194,10 @@
         return;
       }
       bg.style.transform = "translate3d(0," + o * 8 + "%,0) scale(1.06)";
-      sec.querySelector(".layer-word").style.transform = "translate3d(0," + o * 26 + "%,0)";
+      var wordT = "translate3d(0," + o * 26 + "%,0)";
+      sec.querySelector(".layer-word").style.transform = wordT;
+      var front = sec.querySelector(".layer-word-front");
+      if (front) front.style.transform = wordT; // stroke must stay registered with the solid word
       sec.querySelector(".layer-cutout").style.transform =
         "translate3d(0," + o * -7 + "%,0) scale(" + (1.04 - o * 0.06) + ")";
     });
