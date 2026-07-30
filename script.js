@@ -271,3 +271,58 @@ if (contactForm) {
   window.addEventListener("resize", frame);
   frame();
 })();
+
+// ---------- Free-guide 3D pop-out card ----------
+// The card tilts toward the cursor (desktop) and breathes with scroll; the
+// gold word and Alma's cutout counter-move so she floats out of the frame.
+(function () {
+  var root = document.getElementById("leadPop");
+  if (!root) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var card = root.querySelector(".lead-pop-card");
+  var word = root.querySelector(".lead-pop-word");
+  var cut = root.querySelector(".lead-pop-cutout");
+  if (!card || !word || !cut) return;
+
+  var tRX = 0, tRY = 0, rx = 0, ry = 0; // tilt target / current
+  var sc = 0;                            // smoothed scroll offset
+  var hovering = false, raf = null;
+
+  function offset() {
+    var r = root.getBoundingClientRect();
+    var mid = r.top + r.height / 2;
+    return Math.max(-1, Math.min(1, (mid - window.innerHeight / 2) / window.innerHeight));
+  }
+  function tick() {
+    raf = null;
+    var target = offset();
+    rx += (tRX - rx) * 0.09;
+    ry += (tRY - ry) * 0.09;
+    sc += (target - sc) * 0.12;
+    card.style.transform = "rotateX(" + (rx + sc * 5) + "deg) rotateY(" + ry + "deg)";
+    word.style.transform = "translate3d(0," + sc * 30 + "%,0)";
+    cut.style.transform =
+      "translateX(-50%) translateZ(46px) translate3d(" + ry * -0.55 + "%," + (sc * -7 - rx * 0.5) + "%,0)" +
+      " scale(" + (1.02 + Math.abs(rx) * 0.003 + Math.abs(ry) * 0.003) + ")";
+    var still = Math.abs(tRX - rx) < 0.01 && Math.abs(tRY - ry) < 0.01 && Math.abs(target - sc) < 0.002;
+    if (!still || hovering) raf = requestAnimationFrame(tick);
+  }
+  function kick() { if (!raf) raf = requestAnimationFrame(tick); }
+
+  window.addEventListener("scroll", kick, { passive: true });
+  window.addEventListener("resize", kick);
+
+  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    root.addEventListener("mousemove", function (e) {
+      var r = root.getBoundingClientRect();
+      tRY = ((e.clientX - r.left) / r.width - 0.5) * 12;
+      tRX = ((e.clientY - r.top) / r.height - 0.5) * -10;
+      hovering = true;
+      kick();
+    });
+    root.addEventListener("mouseleave", function () {
+      tRX = 0; tRY = 0; hovering = false; kick();
+    });
+  }
+  kick();
+})();

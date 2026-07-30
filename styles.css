@@ -761,6 +761,71 @@ a.value-prop:hover, a.value-prop:focus-visible {
   border-radius: 18px;
   box-shadow: var(--shadow);
 }
+/* ---------- Free-guide 3D pop-out card ---------- */
+.lead-pop3d { perspective: 1000px; }
+.lead-pop-stage { position: relative; transform-style: preserve-3d; }
+.lead-pop-card {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #101314;
+  box-shadow: var(--shadow);
+  will-change: transform;
+}
+.lead-pop-bg {
+  position: absolute;
+  inset: -8%;
+  background: url("images/alma-back.jpg") 62% 30% / cover no-repeat;
+  filter: blur(4px) brightness(0.62) saturate(0.92);
+}
+.lead-pop-word {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 36%;
+  font-family: "Fraunces", serif;
+  font-weight: 700;
+  font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+  letter-spacing: 0.5em;
+  text-indent: 0.5em;
+  white-space: nowrap;
+  color: var(--gold);
+  opacity: 0.95;
+  text-shadow: 0 4px 26px rgba(0, 0, 0, 0.65);
+  will-change: transform;
+  pointer-events: none;
+}
+.lead-pop-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 62% 48% at 50% 40%, rgba(217, 180, 92, 0.3), transparent 72%);
+}
+/* Alma's cutout is a sibling of the card (not clipped) and lifted forward on
+   the Z axis, so she floats IN FRONT of the tilting frame and breaks its top */
+@media (max-width: 720px) {
+  .lead-pop-word {
+    font-size: 2.4rem;
+    letter-spacing: 0.65em;
+    text-indent: 0.65em;
+  }
+}
+.lead-pop-cutout {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 64%;
+  aspect-ratio: 447 / 1008;
+  transform: translateX(-50%) translateZ(46px);
+  background: url("images/alma-back-cutout.png") center bottom / contain no-repeat;
+  filter: drop-shadow(0 26px 38px rgba(0, 0, 0, 0.55));
+  -webkit-mask-image: linear-gradient(180deg, #000 90%, transparent 99%);
+  mask-image: linear-gradient(180deg, #000 90%, transparent 99%);
+  will-change: transform;
+  pointer-events: none;
+}
 
 .lead-form {
   display: flex;

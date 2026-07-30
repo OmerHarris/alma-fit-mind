@@ -16,6 +16,7 @@
     "Explore": "Explora",
     "Contact": "Contacto",
     "Free Guide": "Guía Gratis",
+    "7 DAYS": "7 DÍAS",
     "Blog": "Blog",
     "Online fitness, nutrition & mindset coaching. Serving clients anywhere with an internet connection.":
       "Coaching en línea de fitness, nutrición y mentalidad. Atendemos clientes en cualquier lugar con internet.",
