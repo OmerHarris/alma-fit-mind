@@ -299,6 +299,123 @@ a { color: inherit; text-decoration: none; }
 .photo-bg > * { position: relative; z-index: 1; }
 
 /* ---------- Hero (full-bleed photo, text on the dark left) ---------- */
+/* ---------- Hero: cinematic intro ----------------------------------
+   Headline arrives first, then the graded frame irises open behind it.
+   Runs once on load and settles; no idle motion. ------------------- */
+.hero-cine {
+  position: relative;
+  height: clamp(560px, 88vh, 900px);
+  background: #040508;
+  isolation: isolate;
+  overflow: hidden;
+}
+.hc-frame { position: absolute; inset: 0; z-index: 1; }
+.hero-cine.armed .hc-frame { clip-path: circle(0% at 64% 38%); }
+.hc-photo {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center 34%;
+  filter: contrast(1.14) saturate(0.88) brightness(0.92);
+}
+/* teal shadows, warm highlights — the standard cinema grade */
+.hc-grade {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(152deg, rgba(9, 44, 62, 0.62) 0%, rgba(8, 28, 40, 0.22) 42%, transparent 58%),
+    linear-gradient(338deg, rgba(232, 152, 48, 0.34) 0%, rgba(150, 84, 20, 0.14) 32%, transparent 60%);
+}
+.hc-key {
+  position: absolute; inset: 0; mix-blend-mode: screen;
+  background: radial-gradient(ellipse 30% 44% at 62% 42%, rgba(255, 206, 140, 0.1), transparent 70%);
+}
+/* Baked edge-only rim plates: they sit outside her silhouette, lighting the
+   contour without hazing the body. Same sizing as the photo so they align. */
+.hc-rim, .hc-rim-cool {
+  position: absolute; inset: 0; mix-blend-mode: screen; pointer-events: none;
+  background-position: center 34%; background-size: cover; background-repeat: no-repeat;
+}
+.hc-rim { background-image: url("images/pop/hero-rim-gold.webp"); opacity: 0.8; }
+.hc-rim-cool { background-image: url("images/pop/hero-rim-cool.webp"); opacity: 0.45; }
+.hc-ray {
+  position: absolute; inset: -28% -12%;
+  background: linear-gradient(106deg, transparent 46%, rgba(255, 228, 164, 0.06) 54%, rgba(255, 228, 164, 0.16) 60%, rgba(255, 228, 164, 0.05) 66%, transparent 73%);
+  filter: blur(7px);
+}
+.hc-flare {
+  position: absolute; left: -14%; right: -14%; top: 27%; height: 3px; opacity: 0;
+  mix-blend-mode: screen;
+  background: linear-gradient(90deg, transparent 6%, rgba(120, 198, 255, 0.5) 34%, rgba(226, 242, 255, 0.85) 50%, rgba(120, 198, 255, 0.45) 66%, transparent 94%);
+  filter: blur(3px);
+}
+.hc-scrim {
+  position: absolute; inset: 0; z-index: 3;
+  background: linear-gradient(90deg, rgba(4, 5, 8, 0.95) 0%, rgba(4, 5, 8, 0.8) 26%, rgba(4, 5, 8, 0.3) 52%, transparent 70%);
+}
+.hc-vig {
+  position: absolute; inset: 0; z-index: 4; pointer-events: none;
+  background: radial-gradient(ellipse 94% 82% at 58% 48%, transparent 30%, rgba(3, 4, 6, 0.55) 76%, rgba(2, 3, 5, 0.93) 100%);
+}
+.hc-grain {
+  position: absolute; inset: 0; z-index: 5; pointer-events: none;
+  opacity: 0.085; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.hc-bar {
+  position: absolute; left: 0; right: 0; height: 5.5%; z-index: 9;
+  background: #000; pointer-events: none;
+}
+.hc-bar-t { top: 0; }
+.hc-bar-b { bottom: 0; }
+.hero-cine .hero-cover-content { position: absolute; inset: 0; z-index: 8; display: flex; align-items: center; }
+.hero-cine h1 { color: #f7f2e6; text-shadow: 0 3px 26px rgba(0, 0, 0, 0.85); }
+.hero-cine .hc-ln { display: block; overflow: hidden; }
+.hero-cine .hc-ln em { display: inline-block; font-style: normal; }
+.hero-cine.armed .hc-ln em { transform: translateY(115%); filter: blur(9px); opacity: 0; }
+.hc-rule {
+  height: 1.5px; width: 190px; margin: 4px 0 20px;
+  background: linear-gradient(90deg, #e6c274, rgba(217, 180, 92, 0.15) 70%, transparent);
+  transform-origin: left center;
+}
+.hero-cine.armed .hc-rule { transform: scaleX(0); }
+.hero-cine.armed .eyebrow,
+.hero-cine.armed .hero-lead,
+.hero-cine.armed .hero-actions { opacity: 0; }
+
+.hero-cine.play .hc-ln em { animation: hcKick 0.95s cubic-bezier(.16, 1, .3, 1) forwards; }
+.hero-cine.play .hc-ln:nth-of-type(1) em { animation-delay: 0.18s; }
+.hero-cine.play .hc-ln:nth-of-type(2) em { animation-delay: 0.34s; }
+.hero-cine.play .hc-frame { animation: hcIris 1.6s cubic-bezier(.16, 1, .3, 1) 0.55s forwards; }
+.hero-cine.play .hc-flare { animation: hcFlare 1.2s cubic-bezier(.4, 0, .2, 1) 1.25s; }
+.hero-cine.play .hc-rule { animation: hcRule 0.9s cubic-bezier(.16, 1, .3, 1) 1.05s forwards; }
+.hero-cine.play .eyebrow { animation: hcRise 0.6s ease-out 0.05s forwards; }
+.hero-cine.play .hero-lead { animation: hcRise 0.7s ease-out 1.4s forwards; }
+.hero-cine.play .hero-actions { animation: hcRise 0.7s ease-out 1.6s forwards; }
+@keyframes hcKick { to { transform: none; filter: blur(0); opacity: 1; } }
+@keyframes hcIris { to { clip-path: circle(86% at 64% 38%); } }
+@keyframes hcRule { to { transform: scaleX(1); } }
+@keyframes hcRise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes hcFlare { 0% { opacity: 0; transform: translateX(-40%); } 25% { opacity: 1; } 100% { opacity: 0; transform: translateX(40%); } }
+
+@media (max-width: 720px) {
+  .hero-cine { height: min(86vh, 740px); }
+  .hero-cine.armed .hc-frame { clip-path: circle(0% at 50% 30%); }
+  .hero-cine.play .hc-frame { animation-name: hcIrisM; }
+  @keyframes hcIrisM { to { clip-path: circle(100% at 50% 30%); } }
+  .hc-scrim {
+    background: linear-gradient(180deg, rgba(4, 5, 8, 0.25) 0%, rgba(4, 5, 8, 0.4) 38%, rgba(4, 5, 8, 0.88) 62%, rgba(3, 4, 7, 0.97) 100%);
+  }
+  .hero-cine .hero-cover-content { align-items: flex-end; padding: 0 24px 72px; }
+  .hero-cine .hero-cover-copy { max-width: none; }
+}
+/* Anyone who prefers less motion gets the finished frame immediately */
+@media (prefers-reduced-motion: reduce) {
+  .hero-cine .hc-frame { clip-path: none !important; animation: none !important; }
+  .hero-cine .hc-ln em { transform: none !important; filter: none !important; opacity: 1 !important; animation: none !important; }
+  .hero-cine .eyebrow,
+  .hero-cine .hero-lead,
+  .hero-cine .hero-actions { opacity: 1 !important; animation: none !important; }
+  .hc-rule { transform: scaleX(1) !important; animation: none !important; }
+}
+
 .hero-cover {
   position: relative;
   background: #0b0d0e;

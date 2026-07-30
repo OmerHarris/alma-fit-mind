@@ -327,3 +327,28 @@ if (contactForm) {
   window.addEventListener("resize", onScroll);
   frame();
 })();
+
+// ---------- Hero cinematic intro ----------
+// Fires once, as soon as the hero image is ready. Never repeats.
+(function () {
+  var hero = document.querySelector(".hero-cine");
+  if (!hero || !hero.classList.contains("armed")) return;
+  var img = hero.querySelector(".hc-photo");
+  var started = false;
+  function start() {
+    if (started) return;
+    started = true;
+    hero.classList.add("play");
+  }
+  if (!img || img.complete) start();
+  else {
+    img.addEventListener("load", start);
+    img.addEventListener("error", start);
+  }
+  setTimeout(start, 1500);   // never wait on a slow photo
+  // Last-resort guard: if the intro somehow never ran, drop the armed state
+  // so the hero shows its finished frame rather than staying dark.
+  setTimeout(function () {
+    if (!hero.classList.contains("play")) hero.classList.remove("armed");
+  }, 5000);
+})();
