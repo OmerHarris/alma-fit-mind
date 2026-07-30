@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hero intro concepts — preview</title>
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+<style>
+  body { background: #0a0c0e; color: #f6f1e7; }
+
+  .lab-intro {
+    min-height: 52vh; display: flex; flex-direction: column; justify-content: center;
+    align-items: center; text-align: center; gap: 14px; padding: 48px 24px;
+  }
+  .lab-intro h1 { font-family: Fraunces, serif; font-size: clamp(1.7rem, 5vw, 2.7rem); color: #fff; }
+  .lab-intro p { color: #cfc8ba; max-width: 38em; line-height: 1.65; }
+  .chip {
+    display: inline-block; border: 1px solid var(--gold); color: #d9b45c; border-radius: 999px;
+    padding: 6px 16px; font-size: .76rem; letter-spacing: .14em; text-transform: uppercase;
+  }
+  .lab-head {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    flex-wrap: wrap; padding: 26px 24px 14px; max-width: 1160px; margin: 0 auto;
+  }
+  .lab-head h2 { font-family: Fraunces, serif; font-size: 1.35rem; color: #fff; }
+  .lab-head p { color: #9a9384; font-size: .9rem; margin-top: 4px; max-width: 46em; }
+  .replay {
+    background: transparent; border: 1px solid rgba(217,180,92,.6); color: #d9b45c;
+    border-radius: 999px; padding: 9px 20px; font: inherit; font-size: .85rem; cursor: pointer;
+  }
+  .replay:hover { background: rgba(217,180,92,.12); }
+
+  /* ---------- shared stage ---------- */
+  .hx {
+    position: relative; height: min(88vh, 820px); overflow: hidden;
+    background: #06070a; isolation: isolate;
+  }
+  .hx-photo, .hx-cut, .hx-bg {
+    position: absolute; inset: 0; background-size: cover; background-position: center 34%;
+    background-repeat: no-repeat;
+  }
+  .hx-copy {
+    position: absolute; inset: 0; z-index: 8; display: flex; align-items: center;
+  }
+  .hx-copy .wrap { width: 100%; }
+  .hx-inner { max-width: 500px; }
+  .hx-eyebrow {
+    color: var(--gold); font-size: .78rem; letter-spacing: .18em; text-transform: uppercase;
+    font-weight: 600; margin-bottom: 14px;
+  }
+  .hx h3 {
+    font-family: Fraunces, serif; font-weight: 700; color: #fff; line-height: 1.06;
+    font-size: clamp(2.1rem, 4.6vw, 3.5rem); margin-bottom: 16px;
+  }
+  .hx h3 .ln { display: block; }
+  .hx-lead { color: #d8dadb; font-size: 1.08rem; margin-bottom: 26px; }
+  .hx-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .hx .btn-ghost { color: #fff; border-color: rgba(255,255,255,.35); }
+
+  /* ================= 1. OPENING TITLES ================= */
+  .v1 .hx-photo { background-image: url("images/alma-hero.jpg"); background-position: center 2%; }
+  .v1 .scrim {
+    position: absolute; inset: 0; z-index: 2;
+    background: linear-gradient(90deg, rgba(6,8,10,.94) 0%, rgba(6,8,10,.8) 24%, rgba(6,8,10,.34) 46%, transparent 64%);
+  }
+  .v1 .bar { position: absolute; left: 0; right: 0; height: 50%; background: #000; z-index: 9; }
+  .v1 .bar-t { top: 0; } .v1 .bar-b { bottom: 0; }
+  .v1 .sweep {
+    position: absolute; inset: -20% -40%; z-index: 6; opacity: 0; pointer-events: none;
+    background: linear-gradient(102deg, transparent 40%, rgba(255,235,180,.28) 50%, rgba(255,255,255,.5) 53%, rgba(255,235,180,.24) 57%, transparent 68%);
+  }
+  .v1 .hx-eyebrow, .v1 .hx-lead, .v1 .hx-btns { opacity: 0; }
+  .v1 h3 .ln { clip-path: inset(0 100% 0 0); }
+  .v1 .hx-photo { opacity: 0; transform: scale(1.14); }
+
+  .v1.play .bar-t { animation: barOpen 1.15s cubic-bezier(.16,1,.3,1) forwards; }
+  .v1.play .bar-b { animation: barOpen 1.15s cubic-bezier(.16,1,.3,1) forwards; }
+  .v1.play .hx-photo { animation: photoUp 2s cubic-bezier(.16,1,.3,1) .15s forwards; }
+  .v1.play .sweep { animation: sweep 1.25s cubic-bezier(.4,0,.2,1) .95s; }
+  .v1.play .hx-eyebrow { animation: riseIn .7s ease-out 1.15s forwards; }
+  .v1.play h3 .l1 { animation: wipeIn .85s cubic-bezier(.16,1,.3,1) 1.3s forwards; }
+  .v1.play h3 .l2 { animation: wipeIn .85s cubic-bezier(.16,1,.3,1) 1.52s forwards; }
+  .v1.play .hx-lead { animation: riseIn .7s ease-out 1.95s forwards; }
+  .v1.play .hx-btns { animation: riseIn .7s ease-out 2.15s forwards; }
+  @keyframes barOpen { to { height: 6%; } }
+  @keyframes photoUp { to { opacity: 1; transform: scale(1); } }
+  @keyframes sweep { 0% { opacity: 0; transform: translateX(-55%); } 22% { opacity: 1; } 100% { opacity: 0; transform: translateX(55%); } }
+  @keyframes riseIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  @keyframes wipeIn { to { clip-path: inset(0 0 0 0); } }
+
+  /* ================= 2. SHE STEPS OUT ================= */
+  .v2 .hx-bg {
+    background-image: url("images/alma-hero.jpg");
+    transform: scale(1.3); filter: blur(16px) brightness(.22) saturate(.7);
+  }
+  .v2 .grade {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background:
+      linear-gradient(155deg, rgba(10,46,62,.5), transparent 52%),
+      linear-gradient(340deg, rgba(226,150,52,.28), transparent 55%);
+  }
+  .v2 .hx-cut {
+    z-index: 5; background-image: url("images/pop/alma-hero.webp");
+    background-size: contain; background-position: 76% bottom;
+    opacity: 0; transform: scale(1.32) translateY(5%); filter: blur(20px);
+  }
+  .v2 .rim {
+    position: absolute; inset: 0; z-index: 4; opacity: 0; mix-blend-mode: screen;
+    background: url("images/pop/alma-hero.webp") 76% bottom / contain no-repeat;
+    filter: brightness(0) invert(1) sepia(1) saturate(7) hue-rotate(-16deg) blur(9px);
+  }
+  .v2 .vig {
+    position: absolute; inset: 0; z-index: 6; pointer-events: none;
+    background: radial-gradient(ellipse 92% 80% at 58% 52%, transparent 34%, rgba(3,4,6,.6) 78%, rgba(2,3,4,.92) 100%);
+  }
+  .v2 .mote { position: absolute; inset: 0; z-index: 7; opacity: 0; pointer-events: none; }
+  .v2 .mote i {
+    position: absolute; width: 6px; height: 6px; border-radius: 50%;
+    background: radial-gradient(circle, #ffeec0, rgba(217,180,92,0) 70%);
+    box-shadow: 0 0 12px rgba(255,226,158,.85);
+  }
+  .v2 .mote i:nth-child(1){left:14%;top:34%} .v2 .mote i:nth-child(2){left:30%;top:66%}
+  .v2 .mote i:nth-child(3){left:47%;top:24%} .v2 .mote i:nth-child(4){left:63%;top:72%}
+  .v2 .mote i:nth-child(5){left:78%;top:40%} .v2 .mote i:nth-child(6){left:90%;top:60%}
+  .v2 .hx-inner { opacity: 0; clip-path: inset(0 100% 0 0); transform: translateX(-26px); }
+
+  .v2.play .hx-bg { animation: bgSettle 2.1s cubic-bezier(.16,1,.3,1) forwards; }
+  .v2.play .hx-cut { animation: stepOut 1.7s cubic-bezier(.16,1,.3,1) .2s forwards; }
+  .v2.play .rim { animation: rimUp 1.1s ease-out 1.15s forwards; }
+  .v2.play .hx-inner { animation: copyWipe 1.1s cubic-bezier(.16,1,.3,1) .95s forwards; }
+  .v2.play .mote { animation: motesUp 1.6s ease-out 1.2s forwards; }
+  @keyframes bgSettle { to { transform: scale(1.06); filter: blur(6px) brightness(.5) saturate(.85); } }
+  @keyframes stepOut { to { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); } }
+  @keyframes rimUp { to { opacity: .28; } }
+  @keyframes copyWipe { to { opacity: 1; clip-path: inset(0 0 0 0); transform: none; } }
+  @keyframes motesUp { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+
+  /* ================= 3. KINETIC STATEMENT ================= */
+  .v3 { background: #05060a; }
+  .v3 .hx-photo {
+    background-image: url("images/alma-hero.jpg");
+    clip-path: circle(0% at 64% 38%);
+  }
+  .v3 .scrim {
+    position: absolute; inset: 0; z-index: 2;
+    background: linear-gradient(90deg, rgba(5,6,10,.92) 0%, rgba(5,6,10,.72) 26%, rgba(5,6,10,.2) 52%, transparent 70%);
+  }
+  .v3 .hx-copy { z-index: 8; }
+  .v3 h3 { font-size: clamp(2.2rem, 5.4vw, 4.2rem); overflow: hidden; }
+  .v3 h3 .ln { overflow: hidden; }
+  .v3 h3 .ln em {
+    display: inline-block; font-style: normal;
+    transform: translateY(115%); filter: blur(9px); opacity: 0;
+  }
+  .v3 .rule {
+    height: 2px; width: 150px; margin: 0 0 20px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    transform: scaleX(0); transform-origin: left center;
+  }
+  .v3 .hx-eyebrow, .v3 .hx-lead, .v3 .hx-btns { opacity: 0; }
+
+  .v3.play h3 .ln em { animation: kick .95s cubic-bezier(.16,1,.3,1) forwards; }
+  .v3.play h3 .l1 em { animation-delay: .18s; }
+  .v3.play h3 .l2 em { animation-delay: .34s; }
+  .v3.play .hx-photo { animation: iris 1.5s cubic-bezier(.16,1,.3,1) .55s forwards; }
+  .v3.play .rule { animation: drawRule .9s cubic-bezier(.16,1,.3,1) 1.0s forwards; }
+  .v3.play .hx-eyebrow { animation: riseIn .6s ease-out .05s forwards; }
+  .v3.play .hx-lead { animation: riseIn .7s ease-out 1.35s forwards; }
+  .v3.play .hx-btns { animation: riseIn .7s ease-out 1.55s forwards; }
+  @keyframes kick { to { transform: none; filter: blur(0); opacity: 1; } }
+  @keyframes iris { to { clip-path: circle(82% at 64% 38%); } }
+  @keyframes drawRule { to { transform: scaleX(1); } }
+
+  @media (max-width: 720px) {
+    /* Phone: she keeps the top of the frame, the copy owns the bottom —
+       her face is never behind text. */
+    .hx { height: min(86vh, 740px); }
+    .hx-inner { max-width: none; }
+    .hx-copy { align-items: flex-end; padding-bottom: 26px; }
+    .hx h3 { font-size: clamp(1.9rem, 8.4vw, 2.6rem); }
+    .v1 .hx-photo { background-position: center 3%; }
+    .v1 .hx-copy { padding-bottom: 76px; }   /* clear the bottom letterbox bar */
+    .v1 .scrim, .v3 .scrim {
+      background: linear-gradient(180deg, rgba(6,8,10,.25) 0%, rgba(6,8,10,.4) 38%, rgba(6,8,10,.88) 62%, rgba(5,6,9,.97) 100%);
+    }
+    .v2 .hx-cut, .v2 .rim { background-position: center 2%; background-size: 92% auto; }
+    .v2 .vig {
+      background:
+        radial-gradient(ellipse 100% 70% at 50% 34%, transparent 36%, rgba(3,4,6,.5) 82%, rgba(2,3,4,.9) 100%),
+        linear-gradient(180deg, transparent 44%, rgba(4,5,8,.72) 66%, rgba(3,4,7,.95) 100%);
+    }
+    .v3 .hx-photo { clip-path: circle(0% at 50% 30%); }
+    .v3.play .hx-photo { animation-name: irisM; }
+    @keyframes irisM { to { clip-path: circle(96% at 50% 30%); } }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hx * { animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<section class="lab-intro">
+  <span class="chip">Preview only — nothing applied</span>
+  <h1>Three ways to open the site</h1>
+  <p>Each plays once when it scrolls into view, then settles and stays perfectly still — no looping, no fidgeting. Hit <strong>Replay</strong> to watch again. Try it on your phone too.</p>
+  <p style="color:#8f8878">Tell Claude which one — or mix parts of them.</p>
+</section>
+
+<div class="lab-head">
+  <div>
+    <h2>1 · Opening Titles</h2>
+    <p>The frame opens like a film. Letterbox bars retract, the photo rises out of black, a gold light sweeps across, then the headline is wiped on line by line.</p>
+  </div>
+  <button class="replay" data-for="v1">▶ Replay</button>
+</div>
+<section class="hx v1" id="v1">
+  <div class="hx-photo"></div>
+  <div class="scrim"></div>
+  <div class="sweep"></div>
+  <div class="hx-copy"><div class="wrap"><div class="hx-inner">
+    <p class="hx-eyebrow">Online Fitness · Nutrition · Mindset Coaching</p>
+    <h3><span class="ln l1">Strengthen the Body.</span><span class="ln l2">Retrain the Mind.</span></h3>
+    <p class="hx-lead">One coach for your training, your nutrition, and your mindset — one plan that finally sticks.</p>
+    <div class="hx-btns"><a class="btn btn-primary" href="#">Get Your Plan</a><a class="btn btn-ghost" href="#">See the Method</a></div>
+  </div></div></div>
+  <div class="bar bar-t"></div>
+  <div class="bar bar-b"></div>
+</section>
+
+<div class="lab-head">
+  <div>
+    <h2>2 · She Steps Out</h2>
+    <p>The room is a blurred void; Alma materialises out of it and pushes forward into focus, gold rim light igniting along her edge. The copy wipes in from the left as gold motes rise.</p>
+  </div>
+  <button class="replay" data-for="v2">▶ Replay</button>
+</div>
+<section class="hx v2" id="v2">
+  <div class="hx-bg"></div>
+  <div class="grade"></div>
+  <div class="rim"></div>
+  <div class="hx-cut"></div>
+  <div class="vig"></div>
+  <div class="mote"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="hx-copy"><div class="wrap"><div class="hx-inner">
+    <p class="hx-eyebrow">Online Fitness · Nutrition · Mindset Coaching</p>
+    <h3><span class="ln">Strengthen the Body.</span><span class="ln">Retrain the Mind.</span></h3>
+    <p class="hx-lead">One coach for your training, your nutrition, and your mindset — one plan that finally sticks.</p>
+    <div class="hx-btns"><a class="btn btn-primary" href="#">Get Your Plan</a><a class="btn btn-ghost" href="#">See the Method</a></div>
+  </div></div></div>
+</section>
+
+<div class="lab-head">
+  <div>
+    <h2>3 · Kinetic Statement</h2>
+    <p>Words first, on black — the headline punches up from below out of a blur. Then the photo irises open behind it and a gold rule draws across. Fashion-campaign energy.</p>
+  </div>
+  <button class="replay" data-for="v3">▶ Replay</button>
+</div>
+<section class="hx v3" id="v3">
+  <div class="hx-photo"></div>
+  <div class="scrim"></div>
+  <div class="hx-copy"><div class="wrap"><div class="hx-inner">
+    <p class="hx-eyebrow">Online Fitness · Nutrition · Mindset Coaching</p>
+    <h3><span class="ln l1"><em>Strengthen the Body.</em></span><span class="ln l2"><em>Retrain the Mind.</em></span></h3>
+    <div class="rule"></div>
+    <p class="hx-lead">One coach for your training, your nutrition, and your mindset — one plan that finally sticks.</p>
+    <div class="hx-btns"><a class="btn btn-primary" href="#">Get Your Plan</a><a class="btn btn-ghost" href="#">See the Method</a></div>
+  </div></div></div>
+</section>
+
+<section class="lab-intro">
+  <span class="chip">That's all three</span>
+  <p>Say a number to apply it — or ask for a blend (for example, the film frame of&nbsp;1 with the step-out of&nbsp;2).</p>
+</section>
+
+<script>
+(function () {
+  var stages = [].slice.call(document.querySelectorAll(".hx"));
+  function play(el) {
+    el.classList.remove("play");
+    void el.offsetWidth;          // restart the animations
+    el.classList.add("play");
+  }
+  // play once as each hero comes into view, the way a real visitor meets it
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && !e.target.dataset.seen) {
+          e.target.dataset.seen = "1";
+          play(e.target);
+        }
+      });
+    }, { threshold: 0.45 });
+    stages.forEach(function (s) { io.observe(s); });
+  } else {
+    stages.forEach(play);
+  }
+  document.querySelectorAll(".replay").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var el = document.getElementById(b.dataset.for);
+      el.scrollIntoView({ block: "center", behavior: "smooth" });
+      setTimeout(function () { play(el); }, 260);
+    });
+  });
+  // ?frozen=<id>&t=<ms> — hold one hero mid-animation (screenshot aid)
+  var q = new URLSearchParams(location.search);
+  if (q.get("frozen")) {
+    var target = document.getElementById(q.get("frozen"));
+    var t = Number(q.get("t") || 0);
+    stages.forEach(function (s) { if (s !== target) s.style.display = "none"; });
+    document.querySelectorAll(".lab-intro, .lab-head").forEach(function (n) { n.style.display = "none"; });
+    if (target) {
+      target.dataset.seen = "1";
+      play(target);
+      // seek every element to time t while KEEPING its own stagger:
+      // effective delay = its own delay minus t
+      target.querySelectorAll("*").forEach(function (n) {
+        var own = parseFloat(getComputedStyle(n).animationDelay) || 0;
+        n.style.animationPlayState = "paused";
+        n.style.animationDelay = (own - t / 1000) + "s";
+      });
+      target.style.animationPlayState = "paused";
+    }
+  }
+})();
+</script>
+</body>
+</html>
