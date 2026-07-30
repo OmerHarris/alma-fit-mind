@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>3D Preview Gallery — every site photo</title>
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #14181a; color: #f6f1e7; font-family: Inter, sans-serif; overflow-x: hidden; }
+  h1, h2 { font-family: Fraunces, serif; }
+
+  .intro {
+    min-height: 60vh; display: flex; flex-direction: column; justify-content: center;
+    align-items: center; text-align: center; padding: 48px 24px; gap: 14px;
+  }
+  .intro h1 { font-size: clamp(1.7rem, 5vw, 2.8rem); }
+  .intro p { color: #cfc8ba; max-width: 36em; line-height: 1.6; }
+  .tag {
+    display: inline-block; border: 1px solid #b08d3f; color: #d9b45c; border-radius: 999px;
+    padding: 6px 16px; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
+  }
+
+  .fx {
+    position: relative; height: 92vh; overflow: hidden; background: #0d0f11;
+  }
+  .fx .layer { position: absolute; inset: -12% 0; will-change: transform; }
+  .fx .layer-bg {
+    background-position: center 30%; background-size: cover; background-repeat: no-repeat;
+    filter: blur(4px) brightness(.55) saturate(.9);
+    transform: scale(1.06);
+  }
+  .fx .layer-word {
+    position: absolute; inset: 0; z-index: 2; will-change: transform;
+    display: flex; align-items: flex-start; justify-content: center;
+    padding-top: 13vh; pointer-events: none;
+  }
+  .fx .layer-word span {
+    font-family: Fraunces, serif; font-weight: 700;
+    font-size: clamp(2.6rem, 12vw, 7.5rem);
+    letter-spacing: .06em; color: #d9b45c; opacity: .92;
+    text-shadow: 0 4px 30px rgba(0,0,0,.7); white-space: nowrap;
+  }
+  .fx.w-long .layer-word span { font-size: clamp(1.8rem, 7.5vw, 5rem); letter-spacing: .12em; }
+  .fx .layer-cutout {
+    z-index: 3;
+    background-position: center bottom 4%; background-size: auto 78%; background-repeat: no-repeat;
+    filter: drop-shadow(0 30px 44px rgba(0,0,0,.6));
+  }
+  .fx.fade-legs .layer-cutout {
+    -webkit-mask-image: linear-gradient(180deg, #000 88%, transparent 97%);
+    mask-image: linear-gradient(180deg, #000 88%, transparent 97%);
+  }
+  .fx .badge {
+    position: absolute; z-index: 5; top: 20px; left: 50%; transform: translateX(-50%);
+    background: rgba(10, 12, 13, .78); border: 1px solid rgba(217, 180, 92, .5);
+    color: #f0ead9; border-radius: 999px; padding: 8px 18px; font-size: .85rem;
+    white-space: nowrap; max-width: 92vw; overflow: hidden; text-overflow: ellipsis;
+  }
+  .fx .badge strong { color: #d9b45c; }
+
+  /* parallax-only variant (photos where a clean cutout isn't possible) */
+  .fx.par-only .layer-bg { filter: none; transform: none; }
+  .fx.par-only .veil { position: absolute; inset: 0; z-index: 1; background: linear-gradient(rgba(16,15,18,.30), rgba(16,15,18,.42)); }
+
+  .divider {
+    min-height: 26vh; display: flex; flex-direction: column; gap: 10px;
+    align-items: center; justify-content: center; text-align: center; padding: 36px 24px;
+  }
+  .divider p { color: #8f8878; max-width: 34em; line-height: 1.6; }
+
+  .end { min-height: 45vh; display: flex; flex-direction: column; gap: 12px; align-items: center; justify-content: center; text-align: center; padding: 40px 24px; }
+  .end p { color: #cfc8ba; max-width: 34em; line-height: 1.65; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fx .layer, .fx .layer-word { transform: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<section class="intro">
+  <span class="tag">Preview only — nothing is applied yet</span>
+  <h1>Every site photo, in 3D</h1>
+  <p>Scroll through slowly — each numbered scene shows one of the website's photos with the pop-out effect, labeled with where that photo lives today. Check it on your phone too.</p>
+  <p>When you're done, just tell Claude the numbers you want applied.</p>
+</section>
+
+<div id="scenes"></div>
+
+<div class="divider" id="parNote">
+  <span class="tag">Last two — different treatment</span>
+  <p>The AI couldn't cut Alma cleanly out of these two photos (dark dress, complex pose), so they're shown with the subtler parallax drift instead of the pop-out.</p>
+</div>
+
+<div id="parScenes"></div>
+
+<section class="end">
+  <span class="tag">That's all 11</span>
+  <p>Reply with the numbers to apply — for example "apply 3, 4, 5" — or "none". Mixing is fine: pop-outs on some, parallax on others, and everything else stays exactly as it is.</p>
+</section>
+
+<script>
+(function () {
+  var SCENES = [
+    { n: 1, img: "alma-hero",    word: "ALMA",       where: "Homepage — main photo" },
+    { n: 2, img: "alma-back",    word: "7 DAYS",     where: "Homepage — Free Guide" },
+    { n: 3, img: "alma-lat",     word: "FOUNDATION", where: "Homepage — Foundation plan card", long: true, fade: true },
+    { n: 4, img: "alma-side",    word: "STRONGER",   where: "Homepage — Transformation plan card", long: true, fade: true },
+    { n: 5, img: "alma-hang",    word: "ELITE",      where: "Homepage — Elite Mind & Body card", fade: true },
+    { n: 6, img: "alma-lunge",   word: "POWER",      where: "Homepage — power section" },
+    { n: 7, img: "alma-row",     word: "START",      where: "Homepage — “Start here” panel", fade: true },
+    { n: 8, img: "alma-barbell", word: "DAY ONE",    where: "Onboarding page — top photo" },
+    { n: 9, img: "alma-blue",    word: "METHOD",     where: "Method page — background", fade: true }
+  ];
+  var PAR = [
+    { n: 10, img: "alma-about", where: "About page — portrait" },
+    { n: 11, img: "alma-roses", where: "Private chat room — background" }
+  ];
+
+  var host = document.getElementById("scenes");
+  SCENES.forEach(function (s) {
+    var sec = document.createElement("section");
+    sec.className = "fx" + (s.long ? " w-long" : "") + (s.fade ? " fade-legs" : "");
+    sec.id = "s" + s.n;
+    sec.innerHTML =
+      '<div class="layer layer-bg" style="background-image:url(images/' + s.img + '.jpg)"></div>' +
+      '<div class="layer-word"><span>' + s.word + "</span></div>" +
+      '<div class="layer layer-cutout" style="background-image:url(images/preview3d/cut-' + s.img + '.png)"></div>' +
+      '<div class="badge"><strong>#' + s.n + "</strong> · " + s.where + "</div>";
+    host.appendChild(sec);
+  });
+  var parHost = document.getElementById("parScenes");
+  PAR.forEach(function (s) {
+    var sec = document.createElement("section");
+    sec.className = "fx par-only";
+    sec.id = "s" + s.n;
+    sec.innerHTML =
+      '<div class="layer layer-bg" style="background-image:url(images/' + s.img + '.jpg)"></div>' +
+      '<div class="veil"></div>' +
+      '<div class="badge"><strong>#' + s.n + "</strong> · " + s.where + " · parallax drift</div>";
+    parHost.appendChild(sec);
+  });
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  var all = Array.prototype.slice.call(document.querySelectorAll(".fx"));
+  function offsetOf(el) {
+    var r = el.getBoundingClientRect();
+    return (r.top + r.height / 2 - window.innerHeight / 2) / window.innerHeight;
+  }
+  var ticking = false;
+  function frame() {
+    ticking = false;
+    all.forEach(function (sec) {
+      var o = offsetOf(sec);
+      if (Math.abs(o) > 1.2) return;
+      var bg = sec.querySelector(".layer-bg");
+      if (sec.classList.contains("par-only")) {
+        bg.style.transform = "translate3d(0," + o * 10 + "%,0) scale(1.12)";
+        return;
+      }
+      bg.style.transform = "translate3d(0," + o * 8 + "%,0) scale(1.06)";
+      sec.querySelector(".layer-word").style.transform = "translate3d(0," + o * 26 + "%,0)";
+      sec.querySelector(".layer-cutout").style.transform =
+        "translate3d(0," + o * -7 + "%,0) scale(" + (1.04 - o * 0.06) + ")";
+    });
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  frame();
+
+  // ?solo=<id> — show one scene at top (screenshot aid)
+  var solo = new URLSearchParams(location.search).get("solo");
+  if (solo) {
+    var keep = document.getElementById(solo);
+    if (keep) {
+      Array.prototype.forEach.call(document.body.children, function (n) {
+        if (n.tagName === "SCRIPT") return;
+        if (n === keep || n.contains(keep)) {
+          if (n !== keep) Array.prototype.forEach.call(n.children, function (c) {
+            if (c !== keep) c.style.display = "none";
+          });
+        } else {
+          n.style.display = "none";
+        }
+      });
+      window.scrollTo(0, 0);
+      frame();
+    }
+  }
+})();
+</script>
+</body>
+</html>
