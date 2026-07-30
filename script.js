@@ -274,7 +274,8 @@ if (contactForm) {
 // ---------- Power band: cinematic film frame ----------
 // Every layer is tied to scroll position — nothing animates on its own.
 (function () {
-  var stage = document.querySelector(".power-cine .pc-stage");
+  var band = document.querySelector(".power-cine");
+  var stage = band && band.querySelector(".pc-stage");
   if (!stage) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
@@ -285,7 +286,7 @@ if (contactForm) {
   var rimGold = stage.querySelector(".pc-rim-gold");
   var rimCyan = stage.querySelector(".pc-rim-cyan");
   var cut = stage.querySelector(".pc-cut");
-  var rule = stage.querySelector(".pc-rule");
+  var rule = band.querySelector(".pc-rule");
   var dustA = stage.querySelector(".pc-dust-a");
   var dustB = stage.querySelector(".pc-dust-b");
   var barTop = stage.querySelector(".pc-bar-top");

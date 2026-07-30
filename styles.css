@@ -784,13 +784,14 @@ a.value-prop:hover, a.value-prop:focus-visible {
 .pc-rim,
 .pc-cut {
   position: absolute;
-  inset: -6% 0 0;
+  /* sit inside the letterbox bars — her whole body always fits the frame */
+  inset: 9% 0;
   pointer-events: none;
   will-change: transform;
   background-image: url("images/pop/alma-row.webp");
   background-repeat: no-repeat;
-  background-position: 87% bottom;
-  background-size: auto 82%;
+  background-position: 88% bottom;
+  background-size: contain;
 }
 .pc-echo {
   z-index: 4;
@@ -856,8 +857,15 @@ a.value-prop:hover, a.value-prop:focus-visible {
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
 }
-/* Copy rides above the grade and vignette so it never dims */
-.power-cine .power-band-content { z-index: 11; }
+/* Copy is a sibling of the frame: overlaid on desktop, stacked under it on
+   phones — either way it never covers her. */
+.power-cine .power-band-content {
+  position: absolute;
+  inset: 0;
+  z-index: 11;
+  display: flex;
+  align-items: center;
+}
 .pc-rule {
   display: block;
   width: 120px;
@@ -881,26 +889,16 @@ a.value-prop:hover, a.value-prop:focus-visible {
 .pc-bar-bot { bottom: 0; box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.6); }
 .pc-fade { display: none; }
 @media (max-width: 960px) {
-  /* Portrait film still: Alma fills the frame, copy sits over a bottom fade */
-  .pc-stage { height: min(88vh, 780px); }
-  .pc-echo, .pc-rim, .pc-cut { background-size: 126% auto; background-position: 26% bottom; }
-  .pc-bg { background-position: 30% 30%; filter: blur(9px) brightness(0.36) saturate(0.7); }
-  .pc-vig { background: radial-gradient(ellipse 100% 76% at 50% 44%, transparent 30%, rgba(4, 4, 6, 0.55) 74%, rgba(3, 3, 5, 0.9) 100%); }
-  .pc-bar { height: 5.5%; }
-  .pc-fade {
-    display: block;
-    position: absolute;
-    inset: 0;
-    z-index: 10;
-    pointer-events: none;
-    background: linear-gradient(180deg, transparent 38%, rgba(6, 7, 9, 0.55) 58%, rgba(6, 7, 9, 0.93) 78%, #06070a 100%);
-  }
-  /* the generic <=960 rule turns this static — keep it overlaid on the frame */
+  /* Film still on top with her complete in frame, copy stacked beneath it */
+  .pc-stage { height: clamp(360px, 50vh, 520px); }
+  .pc-bg { background-position: 30% 30%; filter: blur(9px) brightness(0.4) saturate(0.72); }
+  .pc-vig { background: radial-gradient(ellipse 100% 82% at 50% 50%, transparent 34%, rgba(4, 4, 6, 0.5) 76%, rgba(3, 3, 5, 0.88) 100%); }
+  .pc-bar { height: 6%; }
+  .pc-echo, .pc-rim, .pc-cut { inset: 8% 0 7%; background-position: center bottom; }
   .power-cine .power-band-content {
-    position: absolute;
-    inset: auto 0 0;
-    padding: 0 24px 34px;
+    position: static;
     display: block;
+    padding: 34px 24px 46px;
   }
   .power-cine .power-band-inner { max-width: none; }
   .pc-rule { width: 90px; margin-bottom: 14px; }
