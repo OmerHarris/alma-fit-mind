@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>3D Photo Effects — Demo</title>
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #14181a; color: #f6f1e7; font-family: Inter, sans-serif; overflow-x: hidden; }
+  h1, h2 { font-family: Fraunces, serif; }
+
+  .intro, .divider {
+    min-height: 55vh; display: flex; flex-direction: column; justify-content: center;
+    align-items: center; text-align: center; padding: 48px 24px; gap: 14px;
+  }
+  .intro h1 { font-size: clamp(1.8rem, 5vw, 3rem); }
+  .intro p, .divider p { color: #cfc8ba; max-width: 34em; line-height: 1.6; }
+  .tag {
+    display: inline-block; border: 1px solid #b08d3f; color: #d9b45c; border-radius: 999px;
+    padding: 6px 16px; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
+  }
+  .divider h2 { font-size: clamp(1.4rem, 4vw, 2.2rem); }
+  .scroll-hint { color: #8f8878; font-size: .85rem; margin-top: 18px; }
+
+  /* ---- 1. Parallax ---- */
+  .fx-parallax { position: relative; height: 92vh; overflow: hidden; }
+  .fx-parallax .bg {
+    position: absolute; inset: -18% 0; will-change: transform;
+    background: url("images/demo-sled.jpg") center 30% / cover no-repeat;
+  }
+  .fx-parallax .veil { position: absolute; inset: 0; background: linear-gradient(rgba(20,24,26,.44), rgba(20,24,26,.28)); }
+  .fx-parallax .copy { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 24px; }
+  .fx-parallax h2 { font-size: clamp(1.7rem, 5vw, 2.8rem); text-shadow: 0 2px 16px rgba(0,0,0,.6); }
+  .fx-parallax p { color: #e8e2d5; text-shadow: 0 1px 8px rgba(0,0,0,.6); margin-top: 10px; }
+
+  /* ---- 2. Tilt on scroll ---- */
+  .fx-tilt { padding: 12vh 24px; display: flex; justify-content: center; perspective: 900px; }
+  .fx-tilt .card {
+    width: min(560px, 92vw); border-radius: 18px; overflow: hidden; will-change: transform;
+    box-shadow: 0 30px 80px rgba(0,0,0,.55); transform-style: preserve-3d;
+  }
+  .fx-tilt img { display: block; width: 100%; height: auto; }
+  .fx-tilt .card-label { background: #1d2225; padding: 16px 20px; font-size: .9rem; color: #cfc8ba; }
+
+  /* ---- 3. Layered 3D pop-out ---- */
+  .fx-pop { position: relative; height: 96vh; overflow: hidden; background: #0d0f11; }
+  .fx-pop .layer { position: absolute; inset: -14% 0; will-change: transform; }
+  .fx-pop .layer-bg {
+    background: url("images/demo-sled.jpg") center 30% / cover no-repeat;
+    filter: blur(3px) brightness(.55) saturate(.9);
+    transform: scale(1.06);
+  }
+  .fx-pop .layer-title {
+    position: absolute; inset: 0; display: flex; align-items: flex-start; justify-content: center;
+    padding-top: 16vh; z-index: 2; will-change: transform; text-align: center;
+  }
+  .fx-pop .layer-title h2 {
+    font-size: clamp(2.4rem, 9vw, 5.5rem); color: #d9b45c; letter-spacing: .04em;
+    text-shadow: 0 4px 30px rgba(0,0,0,.7);
+  }
+  .fx-pop .layer-cutout {
+    z-index: 3; background: url("images/demo-sled-cutout.png") center 62% / contain no-repeat;
+  }
+  .fx-pop .caption {
+    position: absolute; z-index: 4; bottom: 7vh; width: 100%; text-align: center; padding: 0 24px;
+  }
+  .fx-pop .caption p { color: #e8e2d5; text-shadow: 0 1px 10px rgba(0,0,0,.8); }
+
+  .end { min-height: 40vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 24px; color: #8f8878; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fx-parallax .bg, .fx-tilt .card, .fx-pop .layer, .fx-pop .layer-title { transform: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<section class="intro">
+  <span class="tag">Demo — not linked from the site</span>
+  <h1>Three ways to make Alma's photo move</h1>
+  <p>Scroll down slowly. Each section shows one effect using the same photo. Try it on your phone too — that's where most visitors will feel it.</p>
+  <p class="scroll-hint">↓ scroll</p>
+</section>
+
+<div class="divider">
+  <span class="tag">Example 1</span>
+  <h2>Parallax</h2>
+  <p>The photo drifts slower than the page — subtle depth, zero risk, works everywhere. Best for the hero backgrounds we already have.</p>
+</div>
+
+<section class="fx-parallax" id="fxParallax">
+  <div class="bg" id="parallaxBg"></div>
+  <div class="veil"></div>
+  <div class="copy">
+    <h2>Stronger every week.</h2>
+    <p>The background moves at half speed while you scroll.</p>
+  </div>
+</section>
+
+<div class="divider">
+  <span class="tag">Example 2</span>
+  <h2>Tilt on scroll</h2>
+  <p>The photo card leans in 3D as it passes through the screen — like it's turning to face you.</p>
+</div>
+
+<section class="fx-tilt">
+  <div class="card" id="tiltCard">
+    <img src="images/demo-sled.jpg" alt="Alma pushing a sled" />
+    <div class="card-label">Watch the card tilt as you scroll it through the middle of the screen.</div>
+  </div>
+</section>
+
+<div class="divider">
+  <span class="tag">Example 3</span>
+  <h2>The 3D pop-out</h2>
+  <p>Alma is cut out from her own background. Background, title and Alma each move at a different speed — she pops out of the photo, and slides <em>over</em> the title.</p>
+</div>
+
+<section class="fx-pop" id="fxPop">
+  <div class="layer layer-bg" id="popBg"></div>
+  <div class="layer-title" id="popTitle"><h2>ALMA</h2></div>
+  <div class="layer layer-cutout" id="popCutout"></div>
+  <div class="caption"><p>Three layers, three speeds — that's the whole trick.</p></div>
+</section>
+
+<div class="end"><p>That's all three. Tell Claude which one you want on the real site.</p></div>
+
+<script>
+(function () {
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduced) return;
+
+  var parallaxBg = document.getElementById("parallaxBg");
+  var fxParallax = document.getElementById("fxParallax");
+  var tiltCard = document.getElementById("tiltCard");
+  var popBg = document.getElementById("popBg");
+  var popTitle = document.getElementById("popTitle");
+  var popCutout = document.getElementById("popCutout");
+  var fxPop = document.getElementById("fxPop");
+
+  // How far the middle of a section is from the middle of the screen, in
+  // screen-heights: 0 when centered, -1/+1 when a full screen away.
+  function offsetOf(el) {
+    var r = el.getBoundingClientRect();
+    var mid = r.top + r.height / 2;
+    return (mid - window.innerHeight / 2) / window.innerHeight;
+  }
+
+  var ticking = false;
+  function frame() {
+    ticking = false;
+
+    var p = offsetOf(fxParallax);
+    parallaxBg.style.transform = "translate3d(0," + (p * 12) + "%,0)";
+
+    var t = Math.max(-1, Math.min(1, offsetOf(tiltCard)));
+    tiltCard.style.transform = "rotateX(" + (t * 14) + "deg) scale(" + (1 - Math.abs(t) * 0.05) + ")";
+
+    var o = offsetOf(fxPop);
+    popBg.style.transform = "translate3d(0," + (o * 8) + "%,0) scale(1.06)";
+    popTitle.style.transform = "translate3d(0," + (o * 26) + "%,0)";
+    popCutout.style.transform = "translate3d(0," + (o * -7) + "%,0) scale(" + (1.04 - o * 0.06) + ")";
+  }
+  function onScroll() {
+    if (!ticking) { ticking = true; requestAnimationFrame(frame); }
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  frame();
+
+  // ?at=<section id> — jump straight to a section (used for screenshots/links)
+  var q = new URLSearchParams(location.search);
+  var at = q.get("at");
+  if (at) {
+    var el = document.getElementById(at);
+    if (el) {
+      var jump = function () { el.scrollIntoView({ block: "center" }); frame(); };
+      jump();
+      window.addEventListener("load", jump);
+    }
+  }
+  // ?solo=<section id> — show only that section (screenshot aid)
+  var solo = q.get("solo");
+  if (solo) {
+    var keep = document.getElementById(solo);
+    var target = keep && keep.closest("section") || keep;
+    if (target) {
+      Array.prototype.forEach.call(document.body.children, function (n) {
+        if (n !== target && n.tagName !== "SCRIPT") n.style.display = "none";
+      });
+      window.scrollTo(0, 0);
+      frame();
+    }
+  }
+})();
+</script>
+</body>
+</html>
