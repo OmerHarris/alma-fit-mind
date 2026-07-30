@@ -260,7 +260,6 @@ if (contactForm) {
       if (Math.abs(o) > 1.2) return;
       card.querySelector(".pp-bg").style.transform =
         "translate3d(0," + o * 15 + "%,0) scale(1.06)";
-      card.querySelector(".pp-word").style.transform = "translate3d(0," + o * -22 + "%,0)";
       card.querySelector(".pp-cutout").style.transform =
         "translate3d(0," + o * -34 + "%,0) scale(" + (1.02 - o * 0.08) + ")";
     });
