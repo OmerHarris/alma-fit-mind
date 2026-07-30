@@ -89,8 +89,8 @@
   .s7-ray {
     position: absolute; inset: -30% -10%; z-index: 1; pointer-events: none; will-change: transform;
     background: linear-gradient(108deg,
-      transparent 44%, rgba(255, 226, 158, .05) 52%, rgba(255, 226, 158, .17) 60%,
-      rgba(255, 226, 158, .06) 66%, transparent 72%);
+      transparent 44%, rgba(236, 244, 252, .05) 52%, rgba(236, 244, 252, .15) 60%,
+      rgba(236, 244, 252, .06) 66%, transparent 72%);
     filter: blur(6px);
   }
   .s7-flare {
@@ -113,14 +113,14 @@
   }
   .s7-rule {
     width: 78%; height: 1px; will-change: transform;
-    background: linear-gradient(90deg, transparent, rgba(217, 180, 92, .85), transparent);
+    background: linear-gradient(90deg, transparent, rgba(226, 234, 242, .8), transparent);
   }
   .s7-word { display: flex; gap: .05em; margin: .12em 0 .06em; }
   .s7-word span {
     display: block; will-change: transform;
     font-family: Fraunces, serif; font-weight: 700;
     font-size: clamp(2.6rem, 7.4vw, 6.2rem); line-height: 1; letter-spacing: .05em;
-    background: linear-gradient(178deg, #fbf0cd 8%, #e6c274 42%, #c99b3c 68%, #7d5c1e 100%);
+    background: linear-gradient(178deg, #ffffff 8%, #dfe7ef 42%, #b9c5d2 68%, #6d7885 100%);
     -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
     filter: drop-shadow(0 4px 22px rgba(0, 0, 0, .8));
   }
@@ -151,14 +151,14 @@
     z-index: 6;
     filter: contrast(1.06) saturate(1.05)
       drop-shadow(0 38px 54px rgba(0, 0, 0, .75))
-      drop-shadow(0 0 40px rgba(217, 180, 92, .18));
+      drop-shadow(0 0 40px rgba(214, 230, 244, .16));
   }
   .s7-dust { position: absolute; inset: 0; z-index: 7; pointer-events: none; will-change: transform; }
   .s7-dust i {
     position: absolute; border-radius: 50%;
-    background: radial-gradient(circle, #ffeec0 0%, rgba(217, 180, 92, 0) 70%);
+    background: radial-gradient(circle, #eef4fa 0%, rgba(210, 226, 240, 0) 70%);
   }
-  .dust-a i { width: 6px; height: 6px; box-shadow: 0 0 11px rgba(255, 226, 158, .9); opacity: .8; }
+  .dust-a i { width: 6px; height: 6px; box-shadow: 0 0 11px rgba(226, 238, 250, .85); opacity: .75; }
   .dust-b i { width: 14px; height: 14px; opacity: .3; filter: blur(2px); }
   .dust-a i:nth-child(1) { left: 12%; top: 30%; }
   .dust-a i:nth-child(2) { left: 26%; top: 64%; }
