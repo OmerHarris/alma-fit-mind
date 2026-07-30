@@ -346,9 +346,23 @@ if (contactForm) {
     img.addEventListener("error", start);
   }
   setTimeout(start, 1500);   // never wait on a slow photo
-  // Last-resort guard: if the intro somehow never ran, drop the armed state
-  // so the hero shows its finished frame rather than staying dark.
-  setTimeout(function () {
-    if (!hero.classList.contains("play")) hero.classList.remove("armed");
-  }, 5000);
+
+  // Guarantee the hero ends up settled. Animation clocks are frozen while a
+  // tab is hidden, so count only visible time; after the intro has had long
+  // enough, drop the animation classes. The un-animated state is identical to
+  // the finished frame, so this is invisible when the intro played normally
+  // and rescues the hero if it never did.
+  var visibleMs = 0;
+  var since = document.hidden ? 0 : Date.now();
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) { if (since) visibleMs += Date.now() - since; since = 0; }
+    else since = Date.now();
+  });
+  var guard = setInterval(function () {
+    if (!document.hidden && since) { visibleMs += Date.now() - since; since = Date.now(); }
+    if (visibleMs > 6000) {
+      clearInterval(guard);
+      hero.classList.remove("armed", "play");
+    }
+  }, 600);
 })();
