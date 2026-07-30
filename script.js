@@ -264,7 +264,7 @@ if (contactForm) {
       card.querySelector(".pp-word").style.transform = wordT;
       card.querySelector(".pp-word-front").style.transform = wordT;
       card.querySelector(".pp-cutout").style.transform =
-        "translate3d(0," + o * -8 + "%,0) scale(" + (1.03 - o * 0.05) + ")";
+        "translate3d(0," + o * -4 + "%,0) scale(" + (1.02 - o * 0.04) + ")";
     });
   }
   function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
