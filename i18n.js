@@ -110,12 +110,12 @@
     "Weekly progress check-in": "Seguimiento semanal de progreso",
     "Email support": "Soporte por correo",
     "Everything in Foundations": "Todo lo de Foundations",
-    "Bi-weekly 1:1 video coaching (45 min) — training, nutrition & mindset":
-      "Coaching 1:1 en video cada dos semanas (45 min) — entrenamiento, nutrición y mentalidad",
+    "Bi-weekly 1:1 video coaching (40 min) — training, nutrition & mindset":
+      "Coaching 1:1 en video cada dos semanas (40 min) — entrenamiento, nutrición y mentalidad",
     "Weekly plan adjustments": "Ajustes semanales del plan",
     "Mon–Fri messaging support": "Soporte por mensajes de lunes a viernes",
     "Everything in Transformation": "Todo lo de Transformation",
-    "Weekly 1:1 coaching (60 min)": "Coaching 1:1 semanal (60 min)",
+    "Weekly 1:1 coaching (45 min)": "Coaching 1:1 semanal (45 min)",
     "Fully bespoke programming, reviewed weekly": "Programación totalmente a medida, revisada cada semana",
     "Dedicated mindset coaching": "Coaching de mentalidad dedicado",
     "Priority messaging & quarterly accountability audits": "Mensajes prioritarios y auditorías trimestrales",

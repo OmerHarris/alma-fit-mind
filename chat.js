@@ -90,9 +90,9 @@
 
   // ---- Package recommendation -----------------------------------------
   const PLANS = {
-    foundations: { name: "Foundations", price: "$49", blurb: "You've clearly got the drive — this hands you Alma's custom program and weekly check-ins to keep that momentum going. The perfect starting line. 💪" },
-    transformation: { name: "Transformation", price: "$99", blurb: "This one has your name written all over it. 💪 Real 1:1 coaching, weekly adjustments, and Alma actually in your corner — exactly the support your answers are asking for." },
-    elite: { name: "Elite Mind & Body", price: "$199", blurb: "You're clearly all in — and I love it. 🔥 Alma's highest-touch level: weekly 1:1s, fully bespoke programming, and dedicated mindset coaching. Made for someone as committed as you." },
+    foundations: { name: "Foundations", price: "$29", blurb: "You've clearly got the drive — this hands you Alma's custom program and weekly check-ins to keep that momentum going. The perfect starting line. 💪" },
+    transformation: { name: "Transformation", price: "$49", blurb: "This one has your name written all over it. 💪 Real 1:1 coaching, weekly adjustments, and Alma actually in your corner — exactly the support your answers are asking for." },
+    elite: { name: "Elite Mind & Body", price: "$99", blurb: "You're clearly all in — and I love it. 🔥 Alma's highest-touch level: weekly 1:1s, fully bespoke programming, and dedicated mindset coaching. Made for someone as committed as you." },
   };
   function recommendPlan(a) {
     let s = 0;
