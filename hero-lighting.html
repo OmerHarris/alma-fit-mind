@@ -1,0 +1,163 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hero lighting options</title><meta name="robots" content="noindex"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css"/>
+<style>
+  body { background:#0a0c0e; margin:0; }
+  .lab-head { max-width:1160px; margin:0 auto; padding:30px 24px 12px; }
+  .lab-head h2 { font-family:Fraunces,serif; color:#fff; font-size:1.3rem; }
+  .lab-head p { color:#9a9384; font-size:.9rem; margin-top:4px; }
+
+  /* A — clean & bright */
+  .lt-a .hc-photo { filter: contrast(1.06) saturate(1.02) brightness(1.06); }
+  .lt-a .hc-grade { background: linear-gradient(340deg, rgba(255,190,120,.08), transparent 55%); }
+  .lt-a .hc-key { background: radial-gradient(ellipse 40% 55% at 60% 40%, rgba(255,236,205,.14), transparent 72%); }
+  .lt-a .hc-rim { opacity:.5; } .lt-a .hc-rim-cool { opacity:0; }
+  .lt-a .hc-vig { background: radial-gradient(ellipse 100% 92% at 56% 48%, transparent 44%, rgba(4,5,8,.4) 84%, rgba(3,4,6,.72) 100%); }
+  .lt-a .hc-ray { opacity:.35; }
+
+  /* B — warm spotlight */
+  .lt-b .hc-photo { filter: contrast(1.16) saturate(.98) brightness(.98); }
+  .lt-b .hc-grade { background: linear-gradient(180deg, rgba(6,6,8,.3), transparent 40%, rgba(5,5,7,.45)); }
+  .lt-b .hc-key { background: radial-gradient(ellipse 36% 52% at 61% 42%, rgba(255,224,170,.3), rgba(255,196,120,.1) 46%, transparent 74%); }
+  .lt-b .hc-rim { opacity:.8; } .lt-b .hc-rim-cool { opacity:0; }
+  .lt-b .hc-vig { background: radial-gradient(ellipse 74% 74% at 61% 44%, transparent 24%, rgba(3,3,5,.72) 72%, rgba(2,2,4,.96) 100%); }
+  .lt-b .hc-ray { opacity:.5; }
+
+  /* C — cool editorial */
+  .lt-c .hc-photo { filter: contrast(1.24) saturate(.62) brightness(1.0); }
+  .lt-c .hc-grade { background: linear-gradient(150deg, rgba(24,54,78,.42), transparent 58%), linear-gradient(0deg, rgba(10,16,24,.5), transparent 46%); }
+  .lt-c .hc-key { background: radial-gradient(ellipse 36% 50% at 61% 40%, rgba(214,234,255,.13), transparent 72%); }
+  .lt-c .hc-rim { opacity:0; } .lt-c .hc-rim-cool { opacity:.95; }
+  .lt-c .hc-vig { background: radial-gradient(ellipse 96% 86% at 57% 47%, transparent 34%, rgba(4,7,11,.55) 78%, rgba(3,5,9,.92) 100%); }
+  .lt-c .hc-ray { opacity:.3; }
+
+  /* D — softened teal & orange */
+  .lt-d .hc-photo { filter: contrast(1.1) saturate(.94) brightness(1.02); }
+  .lt-d .hc-grade { background: linear-gradient(152deg, rgba(9,44,62,.3), transparent 52%), linear-gradient(338deg, rgba(232,152,48,.16), transparent 56%); }
+  .lt-d .hc-key { background: radial-gradient(ellipse 32% 46% at 62% 42%, rgba(255,214,160,.12), transparent 72%); }
+  .lt-d .hc-rim { opacity:.6; } .lt-d .hc-rim-cool { opacity:.3; }
+  .lt-d .hc-vig { background: radial-gradient(ellipse 98% 88% at 57% 48%, transparent 38%, rgba(3,4,6,.46) 80%, rgba(2,3,5,.86) 100%); }
+</style></head><body>
+<div class="lab-head"><div><h2>A · Clean &amp; bright</h2><p>Natural colour, gentle vignette, no colour cast. The photo simply looks well lit.</p></div></div>
+<section class="hero hero-cine lt-a" id="hero-a">
+    <div class="hc-frame" aria-hidden="true">
+      <img class="hc-photo" src="images/alma-hero.jpg" alt="" fetchpriority="high" />
+      <div class="hc-grade"></div>
+      <div class="hc-key"></div>
+      <div class="hc-rim-cool"></div>
+      <div class="hc-rim"></div>
+      <div class="hc-ray"></div>
+      <div class="hc-flare"></div>
+    </div>
+    <div class="hc-scrim" aria-hidden="true"></div>
+    <div class="hc-vig" aria-hidden="true"></div>
+    <div class="hc-grain" aria-hidden="true"></div>
+    <div class="hc-bar hc-bar-t" aria-hidden="true"></div>
+    <div class="hc-bar hc-bar-b" aria-hidden="true"></div>
+    <div class="wrap hero-cover-content">
+      <div class="hero-cover-copy">
+        <p class="eyebrow">Online Fitness · Nutrition · Mindset Coaching</p>
+        <h1><span class="hc-ln"><em>Strengthen the Body.</em></span><span class="hc-ln"><em>Retrain the Mind.</em></span></h1>
+        <div class="hc-rule" aria-hidden="true"></div>
+        <p class="hero-lead">One coach for your training, your nutrition, and your mindset — one plan that finally sticks.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#pricing">Get Your Plan</a>
+          <a class="btn btn-ghost" href="/method.html">See the Method</a>
+        </div>
+      </div>
+    </div>
+  </section>
+<div class="lab-head"><div><h2>B · Warm spotlight</h2><p>A soft warm pool of light on her, everything else falls away into black. No teal.</p></div></div>
+<section class="hero hero-cine lt-b" id="hero-b">
+    <div class="hc-frame" aria-hidden="true">
+      <img class="hc-photo" src="images/alma-hero.jpg" alt="" fetchpriority="high" />
+      <div class="hc-grade"></div>
+      <div class="hc-key"></div>
+      <div class="hc-rim-cool"></div>
+      <div class="hc-rim"></div>
+      <div class="hc-ray"></div>
+      <div class="hc-flare"></div>
+    </div>
+    <div class="hc-scrim" aria-hidden="true"></div>
+    <div class="hc-vig" aria-hidden="true"></div>
+    <div class="hc-grain" aria-hidden="true"></div>
+    <div class="hc-bar hc-bar-t" aria-hidden="true"></div>
+    <div class="hc-bar hc-bar-b" aria-hidden="true"></div>
+    <div class="wrap hero-cover-content">
+      <div class="hero-cover-copy">
+        <p class="eyebrow">Online Fitness · Nutrition · Mindset Coaching</p>
+        <h1><span class="hc-ln"><em>Strengthen the Body.</em></span><span class="hc-ln"><em>Retrain the Mind.</em></span></h1>
+        <div class="hc-rule" aria-hidden="true"></div>
+        <p class="hero-lead">One coach for your training, your nutrition, and your mindset — one plan that finally sticks.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#pricing">Get Your Plan</a>
+          <a class="btn btn-ghost" href="/method.html">See the Method</a>
+        </div>
+      </div>
+    </div>
+  </section>
+<div class="lab-head"><div><h2>C · Cool editorial</h2><p>Desaturated steel blue, high contrast, cool silver rim. Modern and expensive.</p></div></div>
+<section class="hero hero-cine lt-c" id="hero-c">
+    <div class="hc-frame" aria-hidden="true">
+      <img class="hc-photo" src="images/alma-hero.jpg" alt="" fetchpriority="high" />
+      <div class="hc-grade"></div>
+      <div class="hc-key"></div>
+      <div class="hc-rim-cool"></div>
+      <div class="hc-rim"></div>
+      <div class="hc-ray"></div>
+      <div class="hc-flare"></div>
+    </div>
+    <div class="hc-scrim" aria-hidden="true"></div>
+    <div class="hc-vig" aria-hidden="true"></div>
+    <div class="hc-grain" aria-hidden="true"></div>
+    <div class="hc-bar hc-bar-t" aria-hidden="true"></div>
+    <div class="hc-bar hc-bar-b" aria-hidden="true"></div>
+    <div class="wrap hero-cover-content">
+      <div class="hero-cover-copy">
+        <p class="eyebrow">Online Fitness · Nutrition · Mindset Coaching</p>
+        <h1><span class="hc-ln"><em>Strengthen the Body.</em></span><span class="hc-ln"><em>Retrain the Mind.</em></span></h1>
+        <div class="hc-rule" aria-hidden="true"></div>
+        <p class="hero-lead">One coach for your training, your nutrition, and your mindset — one plan that finally sticks.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#pricing">Get Your Plan</a>
+          <a class="btn btn-ghost" href="/method.html">See the Method</a>
+        </div>
+      </div>
+    </div>
+  </section>
+<div class="lab-head"><div><h2>D · Teal &amp; orange (current, softened)</h2><p>The cinema grade you have now, pulled well back.</p></div></div>
+<section class="hero hero-cine lt-d" id="hero-d">
+    <div class="hc-frame" aria-hidden="true">
+      <img class="hc-photo" src="images/alma-hero.jpg" alt="" fetchpriority="high" />
+      <div class="hc-grade"></div>
+      <div class="hc-key"></div>
+      <div class="hc-rim-cool"></div>
+      <div class="hc-rim"></div>
+      <div class="hc-ray"></div>
+      <div class="hc-flare"></div>
+    </div>
+    <div class="hc-scrim" aria-hidden="true"></div>
+    <div class="hc-vig" aria-hidden="true"></div>
+    <div class="hc-grain" aria-hidden="true"></div>
+    <div class="hc-bar hc-bar-t" aria-hidden="true"></div>
+    <div class="hc-bar hc-bar-b" aria-hidden="true"></div>
+    <div class="wrap hero-cover-content">
+      <div class="hero-cover-copy">
+        <p class="eyebrow">Online Fitness · Nutrition · Mindset Coaching</p>
+        <h1><span class="hc-ln"><em>Strengthen the Body.</em></span><span class="hc-ln"><em>Retrain the Mind.</em></span></h1>
+        <div class="hc-rule" aria-hidden="true"></div>
+        <p class="hero-lead">One coach for your training, your nutrition, and your mindset — one plan that finally sticks.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#pricing">Get Your Plan</a>
+          <a class="btn btn-ghost" href="/method.html">See the Method</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<script>
+  // settle every hero immediately — this page is about lighting, not motion
+  document.querySelectorAll(".hero-cine").forEach(function (h) { h.classList.remove("armed"); });
+</script></body></html>
