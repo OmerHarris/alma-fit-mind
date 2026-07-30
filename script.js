@@ -243,3 +243,32 @@ if (contactForm) {
     }
   });
 }
+
+// ---------- Pricing cards: layered 3D photo headers ----------
+// Strictly scroll-linked: layers move only while the visitor scrolls.
+(function () {
+  var cards = Array.prototype.slice.call(document.querySelectorAll(".price-pop"));
+  if (!cards.length) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  var ticking = false;
+  function frame() {
+    ticking = false;
+    cards.forEach(function (card) {
+      var r = card.getBoundingClientRect();
+      var o = (r.top + r.height / 2 - window.innerHeight / 2) / window.innerHeight;
+      if (Math.abs(o) > 1.2) return;
+      card.querySelector(".pp-bg").style.transform =
+        "translate3d(0," + o * 6 + "%,0) scale(1.06)";
+      var wordT = "translate3d(0," + o * 42 + "%,0)";
+      card.querySelector(".pp-word").style.transform = wordT;
+      card.querySelector(".pp-word-front").style.transform = wordT;
+      card.querySelector(".pp-cutout").style.transform =
+        "translate3d(0," + o * -8 + "%,0) scale(" + (1.03 - o * 0.05) + ")";
+    });
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  frame();
+})();
