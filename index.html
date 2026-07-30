@@ -30,6 +30,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="images/alma-sled.jpg" />
+<link rel="preload" as="image" href="images/alma-sled-cutout.png" />
 <link rel="stylesheet" href="styles.css" />
 
 <script type="application/ld+json">
@@ -116,10 +118,14 @@
 
 <main id="main">
 
-  <!-- HERO -->
-  <section class="hero hero-cover" id="top">
-    <img class="hero-cover-img" src="images/alma-hero.jpg" alt="Alma training at the gym" fetchpriority="high" />
-    <div class="hero-cover-scrim" aria-hidden="true"></div>
+  <!-- HERO — layered 3D pop-out: background, gold word and Alma's cutout
+       each move at a different speed on scroll (script.js) -->
+  <section class="hero hero-pop" id="top">
+    <div class="hero-pop-bg" aria-hidden="true"></div>
+    <div class="hero-pop-word" aria-hidden="true">ALMA</div>
+    <div class="hero-pop-scrim" aria-hidden="true"></div>
+    <div class="hero-pop-cutout" role="img" aria-label="Alma pushing a training sled"></div>
+    <div class="hero-pop-fade" aria-hidden="true"></div>
     <div class="wrap hero-cover-content">
       <div class="hero-cover-copy">
         <p class="eyebrow">Online Fitness · Nutrition · Mindset Coaching</p>

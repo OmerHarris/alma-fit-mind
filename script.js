@@ -243,3 +243,31 @@ if (contactForm) {
     }
   });
 }
+
+// ---------- Hero 3D pop-out ----------
+// Background, gold word and Alma's cutout drift at different speeds while
+// the hero scrolls out, so she pops out of the photo and over the word.
+(function () {
+  var hero = document.querySelector(".hero-pop");
+  if (!hero) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var bg = hero.querySelector(".hero-pop-bg");
+  var word = hero.querySelector(".hero-pop-word");
+  var cut = hero.querySelector(".hero-pop-cutout");
+  if (!bg || !word || !cut) return;
+
+  var ticking = false;
+  function frame() {
+    ticking = false;
+    var h = hero.offsetHeight || 1;
+    var p = Math.max(0, Math.min(1.2, (window.scrollY || 0) / h));
+    bg.style.transform = "translate3d(0," + p * 9 + "%,0) scale(1.07)";
+    word.style.transform = "translate3d(0," + p * 34 + "%,0)";
+    cut.style.transform = "translate3d(0," + p * -7 + "%,0) scale(" + (1 + p * 0.05) + ")";
+  }
+  window.addEventListener("scroll", function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(frame); }
+  }, { passive: true });
+  window.addEventListener("resize", frame);
+  frame();
+})();
