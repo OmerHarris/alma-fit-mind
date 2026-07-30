@@ -394,15 +394,37 @@ a { color: inherit; text-decoration: none; }
 @keyframes hcRise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 @keyframes hcFlare { 0% { opacity: 0; transform: translateX(-40%); } 25% { opacity: 1; } 100% { opacity: 0; transform: translateX(40%); } }
 
-@media (max-width: 720px) {
-  .hero-cine { height: min(86vh, 740px); }
-  .hero-cine.armed .hc-frame { clip-path: circle(0% at 50% 30%); }
-  .hero-cine.play .hc-frame { animation-name: hcIrisM; }
-  @keyframes hcIrisM { to { clip-path: circle(100% at 50% 30%); } }
+/* Desktop: contain, never cover — the full photo is always visible, head to
+   feet. It sits complete on the right; the copy sits on the dark left. */
+@media (min-width: 721px) {
+  .hc-photo { object-fit: contain; object-position: right center; }
+  .hc-rim, .hc-rim-cool { background-size: contain; background-position: right center; }
   .hc-scrim {
-    background: linear-gradient(180deg, rgba(4, 5, 8, 0.25) 0%, rgba(4, 5, 8, 0.4) 38%, rgba(4, 5, 8, 0.88) 62%, rgba(3, 4, 7, 0.97) 100%);
+    background: linear-gradient(90deg, rgba(4, 5, 8, 0.97) 0%, rgba(4, 5, 8, 0.93) 30%, rgba(4, 5, 8, 0.6) 44%, rgba(4, 5, 8, 0.15) 56%, transparent 66%);
   }
-  .hero-cine .hero-cover-content { align-items: flex-end; padding: 0 24px 72px; }
+}
+@media (max-width: 720px) {
+  /* the base .hero padding was for the old overlay layout; it would leave a
+     dead band above the photo now that the frame is in normal flow */
+  .hero.hero-cine { height: auto; padding: 0; }
+  .hc-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1280 / 1022;   /* the photo's own shape — nothing cropped */
+  }
+  .hc-photo { object-fit: contain; object-position: center; }
+  .hc-rim, .hc-rim-cool { background-size: contain; background-position: center; }
+  .hero-cine.armed .hc-frame { clip-path: circle(0% at 50% 50%); }
+  .hero-cine.play .hc-frame { animation-name: hcIrisM; }
+  @keyframes hcIrisM { to { clip-path: circle(100% at 50% 50%); } }
+  /* these framed the cropped photo; with a full photo and stacked copy they
+     would only dim the text */
+  .hc-scrim, .hc-vig, .hc-bar { display: none; }
+  .hero-cine .hero-cover-content {
+    position: static;
+    display: block;
+    padding: 30px 24px 44px;
+  }
   .hero-cine .hero-cover-copy { max-width: none; }
 }
 /* Anyone who prefers less motion gets the finished frame immediately */
