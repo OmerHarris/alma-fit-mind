@@ -259,10 +259,10 @@ if (contactForm) {
       var o = (r.top + r.height / 2 - window.innerHeight / 2) / window.innerHeight;
       if (Math.abs(o) > 1.2) return;
       card.querySelector(".pp-bg").style.transform =
-        "translate3d(0," + o * 10 + "%,0) scale(1.06)";
-      card.querySelector(".pp-word").style.transform = "translate3d(0," + o * -8 + "%,0)";
+        "translate3d(0," + o * 15 + "%,0) scale(1.06)";
+      card.querySelector(".pp-word").style.transform = "translate3d(0," + o * -22 + "%,0)";
       card.querySelector(".pp-cutout").style.transform =
-        "translate3d(0," + o * -14 + "%,0) scale(" + (1.02 - o * 0.05) + ")";
+        "translate3d(0," + o * -34 + "%,0) scale(" + (1.02 - o * 0.08) + ")";
     });
   }
   function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }

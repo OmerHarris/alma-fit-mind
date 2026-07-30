@@ -1147,10 +1147,10 @@ a.value-prop:hover, a.value-prop:focus-visible {
 .price-card-photo {
   padding-top: 0;
   overflow: hidden;
-  background: linear-gradient(180deg, #0a0c0d 0px, #0a0c0d 202px, var(--card) 292px);
+  background: linear-gradient(180deg, #0a0c0d 0px, #0a0c0d 268px, var(--card) 368px);
 }
 .price-card-img {
-  height: 224px;
+  height: 296px;
   margin: 0 -24px 72px;
   background-size: cover;
   background-position: center 28%;
@@ -1169,7 +1169,7 @@ a.value-prop:hover, a.value-prop:focus-visible {
 .price-pop { overflow: hidden; }
 .price-pop .pp-bg {
   position: absolute;
-  inset: -14% 0;
+  inset: -22% 0;
   z-index: 0;
   will-change: transform;
   background-size: cover;
@@ -1206,10 +1206,10 @@ a.value-prop:hover, a.value-prop:focus-visible {
   position: absolute;
   /* head starts below the word band; the body fades out INSIDE the photo,
      well before its bottom edge, so nothing gets hard-cropped */
-  inset: 24% 0 0;
+  inset: 20% 0 0;
   z-index: 4;
   will-change: transform;
-  background-size: auto 112%;
+  background-size: auto 118%;
   background-position: center top;
   background-repeat: no-repeat;
   filter: brightness(1.08) drop-shadow(0 14px 22px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 18px rgba(217, 180, 92, 0.3));
@@ -1220,7 +1220,7 @@ a.value-prop:hover, a.value-prop:focus-visible {
 .price-card-photo .price-badge { top: 14px; z-index: 7; }
 /* Featured card: word sits below the badge, photo starts a bit lower */
 .price-card-featured .pp-word { padding-top: 48px; }
-.price-card-featured .pp-cutout { top: 30%; background-size: auto 130%; }
+.price-card-featured .pp-cutout { top: 26%; background-size: auto 142%; }
 .price {
   font-family: var(--serif);
   font-size: 1.9rem;
