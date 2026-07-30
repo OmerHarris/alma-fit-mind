@@ -260,11 +260,9 @@ if (contactForm) {
       if (Math.abs(o) > 1.2) return;
       card.querySelector(".pp-bg").style.transform =
         "translate3d(0," + o * 6 + "%,0) scale(1.06)";
-      var wordT = "translate3d(0," + o * 42 + "%,0)";
-      card.querySelector(".pp-word").style.transform = wordT;
-      card.querySelector(".pp-word-front").style.transform = wordT;
+      card.querySelector(".pp-word").style.transform = "translate3d(0," + o * -2 + "%,0)";
       card.querySelector(".pp-cutout").style.transform =
-        "translate3d(0," + o * -4 + "%,0) scale(" + (1.02 - o * 0.04) + ")";
+        "translate3d(0," + o * -5 + "%,0) scale(" + (1.02 - o * 0.03) + ")";
     });
   }
   function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }

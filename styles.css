@@ -1181,44 +1181,35 @@ a.value-prop:hover, a.value-prop:focus-visible {
 .pp-grade-1 { background: radial-gradient(ellipse 130% 100% at 50% 60%, transparent 40%, rgba(8, 6, 4, 0.55) 100%), linear-gradient(160deg, rgba(120, 75, 30, 0.32), transparent 55%, rgba(60, 30, 10, 0.4)); }
 .pp-grade-2 { background: radial-gradient(ellipse 130% 100% at 50% 60%, transparent 40%, rgba(8, 6, 4, 0.55) 100%), linear-gradient(160deg, rgba(180, 130, 40, 0.28), transparent 55%, rgba(90, 55, 15, 0.38)); }
 .pp-grade-3 { background: radial-gradient(ellipse 130% 100% at 50% 60%, transparent 40%, rgba(8, 6, 4, 0.58) 100%), linear-gradient(160deg, rgba(210, 170, 90, 0.26), transparent 55%, rgba(20, 15, 30, 0.5)); }
-.price-pop .pp-word,
-.price-pop .pp-word-front {
+.price-pop .pp-word {
   position: absolute;
   inset: 0;
+  z-index: 2;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding-top: 26px;
+  padding-top: 14px;
   pointer-events: none;
   will-change: transform;
 }
-.price-pop .pp-word { z-index: 2; }
-.price-pop .pp-word-front { z-index: 5; }
-.price-pop .pp-word span,
-.price-pop .pp-word-front span {
+.price-pop .pp-word span {
   font-family: var(--serif);
   font-weight: 700;
-  font-size: 1.9rem;
-  letter-spacing: 0.14em;
+  font-size: 1.55rem;
+  letter-spacing: 0.16em;
   white-space: nowrap;
-}
-.price-pop .pp-word span {
   color: var(--gold);
-  opacity: 0.92;
+  opacity: 0.95;
   text-shadow: 0 3px 18px rgba(0, 0, 0, 0.65);
-}
-.price-pop .pp-word-front span {
-  color: transparent;
-  -webkit-text-stroke: 1.5px rgba(217, 180, 92, 0.55);
 }
 .price-pop .pp-cutout {
   position: absolute;
-  /* anchored to the top so her head always stays in frame; the excess
+  /* head starts below the word band and always stays in frame; the excess
      crops at the bottom where the card fades out anyway */
-  inset: 5% 0 -14%;
+  inset: 25% 0 -38%;
   z-index: 4;
   will-change: transform;
-  background-size: auto 108%;
+  background-size: auto 118%;
   background-position: center top;
   background-repeat: no-repeat;
   filter: brightness(1.08) drop-shadow(0 14px 22px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 18px rgba(217, 180, 92, 0.3));
@@ -1227,9 +1218,9 @@ a.value-prop:hover, a.value-prop:focus-visible {
 }
 /* Keep the "Most Popular" badge visible over the photo (card clips its overflow) */
 .price-card-photo .price-badge { top: 14px; z-index: 7; }
-/* Featured card: drop the word below the badge */
-.price-card-featured .pp-word,
-.price-card-featured .pp-word-front { padding-top: 46px; }
+/* Featured card: word sits below the badge, photo starts a bit lower */
+.price-card-featured .pp-word { padding-top: 48px; }
+.price-card-featured .pp-cutout { top: 33%; background-size: auto 138%; }
 .price {
   font-family: var(--serif);
   font-size: 1.9rem;
