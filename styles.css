@@ -808,181 +808,29 @@ a.value-prop:hover, a.value-prop:focus-visible {
 .power-band-content .wrap { width: 100%; }
 .power-band-inner { max-width: 440px; }
 
-/* ---------- Power band: cinematic film frame ---------- */
-.power-cine { background: #07080a; }
-.pc-stage {
+/* ---------- Power band: sled photo with pricing-style motion ---------- */
+/* The stage matches the photo's own aspect ratio, so the whole picture is
+   always visible. Two aligned plates: the background with Alma removed, and
+   her crisp cutout on top — they separate slightly as you scroll. */
+.power-move { background: #05070b; }
+.pw-stage {
   position: relative;
-  height: clamp(560px, 82vh, 880px);
+  aspect-ratio: 1280 / 1022;
   overflow: hidden;
 }
-.pc-bg {
-  position: absolute;
-  inset: -14% 0;
-  z-index: 0;
-  will-change: transform;
-  background: url("images/alma-row.jpg") 42% 30% / cover no-repeat;
-  filter: blur(7px) brightness(0.42) saturate(0.75) contrast(1.15);
-  transform: scale(1.08);
-}
-.pc-grade {
+.pw-bg,
+.pw-cut {
   position: absolute;
   inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background:
-    linear-gradient(155deg, rgba(14, 34, 46, 0.5) 0%, rgba(12, 22, 30, 0.16) 38%, transparent 56%),
-    linear-gradient(345deg, rgba(120, 140, 158, 0.16) 0%, rgba(60, 74, 88, 0.08) 30%, transparent 58%);
-}
-.pc-ray {
-  position: absolute;
-  inset: -30% -10%;
-  z-index: 2;
-  pointer-events: none;
-  will-change: transform;
-  background: linear-gradient(108deg,
-    transparent 44%, rgba(236, 244, 252, 0.05) 52%, rgba(236, 244, 252, 0.15) 60%,
-    rgba(236, 244, 252, 0.06) 66%, transparent 72%);
-  filter: blur(6px);
-}
-.pc-flare {
-  position: absolute;
-  left: -12%;
-  right: -12%;
-  top: 21%;
-  height: 3px;
-  z-index: 3;
-  pointer-events: none;
-  will-change: transform;
-  mix-blend-mode: screen;
-  background: linear-gradient(90deg, transparent 4%, rgba(120, 198, 255, 0.5) 34%,
-    rgba(220, 240, 255, 0.8) 50%, rgba(120, 198, 255, 0.45) 66%, transparent 96%);
-  filter: blur(3px);
-}
-/* Aura + rim lights + Alma all share one placement so the edge light stays glued */
-.pc-echo,
-.pc-rim,
-.pc-cut {
-  position: absolute;
-  /* sit inside the letterbox bars — her whole body always fits the frame */
-  inset: 9% 0;
-  pointer-events: none;
-  will-change: transform;
-  background-image: url("images/pop/alma-row.webp");
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
-  background-position: 88% bottom;
-  background-size: contain;
-}
-.pc-echo {
-  z-index: 4;
-  opacity: 0.14;
-  filter: sepia(1) saturate(3) hue-rotate(-14deg) brightness(1.7) blur(22px);
-}
-.pc-rim { z-index: 5; mix-blend-mode: screen; }
-/* Neutral silver key light — no gold anywhere in this scene */
-.pc-rim-gold {
-  filter: brightness(0) invert(1) blur(11px);
-  opacity: 0.12;
-}
-.pc-rim-cyan {
-  filter: brightness(0) invert(1) sepia(1) saturate(4) hue-rotate(158deg) blur(10px);
-  opacity: 0.12;
-}
-.pc-cut {
-  z-index: 6;
-  filter: contrast(1.06) saturate(1.05)
-    drop-shadow(0 38px 54px rgba(0, 0, 0, 0.75))
-    drop-shadow(0 0 40px rgba(214, 230, 244, 0.16));
-}
-.pc-dust {
-  position: absolute;
-  inset: 0;
-  z-index: 7;
-  pointer-events: none;
   will-change: transform;
 }
-.pc-dust i {
-  position: absolute;
-  border-radius: 50%;
-  background: radial-gradient(circle, #eef4fa 0%, rgba(210, 226, 240, 0) 70%);
-}
-.pc-dust-a i { width: 6px; height: 6px; box-shadow: 0 0 11px rgba(226, 238, 250, 0.85); opacity: 0.75; }
-.pc-dust-b i { width: 14px; height: 14px; opacity: 0.3; filter: blur(2px); }
-.pc-dust-a i:nth-child(1) { left: 14%; top: 30%; }
-.pc-dust-a i:nth-child(2) { left: 28%; top: 66%; }
-.pc-dust-a i:nth-child(3) { left: 43%; top: 22%; }
-.pc-dust-a i:nth-child(4) { left: 59%; top: 74%; }
-.pc-dust-a i:nth-child(5) { left: 72%; top: 38%; }
-.pc-dust-a i:nth-child(6) { left: 85%; top: 58%; }
-.pc-dust-a i:nth-child(7) { left: 93%; top: 26%; }
-.pc-dust-b i:nth-child(1) { left: 8%; top: 52%; }
-.pc-dust-b i:nth-child(2) { left: 21%; top: 18%; }
-.pc-dust-b i:nth-child(3) { left: 36%; top: 80%; }
-.pc-dust-b i:nth-child(4) { left: 50%; top: 40%; }
-.pc-dust-b i:nth-child(5) { left: 67%; top: 14%; }
-.pc-dust-b i:nth-child(6) { left: 80%; top: 70%; }
-.pc-dust-b i:nth-child(7) { left: 91%; top: 46%; }
-.pc-vig {
-  position: absolute;
-  inset: 0;
-  z-index: 8;
-  pointer-events: none;
-  background: radial-gradient(ellipse 96% 82% at 54% 52%, transparent 32%, rgba(4, 4, 6, 0.5) 76%, rgba(3, 3, 5, 0.88) 100%);
-}
-.pc-grain {
-  position: absolute;
-  inset: 0;
-  z-index: 9;
-  pointer-events: none;
-  opacity: 0.09;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-/* Copy is a sibling of the frame: overlaid on desktop, stacked under it on
-   phones — either way it never covers her. */
-.power-cine .power-band-content {
-  position: absolute;
-  inset: 0;
-  z-index: 11;
-  display: flex;
-  align-items: center;
-}
-.pc-rule {
-  display: block;
-  width: 120px;
-  height: 1px;
-  margin-bottom: 20px;
-  transform-origin: left center;
-  will-change: transform;
-  background: linear-gradient(90deg, rgba(226, 234, 242, 0.85), transparent);
-}
-.pc-bar {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 8.5%;
-  z-index: 12;
-  background: #000;
-  pointer-events: none;
-  will-change: transform;
-}
-.pc-bar-top { top: 0; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6); }
-.pc-bar-bot { bottom: 0; box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.6); }
-.pc-fade { display: none; }
-@media (max-width: 960px) {
-  /* Film still on top with her complete in frame, copy stacked beneath it */
-  .pc-stage { height: clamp(360px, 50vh, 520px); }
-  .pc-bg { background-position: 30% 30%; filter: blur(9px) brightness(0.4) saturate(0.72); }
-  .pc-vig { background: radial-gradient(ellipse 100% 82% at 50% 50%, transparent 34%, rgba(4, 4, 6, 0.5) 76%, rgba(3, 3, 5, 0.88) 100%); }
-  .pc-bar { height: 6%; }
-  .pc-echo, .pc-rim, .pc-cut { inset: 8% 0 7%; background-position: center bottom; }
-  .power-cine .power-band-content {
-    position: static;
-    display: block;
-    padding: 34px 24px 46px;
-  }
-  .power-cine .power-band-inner { max-width: none; }
-  .pc-rule { width: 90px; margin-bottom: 14px; }
-}
+.pw-bg { background-image: url("images/pop/hero-plate.jpg"); transform: scale(1.06); }
+.pw-cut { background-image: url("images/pop/alma-hero-full.webp"); z-index: 1; }
+.power-move .power-band-content { z-index: 2; }
+
 .power-stars {
   color: var(--gold);
   letter-spacing: 3px;
