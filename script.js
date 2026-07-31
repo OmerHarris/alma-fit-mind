@@ -274,21 +274,30 @@ if (contactForm) {
 // Strictly scroll-linked: the plate and Alma's cutout drift apart only
 // while the visitor scrolls.
 (function () {
-  var stage = document.querySelector(".power-move .pw-stage");
-  if (!stage) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  var bg = stage.querySelector(".pw-bg");
-  var cut = stage.querySelector(".pw-cut");
-  if (!bg || !cut) return;
+  // each scene: a stage plus its background plate and cutout layers
+  var scenes = [
+    { stage: ".power-move .pw-stage", bg: ".pw-bg", cut: ".pw-cut" },
+    { stage: ".hero-cine .hc-frame", bg: ".hw-bg", cut: ".hw-cut" }
+  ].map(function (d) {
+    var stage = document.querySelector(d.stage);
+    if (!stage) return null;
+    var bg = stage.querySelector(d.bg);
+    var cut = stage.querySelector(d.cut);
+    return bg && cut ? { stage: stage, bg: bg, cut: cut } : null;
+  }).filter(Boolean);
+  if (!scenes.length) return;
 
   var ticking = false;
   function frame() {
     ticking = false;
-    var r = stage.getBoundingClientRect();
-    var o = (r.top + r.height / 2 - window.innerHeight / 2) / window.innerHeight;
-    if (Math.abs(o) > 1.3) return;
-    bg.style.transform = "translate3d(0," + o * 4 + "%,0) scale(1.06)";
-    cut.style.transform = "translate3d(0," + o * -7 + "%,0) scale(" + (1.015 - o * 0.035) + ")";
+    scenes.forEach(function (sc) {
+      var r = sc.stage.getBoundingClientRect();
+      var o = (r.top + r.height / 2 - window.innerHeight / 2) / window.innerHeight;
+      if (Math.abs(o) > 1.3) return;
+      sc.bg.style.transform = "translate3d(0," + o * 4 + "%,0) scale(1.06)";
+      sc.cut.style.transform = "translate3d(0," + o * -7 + "%,0) scale(" + (1.015 - o * 0.035) + ")";
+    });
   }
   function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
   window.addEventListener("scroll", onScroll, { passive: true });
@@ -301,19 +310,14 @@ if (contactForm) {
 (function () {
   var hero = document.querySelector(".hero-cine");
   if (!hero || !hero.classList.contains("armed")) return;
-  var img = hero.querySelector(".hc-photo");
   var started = false;
   function start() {
     if (started) return;
     started = true;
     hero.classList.add("play");
   }
-  if (!img || img.complete) start();
-  else {
-    img.addEventListener("load", start);
-    img.addEventListener("error", start);
-  }
-  setTimeout(start, 1500);   // never wait on a slow photo
+  requestAnimationFrame(start);
+  setTimeout(start, 400);   // rAF is throttled in background tabs
 
   // Guarantee the hero ends up settled. Animation clocks are frozen while a
   // tab is hidden, so count only visible time; after the intro has had long
