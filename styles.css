@@ -815,7 +815,7 @@ a.value-prop:hover, a.value-prop:focus-visible {
 .power-move { background: #05070b; }
 .pw-stage {
   position: relative;
-  aspect-ratio: 1280 / 1022;
+  aspect-ratio: 1280 / 1016;
   overflow: hidden;
 }
 .pw-bg,
@@ -827,8 +827,8 @@ a.value-prop:hover, a.value-prop:focus-visible {
   background-repeat: no-repeat;
   will-change: transform;
 }
-.pw-bg { background-image: url("images/pop/hero-plate.jpg"); transform: scale(1.06); }
-.pw-cut { background-image: url("images/pop/alma-hero-full.webp"); z-index: 1; }
+.pw-bg { background-image: url("images/pop/row-plate.jpg"); transform: scale(1.06); }
+.pw-cut { background-image: url("images/pop/row-full.webp"); z-index: 1; }
 .power-move .power-band-content { z-index: 2; }
 
 .power-stars {
