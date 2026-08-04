@@ -1,4 +1,5 @@
 const { generateIntakePdf } = require("./_lib/intake-pdf");
+const { serviceClient, normaliseEmail, upsertOnboarding } = require("./_lib/supabase");
 
 function escapeHtml(str) {
   return String(str).replace(/[&<>"']/g, (c) => (
@@ -18,6 +19,9 @@ const FIELD_LABELS = [
   ["age", "Age"],
   ["email", "Email"],
   ["phone", "Phone / WhatsApp"],
+  ["height", "Height"],
+  ["weight", "Current weight"],
+  ["goalWeight", "Goal weight"],
   ["emergencyName", "Emergency contact"],
   ["emergencyPhone", "Emergency phone"],
   [null, "HEALTH & SAFETY"],
@@ -171,6 +175,44 @@ module.exports = async (req, res) => {
       res.status(502).json({ error: "Couldn't send your answers right now. Please try again shortly." });
       return;
     }
+
+    /**
+     * The answers also land in the app's database, so Alma can act on them
+     * instead of re-typing a PDF.
+     *
+     * AFTER the email, and inside its own try: the email is the path that
+     * has always worked and the client's answers must not be lost because a
+     * database is having a bad minute. A failure here is Alma's problem to
+     * notice, not the person who just filled in forty questions.
+     *
+     * The whole payload goes into `answers` as jsonb, so Alma can reword the
+     * questionnaire whenever she likes without a migration.
+     */
+    try {
+      const db = serviceClient();
+      const email = normaliseEmail(data.email);
+
+      const { data: intake, error: intakeError } = await db
+        .from("intake_forms")
+        .insert({
+          email,
+          full_name: String(data.fullName).trim(),
+          phone: String(data.phone).trim(),
+          answers: data,
+        })
+        .select("id")
+        .single();
+      if (intakeError) throw new Error(intakeError.message);
+
+      await upsertOnboarding(db, {
+        email,
+        fullName: String(data.fullName).trim(),
+        intakeFormId: intake.id,
+      });
+    } catch (dbErr) {
+      console.error("Intake-form Supabase write failed:", dbErr.message);
+    }
+
     res.status(200).json({ ok: true });
   } catch (err) {
     console.error("Intake-form error:", err);

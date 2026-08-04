@@ -88,6 +88,20 @@
             <label for="phone">Phone / WhatsApp <span class="field-req">(required)</span></label>
             <input type="tel" id="phone" name="phone" required autocomplete="tel" inputmode="tel" maxlength="40" />
           </div>
+          <!-- Alma programs from these three: load prescriptions and calorie
+               targets both start here. The questionnaire never asked. -->
+          <div class="form-row">
+            <label for="height">Height <span class="field-opt">(cm or ft/in)</span></label>
+            <input type="text" id="height" name="height" maxlength="20" placeholder="170 cm" />
+          </div>
+          <div class="form-row">
+            <label for="weight">Current weight <span class="field-opt">(kg or lb)</span></label>
+            <input type="text" id="weight" name="weight" maxlength="20" placeholder="72 kg" />
+          </div>
+          <div class="form-row">
+            <label for="goalWeight">Goal weight <span class="field-opt">(optional)</span></label>
+            <input type="text" id="goalWeight" name="goalWeight" maxlength="20" placeholder="66 kg" />
+          </div>
           <div class="form-row">
             <label for="emergencyName">Emergency contact — name <span class="field-opt">(optional)</span></label>
             <input type="text" id="emergencyName" name="emergencyName" maxlength="80" />
@@ -439,10 +453,12 @@
       </form>
 
       <div class="intake-success" id="intakeSuccess" hidden>
-        <h2>That's everything. 🎉</h2>
-        <p class="section-lead">Alma reads every answer personally — your plan starts from the real you, not a template. She'll be in touch on your chosen channel within a couple of days.</p>
+        <h2>You're in. 🎉</h2>
+        <p class="section-lead">Alma reads every answer personally — your plan starts from the real you, not a template.</p>
+        <p class="section-lead"><strong>Next: open the app and sign up with this same email address.</strong> That is what links your answers to your account, so your plan is waiting when Alma sends it.</p>
         <div class="pillar-cta" style="justify-content:center;">
-          <a class="btn btn-primary" href="/">Back to Home</a>
+          <a class="btn btn-primary" href="https://app.almafitandmind.com" target="_blank" rel="noopener">Open the app</a>
+          <a class="btn btn-outline" href="/">Back to Home</a>
         </div>
       </div>
 

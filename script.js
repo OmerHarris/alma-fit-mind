@@ -276,15 +276,16 @@ if (contactForm) {
 (function () {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   // each scene: a stage plus its background plate and cutout layers
+  // speed = how strongly the layers separate per screen of scrolling
   var scenes = [
-    { stage: ".power-move .pw-stage", bg: ".pw-bg", cut: ".pw-cut" },
-    { stage: ".hero-cine .hc-frame", bg: ".hw-bg", cut: ".hw-cut" }
+    { stage: ".power-move .pw-stage", bg: ".pw-bg", cut: ".pw-cut", speed: 1 },
+    { stage: ".hero-cine .hc-frame", bg: ".hw-bg", cut: ".hw-cut", speed: 2.2 }
   ].map(function (d) {
     var stage = document.querySelector(d.stage);
     if (!stage) return null;
     var bg = stage.querySelector(d.bg);
     var cut = stage.querySelector(d.cut);
-    return bg && cut ? { stage: stage, bg: bg, cut: cut } : null;
+    return bg && cut ? { stage: stage, bg: bg, cut: cut, speed: d.speed } : null;
   }).filter(Boolean);
   if (!scenes.length) return;
 
@@ -295,8 +296,9 @@ if (contactForm) {
       var r = sc.stage.getBoundingClientRect();
       var o = (r.top + r.height / 2 - window.innerHeight / 2) / window.innerHeight;
       if (Math.abs(o) > 1.3) return;
-      sc.bg.style.transform = "translate3d(0," + o * 4 + "%,0) scale(1.06)";
-      sc.cut.style.transform = "translate3d(0," + o * -7 + "%,0) scale(" + (1.015 - o * 0.035) + ")";
+      var k = sc.speed;
+      sc.bg.style.transform = "translate3d(0," + o * 4 * k + "%,0) scale(" + (1.02 + 0.04 * k) + ")";
+      sc.cut.style.transform = "translate3d(0," + o * -7 * k + "%,0) scale(" + (1.015 - o * 0.035 * k) + ")";
     });
   }
   function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
