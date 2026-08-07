@@ -340,3 +340,69 @@ if (contactForm) {
     }
   }, 600);
 })();
+
+/**
+ * Round 3 #2c — "Back to the app".
+ *
+ * The app opens external links in an overlay, so most of the time the client
+ * never leaves it. This is the other case: a link opened in a real browser tab
+ * (long-press "open in new tab", a payment link, a shared URL). The app is on a
+ * different origin, so nothing on this page would otherwise lead home.
+ *
+ * The flag is remembered for the session because it arrives on ONE url: without
+ * this, reading two pages of the site loses the bar on the second, which is
+ * exactly when it is needed most.
+ */
+(function appBar() {
+  var KEY = "afm:from-app";
+  var APP = "https://app.almafitandmind.com/";
+  var fromApp = false;
+
+  try {
+    if (new URLSearchParams(location.search).get("from") === "app") {
+      sessionStorage.setItem(KEY, "1");
+      fromApp = true;
+    } else {
+      fromApp = sessionStorage.getItem(KEY) === "1";
+    }
+  } catch (e) {
+    // Private mode: the query still works for the page it arrived on.
+    fromApp = new URLSearchParams(location.search).get("from") === "app";
+  }
+
+  if (!fromApp || document.querySelector(".app-bar")) return;
+
+  var bar = document.createElement("div");
+  bar.className = "app-bar";
+  var a = document.createElement("a");
+  a.className = "app-bar-in";
+  a.href = APP;
+  var arrow = document.createElement("span");
+  arrow.className = "app-bar-ar";
+  arrow.setAttribute("aria-hidden", "true");
+  arrow.textContent = "\u2190";
+  a.appendChild(arrow);
+
+  /**
+   * Both languages in the DOM, and `html[lang]` chooses — not __afmT().
+   *
+   * i18n.js walks the page ONCE and caches what it found, so an element added
+   * afterwards is never re-translated: the bar would have read correctly on
+   * load and then stayed English forever after a tap on the ES toggle. The
+   * toggle does set documentElement.lang, so CSS can follow it without any
+   * coupling to script order or to i18n's internals.
+   */
+  var en = document.createElement("span");
+  en.className = "app-bar-en";
+  en.textContent = "Back to the app";
+  var es = document.createElement("span");
+  es.className = "app-bar-es";
+  es.textContent = "Volver a la app";
+  a.appendChild(en);
+  a.appendChild(es);
+  bar.appendChild(a);
+
+  // First in the body, above the promo bar and the sticky header alike.
+  document.body.insertBefore(bar, document.body.firstChild);
+  document.documentElement.classList.add("has-app-bar");
+})();

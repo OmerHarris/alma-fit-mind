@@ -3,160 +3,122 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Alma Fit &amp; Mind — We're Moving</title>
-<meta name="description" content="Alma Fit & Mind is moving to a new name and a new home. Coaching continues uninterrupted." />
+<title>We're Moving</title>
+<meta name="description" content="We're moving to a new name and a new home. Back online shortly." />
 <meta name="robots" content="noindex" />
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-<meta name="theme-color" content="#14181a" />
+<meta name="theme-color" content="#0d1013" />
 
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Alma Fit &amp; Mind — We're Moving" />
-<meta property="og:description" content="We're moving to a new name and a new home. Coaching continues uninterrupted." />
-<meta property="og:image" content="https://almafitandmind.com/og-image.jpg" />
+<meta property="og:title" content="We're Moving" />
+<meta property="og:description" content="We're moving to a new name and a new home. Back online shortly." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { min-height: 100%; }
   body {
+    position: relative;
     min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 40px 24px;
-    background: #14181a;
-    color: #f6f1e7;
+    background: #0d1013;
+    color: #f4f1ea;
     font-family: Inter, system-ui, sans-serif;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
-  /* soft warm glow so the page reads as considered, not broken */
+  /* photo backdrop */
   body::before {
     content: "";
     position: fixed;
     inset: 0;
-    pointer-events: none;
+    background: url("images/moving-bg.jpg") 82% 20% / cover no-repeat;
+  }
+  /* scrim: heavy on the left so the copy reads, clear on the right */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
     background:
-      radial-gradient(ellipse 70% 55% at 50% 32%, rgba(176, 141, 87, 0.16), transparent 70%),
-      radial-gradient(ellipse 90% 70% at 50% 100%, rgba(10, 14, 16, 0.9), transparent 60%);
+      linear-gradient(90deg, rgba(9, 11, 14, 0.94) 0%, rgba(9, 11, 14, 0.86) 30%, rgba(9, 11, 14, 0.5) 52%, rgba(9, 11, 14, 0.12) 70%, rgba(9, 11, 14, 0.05) 100%),
+      linear-gradient(180deg, rgba(9, 11, 14, 0.5) 0%, transparent 26%, transparent 74%, rgba(9, 11, 14, 0.6) 100%);
   }
-  .card { position: relative; width: 100%; max-width: 620px; text-align: center; }
 
-  .logo { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 40px; }
-  .logo-mark {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: #b08d57;
-    color: #14181a;
-    font-family: Fraunces, serif;
-    font-weight: 700;
-    font-size: 1.35rem;
-    display: grid;
-    place-items: center;
+  main {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 64px 24px;
   }
-  .logo-text { font-family: Fraunces, serif; font-size: 1.3rem; letter-spacing: 0.01em; }
-  .logo-text em { font-style: normal; color: #b08d57; }
+  .copy { max-width: 520px; }
 
   .eyebrow {
-    color: #b08d57;
+    color: #c9a35f;
     font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
   }
   h1 {
     font-family: Fraunces, serif;
     font-weight: 700;
-    font-size: clamp(1.9rem, 5.6vw, 3rem);
-    line-height: 1.12;
+    font-size: clamp(2rem, 5.4vw, 3.2rem);
+    line-height: 1.1;
     color: #fff;
-    margin-bottom: 22px;
+    margin-bottom: 24px;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.6);
   }
   .rule {
-    width: 120px;
+    width: 130px;
     height: 1px;
-    margin: 0 auto 24px;
-    background: linear-gradient(90deg, transparent, rgba(176, 141, 87, 0.9), transparent);
+    margin-bottom: 26px;
+    background: linear-gradient(90deg, rgba(201, 163, 95, 0.95), transparent);
   }
-  p.lead { color: #d5d2ca; font-size: 1.06rem; margin-bottom: 16px; }
-  p.note { color: #9a968c; font-size: 0.95rem; }
+  p.lead {
+    color: #ded9d0;
+    font-size: 1.08rem;
+    margin-bottom: 14px;
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
+  }
+  p.note {
+    color: #a7a299;
+    font-size: 0.96rem;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+  }
 
-  .panel {
-    margin-top: 38px;
-    padding: 26px 24px;
-    border: 1px solid rgba(246, 241, 231, 0.14);
-    border-radius: 14px;
-    background: rgba(246, 241, 231, 0.03);
+  @media (max-width: 760px) {
+    body { align-items: flex-end; }
+    body::before { background-position: center 18%; }
+    /* on a narrow screen the copy sits over the bottom, so darken downward */
+    body::after {
+      background: linear-gradient(180deg, rgba(9, 11, 14, 0.45) 0%, rgba(9, 11, 14, 0.25) 34%, rgba(9, 11, 14, 0.82) 62%, rgba(9, 11, 14, 0.96) 100%);
+    }
+    main { padding: 0 24px 60px; }
+    .copy { max-width: none; }
   }
-  .panel h2 {
-    font-family: Fraunces, serif;
-    font-size: 1.05rem;
-    color: #fff;
-    margin-bottom: 8px;
-  }
-  .panel p { color: #b9b5ac; font-size: 0.95rem; }
-  .panel a { color: #d9b45c; text-decoration: none; border-bottom: 1px solid rgba(217, 180, 92, 0.4); }
-  .panel a:hover { border-bottom-color: #d9b45c; }
-
-  .socials { margin-top: 30px; display: flex; gap: 18px; justify-content: center; }
-  .socials a {
-    width: 40px;
-    height: 40px;
-    display: grid;
-    place-items: center;
-    border-radius: 50%;
-    border: 1px solid rgba(246, 241, 231, 0.2);
-    color: #d5d2ca;
-    transition: border-color 0.2s ease, color 0.2s ease;
-  }
-  .socials a:hover { border-color: #b08d57; color: #b08d57; }
-  .socials svg { width: 19px; height: 19px; }
-
-  .sign { margin-top: 34px; font-family: Fraunces, serif; color: #8b877e; font-size: 0.92rem; }
 </style>
 </head>
 <body>
-  <main class="card">
-    <div class="logo">
-      <span class="logo-mark">A</span>
-      <span class="logo-text">Alma <em>Fit &amp; Mind</em></span>
-    </div>
-
-    <p class="eyebrow">A New Chapter</p>
-    <h1>We're moving to a new name and a new home.</h1>
-    <div class="rule"></div>
-    <p class="lead">
-      Alma Fit &amp; Mind is being rebuilt under a new brand and a new address —
-      same coach, same method, a bigger vision.
-    </p>
-    <p class="note">
-      We'll be back online shortly. Thank you for your patience.
-    </p>
-
-    <div class="panel">
-      <h2>Current clients</h2>
-      <p>
-        Your coaching continues uninterrupted. If you need anything at all, reach Alma directly at
-        <a href="mailto:alma@almafitandmind.com">alma@almafitandmind.com</a>.
+  <main>
+    <div class="copy">
+      <p class="eyebrow">A New Chapter</p>
+      <h1>We're moving to a new name and a new home.</h1>
+      <div class="rule"></div>
+      <p class="lead">
+        Something bigger is being built — a new brand, a new address, and a new
+        standard for the coaching we deliver.
       </p>
+      <p class="note">We'll be back online shortly. Thank you for your patience.</p>
     </div>
-
-    <div class="socials">
-      <a href="https://instagram.com/almafitandmind" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg>
-      </a>
-      <a href="https://www.tiktok.com/@almafitandmind" target="_blank" rel="noopener" aria-label="TikTok">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M14 3v10.5a3.5 3.5 0 1 1-3-3.46" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 3c.5 2.2 2.2 3.8 4.4 4.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-
-    <p class="sign">— Alma</p>
   </main>
 </body>
 </html>

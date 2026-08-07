@@ -2350,3 +2350,45 @@ textarea:focus-visible {
   .intake-step { padding: 22px 18px 16px; }
   .intake-nav .btn { min-width: 108px; }
 }
+
+/* ===================================================================
+   Round 3 #2c — a way back to the app.
+   Shown only when a URL carries ?from=app, i.e. when the visitor arrived
+   from inside the Alma app. A client who taps a link and lands in a browser
+   tab otherwise has no route home: the app is a separate origin, and on a
+   phone the browser's own back button is often not even on screen.
+   =================================================================== */
+
+.app-bar {
+  position: sticky;
+  top: 0;
+  /* Above .site-header's 100 — both stick to the top, and the header is
+     pushed down by .has-app-bar below rather than being covered. */
+  z-index: 120;
+  background: var(--charcoal-dark, #17140f);
+  color: #f3ede1;
+}
+.app-bar-in {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* 44px of tappable height, on a bar whose only job is to be tapped. */
+  min-height: 46px;
+  padding: 0 20px;
+  color: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.app-bar-in:hover,
+.app-bar-in:focus-visible { text-decoration: underline; }
+.app-bar-ar { font-size: 18px; line-height: 1; }
+
+/* The site's own sticky header starts below the bar instead of under it. */
+.has-app-bar .site-header { top: 46px; }
+
+/* i18n.js caches the page's text nodes at load, so a bar injected afterwards
+   would never re-translate. It does set html[lang], which is enough. */
+.app-bar-es { display: none; }
+html[lang="es"] .app-bar-en { display: none; }
+html[lang="es"] .app-bar-es { display: inline; }
